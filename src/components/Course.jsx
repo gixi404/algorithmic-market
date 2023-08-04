@@ -20,7 +20,7 @@ function Course(props) {
           <NameCourse>{nameCourse}</NameCourse>
           <b>{"$" + priceCourse}</b>
           <br />
-          <img src={imgCourse} />
+          <img src={imgCourse} alt="img course" />
           <br />
 
           <DetailsCourse onClick={() => setDetailsCourseOne(!detailsCourseOne)}>

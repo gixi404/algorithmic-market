@@ -7,7 +7,7 @@ function MyCourse(props) {
     <MyCourseContainer>
       <MyNameCourse>{nameCourse}</MyNameCourse>
       <br />
-      <img src={imgCourse} />
+      <img src={imgCourse} alt="img course" />
       <button>VER</button>
     </MyCourseContainer>
   );

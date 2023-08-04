@@ -1,11 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ContextProps } from "./Context.jsx";
-import MyCourse from "./MyCourse";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 import Header from "./Header.jsx";
-import { useAuth0 } from "@auth0/auth0-react";
+import MyCourse from "./MyCourse";
 import Footer from "./Footer.jsx";
+import styled from "styled-components";
 
 function MyCourses() {
   const { myCourses } = useContext(ContextProps);
