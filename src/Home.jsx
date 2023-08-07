@@ -8,7 +8,6 @@ import AboutUs from "./components/AboutUs.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import styled from "styled-components";
-import PayLayout from "./components/PayLayout/PayLayout.jsx";
 
 function Home() {
   const { isLoading, isAuthenticated } = useAuth0();
@@ -34,7 +33,6 @@ function Home() {
       <Courses />
       <AboutUs />
       <Contact />
-      <PayLayout />
       <Footer />
     </HomeContainer>
   );
