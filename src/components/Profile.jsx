@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import LogoutBtn from "./LogoutBtn";
 import styled from "styled-components";
@@ -30,7 +30,7 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default withAuthenticationRequired(Profile);
 
 const ProfileContainer = styled.div`
   background-color: #457b9d;
