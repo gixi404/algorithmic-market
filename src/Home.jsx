@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import ReactLoading from "react-loading";
 import Header from "./components/Header.jsx";
+import PayLayout from "./components/PayLayout/PayLayout.jsx";
 import UserIsLogin from "./components/UserIsLogin.jsx";
 import Banner from "./components/Banner.jsx";
 import Courses from "./components/Courses.jsx";
@@ -9,12 +10,12 @@ import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import styled from "styled-components";
 
+
 function Home() {
   const { isLoading, isAuthenticated } = useAuth0();
-
   if (isLoading) {
     return (
-      <LoadContainer>
+      <LoadContainer> 
         <ReactLoading
           type="bars"
           color="rgb(193, 163, 98)"
@@ -28,6 +29,7 @@ function Home() {
   return (
     <HomeContainer>
       <Header />
+      <PayLayout />
       {isAuthenticated && <UserIsLogin />}
       <Banner />
       <Courses />
