@@ -1,5 +1,5 @@
-import { Link as Linkk } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "./LoginBtn.jsx";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ function Header({ pathIsMyCourses }) {
     <HeaderContainer login={isAuthenticated ? "120px" : "150px"}>
       <WebNameContainer>
         <Link to="/">
-          <WebName>Trading Master</WebName>
+          <WebName>king of the market</WebName>
         </Link>
         {isAuthenticated && (
           <Link to="/profile">

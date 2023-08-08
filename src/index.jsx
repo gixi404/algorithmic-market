@@ -7,6 +7,8 @@ import Home from "./Home.jsx";
 import Profile from "./components/Profile.jsx";
 import MyCourses from "./components/MyCourses.jsx";
 import "./index.css";
+import Privacy from "./components/Privacy.jsx";
+import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 
 const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN,
   CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -18,7 +20,9 @@ root.render(
     <Auth0Provider
       domain={DOMAIN}
       clientId={CLIENT_ID}
-      authorizationParams={{ redirect_uri: window.location.origin }}
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
     >
       <Context>
         <BrowserRouter>
@@ -26,6 +30,8 @@ root.render(
             <Route path="/" exact element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/mycourses" element={<MyCourses />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/video" element={<MediaPlayer />} />
           </Routes>
         </BrowserRouter>
       </Context>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function MyCourse(props) {
@@ -8,7 +9,9 @@ function MyCourse(props) {
       <MyNameCourse>{nameCourse}</MyNameCourse>
       <br />
       <img src={imgCourse} alt="img course" />
-      <button>VER</button>
+      <Link to="/video">
+        <button>VER</button>
+      </Link>
     </MyCourseContainer>
   );
 }
