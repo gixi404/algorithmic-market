@@ -8,6 +8,7 @@ import Profile from "./components/Profile.jsx";
 import MyCourses from "./components/MyCourses.jsx";
 import Privacy from "./components/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
+import Success from './components/PayLayout/Success.jsx'
 import "./index.css";
 
 const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN,
@@ -32,6 +33,7 @@ root.render(
             <Route path="/mycourses" element={<MyCourses />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
+            <Route path="/success" element={<Success />} />
           </Routes>
         </BrowserRouter>
       </Context>
