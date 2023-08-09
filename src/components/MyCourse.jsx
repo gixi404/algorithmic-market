@@ -8,8 +8,10 @@ function MyCourse(props) {
     <MyCourseContainer>
       <MyNameCourse>{dataCourse.name}</MyNameCourse>
       <br />
-      <img src="sexi" alt="img course" />
-      <button>VER</button>
+      <img src={dataCourse.img} alt={`${dataCourse.name} image`} />
+      <Link to={`/mycourses/${dataCourse.id}`}>
+        <button>VIEW</button>
+      </Link>
     </MyCourseContainer>
   );
 }

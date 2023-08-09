@@ -30,6 +30,8 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/mycourses" element={<MyCourses />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
           </Routes>
         </BrowserRouter>
       </Context>

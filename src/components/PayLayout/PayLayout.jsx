@@ -1,20 +1,13 @@
 import { styled } from "styled-components"
-import { useState, useEffect, useContext } from "react"
-import { ContextProps } from "../Context.jsx";
-
-function PayLayout(prop){
-    const { idCourse } = prop
-    const { allCourses, myCourses, setMyCourses } = useContext(ContextProps);
+import { useState, useEffect } from "react"
+function PayLayout(){
     const [ buyUrl, setBuyUrl ] = useState("")
-    const handleBuy = async(id)=>{
+    const handleBuy = async()=>{
        const res = await fetch("http://localhost:3001/create-checkout-session",{
             method:"POST"
         })
         const data = await res.json()
         setBuyUrl(data)
-        console.log('se agrego hijo de mil putas')
-        const addCourse = allCourses.find(course => course.id === id);
-        setMyCourses([...myCourses, addCourse])
     }
     useEffect(() => {
         if (buyUrl) {
@@ -22,12 +15,10 @@ function PayLayout(prop){
         }
       }, [buyUrl]);
     return(
-        <Button onClick={()=>handleBuy(idCourse)}>
+        <Button onClick={handleBuy}>
             Buy
         </Button>
     )
 }
-export default PayLayout
-const Button = styled.button`
-
-`;
+export default PayLayout;
+const Button = styled.button``;
