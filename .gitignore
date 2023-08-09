@@ -1,8 +1,4 @@
 node_modules
 .env
-<<<<<<< HEAD
 .env.*
-.gitignorw
-=======
-.env.*
->>>>>>> test
+.gitignore
