@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Link, useParams } from "react-router-dom";
 import { ContextProps } from "../Context";
-import ReactPlayer from "react-player";
 import Footer from "../Footer";
 import styled from "styled-components";
 
@@ -22,22 +21,6 @@ function MediaPlayer() {
     });
   }
 
-  const video = document.querySelector("video");
-
-  function handlePlayBtn() {
-    if (video.paused) {
-      // playBtn.src = "media/pause.png";
-      video.play();
-    } else {
-      // playBtn.src = "media/play.png";
-      video.pause();
-    }
-  }
-
-  function handleRestartBtn() {
-    return (video.currentTime = 0);
-  }
-
   return (
     <Container>
       <Link to="/mycourses">Atrás</Link>
@@ -47,25 +30,16 @@ function MediaPlayer() {
           <h2>{myCourses[formatCourseId].name}</h2>
           {classData ? (
             <>
-              <ReactPlayer
-                url={classData.classURL}
-                playing={true}
+              <video
+                src={classData.classURL}
                 loop={false}
-                light={false}
-                volume={1}
-                playbackRate={1}
-                progressInterval={1}
+                autoPlay
                 playsInline
-                stopOnUnmount={false}
-                pip
-                controls={false}
+                controls
                 width="100%"
                 height="300px"
               />
-              <div>
-                <button onClick={handlePlayBtn}>Play</button>
-                <button onClick={handleRestartBtn}>Reiniciar</button>
-              </div>
+
               <h2>{"Estás viendo: " + classData.className}</h2>
             </>
           ) : (
@@ -137,4 +111,20 @@ ESLINT
       "react-app/jest"
     ]
   },
+
+  <ReactPlayer
+                url={classData.classURL}
+                playing={true}
+                loop={false}
+                light={false}
+                volume={1}
+                playbackRate={1}
+                progressInterval={1}
+                playsInline
+                stopOnUnmount={false}
+                pip
+                controls={false}
+                width="100%"
+                height="300px"
+              />
 */

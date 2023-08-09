@@ -8,22 +8,28 @@ export const ContextProps = createContext();
 function Context({ children }) {
   const [allCourses, setAllCourses] = useState([
     {
+      id: 0,
+      description:
+        "Un curso de trading es un programa de aprendizaje diseñado para enseñar a las personas cómo operar en los mercados financieros. Los cursos de trading pueden cubrir una amplia gama de temas, incluyendo análisis técnico, análisis fundamental, gestión de riesgos y psicología del trading.",
       name: "Curso Inicial",
       price: 200,
       img: basicCourseImg,
-      id: 1,
     },
     {
+      id: 1,
+      description:
+        "Un curso de trading es un programa de aprendizaje diseñado para enseñar a las personas cómo operar en los mercados financieros. Los cursos de trading pueden cubrir una amplia gama de temas, incluyendo análisis técnico, análisis fundamental, gestión de riesgos y psicología del trading.",
       name: "Curso Medio",
       price: 250,
       img: middleCourseImg,
-      id: 2,
     },
     {
+      id: 2,
+      description:
+        "Los cursos de trading pueden ser una excelente manera de aprender sobre los mercados financieros y cómo operar de manera rentable. Sin embargo, es importante elegir un curso de trading que sea ofrecido por una fuente confiable y que sea adecuado para tu nivel de experiencia.",
       name: "Curso Avanzado",
       price: 350,
       img: advancedCourseImg,
-      id: 3,
     },
   ]);
 

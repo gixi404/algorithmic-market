@@ -1,35 +1,17 @@
-import { useState } from "react";
-import PayLayout from "./PayLayout/PayLayout.jsx";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
-  const [detailsCourseOne, setDetailsCourseOne] = useState(false);
-
   return (
     <CourseContainer>
-      {!detailsCourseOne ? (
-        <>
-          <NameCourse>{dataCourse.name}</NameCourse>
-          <b>{"$" + dataCourse.price}</b>
-          <br />
-          <img src={dataCourse.img} alt="img course" />
-          <br />
-
-          <DetailsCourse onClick={() => setDetailsCourseOne(!detailsCourseOne)}>
-            Ver Detalles
-          </DetailsCourse>
-        </>
-      ) : (
-        <>
-          <button onClick={() => setDetailsCourseOne(false)}>Atrás</button>
-          <p>
-            Este curso está orientado a aquellas personas que ya tienen
-            conocimiento en trading y desean conocer en detalle una operatoria
-            avanzada para llegar a un nivel superior.
-          </p>
-          <PayLayout />
-        </>
-      )}
+      <NameCourse>{dataCourse.name}</NameCourse>
+      <b>{"$" + dataCourse.price}</b>
+      <br />
+      <img src={dataCourse.img} alt="img course" />
+      <br />
+      <Link to={`/details/${dataCourse.id}`}>
+        <DetailsCourse>Ver Detalles</DetailsCourse>
+      </Link>
     </CourseContainer>
   );
 }
