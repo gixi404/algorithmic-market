@@ -2,16 +2,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function MyCourse(props) {
-  const { nameCourse, imgCourse } = props;
+  const { dataCourse } = props;
 
   return (
     <MyCourseContainer>
-      <MyNameCourse>{nameCourse}</MyNameCourse>
+      <MyNameCourse>{dataCourse.name}</MyNameCourse>
       <br />
       <img src={imgCourse} alt="img course" />
-      <Link to="/video">
-        <button>VER</button>
-      </Link>
+      <button>VER</button>
     </MyCourseContainer>
   );
 }

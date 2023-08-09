@@ -20,11 +20,7 @@ function MyCourses() {
         ) : (
           <ListMyCourses>
             {myCourses.map(course => (
-              <MyCourse
-                key={course.id + "bought"}
-                nameCourse={course.name}
-                imgCourse={course.img}
-              />
+              <MyCourse key={course.id + "bought"} dataCourse={course} />
             ))}
           </ListMyCourses>
         )}

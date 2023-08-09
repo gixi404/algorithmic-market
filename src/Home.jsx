@@ -1,7 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import ReactLoading from "react-loading";
 import Header from "./components/Header.jsx";
-import PayLayout from "./components/PayLayout/PayLayout.jsx";
 import UserIsLogin from "./components/UserIsLogin.jsx";
 import Banner from "./components/Banner.jsx";
 import Courses from "./components/Courses.jsx";
@@ -29,7 +28,6 @@ function Home() {
   return (
     <HomeContainer>
       <Header />
-      <PayLayout />
       {isAuthenticated && <UserIsLogin />}
       <Banner />
       <Courses />
