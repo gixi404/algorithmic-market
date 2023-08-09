@@ -2,7 +2,8 @@ import { useState } from "react";
 import PayLayout from "./PayLayout/PayLayout.jsx";
 import styled from "styled-components";
 
-function Course({dataCourse}) {
+function Course(props) {
+  const { course } = props;
   const [detailsCourseOne, setDetailsCourseOne] = useState();
 
   return (
@@ -27,7 +28,7 @@ function Course({dataCourse}) {
             conocimiento en trading y desean conocer en detalle una operatoria
             avanzada para llegar a un nivel superior.
           </p>
-          <PayLayout idCourse={dataCourse.id} />
+          <PayLayout idCourse={course.id} />
         </>
       )}
     </CourseContainer>

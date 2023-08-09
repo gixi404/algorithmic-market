@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { ContextProps } from "../Context";
 import { Link, useParams } from "react-router-dom";
+import { ContextProps } from "../Context";
 import ReactPlayer from "react-player";
 import Footer from "../Footer";
 import styled from "styled-components";
@@ -10,18 +10,27 @@ function MediaPlayer() {
   const { myCourses } = useContext(ContextProps);
   const { courseId } = useParams();
 
-  const [classData, setClassData] = useState({
-    classId: myCourses[0].classes[0].id,
-    className: myCourses[0].classes[0].name,
-    classURL: myCourses[0].classes[0].URL,
-  });
+  const formatCourseId = courseId.slice(0, 1);
+
+  const [classData, setClassData] = useState("");
 
   function handleChangeURL(classId) {
     setClassData({
-      classId: myCourses[0].classes[classId].id,
-      className: myCourses[0].classes[classId].name,
-      classURL: myCourses[0].classes[classId].URL,
+      classId: myCourses[formatCourseId].classes[classId].id,
+      className: myCourses[formatCourseId].classes[classId].name,
+      classURL: myCourses[formatCourseId].classes[classId].URL,
     });
+  }
+
+  function handlePlayBtn() {
+    const video = document.querySelector("video");
+    if (video.paused) {
+      // playBtn.src = "media/pause.png";
+      video.play();
+    } else {
+      // playBtn.src = "media/play.png";
+      video.pause();
+    }
   }
 
   return (
@@ -30,26 +39,35 @@ function MediaPlayer() {
 
       <MediaContainer>
         <div style={{ width: "95%", aspectRatio: "16/9" }}>
-          <h2>{myCourses[0].name}</h2>
-          <ReactPlayer
-            url={classData.classURL}
-            playing={true}
-            loop={false}
-            light={false}
-            volume={0}
-            playbackRate={1}
-            progressInterval={1}
-            playsInline
-            stopOnUnmount={false}
-            pip
-            controls
-            width="100%"
-            height="300px"
-          />
-          <h2>{"Estás viendo: " + classData.className}</h2>
+          <h2>{myCourses[formatCourseId].name}</h2>
+          {classData ? (
+            <>
+              <ReactPlayer
+                url={classData.classURL}
+                playing={true}
+                loop={false}
+                light={false}
+                volume={1}
+                playbackRate={1}
+                progressInterval={1}
+                playsInline
+                stopOnUnmount={false}
+                pip
+                controls={false}
+                width="100%"
+                height="300px"
+              />
+              <div>
+                <button onClick={handlePlayBtn}>Play</button>
+              </div>
+              <h2>{"Estás viendo: " + classData.className}</h2>
+            </>
+          ) : (
+            <p>Selecciona la clase para ver</p>
+          )}
         </div>
         <FollowingClasses>
-          {myCourses[0].classes.map(_class => (
+          {myCourses[formatCourseId].classes.map(_class => (
             <Class key={_class.id} onClick={() => handleChangeURL(_class.id)}>
               {_class.name}
             </Class>
@@ -104,3 +122,13 @@ const Class = styled.div`
   justify-content: center;
   color: #fff;
 `;
+
+/*
+ESLINT
+"eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+*/
