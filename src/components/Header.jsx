@@ -7,7 +7,7 @@ function Header({ pathIsMyCourses }) {
   const { user, isAuthenticated } = useAuth0();
 
   return (
-    <HeaderContainer login={isAuthenticated ? "120px" : "150px"}>
+    <HeaderContainer>
       <WebNameContainer>
         <Link to="/">
           <WebName>king of the market</WebName>
@@ -41,7 +41,7 @@ export default Header;
 const HeaderContainer = styled.header`
   background-color: #2b2d42;
   width: 100vw;
-  height: ${props => props.login};
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;

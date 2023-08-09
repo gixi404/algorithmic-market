@@ -6,6 +6,8 @@ import Context from "./components/Context.jsx";
 import Home from "./Home.jsx";
 import Profile from "./components/Profile.jsx";
 import MyCourses from "./components/MyCourses.jsx";
+import Privacy from "./components/Privacy.jsx";
+import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import "./index.css";
 import Privacy from "./components/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
@@ -27,11 +29,9 @@ root.render(
       <Context>
         <BrowserRouter>
           <Routes>
-            <Route path="/" exact element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/mycourses" element={<MyCourses />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/video" element={<MediaPlayer />} />
           </Routes>
         </BrowserRouter>
       </Context>
