@@ -6,9 +6,9 @@ import Context from "./components/Context.jsx";
 import Home from "./Home.jsx";
 import Profile from "./components/Profile.jsx";
 import MyCourses from "./components/MyCourses.jsx";
-import "./index.css";
 import Privacy from "./components/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
+import "./index.css";
 
 const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN,
   CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -30,6 +30,8 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/mycourses" element={<MyCourses />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
           </Routes>
         </BrowserRouter>
       </Context>
