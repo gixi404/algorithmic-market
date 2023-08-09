@@ -6,8 +6,6 @@ import Context from "./components/Context.jsx";
 import Home from "./Home.jsx";
 import Profile from "./components/Profile.jsx";
 import MyCourses from "./components/MyCourses.jsx";
-import Privacy from "./components/Privacy.jsx";
-import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import "./index.css";
 import Privacy from "./components/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
