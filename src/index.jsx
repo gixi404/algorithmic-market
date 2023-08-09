@@ -9,8 +9,6 @@ import MyCourses from "./components/MyCourses.jsx";
 import Privacy from "./components/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import "./index.css";
-import Privacy from "./components/Privacy.jsx";
-import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 
 const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN,
   CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
