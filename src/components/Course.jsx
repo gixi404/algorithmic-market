@@ -2,18 +2,17 @@ import { useState } from "react";
 import PayLayout from "./PayLayout/PayLayout.jsx";
 import styled from "styled-components";
 
-function Course(props) {
-  const { course } = props;
+function Course({dataCourse}) {
   const [detailsCourseOne, setDetailsCourseOne] = useState();
 
   return (
     <CourseContainer>
       {!detailsCourseOne ? (
         <>
-          <NameCourse>{course.name}</NameCourse>
-          <b>{"$" + course.price}</b>
+          <NameCourse>{dataCourse.name}</NameCourse>
+          <b>{"$" + dataCourse.price}</b>
           <br />
-          <img src={course.img} alt="img course" />
+          <img src={dataCourse.img} alt="img course" />
           <br />
 
           <DetailsCourse onClick={() => setDetailsCourseOne(!detailsCourseOne)}>
@@ -28,7 +27,7 @@ function Course(props) {
             conocimiento en trading y desean conocer en detalle una operatoria
             avanzada para llegar a un nivel superior.
           </p>
-          <PayLayout idCourse={course.id} />
+          <PayLayout idCourse={dataCourse.id} />
         </>
       )}
     </CourseContainer>
