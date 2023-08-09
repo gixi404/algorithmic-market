@@ -12,13 +12,7 @@ function Courses() {
 
       <ListCourses>
         {allCourses.map(course => (
-          <Course
-            key={course.id}
-            idCourse={course.id}
-            nameCourse={course.name}
-            priceCourse={course.price}
-            imgCourse={course.img}
-          />
+          <Course key={course.id} dataCourse={course} />
         ))}
       </ListCourses>
     </CoursesContainer>
