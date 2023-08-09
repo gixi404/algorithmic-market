@@ -22,8 +22,9 @@ function MediaPlayer() {
     });
   }
 
+  const video = document.querySelector("video");
+
   function handlePlayBtn() {
-    const video = document.querySelector("video");
     if (video.paused) {
       // playBtn.src = "media/pause.png";
       video.play();
@@ -31,6 +32,10 @@ function MediaPlayer() {
       // playBtn.src = "media/play.png";
       video.pause();
     }
+  }
+
+  function handleRestartBtn() {
+    return (video.currentTime = 0);
   }
 
   return (
@@ -59,6 +64,7 @@ function MediaPlayer() {
               />
               <div>
                 <button onClick={handlePlayBtn}>Play</button>
+                <button onClick={handleRestartBtn}>Reiniciar</button>
               </div>
               <h2>{"Estás viendo: " + classData.className}</h2>
             </>
