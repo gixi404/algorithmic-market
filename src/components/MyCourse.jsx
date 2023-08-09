@@ -1,14 +1,17 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function MyCourse(props) {
-  const { nameCourse, imgCourse } = props;
+  const { dataCourse } = props;
 
   return (
     <MyCourseContainer>
-      <MyNameCourse>{nameCourse}</MyNameCourse>
+      <MyNameCourse>{dataCourse.name}</MyNameCourse>
       <br />
-      <img src={imgCourse} alt="img course" />
-      <button>VER</button>
+      <img src={dataCourse.img} alt={`${dataCourse.name} image`} />
+      <Link to={`/mycourses/${dataCourse.id}`}>
+        <button>VIEW</button>
+      </Link>
     </MyCourseContainer>
   );
 }

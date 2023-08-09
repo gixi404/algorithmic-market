@@ -1,5 +1,5 @@
-import { Link as Linkk } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "./LoginBtn.jsx";
 import styled from "styled-components";
 
@@ -7,10 +7,10 @@ function Header({ pathIsMyCourses }) {
   const { user, isAuthenticated } = useAuth0();
 
   return (
-    <HeaderContainer login={isAuthenticated ? "120px" : "150px"}>
+    <HeaderContainer>
       <WebNameContainer>
         <Link to="/">
-          <WebName>Trading Master</WebName>
+          <WebName>king of the market</WebName>
         </Link>
         {isAuthenticated && (
           <Link to="/profile">
@@ -41,7 +41,7 @@ export default Header;
 const HeaderContainer = styled.header`
   background-color: #2b2d42;
   width: 100vw;
-  height: ${props => props.login};
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,3 +1,4 @@
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { useContext } from "react";
 import { ContextProps } from "./Context.jsx";
 import Header from "./Header.jsx";
@@ -19,11 +20,7 @@ function MyCourses() {
         ) : (
           <ListMyCourses>
             {myCourses.map(course => (
-              <MyCourse
-                key={course.id + "bought"}
-                nameCourse={course.name}
-                imgCourse={course.img}
-              />
+              <MyCourse key={course.id + "bought"} dataCourse={course} />
             ))}
           </ListMyCourses>
         )}
@@ -34,7 +31,7 @@ function MyCourses() {
   );
 }
 
-export default MyCourses;
+export default withAuthenticationRequired(MyCourses);
 
 const Container = styled.div`
   display: flex;
