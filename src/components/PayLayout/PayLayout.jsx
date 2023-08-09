@@ -20,7 +20,5 @@ function PayLayout(){
         </Button>
     )
 }
-export default PayLayout
-const Button = styled.button`
-
-`;
+export default PayLayout;
+const Button = styled.button``;

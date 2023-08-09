@@ -1,17 +1,10 @@
-import { useState, useContext } from "react";
-import { ContextProps } from "./Context.jsx";
+import { useState } from "react";
+import PayLayout from './PayLayout/PayLayout.jsx'
 import styled from "styled-components";
 
 function Course(props) {
   const { nameCourse, imgCourse, priceCourse, idCourse } = props;
   const [detailsCourseOne, setDetailsCourseOne] = useState();
-
-  const { allCourses, myCourses, setMyCourses } = useContext(ContextProps);
-
-  function buyCourse(id) {
-    const addCourse = allCourses.find(course => course.id === id);
-    setMyCourses([...myCourses, addCourse]);
-  }
 
   return (
     <CourseContainer>
@@ -35,7 +28,7 @@ function Course(props) {
             conocimiento en trading y desean conocer en detalle una operatoria
             avanzada para llegar a un nivel superior.
           </p>
-          <button onClick={() => buyCourse(idCourse)}>Comprar</button>
+          <PayLayout idCourse={idCourse}/>
         </>
       )}
     </CourseContainer>
