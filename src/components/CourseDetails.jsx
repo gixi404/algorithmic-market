@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ContextProps } from "../components/Context.jsx";
+import PayLayout from './PayLayout/PayLayout.jsx'
 import styled from "styled-components";
 
 function CourseDetails() {
@@ -26,10 +27,10 @@ function CourseDetails() {
       <br />
       <br />
       <p style={{ width: "100%", textAlign: "cenrter" }}>{description}</p>
+      <PayLayout />
+      <br />
+      <br />
 
-      <br />
-      <br />
-      <button style={{ padding: "1rem" }}>BUY</button>
     </Container>
   );
 }
