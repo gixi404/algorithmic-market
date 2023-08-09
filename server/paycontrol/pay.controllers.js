@@ -15,15 +15,6 @@ export const createSession = async(req, res)=> {
                     unit_amount: 200000,
                     currency: "usd"
                 },
-                quantity: 1 ,
-                price_data:{
-                    product_data:{
-                        name: "curso de sexo",
-                        description: "curso de sexo"
-                    },
-                    unit_amount: 200000,
-                    currency: "usd"
-                },
                 quantity: 1 
             }
         ],

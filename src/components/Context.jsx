@@ -53,7 +53,7 @@ function Context({ children }) {
       name: "Curso Inicial",
       price: 200,
       img: basicCourseImg,
-      id: "initialCourse",
+      id: 0 + " initialCourse",
       classes: [
         {
           name: "Clase número 1",
@@ -75,10 +75,35 @@ function Context({ children }) {
       ],
     },
     {
-      name: "Curso Avanzado",
+      name: "Curso Medio",
       price: 350,
       img: advancedCourseImg,
-      id: 3,
+      id: 1 + " middleCourse",
+      classes: [
+        {
+          name: "Clase número 1",
+          id: 0,
+          URL: "https://player.vimeo.com/external/468451144.sd.mp4?s=1a225f021e1bb831f8973685579845d84fb2521c&profile_id=164&oauth2_token_id=57447761",
+        },
+
+        {
+          name: "Clase número 2",
+          id: 1,
+          URL: "https://player.vimeo.com/external/584755638.sd.mp4?s=80aed001e5b45d9f760d196d10f14f6793fa046d&profile_id=164&oauth2_token_id=57447761",
+        },
+
+        {
+          name: "Clase número 3",
+          id: 2,
+          URL: "https://player.vimeo.com/external/535200449.sd.mp4?s=9e665fae0edddd4abd7bb8fdc8df6381fc14aa71&profile_id=164&oauth2_token_id=57447761",
+        },
+      ],
+    },
+    {
+      name: "Curso Avanzado",
+      price: 350,
+      img: middleCourseImg,
+      id: 2 + " advancedCourse",
       classes: [
         {
           name: "Clase número 1",

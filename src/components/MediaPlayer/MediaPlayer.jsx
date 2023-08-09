@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { ContextProps } from "../Context";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import Footer from "../Footer";
 import styled from "styled-components";
 
 function MediaPlayer() {
   const { myCourses } = useContext(ContextProps);
+  const { courseId } = useParams();
+
   const [classData, setClassData] = useState({
     classId: myCourses[0].classes[0].id,
     className: myCourses[0].classes[0].name,
