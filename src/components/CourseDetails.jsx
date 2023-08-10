@@ -12,7 +12,7 @@ function CourseDetails() {
     courseId => Number(courseId.id) === Number(coursedetails),
   );
 
-  const { name, price, img, description } = courseSelected;
+  const { name, price, img, description, id } = courseSelected;
 
   return (
     <Container>
@@ -27,7 +27,7 @@ function CourseDetails() {
       <br />
       <br />
       <p style={{ width: "100%", textAlign: "cenrter" }}>{description}</p>
-      <PayLayout />
+      <PayLayout courseSelected={courseSelected} />
       <br />
       <br />
 

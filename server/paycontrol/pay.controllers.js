@@ -4,15 +4,17 @@ config()
 const PRIV_KEY = process.env.STRIPE_PRIV_KEY
 const stripe = new Stripe(PRIV_KEY)
 export const createSession = async(req, res)=> {
+    const {price, description, name, id} = req.body
+    const precio = price*100
     const session = await stripe.checkout.sessions.create({
         line_items:[
             {
                 price_data:{
                     product_data:{
-                        name: "curso de sexo",
-                        description: "curso de sexo"
+                        name: name ,
+                        description: description,
                     },
-                    unit_amount: 200000,
+                    unit_amount: precio ,
                     currency: "usd"
                 },
                 quantity: 1 
