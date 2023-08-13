@@ -112,11 +112,15 @@ function Context({ children }) {
     },
   ]);
 
+  const [ courseBuy, setCourseBuy ] = useState({})
+
   const contextValues = {
     allCourses,
     setAllCourses,
     myCourses,
     setMyCourses,
+    courseBuy,
+    setCourseBuy
   };
 
   return (

@@ -3,17 +3,25 @@ import { Link, useParams } from "react-router-dom";
 import { ContextProps } from "../components/Context.jsx";
 import PayLayout from './PayLayout/PayLayout.jsx'
 import styled from "styled-components";
+import { useEffect } from "react";
 
 function CourseDetails() {
   const { allCourses } = useContext(ContextProps);
+  const { setCourseBuy, courseBuy } = useContext(ContextProps)
   const { coursedetails } = useParams();
 
-  const courseSelected = allCourses.find(
+ const courseSelected = allCourses.find(
     courseId => Number(courseId.id) === Number(coursedetails),
   );
-
-  const { name, price, img, description, id } = courseSelected;
-
+  const { name, price, img, description, id} = courseSelected;
+    setCourseBuy({
+      name: name,
+      description:description,
+      id: id 
+    })
+  useEffect(()=>{
+    console.log(courseBuy)
+  },[courseSelected])
   return (
     <Container>
       <Link to="/">Atrás</Link>

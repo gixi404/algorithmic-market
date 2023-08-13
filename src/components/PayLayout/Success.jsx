@@ -1,9 +1,16 @@
 import { styled } from "styled-components"
+import { useContext } from "react"
+import { ContextProps } from "../Context.jsx";
 import Imgg from '../../img/alex-shuper-KwrPZDvZRPk-unsplash.jpg'
+import { useEffect } from "react";
 function success() {
+    const { courseBuy } = useContext(ContextProps);
     const handleBack= ()=>{
         window.location.href="/"
     }
+    useEffect(()=>{
+        console.log(courseBuy)
+    },[courseBuy])
     return(
     <Div>
         <Section>
