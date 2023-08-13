@@ -1,6 +1,9 @@
 import { styled } from "styled-components"
 import Imgg from '../../img/alex-shuper-KwrPZDvZRPk-unsplash.jpg'
 function success() {
+    const handleBack= ()=>{
+        window.location.href="/"
+    }
     return(
     <Div>
         <Section>
@@ -24,11 +27,12 @@ function success() {
                         <strong>N° transaction: 3w732237032</strong>
                         <strong>Name: Curso de sexo</strong>
                         <strong>Description: Descripción breve.</strong>
+                        <strong>Imprimir Comprobante</strong>
                     </ArticleDataShell>
                 </Data>
             </TransactionData>
             <ExtraData>
-                <Back>Back Home</Back>
+                <Back onClick={()=>{handleBack()}}>Back Home</Back>
             </ExtraData>
         </Section>
     </Div>
