@@ -1,13 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link as Linkk } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
+import { PiPlayDuotone } from "react-icons/pi";
+import exampleImg from "../img/example.jpg";
 import styled from "styled-components";
 
 function UserIsLogin() {
   return (
     <UserIsLoginContainer>
-      <h3>Mis cursos</h3>
-      <Link to="/mycourses">
-        <button>IR A MIS CURSOS</button>
-      </Link>
+      <TextCourses>
+        <Link to="/mycourses">
+          Continúa donde te quedaste
+          <ArrowRight />
+        </Link>
+      </TextCourses>
+
+      <ImgContainer>
+        <Img src={exampleImg} />
+        <PlayBtn />
+      </ImgContainer>
     </UserIsLoginContainer>
   );
 }
@@ -15,14 +25,72 @@ function UserIsLogin() {
 export default UserIsLogin;
 
 const UserIsLoginContainer = styled.div`
-  background-color: #457b9d;
-  box-shadow: 0 0 5px #fff;
-  width: 90%;
-  height: 100px;
+  box-shadow: 0 0 5px #e9edc9;
+  background-color: rgba(233, 237, 201, 0.2);
+  text-transform: uppercase;
+  width: 70%;
+  height: 350px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  border-radius: 1rem;
+  border-radius: 8px;
+`;
+
+const TextCourses = styled.p`
+  font-size: 2.3rem;
+  color: #2b2d42;
+  letter-spacing: 0.8px;
+  font-family: "Inconsolata", monospace;
+  font-weight: bold;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+`;
+
+const Link = styled(Linkk)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: start;
+  padding: 0 3rem 0 1rem;
+  color: #f5f5f5;
+`;
+
+const ArrowRight = styled(FaArrowRight)`
+  font-size: 2rem;
+  color: #f5f5f5;
+`;
+
+const ImgContainer = styled.div`
+  width: 500px;
+  height: 100%;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 0 8px 8px 0;
+  filter: brightness(50%);
+`;
+
+const PlayBtn = styled(PiPlayDuotone)`
+  position: absolute;
+  left: 50%;
+  top: 37%;
+  transform: translateX(-50%);
+  font-size: 5rem;
+  color: #f5f5f5;
+  transition-duration: 0.2s;
+  &:hover {
+    scale: 1.1;
+    cursor: pointer;
+    opacity: 0.7;
+  }
 `;

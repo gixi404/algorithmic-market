@@ -1,32 +1,85 @@
-import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link as Linkk } from "react-router-dom";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
+  const { isAuthenticated } = useAuth0();
   return (
     <CourseContainer>
       <NameCourse>{dataCourse.name}</NameCourse>
-      <b>{"$" + dataCourse.price}</b>
-      <br />
+      {/* <b>{"$" + dataCourse.price}</b> */}
+
       <img src={dataCourse.img} alt="img course" />
-      <br />
-      <Link to={`/details/${dataCourse.id}`}>
-        <DetailsCourse>Ver Detalles</DetailsCourse>
-      </Link>
+
+      {isAuthenticated ? (
+        // <Link to={`/details/${dataCourse.id}`}>
+        //   <DetailsCourse>Ir al Curso</DetailsCourse>
+        // </Link>
+        <GoToCourseBtn>
+          <TextGoToCourse>Ir al Curso</TextGoToCourse>
+        </GoToCourseBtn>
+      ) : (
+        <Link to={`/details/${dataCourse.id}`}>
+          <DetailsCourse>Ver Detalles</DetailsCourse>
+        </Link>
+      )}
     </CourseContainer>
   );
 }
 
 export default Course;
 
+const GoToCourseBtn = styled.button`
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #3d405b;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 17px;
+  padding: 16px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  &:hover span {
+    padding-right: 15px;
+  }
+
+  &:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+`;
+const TextGoToCourse = styled.span`
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  &::after {
+    content: "»";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+  }
+`;
+
 const CourseContainer = styled.div`
-  background-color: rgba(255, 214, 255, 0.6);
+  background-color: rgba(233, 237, 201, 0.4);
   width: 300px;
   height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border-radius: 1rem;
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 1rem 0;
+`;
+
+const Link = styled(Linkk)`
+  text-decoration: none;
 `;
 
 const NameCourse = styled.p`

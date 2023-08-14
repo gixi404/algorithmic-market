@@ -9,9 +9,9 @@ import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
 import styled from "styled-components";
 
-
 function Home() {
   const { isLoading, isAuthenticated } = useAuth0();
+
   if (isLoading) {
     return (
       <LoadContainer>
@@ -28,9 +28,20 @@ function Home() {
   return (
     <HomeContainer>
       <Header />
-      {isAuthenticated && <UserIsLogin />}
-      <Banner />
-      <Courses />
+      {!isAuthenticated && (
+        <>
+          <Banner />
+          <Courses />
+        </>
+      )}
+      {isAuthenticated && (
+        <>
+          <UserIsLogin />
+          <Courses />
+          <Banner />
+        </>
+      )}
+
       <AboutUs />
       <Contact />
       <Footer />
@@ -55,6 +66,8 @@ const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  row-gap: 3rem;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  row-gap: 5rem;
 `;
