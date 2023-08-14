@@ -4,13 +4,13 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Context from "./components/Context.jsx";
 import Home from "./Home.jsx";
-import Profile from "./components/Log/Profile.jsx";
 import MyCourses from "./components/Log/MyCourses.jsx";
 import Privacy from "./components/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Success from "./components/Courses/Success.jsx";
-import "./index.css";
 import CourseDetails from "./components/Courses/CourseDetails.jsx";
+import AuthenticatedUser from "./components/AuthenticatedUser.jsx";
+import "./index.css";
 
 const DOMAIN = "dev-pxe14roena18vlea.us.auth0.com",
   CLIENT_ID = "0al9hxaRhflv7QXzRwQTW6ayfjOWBRWV";

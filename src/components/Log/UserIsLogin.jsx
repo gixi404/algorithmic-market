@@ -1,7 +1,7 @@
 import { Link as Linkk } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { PiPlayDuotone } from "react-icons/pi";
-import exampleImg from "../img/example.jpg";
+import exampleImg from "../../img/example.jpg";
 import styled from "styled-components";
 
 function UserIsLogin() {

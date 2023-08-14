@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "../Log/LoginBtn.jsx";
 import styled from "styled-components";
-import LogoutBtn from "./LogoutBtn.jsx";
+import LogoutBtn from "../Log/LogoutBtn.jsx";
 
 function Header({ pathIsMyCourses }) {
   const { user, isAuthenticated } = useAuth0();
