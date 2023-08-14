@@ -1,27 +1,28 @@
 import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ContextProps } from "../components/Context.jsx";
-import PayLayout from './PayLayout/PayLayout.jsx'
+import { ContextProps } from "../Context.jsx";
+import PayLayout from './PayLayout.jsx'
 import styled from "styled-components";
 import { useEffect } from "react";
 
 function CourseDetails() {
-  const { allCourses } = useContext(ContextProps);
-  const { setCourseBuy, courseBuy } = useContext(ContextProps)
+  const { allCourses, setCourseBuy, courseBuy } = useContext(ContextProps);
   const { coursedetails } = useParams();
-
- const courseSelected = allCourses.find(
-    courseId => Number(courseId.id) === Number(coursedetails),
-  );
-  const { name, price, img, description, id} = courseSelected;
+  
+  
+  // Buscar el curso seleccionado
+  const courseSelected = allCourses.find(course => course.id === Number(coursedetails));
+  const { name, description, img, price } = courseSelected
+  const courseSelected2 = allCourses[1]
+  
+  useEffect(() => {
     setCourseBuy({
-      name: name,
-      description:description,
-      id: id 
+      name: courseSelected2.name,
+      description: courseSelected2.description,
+      id: courseSelected2.id,
     })
-  useEffect(()=>{
-    console.log(courseBuy)
-  },[courseSelected])
+}, [courseSelected2]);
+  useEffect(()=>{if(courseBuy !== null){console.log(courseBuy)}},[setCourseBuy])
   return (
     <Container>
       <Link to="/">Atrás</Link>

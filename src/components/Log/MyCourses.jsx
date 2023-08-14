@@ -1,6 +1,6 @@
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { useContext } from "react";
-import { ContextProps } from "./Context.jsx";
+import { ContextProps } from "../Context.jsx";
 import Header from "./Header.jsx";
 import MyCourse from "./MyCourse";
 import Footer from "./Footer.jsx";

@@ -4,12 +4,14 @@ import { ContextProps } from "../Context.jsx";
 import Imgg from '../../img/alex-shuper-KwrPZDvZRPk-unsplash.jpg'
 import { useEffect } from "react";
 function success() {
-    const { courseBuy } = useContext(ContextProps);
+    const { courseBuy, setCourseBuy } = useContext(ContextProps);
     const handleBack= ()=>{
         window.location.href="/"
     }
     useEffect(()=>{
-        console.log(courseBuy)
+        if(courseBuy !== null){
+            console.log(courseBuy)
+        }
     },[courseBuy])
     return(
     <Div>
@@ -18,7 +20,7 @@ function success() {
                 <H2>Purchase completed successfully</H2>
                 <Article>
                     <Img src={Imgg} alt="mansi" />
-                    <P>Hugo Alberto Riquelme</P>
+                    <P>{ courseBuy }</P>
                     <H4>XXXX-XXXX-XXXX-4242</H4>
                     <H4>$500</H4>
                 </Article>

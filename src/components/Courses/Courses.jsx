@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ContextProps } from "./Context";
-import Course from "./Course";
+import { ContextProps } from "../Context";
+import Course from "./Course.jsx";
 import styled from "styled-components";
 
 function Courses() {
