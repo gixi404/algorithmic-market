@@ -28,17 +28,17 @@ function Home() {
   return (
     <HomeContainer>
       <Header />
-      {!isAuthenticated && (
-        <>
-          <Banner />
-          <Courses />
-        </>
-      )}
-      {isAuthenticated && (
+
+      {isAuthenticated ? (
         <>
           <UserIsLogin />
           <Courses />
           <Banner />
+        </>
+      ) : (
+        <>
+          <Banner />
+          <Courses />
         </>
       )}
 
