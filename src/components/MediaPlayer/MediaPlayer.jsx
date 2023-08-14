@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Link, useParams } from "react-router-dom";
 import { ContextProps } from "../Context";
-import Footer from "../Footer";
+import Footer from "../Body/Footer";
 import styled from "styled-components";
 
 function MediaPlayer() {

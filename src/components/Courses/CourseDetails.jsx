@@ -4,25 +4,23 @@ import { ContextProps } from "../Context.jsx";
 import PayLayout from './PayLayout.jsx'
 import styled from "styled-components";
 import { useEffect } from "react";
-
 function CourseDetails() {
-  const { allCourses, setCourseBuy, courseBuy } = useContext(ContextProps);
+  const { allCourses, courseBuy, setCourseBuy } = useContext(ContextProps);
   const { coursedetails } = useParams();
-  
-  
+
   // Buscar el curso seleccionado
   const courseSelected = allCourses.find(course => course.id === Number(coursedetails));
   const { name, description, img, price } = courseSelected
-  const courseSelected2 = allCourses[1]
-  
+  const course = {
+    name: courseSelected.name,
+    description: courseSelected.description,
+    id: courseSelected.id,
+  }
   useEffect(() => {
-    setCourseBuy({
-      name: courseSelected2.name,
-      description: courseSelected2.description,
-      id: courseSelected2.id,
-    })
-}, [courseSelected2]);
-  useEffect(()=>{if(courseBuy !== null){console.log(courseBuy)}},[setCourseBuy])
+    setCourseBuy(course)
+  }, [courseSelected]);
+  useEffect(() => { if (courseBuy !== null) { console.log(courseBuy) } }, [courseBuy])
+
   return (
     <Container>
       <Link to="/">Atrás</Link>

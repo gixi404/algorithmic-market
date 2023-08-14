@@ -8,7 +8,7 @@ import Profile from "./components/Log/Profile.jsx";
 import MyCourses from "./components/Log/MyCourses.jsx";
 import Privacy from "./components/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
-import Success from "./components/PayLayout/Success.jsx";
+import Success from "./components/Courses/Success.jsx";
 import "./index.css";
 import CourseDetails from "./components/Courses/CourseDetails.jsx";
 
