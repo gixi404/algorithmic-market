@@ -32,7 +32,7 @@ export default Contact;
 
 const ContactContainer = styled.div`
   background-color: #457b9d;
-  width: 100%;
+  width: 70%;
   height: 380px;
   display: flex;
   flex-direction: column;
@@ -40,6 +40,7 @@ const ContactContainer = styled.div`
   justify-content: center;
   row-gap: 2rem;
   text-align: center;
+  border-radius: 8px;
 `;
 
 const Form = styled.form`

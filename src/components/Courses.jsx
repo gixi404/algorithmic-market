@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { useContext } from "react";
 import { ContextProps } from "./Context";
 import Course from "./Course";
@@ -5,11 +6,11 @@ import styled from "styled-components";
 
 function Courses() {
   const { allCourses } = useContext(ContextProps);
+  const { isAuthenticated } = useAuth0();
 
   return (
     <CoursesContainer id="allCourses">
-      <h2 style={{ color: "#fff" }}>Cursos</h2>
-
+      <TextCourses>{isAuthenticated ? "Mis Cursos" : "Cursos"}</TextCourses>
       <ListCourses>
         {allCourses.map(course => (
           <Course key={course.id} dataCourse={course} />
@@ -22,22 +23,27 @@ function Courses() {
 export default Courses;
 
 const CoursesContainer = styled.div`
-  width: 330px;
-  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 1rem;
-  row-gap: 2rem;
-  padding: 1rem 0;
+  width: 100%;
+  height: 100%;
+`;
+
+const TextCourses = styled.p`
+  font-size: 2.8rem;
+  font-family: "Inconsolate", monospace;
+  font-weight: 600;
+  color: rgb(193, 163, 98);
 `;
 
 const ListCourses = styled.ol`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  padding: 0 2rem;
-  row-gap: 3rem;
+  justify-content: space-between;
+  width: 70%;
+  padding: 2rem 0;
 `;

@@ -5,7 +5,7 @@ config();
 import PayRoute from "./routes/pay.routes.js";
 import cors from "cors";
 
-const PORT = process.env.PORT_BACK;
+const PORT = 3001;
 
 const app = express();
 

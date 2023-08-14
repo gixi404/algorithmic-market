@@ -1,17 +1,23 @@
 import styled from "styled-components";
+//Foto de Anna Nekrashevich: https://www.pexels.com/es-es/foto/persona-sosteniendo-un-telefono-inteligente-6801874/
+import example from "../img/pexels-anna-nekrashevich-6801874.jpg";
 
 function Banner() {
   return (
     <BannerContainer>
-      <h3>Convertite en Trader Profesional</h3>
-      <p>¿Querés crecer económicamente?</p>
-      <p>¿Obtener un ingreso extra?</p>
-      <p>
-        En Trading Master te mostramos cómo. No es magia, es simplemente saber
-        mover el dinero invirtiéndolo inteligentemente.En Academia Forex estamos
-        orgullosos de ofrecer una experiencia educativa flexible, personalizada
-        y de alta calidad para todos y cada uno de los estudiantes.
-      </p>
+      <TextContainer>
+        <h3>Convertite en Trader Profesional</h3>
+        <p>¿Querés crecer económicamente?</p>
+        <p>¿Obtener un ingreso extra?</p>
+        <p>
+          En Trading Master te mostramos cómo. No es magia, es simplemente saber
+          mover el dinero invirtiéndolo inteligentemente.En Academia Forex
+          estamos orgullosos de ofrecer una experiencia educativa flexible,
+          personalizada y de alta calidad para todos y cada uno de los
+          estudiantes.
+        </p>
+      </TextContainer>
+      <Img src={example} />
     </BannerContainer>
   );
 }
@@ -20,13 +26,29 @@ export default Banner;
 
 const BannerContainer = styled.div`
   background-color: #457b9d;
-  width: 90%;
+  width: 70%;
   height: 380px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  border-radius: 1rem;
+  justify-content: space-between;
+  border-radius: 8px;
   row-gap: 2rem;
   text-align: center;
+`;
+
+const TextContainer = styled.p`
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Img = styled.img`
+  height: 100%;
+  width: 50%;
+  border-radius: 0 8px 8px 0;
+  filter: brightness(80%);
 `;

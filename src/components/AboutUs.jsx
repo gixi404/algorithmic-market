@@ -21,13 +21,13 @@ export default AboutUs;
 
 const AboutUsContainer = styled.div`
   background-color: #457b9d;
-  width: 90%;
+  width: 70%;
   height: 380px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 1rem;
+  border-radius: 8px;
   row-gap: 2rem;
   text-align: center;
 `;

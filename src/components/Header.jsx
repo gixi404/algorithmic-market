@@ -1,10 +1,20 @@
+import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "./LoginBtn.jsx";
 import styled from "styled-components";
+import LogoutBtn from "./LogoutBtn.jsx";
 
 function Header({ pathIsMyCourses }) {
   const { user, isAuthenticated } = useAuth0();
+  const [showProfile, setShowProfile] = useState(false);
+
+  window.addEventListener("click", () => setShowProfile(false));
+
+  function handleProfile(e) {
+    setShowProfile(!showProfile);
+    e.stopPropagation();
+  }
 
   return (
     <HeaderContainer>
@@ -13,11 +23,14 @@ function Header({ pathIsMyCourses }) {
           <WebName>king of the market</WebName>
         </Link>
         {isAuthenticated && (
-          <Link to="/profile">
-            <UserImg src={user.picture} />
-          </Link>
+          <UserImg src={user.picture} onClick={e => handleProfile(e)} />
         )}
       </WebNameContainer>
+      {showProfile && (
+        <ProfileContainer>
+          <LogoutBtn />
+        </ProfileContainer>
+      )}
 
       <NavContainer>
         {pathIsMyCourses ? (
@@ -41,7 +54,7 @@ export default Header;
 const HeaderContainer = styled.header`
   background-color: #2b2d42;
   width: 100vw;
-  height: 150px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,8 +66,9 @@ const WebNameContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
-  justify-content: space-around;
+  width: 70%;
+  justify-content: space-between;
+  position: relative;
 `;
 
 const WebName = styled.p`
@@ -70,14 +84,30 @@ const UserImg = styled.img`
   width: 50px;
   border-radius: 100%;
   outline: 2px solid rgb(193, 163, 98);
+  cursor: pointer;
+`;
+
+const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 45px;
+  position: absolute;
+  right: 250px;
+  top: 18px;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const NavContainer = styled.nav`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: space-between;
+  width: 70%;
   height: 50px;
 `;
 
