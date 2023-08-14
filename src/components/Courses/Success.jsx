@@ -1,41 +1,50 @@
 import { styled } from "styled-components"
+import { useContext } from "react"
 import Imgg from '../../img/alex-shuper-KwrPZDvZRPk-unsplash.jpg'
+import { useEffect } from "react";
+import { ContextProps } from "../Context";
 function success() {
-    const handleBack= ()=>{
-        window.location.href="/"
+    const { courseBuy, setCourseBuy } = useContext(ContextProps)
+    const handleBack = () => {
+        window.location.href = "/"
     }
-    return(
-    <Div>
-        <Section>
-            <UserData>
-                <H2>Purchase completed successfully</H2>
-                <Article>
-                    <Img src={Imgg} alt="mansi" />
-                    <P>Hugo Alberto Riquelme</P>
-                    <H4>XXXX-XXXX-XXXX-4242</H4>
-                    <H4>$500</H4>
-                </Article>
-            </UserData>
-            <TransactionData>
-                <H2>Info. Transaction</H2>
-                <Data>
-                    <ArticleData>
-                        <strong>Date: 13/12/2003</strong>
-                        <strong>Mail: Hsiesos@gmail.com</strong>
-                    </ArticleData>
-                    <ArticleDataShell>
-                        <strong>N° transaction: 3w732237032</strong>
-                        <strong>Name: Curso de sexo</strong>
-                        <strong>Description: Descripción breve.</strong>
-                        <strong>Imprimir Comprobante</strong>
-                    </ArticleDataShell>
-                </Data>
-            </TransactionData>
-            <ExtraData>
-                <Back onClick={()=>{handleBack()}}>Back Home</Back>
-            </ExtraData>
-        </Section>
-    </Div>
+    useEffect(() => {
+        if (courseBuy !== null) {
+            console.log(courseBuy)
+        }
+    }, [setCourseBuy])
+    return (
+        <Div>
+            <Section>
+                <UserData>
+                    <H2>Purchase completed successfully</H2>
+                    <Article>
+                        <Img src={Imgg} alt="mansi" />
+                        <P>Ignacio Laureano</P>
+                        <H4>XXXX-XXXX-XXXX-4242</H4>
+                        <H4>$500</H4>
+                    </Article>
+                </UserData>
+                <TransactionData>
+                    <H2>Info. Transaction</H2>
+                    <Data>
+                        <ArticleData>
+                            <strong>Date: 13/12/2003</strong>
+                            <strong>Mail: Hsiesos@gmail.com</strong>
+                        </ArticleData>
+                        <ArticleDataShell>
+                            <strong>N° transaction: 3w732237032</strong>
+                            <strong>Name: Curso de sexo</strong>
+                            <strong>Description: Descripción breve.</strong>
+                            <strong>Imprimir Comprobante</strong>
+                        </ArticleDataShell>
+                    </Data>
+                </TransactionData>
+                <ExtraData>
+                    <Back onClick={() => { handleBack() }}>Back Home</Back>
+                </ExtraData>
+            </Section>
+        </Div>
     )
 }
 

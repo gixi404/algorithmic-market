@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link as Linkk } from "react-router-dom";
-import LoginBtn from "./LoginBtn.jsx";
+import LoginBtn from "../Log/LoginBtn.jsx";
 import styled from "styled-components";
 import LogoutBtn from "./LogoutBtn.jsx";
 

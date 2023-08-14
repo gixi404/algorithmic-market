@@ -12,7 +12,7 @@ export const createSession = async(req, res)=> {
                 price_data:{
                     product_data:{
                         name: name ,
-                        description: description,
+                        description: description
                     },
                     unit_amount: precio ,
                     currency: "usd"

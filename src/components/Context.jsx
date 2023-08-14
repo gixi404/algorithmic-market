@@ -112,13 +112,15 @@ function Context({ children }) {
     },
   ]);
 
+  const [courseBuy, setCourseBuy] = useState(null)
   const contextValues = {
     allCourses,
     setAllCourses,
     myCourses,
     setMyCourses,
+    courseBuy,
+    setCourseBuy
   };
-
   return (
     <ContextProps.Provider value={contextValues}>
       {children}

@@ -1,12 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import ReactLoading from "react-loading";
-import Header from "./components/Header.jsx";
-import UserIsLogin from "./components/UserIsLogin.jsx";
-import Banner from "./components/Banner.jsx";
-import Courses from "./components/Courses.jsx";
-import AboutUs from "./components/AboutUs.jsx";
-import Contact from "./components/Contact.jsx";
-import Footer from "./components/Footer.jsx";
+import Header from "./components/Body/Header.jsx";
+import UserIsLogin from "./components/Log/UserIsLogin.jsx";
+import Banner from "./components/Body/Banner.jsx";
+import Courses from "./components/Courses/Courses.jsx";
+import AboutUs from "./components/Body/AboutUs.jsx";
+import Contact from "./components/Body/Contact.jsx";
+import Footer from "./components/Body/Footer.jsx";
 import styled from "styled-components";
 
 function Home() {
