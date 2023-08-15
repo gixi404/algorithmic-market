@@ -31,19 +31,19 @@ function Header({ pathIsMyCourses }) {
           </WebName>
         </Link>
 
-        {/* {isAuthenticated && (
-        <UserImg
-          src={user.picture.toString() || defaultUserImg}
-          alt={user.given_name + " img"}
-          onClick={e => handleProfile(e)}
-        />
-      )} */}
+        {isAuthenticated && (
+          <UserImg
+            src={user.picture.toString() || defaultUserImg}
+            alt={user.given_name + " img"}
+            onClick={e => handleProfile(e)}
+          />
+        )}
 
-        {/* {showProfile && (
-        <ProfileContainer>
-          <LogoutBtn />
-        </ProfileContainer>
-      )} */}
+        {showProfile && (
+          <ProfileContainer>
+            <LogoutBtn />
+          </ProfileContainer>
+        )}
 
         <NavContainer>
           {pathIsMyCourses ? (

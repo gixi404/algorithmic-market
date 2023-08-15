@@ -34,9 +34,10 @@ const CoursesContainer = styled.div`
 
 const TextCourses = styled.p`
   font-size: 2.8rem;
-  font-family: "Inconsolate", monospace;
-  font-weight: 600;
-  color: rgb(193, 163, 98);
+  font-family: "Poppins", monospace;
+  font-weight: 500;
+  color: #ebebeb;
+  width: 80%;
 `;
 
 const ListCourses = styled.ol`
@@ -44,6 +45,6 @@ const ListCourses = styled.ol`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 70%;
+  width: 80%;
   padding: 2rem 0;
 `;
