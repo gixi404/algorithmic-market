@@ -129,7 +129,7 @@ const Class = styled.article`
   padding: 2vh 0;
   box-shadow: 0 0 1vh #181818;
   background-color: #3a4c82;
-
+  cursor: pointer;
 `;
 /*
 ESLINT
