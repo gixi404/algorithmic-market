@@ -20,37 +20,55 @@ function Header({ pathIsMyCourses }) {
 
   return (
     <HeaderContainer>
-      {/* <WebNameContainer> */}
-      <Link to="/">
-        <WebName>king of the market</WebName>
-      </Link>
-      {isAuthenticated && (
+      <WebContainer>
+        <Link to="/">
+          <WebName
+            style={{
+              color: "#ff6700",
+            }}
+          >
+            king of the market
+          </WebName>
+        </Link>
+
+        {/* {isAuthenticated && (
         <UserImg
           src={user.picture.toString() || defaultUserImg}
           alt={user.given_name + " img"}
           onClick={e => handleProfile(e)}
         />
-      )}
-      {/* </WebNameContainer> */}
-      {showProfile && (
+      )} */}
+
+        {/* {showProfile && (
         <ProfileContainer>
           <LogoutBtn />
         </ProfileContainer>
-      )}
+      )} */}
 
-      <NavContainer>
-        {pathIsMyCourses ? (
-          <Link to="/">Inicio</Link>
-        ) : (
-          <>
-            <NavLink href="#allCourses">Cursos</NavLink>
-            <NavLink href="#aboutUs">Nosotros</NavLink>
-            <Link to="/contact">Contact</Link>
-          </>
-        )}
-      </NavContainer>
+        <NavContainer>
+          {pathIsMyCourses ? (
+            <Link to="/">Inicio</Link>
+          ) : (
+            <>
+              <NavLink href="#allCourses">Cursos</NavLink>
+              <NavLink href="#aboutUs">Nosotros</NavLink>
+              <Link
+                to="/contact"
+                style={{
+                  fontFamily: "Poppins",
+                  fontWeight: "500",
+                  fontStyle: "normal",
+                  color: "#2e2e2e",
+                }}
+              >
+                Contacto
+              </Link>
+            </>
+          )}
+        </NavContainer>
 
-      {!isAuthenticated && <LoginBtn />}
+        {!isAuthenticated && <LoginBtn />}
+      </WebContainer>
     </HeaderContainer>
   );
 }
@@ -58,32 +76,30 @@ function Header({ pathIsMyCourses }) {
 export default Header;
 
 const HeaderContainer = styled.header`
-  background-color: #2b2d42;
+  background-color: #fff;
   width: 100vw;
-  height: 120px;
+  height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* padding: 1rem 0; */
 `;
 
-const WebNameContainer = styled.div`
+const WebContainer = styled.div`
+  width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 70%;
   justify-content: space-between;
-  position: relative;
 `;
 
 const WebName = styled.p`
   font-size: 1.8rem;
   text-transform: uppercase;
-  color: rgb(193, 163, 98);
   font-family: "Poppins", monospace;
   letter-spacing: 1.3px;
   font-style: normal;
+  width: 100%;
 `;
 
 const UserImg = styled.img`
@@ -113,15 +129,18 @@ const NavContainer = styled.nav`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  width: 70%;
+  justify-content: flex-end;
+  column-gap: 1.3rem;
+  width: 53%;
   height: 50px;
 `;
 
 const NavLink = styled.a`
-  color: #b4b4b4;
+  color: #2e2e2e;
   text-decoration: none;
-  font-style: italic;
+  font-family: "Poppins", monospace;
+  font-weight: 500;
+  font-size: 1.1rem;
   text-transform: capitalize;
   transition-duration: 0.1s;
   &:hover {
@@ -130,7 +149,7 @@ const NavLink = styled.a`
 `;
 
 const Link = styled(Linkk)`
-  color: #b4b4b4;
+  color: #2e2e2e;
   text-decoration: none;
   font-style: italic;
   text-transform: capitalize;

@@ -28,17 +28,6 @@ function Home() {
     <HomeContainer>
       <Header />
 
-      <p
-        style={{
-          fontFamily: "Poppins",
-          fontWeight: "200",
-          color: "#fff",
-          fontSize: "20px",
-        }}
-      >
-        Hola, buenos días
-      </p>
-
       {isAuthenticated ? (
         <>
           <UserIsLogin />

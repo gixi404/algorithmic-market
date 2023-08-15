@@ -26,7 +26,7 @@ export default Banner;
 
 const BannerContainer = styled.div`
   background-color: #457b9d;
-  width: 70%;
+  width: 80%;
   height: 380px;
   display: flex;
   flex-direction: row;
