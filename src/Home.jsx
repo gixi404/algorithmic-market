@@ -36,7 +36,7 @@ function Home() {
           fontSize: "20px",
         }}
       >
-        Hola, buenos días
+        Hello, good morning
       </p>
 
       {isAuthenticated ? (
