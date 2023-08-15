@@ -4,8 +4,10 @@ config()
 const PRIV_KEY = "sk_test_51NdfNbCPshfmc7ctMo1Y4L8E9Hkl6KMeF8KzjSqdPgRxHdQRfREoONTs37h7wvbrJk2jixgjSLvT7EbRRJctHKpO00wQnsY8yV"
 const stripe = new Stripe(PRIV_KEY)
 export const createSession = async(req, res)=> {
+
     const {price, description, name, id} = req.body
-    const precio = price*100
+
+    const precio = price * 100
     const session = await stripe.checkout.sessions.create({
         line_items:[
             {
@@ -21,8 +23,8 @@ export const createSession = async(req, res)=> {
             }
         ],
         mode:"payment",
-        success_url:"http://localhost:3001/success",
-        cancel_url:"http://localhost:3001/cancel"
+        success_url:`http://localhost:3000/success/${id}`,
+        cancel_url:"http://localhost:3001"
     })
     return res.json(session.url)
 };

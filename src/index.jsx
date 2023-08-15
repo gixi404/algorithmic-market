@@ -34,7 +34,7 @@ root.render(
             <Route path="/details/:coursedetails" element={<CourseDetails />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
-            <Route path="/success" element={<Success />} />
+            <Route path="/success/:coursedetails" element={<Success />} />
             <Route path="/authenticateduser" element={<AuthenticatedUser />} />
           </Routes>
         </BrowserRouter>

@@ -1,9 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useContext } from "react";
 import { Link as Linkk } from "react-router-dom";
 import styled from "styled-components";
+import { ContextProps } from "../Context";
 
 function Course({ dataCourse }) {
   const { isAuthenticated } = useAuth0();
+  const { viewDetails, setViewDetails } = useContext(ContextProps);
+
   return (
     <CourseContainer>
       <NameCourse>{dataCourse.name}</NameCourse>
@@ -12,9 +16,6 @@ function Course({ dataCourse }) {
       <img src={dataCourse.img} alt="img course" />
 
       {isAuthenticated ? (
-        // <Link to={`/details/${dataCourse.id}`}>
-        //   <DetailsCourse>Ir al Curso</DetailsCourse>
-        // </Link>
         <GoToCourseBtn>
           <TextGoToCourse>Ir al Curso</TextGoToCourse>
         </GoToCourseBtn>

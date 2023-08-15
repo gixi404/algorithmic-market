@@ -1,39 +1,54 @@
-import { styled } from "styled-components"
-import { useState, useEffect } from "react"
-function PayLayout(courseSelected){
-    const courseSelectedd = courseSelected.courseSelected 
-    const dataToFetch={
-        method: "POST",
-        headers:{
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer yourAccessToken'},
-        body: JSON.stringify(courseSelectedd)
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+function PayLayout({ courseSelected, coursedetails }) {
+  const dataToFetch = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer yourAccessToken",
+    },
+    body: JSON.stringify(courseSelected(coursedetails)),
+  };
+
+  const [buyUrl, setBuyUrl] = useState("");
+
+  const handleBuy = async () => {
+    const res = await fetch(
+      "http://localhost:3001/create-checkout-session",
+      dataToFetch
+    );
+    const data = await res.json();
+    setBuyUrl(data);
+  };
+
+  useEffect(() => {
+    if (buyUrl) {
+      window.location.href = buyUrl;
     }
-    const [ buyUrl, setBuyUrl ] = useState("")
-    const handleBuy = async()=>{
-       const res = await fetch("http://localhost:3001/create-checkout-session",dataToFetch)
-        const data = await res.json()
-        setBuyUrl(data)
-    }
-    useEffect(() => {
-        if (buyUrl) {
-            window.location.href = buyUrl;
-        }
-      }, [buyUrl]);
-    return(
-        <Container>  
-    <Button onClick={()=>handleBuy()} >
+  }, [buyUrl]);
+
+  return (
+    <Container>
+      <Button onClick={() => handleBuy()}>
         <ButtonWrapper>
-            <Text>Buy Now</Text>
-            <Icon>
-                <svg viewBox="0 0 16 16" className="bi bi-cart2" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>
-                </svg>
-            </Icon>
+          <Text>Buy Now</Text>
+          <Icon>
+            <svg
+              viewBox="0 0 16 16"
+              className="bi bi-cart2"
+              fill="currentColor"
+              height="16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>
+            </svg>
+          </Icon>
         </ButtonWrapper>
-    </Button>
-        </Container>
-    )
+      </Button>
+    </Container>
+  );
 }
 export default PayLayout;
 
@@ -61,43 +76,44 @@ const Button = styled.div`
   -webkit-transition: background 0.3s;
   transition: background 0.5s;
   &:hover {
-  background: var(--button-color);
-  top: -100%;
+    background: var(--button-color);
+    top: -100%;
   }
   &:active {
-  background-color: #333;
-  scale: 0.9;
+    background-color: #333;
+    scale: 0.9;
   }
   &:hover:before,
   :hover:after {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
   }
   &:hover:after {
-  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
   }
   &:hover:before {
-  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
   }
 `;
 const Text = styled.div`
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: center;
--webkit-box-pack: center;
--ms-flex-pack: center;
-justify-content: center;  overflow: hidden;
-position: absolute;
-width: 100%;
-height: 100%;
-left: 0;
-color: #fff;
-top: 0;
--webkit-transition: top 0.5s;
-transition: top 0.5s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #fff;
+  top: 0;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
 `;
 const ButtonWrapper = styled.div`
   overflow: hidden;
@@ -106,11 +122,11 @@ const ButtonWrapper = styled.div`
   height: 100%;
   left: 0;
   color: #fff;
-  &:hover div{
+  &:hover div {
     top: -100%;
   }
   &:hover span {
-  top: 0;
+    top: 0;
   }
 `;
 const Icon = styled.span`
@@ -132,7 +148,7 @@ const Icon = styled.span`
   -ms-flex-pack: center;
   justify-content: center;
   svg {
-  width: 24px;
-  height: 24px;
-}
+    width: 24px;
+    height: 24px;
+  }
 `;

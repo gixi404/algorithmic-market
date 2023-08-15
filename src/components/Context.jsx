@@ -2,6 +2,7 @@ import { useState, createContext } from "react";
 import basicCourseImg from "../img/basicCourseImg.webp";
 import middleCourseImg from "../img/middleCourseImg.webp";
 import advancedCourseImg from "../img/advancedCourseImg.webp";
+import { useParams } from "react-router-dom";
 
 export const ContextProps = createContext();
 
@@ -112,15 +113,17 @@ function Context({ children }) {
     },
   ]);
 
-  const [courseBuy, setCourseBuy] = useState(null)
+  const courseSelected = coursedetails =>
+    allCourses.find(course => course.id === Number(coursedetails));
+
   const contextValues = {
     allCourses,
     setAllCourses,
     myCourses,
     setMyCourses,
-    courseBuy,
-    setCourseBuy
+    courseSelected,
   };
+
   return (
     <ContextProps.Provider value={contextValues}>
       {children}

@@ -1,25 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ContextProps } from "../Context.jsx";
-import PayLayout from './PayLayout.jsx'
+import PayLayout from "./PayLayout.jsx";
 import styled from "styled-components";
-import { useEffect } from "react";
-function CourseDetails() {
-  const { allCourses, courseBuy, setCourseBuy } = useContext(ContextProps);
-  const { coursedetails } = useParams();
 
-  // Buscar el curso seleccionado
-  const courseSelected = allCourses.find(course => course.id === Number(coursedetails));
-  const { name, description, img, price } = courseSelected
-  const course = {
-    name: courseSelected.name,
-    description: courseSelected.description,
-    id: courseSelected.id,
-  }
-  useEffect(() => {
-    setCourseBuy(course)
-  }, [courseSelected]);
-  useEffect(() => { if (courseBuy !== null) { console.log(courseBuy) } }, [courseBuy])
+function CourseDetails() {
+  const { coursedetails } = useParams();
+  const { courseSelected } = useContext(ContextProps);
+
+  const { name, price, img, description } = courseSelected(coursedetails);
 
   return (
     <Container>
@@ -33,11 +22,13 @@ function CourseDetails() {
       <b>${price}</b>
       <br />
       <br />
-      <p style={{ width: "100%", textAlign: "cenrter" }}>{description}</p>
-      <PayLayout courseSelected={courseSelected} />
+      <p style={{ width: "100%", textAlign: "center" }}>{description}</p>
+      <PayLayout
+        courseSelected={courseSelected}
+        coursedetails={coursedetails}
+      />
       <br />
       <br />
-
     </Container>
   );
 }
