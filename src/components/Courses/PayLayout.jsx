@@ -8,12 +8,13 @@ function PayLayout({ courseSelected, coursedetails }) {
       "Content-Type": "application/json",
       Authorization: "Bearer yourAccessToken",
     },
-    body: JSON.stringify(courseSelected(coursedetails)),
+    body: JSON.stringify(courseSelected),
   };
 
   const [buyUrl, setBuyUrl] = useState("");
 
   const handleBuy = async () => {
+    console.log(courseSelected)
     const res = await fetch(
       "http://localhost:3001/create-checkout-session",
       dataToFetch
@@ -77,7 +78,6 @@ const Button = styled.div`
   transition: background 0.5s;
   &:hover {
     background: var(--button-color);
-    top: -100%;
   }
   &:active {
     background-color: #333;

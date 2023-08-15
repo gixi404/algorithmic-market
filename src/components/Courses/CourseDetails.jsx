@@ -21,7 +21,7 @@ function CourseDetails() {
           <img src={img} alt="" />
         </Img>
         <Description>{description}</Description>
-        <PayLayout courseSelected={courseSelected} />
+        <PayLayout courseSelected={courseSelected(coursedetails)} />
       </Detaill>
       <Detaill2>
         <Header>
