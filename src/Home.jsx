@@ -5,7 +5,6 @@ import UserIsLogin from "./components/Log/UserIsLogin.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
-import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
 import styled from "styled-components";
 
@@ -29,6 +28,17 @@ function Home() {
     <HomeContainer>
       <Header />
 
+      <p
+        style={{
+          fontFamily: "Poppins",
+          fontWeight: "200",
+          color: "#fff",
+          fontSize: "20px",
+        }}
+      >
+        Hola, buenos días
+      </p>
+
       {isAuthenticated ? (
         <>
           <UserIsLogin />
@@ -43,7 +53,6 @@ function Home() {
       )}
 
       <AboutUs />
-      <Contact />
       <Footer />
     </HomeContainer>
   );

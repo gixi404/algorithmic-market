@@ -2,7 +2,6 @@ import { useState, createContext } from "react";
 import basicCourseImg from "../img/basicCourseImg.webp";
 import middleCourseImg from "../img/middleCourseImg.webp";
 import advancedCourseImg from "../img/advancedCourseImg.webp";
-import { useParams } from "react-router-dom";
 
 export const ContextProps = createContext();
 

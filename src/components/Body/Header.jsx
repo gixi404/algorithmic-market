@@ -4,6 +4,8 @@ import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "../Log/LoginBtn.jsx";
 import styled from "styled-components";
 import LogoutBtn from "../Log/LogoutBtn.jsx";
+import defaultUserImg from "../../img/defaultImg.png";
+//<a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>
 
 function Header({ pathIsMyCourses }) {
   const { user, isAuthenticated } = useAuth0();
@@ -18,14 +20,18 @@ function Header({ pathIsMyCourses }) {
 
   return (
     <HeaderContainer>
-      <WebNameContainer>
-        <Link to="/">
-          <WebName>king of the market</WebName>
-        </Link>
-        {isAuthenticated && (
-          <UserImg src={user.picture} onClick={e => handleProfile(e)} />
-        )}
-      </WebNameContainer>
+      {/* <WebNameContainer> */}
+      <Link to="/">
+        <WebName>king of the market</WebName>
+      </Link>
+      {isAuthenticated && (
+        <UserImg
+          src={user.picture.toString() || defaultUserImg}
+          alt={user.given_name + " img"}
+          onClick={e => handleProfile(e)}
+        />
+      )}
+      {/* </WebNameContainer> */}
       {showProfile && (
         <ProfileContainer>
           <LogoutBtn />
@@ -39,7 +45,7 @@ function Header({ pathIsMyCourses }) {
           <>
             <NavLink href="#allCourses">Cursos</NavLink>
             <NavLink href="#aboutUs">Nosotros</NavLink>
-            <NavLink href="#contact">Contacto</NavLink>
+            <Link to="/contact">Contact</Link>
           </>
         )}
       </NavContainer>
@@ -56,10 +62,10 @@ const HeaderContainer = styled.header`
   width: 100vw;
   height: 120px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
+  justify-content: center;
+  /* padding: 1rem 0; */
 `;
 
 const WebNameContainer = styled.div`
@@ -75,8 +81,9 @@ const WebName = styled.p`
   font-size: 1.8rem;
   text-transform: uppercase;
   color: rgb(193, 163, 98);
-  font-family: "Inconsolata", monospace;
+  font-family: "Poppins", monospace;
   letter-spacing: 1.3px;
+  font-style: normal;
 `;
 
 const UserImg = styled.img`
