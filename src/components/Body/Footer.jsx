@@ -5,6 +5,7 @@ function Footer() {
   return (
     <FooterContainer>
       <Link to="/privacy">Privacy Policy</Link>
+      <StaffLym>Created by Staff Lym</StaffLym>
     </FooterContainer>
   );
 }
@@ -16,13 +17,19 @@ const FooterContainer = styled.footer`
   width: 100vw;
   height: 70px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   row-gap: 5px;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 const Link = styled(Linkk)`
   color: #b2b9ff;
   text-decoration: none;
+  font-size: 1rem;
+`;
+
+const StaffLym = styled.p`
+  color: #b2b9ff;
+  font-size: 1rem;
 `;

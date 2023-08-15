@@ -11,6 +11,7 @@ import Success from "./components/Courses/Success.jsx";
 import CourseDetails from "./components/Courses/CourseDetails.jsx";
 import AuthenticatedUser from "./components/AuthenticatedUser.jsx";
 import "./index.css";
+import Contact from "./components/Body/Contact.jsx";
 
 const DOMAIN = "dev-pxe14roena18vlea.us.auth0.com",
   CLIENT_ID = "0al9hxaRhflv7QXzRwQTW6ayfjOWBRWV";
@@ -22,9 +23,7 @@ root.render(
     <Auth0Provider
       domain={DOMAIN}
       clientId={CLIENT_ID}
-      authorizationParams={{
-        redirect_uri: window.location.origin,
-      }}
+      authorizationParams={{ redirect_uri: window.location.origin }}
     >
       <Context>
         <BrowserRouter>
@@ -36,6 +35,7 @@ root.render(
             <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
             <Route path="/success/:coursedetails" element={<Success />} />
             <Route path="/authenticateduser" element={<AuthenticatedUser />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </BrowserRouter>
       </Context>
