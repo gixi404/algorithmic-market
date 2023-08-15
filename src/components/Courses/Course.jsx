@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { Link as Linkk } from "react-router-dom";
 import styled from "styled-components";
 import { ContextProps } from "../Context";
+import rata from "../../img/rata.jpg";
+import PayLayout from "../Courses/PayLayout.jsx";
 
 function Course({ dataCourse }) {
   const { isAuthenticated } = useAuth0();
@@ -10,29 +12,87 @@ function Course({ dataCourse }) {
 
   return (
     <CourseContainer>
+      <Img src={rata} alt="img course" />
       <NameCourse>{dataCourse.name}</NameCourse>
       {/* <b>{"$" + dataCourse.price}</b> */}
+      <p
+        style={{
+          padding: "0 1rem",
+        }}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean gravida
+        ultrices justo eu pretium. Ut quis ipsum nec ligula fringilla
+      </p>
+      <p
+        style={{
+          padding: "0 1rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "15px",
+        }}
+      >
+        <span
+          style={{
+            fontSize: "1.5rem",
+          }}
+        >
+          🕓
+        </span>
+        Tiempo estimado: 90s
+      </p>
 
-      <img src={dataCourse.img} alt="img course" />
+      <BuyBtn>Buy</BuyBtn>
 
-      {isAuthenticated ? (
+      {/* {isAuthenticated ? (
         <GoToCourseBtn>
           <TextGoToCourse>
-            <Link to={`/Mycourses/${dataCourse.id}`}>
-              Go to Course
-            </Link>
+            <Link to={`/Mycourses/${dataCourse.id}`}>Go to Course</Link>
           </TextGoToCourse>
         </GoToCourseBtn>
       ) : (
         <Link to={`/details/${dataCourse.id}`}>
           <DetailsCourse>see details</DetailsCourse>
         </Link>
-      )}
+      )} */}
     </CourseContainer>
   );
 }
 
 export default Course;
+
+const BuyBtn = styled.button`
+  position: relative;
+  font-family: "Poppins", monospace;
+  font-size: 3rem;
+  padding: 8px 15px;
+  font-size: 16px;
+  color: #ff6700;
+  outline: 2px solid #ff6700;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    color: #212121;
+    scale: 1.1;
+    box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+    outline: none;
+    border: none;
+    background-color: #ff6700;
+  }
+`;
+
+const Img = styled.img`
+  width: 300px;
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px 8px 0 0;
+`;
 
 const GoToCourseBtn = styled.button`
   display: inline-block;
@@ -69,22 +129,22 @@ const TextGoToCourse = styled.span`
     right: -15px;
     transition: 0.5s;
   }
-  a{
+  a {
     text-decoration: none;
     color: #181818;
   }
 `;
 
 const CourseContainer = styled.div`
-  background-color: rgba(233, 237, 201, 0.4);
+  background-color: #ebebeb;
   width: 300px;
-  height: 300px;
+  height: 360px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  align-items: start;
+  justify-content: start;
   border-radius: 8px;
-  padding: 1rem 0;
+  padding: 0;
 `;
 
 const Link = styled(Linkk)`
@@ -94,7 +154,9 @@ const Link = styled(Linkk)`
 const NameCourse = styled.p`
   font-size: 1.5rem;
   color: black;
-  font-style: italic;
+  font-family: "Poppins", monospace;
+  font-weight: 500;
+  padding: 1rem;
 `;
 
 const DetailsCourse = styled.p`

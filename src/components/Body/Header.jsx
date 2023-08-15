@@ -134,17 +134,19 @@ const NavLink = styled.a`
   text-transform: capitalize;
   transition-duration: 0.1s;
   &:hover {
-    color: #fff;
+    color: #888888;
   }
 `;
 
 const Link = styled(Linkk)`
   color: #2e2e2e;
   text-decoration: none;
-  font-style: italic;
+  font-family: "Poppins", monospace;
+  font-weight: 500;
+  font-size: 1.1rem;
   text-transform: capitalize;
   transition-duration: 0.1s;
   &:hover {
-    color: #fff;
+    color: #888888;
   }
 `;
