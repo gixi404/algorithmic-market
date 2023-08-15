@@ -87,8 +87,10 @@ const Button = styled.div`
     background-color: #C0C0C0;
     transition: all .5s ease;
     &:hover{
-      color: #F5F5F5;
       background-color: #181818;
+      a{  
+      color: #F5F5F5;
+      }
     }
     &:active{
       background-color: #5c5c5c;
