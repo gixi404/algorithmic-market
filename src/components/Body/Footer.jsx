@@ -4,7 +4,7 @@ import styled from "styled-components";
 function Footer() {
   return (
     <FooterContainer>
-      <Link to="/privacy">Política de Privacidad</Link>
+      <Link to="/privacy">Privacy Policy</Link>
     </FooterContainer>
   );
 }

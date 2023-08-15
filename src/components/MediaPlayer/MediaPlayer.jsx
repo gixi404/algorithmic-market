@@ -40,10 +40,10 @@ function MediaPlayer() {
                 height="300px"
               />
 
-              <h2>{"Estás viendo: " + classData.className}</h2>
+              <h2>{"You're watching: " + classData.className}</h2>
             </>
           ) : (
-            <p>Selecciona la clase para ver</p>
+            <p>Select the class to see</p>
           )}
         </div>
         <FollowingClasses>

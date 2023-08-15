@@ -4,7 +4,7 @@ import styled from "styled-components";
 function LoginBtn() {
   const { loginWithPopup } = useAuth0();
 
-  return <LoginButton onClick={loginWithPopup}>Iniciar Sesión</LoginButton>;
+  return <LoginButton onClick={loginWithPopup}>Log in</LoginButton>;
 }
 
 export default LoginBtn;

@@ -14,9 +14,9 @@ function MyCourses() {
       <Header pathIsMyCourses />
 
       <MyCoursesContainer>
-        <h2>Mis cursos</h2>
+        <h2>My Courses</h2>
         {myCourses.length === 0 ? (
-          <WithoutCourses>No tienes cursos aún</WithoutCourses>
+          <WithoutCourses>You don't have courses yet</WithoutCourses>
         ) : (
           <ListMyCourses>
             {myCourses.map(course => (

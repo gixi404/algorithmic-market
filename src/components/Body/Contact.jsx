@@ -3,7 +3,7 @@ import styled from "styled-components";
 function Contact() {
   return (
     <ContactContainer id="contact">
-      <p>Contáctanos</p>
+      <p>Contact us</p>
       <div>
         <p>eltrading@gmail.com</p>
         <p>234 534 1235</p>
@@ -11,18 +11,18 @@ function Contact() {
 
       <Form>
         <div>
-          <label>Nombre: </label> <input />{" "}
+          <label>Name: </label> <input />{" "}
         </div>
         <div>
-          <label>Teléfono: </label> <input />
+          <label>Phone: </label> <input />
         </div>
         <div>
           <label>Email: </label> <input />
         </div>
         <div>
-          <label>Mensaje: </label> <input />
+          <label>Messagge: </label> <input />
         </div>
-        <button type="submit">Enviar</button>
+        <button type="submit">Send</button>
       </Form>
     </ContactContainer>
   );

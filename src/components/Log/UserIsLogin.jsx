@@ -9,7 +9,7 @@ function UserIsLogin() {
     <UserIsLoginContainer>
       <TextCourses>
         <Link to="/mycourses">
-          Continúa donde te quedaste
+          pick up where you left off
           <ArrowRight />
         </Link>
       </TextCourses>

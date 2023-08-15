@@ -34,12 +34,12 @@ function Header({ pathIsMyCourses }) {
 
       <NavContainer>
         {pathIsMyCourses ? (
-          <Link to="/">Inicio</Link>
+          <Link to="/">Start</Link>
         ) : (
           <>
-            <NavLink href="#allCourses">Cursos</NavLink>
-            <NavLink href="#aboutUs">Nosotros</NavLink>
-            <NavLink href="#contact">Contacto</NavLink>
+            <NavLink href="#allCourses">Course</NavLink>
+            <NavLink href="#aboutUs">Us</NavLink>
+            <NavLink href="#contact">Contact</NavLink>
           </>
         )}
       </NavContainer>
