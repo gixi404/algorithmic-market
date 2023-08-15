@@ -5,7 +5,6 @@ import LoginBtn from "../Log/LoginBtn.jsx";
 import styled from "styled-components";
 import LogoutBtn from "../Log/LogoutBtn.jsx";
 import defaultUserImg from "../../img/defaultImg.png";
-//<a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>
 
 function Header({ pathIsMyCourses }) {
   const { user, isAuthenticated } = useAuth0();
@@ -52,7 +51,6 @@ function Header({ pathIsMyCourses }) {
             <>
               <NavLink href="#allCourses">Cursos</NavLink>
               <NavLink href="#aboutUs">Nosotros</NavLink>
-              <Link to="/contact">Contact</Link>
             </>
           )}
         </NavContainer>
@@ -69,7 +67,7 @@ const HeaderContainer = styled.header`
   background-color: #fff;
   width: 100vw;
   height: 100px;
-  display: flex;
+  
   flex-direction: row;
   align-items: center;
   justify-content: center;
