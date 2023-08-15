@@ -53,7 +53,7 @@ function PayLayout({ courseSelected, coursedetails }) {
 export default PayLayout;
 
 const Container = styled.div`
-  margin: 2%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
