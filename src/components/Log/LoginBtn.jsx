@@ -11,11 +11,12 @@ export default LoginBtn;
 
 const LoginButton = styled.button`
   position: relative;
-  font-family: "Open Sans", monospace;
+  font-family: "Poppins", monospace;
+  font-size: 3rem;
   padding: 8px 15px;
   font-size: 16px;
-  color: rgb(193, 163, 98);
-  outline: 2px solid rgb(193, 163, 98);
+  color: #ff6700;
+  outline: 2px solid #ff6700;
   border-radius: 5px;
   background-color: transparent;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -29,6 +30,6 @@ const LoginButton = styled.button`
     box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
     outline: none;
     border: none;
-    background-color: rgb(193, 163, 98);
+    background-color: #ff6700;
   }
 `;
