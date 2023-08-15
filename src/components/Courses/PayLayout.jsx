@@ -1,44 +1,45 @@
 import { styled } from "styled-components"
 import { useState, useEffect } from "react"
-function PayLayout(courseSelected){
-    const courseSelectedd = courseSelected.courseSelected 
-    const dataToFetch={
-        method: "POST",
-        headers:{
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer yourAccessToken'},
-        body: JSON.stringify(courseSelectedd)
+function PayLayout(courseSelected) {
+  const courseSelectedd = courseSelected.courseSelected
+  const dataToFetch = {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer yourAccessToken'
+    },
+    body: JSON.stringify(courseSelectedd)
+  }
+  const [buyUrl, setBuyUrl] = useState("")
+  const handleBuy = async () => {
+    const res = await fetch("http://localhost:3001/create-checkout-session", dataToFetch)
+    const data = await res.json()
+    setBuyUrl(data)
+  }
+  useEffect(() => {
+    if (buyUrl) {
+      window.location.href = buyUrl;
     }
-    const [ buyUrl, setBuyUrl ] = useState("")
-    const handleBuy = async()=>{
-       const res = await fetch("http://localhost:3001/create-checkout-session",dataToFetch)
-        const data = await res.json()
-        setBuyUrl(data)
-    }
-    useEffect(() => {
-        if (buyUrl) {
-            window.location.href = buyUrl;
-        }
-      }, [buyUrl]);
-    return(
-        <Container>  
-    <Button onClick={()=>handleBuy()} >
+  }, [buyUrl]);
+  return (
+    <Container>
+      <Button onClick={() => handleBuy()} >
         <ButtonWrapper>
-            <Text>Buy Now</Text>
-            <Icon>
-                <svg viewBox="0 0 16 16" className="bi bi-cart2" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>
-                </svg>
-            </Icon>
+          <Text>Buy Now</Text>
+          <Icon>
+            <svg viewBox="0 0 16 16" className="bi bi-cart2" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path>
+            </svg>
+          </Icon>
         </ButtonWrapper>
-    </Button>
-        </Container>
-    )
+      </Button>
+    </Container>
+  )
 }
 export default PayLayout;
 
 const Container = styled.div`
-  margin: 2%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +63,6 @@ const Button = styled.div`
   transition: background 0.5s;
   &:hover {
   background: var(--button-color);
-  top: -100%;
   }
   &:active {
   background-color: #333;
@@ -110,7 +110,7 @@ const ButtonWrapper = styled.div`
     top: -100%;
   }
   &:hover span {
-  top: 0;
+  top: 10%;
   }
 `;
 const Icon = styled.span`

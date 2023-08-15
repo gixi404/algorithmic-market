@@ -1,6 +1,6 @@
 import styled from "styled-components";
 //Foto de Anna Nekrashevich: https://www.pexels.com/es-es/foto/persona-sosteniendo-un-telefono-inteligente-6801874/
-import example from "../img/pexels-anna-nekrashevich-6801874.jpg";
+import example from "../../img/pexels-anna-nekrashevich-6801874.jpg";
 
 function Banner() {
   return (
