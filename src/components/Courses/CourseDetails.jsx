@@ -9,12 +9,20 @@ function CourseDetails() {
   const { courseSelected } = useContext(ContextProps);
 
   const { name, price, img, description } = courseSelected(coursedetails);
+  if (window.location.href === 'http://localhost:3000/details/0') {
 
+  }
+  else if (window.location.href === 'http://localhost:3000/details/1') {
+    console.log('atardecer')
+  }
+  else {
+    console.log('anochecer')
+  }
   return (
     <Container>
       <Detaill>
         <Data>
-          <Name>{name} </Name>
+          <Name>{name}:</Name>
           <Precio> ${price}</Precio>
         </Data>
         <Img>
@@ -25,19 +33,20 @@ function CourseDetails() {
       </Detaill>
       <Detaill2>
         <Header>
-          <H2>King of Trade</H2>
           <Button>
             <Link to="/">Back</Link>
           </Button>
+          <H2>King of Trade</H2>
+          <span></span>
         </Header>
         <Article>
-          <Course>
+          <Course >
             <Link to="/details/0">Trader Initial</Link>
           </Course>
-          <Course>
+          <Course >
             <Link to="/details/1">Trader Medium</Link>
           </Course>
-          <Course>
+          <Course >
             <Link to="/details/2">Trader Advance</Link>
           </Course>
         </Article>
@@ -85,7 +94,7 @@ const Detaill = styled.section`
   height: 70vh;
 `;
 const Data = styled.article`
-  width: 30vh;
+  width: 25vh;
   position: relative;
   left: -2vw;
   display: flex;
@@ -121,20 +130,19 @@ const Header = styled.header`
   position: relative;
   z-index: 55;
   flex-direction: row;
+  text-align: center;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
 `;
 const H2 = styled.h2`
-  position: relative;
   margin: 0;
+  margin-left: -3vh;
+  width: max-content;
   display: inline;
-  left: 40vw;
 `;
 const Button = styled.button`
-  margin: 0;
-  position: relative;
-  left: -13vw;
-  padding: 1vh;
+  padding: 2vh;
+  margin-left: 3vh;
   border-radius: 4vh;
   border: 0;
   background-color: #202020;
