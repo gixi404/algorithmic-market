@@ -3,15 +3,15 @@ import styled from "styled-components";
 function AboutUs() {
   return (
     <AboutUsContainer id="aboutUs">
-      <h4>¿Quiénes somos?</h4>
+      <h4>About us?</h4>
       <p style={{ width: "90%" }}>
-        En Academia Forex, ofrecemos la mejor plataforma de aprendizaje online
-        porque los estudiantes siempre son el espíritu que nos moviliza.Es por
-        eso que el programa de aprendizaje se adapta y personaliza fácilmente
-        para satisfacer las necesidades de cada estudiante, sin importar dónde
-        se encuentren ni su nivel de conocimiento. Con un equipo apasionado,
-        contamos con asistencia por teléfono, email o sesiones de video para que
-        aprendas esta habilidad y te conviertas en un trader profesional.
+        At Academia Forex, we offer the best online learning platform
+        because students are always the spirit that mobilizes us. It is because of
+        that the learning program is easily adapted and customized
+        to meet the needs of every student, no matter where
+        neither their level of knowledge is found. With a passionate team,
+        We have assistance by phone, email or video sessions so that
+        learn this skill and become a professional trader.
       </p>
     </AboutUsContainer>
   );

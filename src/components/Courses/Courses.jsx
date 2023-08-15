@@ -10,7 +10,7 @@ function Courses() {
 
   return (
     <CoursesContainer id="allCourses">
-      <TextCourses>{isAuthenticated ? "Mis Cursos" : "Cursos"}</TextCourses>
+      <TextCourses>{isAuthenticated ? "My Courses" : "Courses"}</TextCourses>
       <ListCourses>
         {allCourses.map(course => (
           <Course key={course.id} dataCourse={course} />

@@ -9,25 +9,22 @@ function Context({ children }) {
   const [allCourses, setAllCourses] = useState([
     {
       id: 0,
-      description:
-        "Un curso de trading es un programa de aprendizaje diseñado para enseñar a las personas cómo operar en los mercados financieros. Los cursos de trading pueden cubrir una amplia gama de temas, incluyendo análisis técnico, análisis fundamental, gestión de riesgos y psicología del trading.",
-      name: "Curso Inicial",
+      description: "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
+      name: "Course Initial",
       price: 200,
       img: basicCourseImg,
     },
     {
       id: 1,
-      description:
-        "Un curso de trading es un programa de aprendizaje diseñado para enseñar a las personas cómo operar en los mercados financieros. Los cursos de trading pueden cubrir una amplia gama de temas, incluyendo análisis técnico, análisis fundamental, gestión de riesgos y psicología del trading.",
-      name: "Curso Medio",
+      description: "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
+      name: "Curso Medium",
       price: 250,
       img: middleCourseImg,
     },
     {
       id: 2,
-      description:
-        "Los cursos de trading pueden ser una excelente manera de aprender sobre los mercados financieros y cómo operar de manera rentable. Sin embargo, es importante elegir un curso de trading que sea ofrecido por una fuente confiable y que sea adecuado para tu nivel de experiencia.",
-      name: "Curso Avanzado",
+      description: "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
+      name: "Curso Advanced",
       price: 350,
       img: advancedCourseImg,
     },
@@ -35,19 +32,19 @@ function Context({ children }) {
 
   const [myCourses, setMyCourses] = useState([
     {
-      name: "Curso Inicial - Escolar",
+      name: "Course Initial - Escolar",
       price: 200,
       img: basicCourseImg,
       id: 0 + " initialCourse",
       classes: [
         {
-          name: "Clase número 1 - Inicial",
+          name: "Class number 1 - Initial",
           id: 0,
           URL: "https://player.vimeo.com/external/451108090.sd.mp4?s=be43f670061443ffa8c6d96bcfe5f885b989a2e8&profile_id=164&oauth2_token_id=57447761",
         },
 
         {
-          name: "Clase número 2 - Inicial",
+          name: "Class number 2 - Initial",
           id: 1,
           URL: "https://player.vimeo.com/external/451108713.sd.mp4?s=949f31b35a0b6d12b4480c2a1ba71a1b249e91a5&profile_id=164&oauth2_token_id=57447761",
         },

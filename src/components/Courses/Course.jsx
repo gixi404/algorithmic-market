@@ -17,11 +17,15 @@ function Course({ dataCourse }) {
 
       {isAuthenticated ? (
         <GoToCourseBtn>
-          <TextGoToCourse>Ir al Curso</TextGoToCourse>
+          <TextGoToCourse>
+            <Link to={`/Mycourses/${dataCourse.id}`}>
+              Go to Course
+            </Link>
+          </TextGoToCourse>
         </GoToCourseBtn>
       ) : (
         <Link to={`/details/${dataCourse.id}`}>
-          <DetailsCourse>Ver Detalles</DetailsCourse>
+          <DetailsCourse>see details</DetailsCourse>
         </Link>
       )}
     </CourseContainer>
@@ -64,6 +68,10 @@ const TextGoToCourse = styled.span`
     top: 0;
     right: -15px;
     transition: 0.5s;
+  }
+  a{
+    text-decoration: none;
+    color: #181818;
   }
 `;
 

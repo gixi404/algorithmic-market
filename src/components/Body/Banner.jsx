@@ -6,15 +6,15 @@ function Banner() {
   return (
     <BannerContainer>
       <TextContainer>
-        <h3>Convertite en Trader Profesional</h3>
-        <p>¿Querés crecer económicamente?</p>
-        <p>¿Obtener un ingreso extra?</p>
+        <h3>Become a Professional Trader</h3>
+        <p>Do you want to grow financially?</p>
+        <p>Get extra income?</p>
         <p>
-          En Trading Master te mostramos cómo. No es magia, es simplemente saber
-          mover el dinero invirtiéndolo inteligentemente.En Academia Forex
-          estamos orgullosos de ofrecer una experiencia educativa flexible,
-          personalizada y de alta calidad para todos y cada uno de los
-          estudiantes.
+          At Trading Master we show you how. It's not magic, it's just knowing
+          move money by investing it intelligently. In Forex Academy
+          we are proud to offer a flexible educational experience,
+          personalized and high quality for each and every one of the
+          students.
         </p>
       </TextContainer>
       <Img src={example} />

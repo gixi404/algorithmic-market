@@ -52,17 +52,7 @@ function Header({ pathIsMyCourses }) {
             <>
               <NavLink href="#allCourses">Cursos</NavLink>
               <NavLink href="#aboutUs">Nosotros</NavLink>
-              <Link
-                to="/contact"
-                style={{
-                  fontFamily: "Poppins",
-                  fontWeight: "500",
-                  fontStyle: "normal",
-                  color: "#2e2e2e",
-                }}
-              >
-                Contacto
-              </Link>
+              <Link to="/contact">Contact</Link>
             </>
           )}
         </NavContainer>

@@ -24,9 +24,8 @@ function MediaPlayer() {
   return (
     <Container>
       <Link to="/mycourses">Atrás</Link>
-
       <MediaContainer>
-        <div style={{ width: "95%", aspectRatio: "16/9" }}>
+        <Reproductor>
           <h2>{myCourses[formatCourseId].name}</h2>
           {classData ? (
             <>
@@ -40,12 +39,12 @@ function MediaPlayer() {
                 height="300px"
               />
 
-              <h2>{"Estás viendo: " + classData.className}</h2>
+              <h2>{"You're watching: " + classData.className}</h2>
             </>
           ) : (
-            <p>Selecciona la clase para ver</p>
+            <p>Select the class to see</p>
           )}
-        </div>
+        </Reproductor>
         <FollowingClasses>
           {myCourses[formatCourseId].classes.map(_class => (
             <Class key={_class.id} onClick={() => handleChangeURL(_class.id)}>
@@ -62,47 +61,76 @@ function MediaPlayer() {
 export default withAuthenticationRequired(MediaPlayer);
 
 const Container = styled.div`
-  background-color: #457b9d;
-  width: 100%;
-  height: 100vh;
+background-image: linear-gradient(
+  to bottom,
+  #051937,
+  #121e3a,
+  #1b233c,
+  #23283f,
+  #2b2d42
+);
+  width: 100vw;
+  height: 140vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
+  text-align: start;
   justify-content: space-between;
+  color: #F5F5F5;
+  a{
+    text-decoration: none;
+    color: #F5F5F5;
+  }
 `;
 
 const MediaContainer = styled.div`
-  background-color: #457b9d;
-  width: 100%;
-  height: auto;
+  width: 100vw;
+  height: 130vh;
+  margin:0 ;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+`;
+const Reproductor = styled.section`
+  width: 90vw;
+  height: 90vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  text-align: center;
+  align-items: center;
+  video{
+    height: 80vh;
+    box-shadow: 0 0 10px #181818;
+    border: 2px solid #F5F5F5;
+    border-radius: 2vh;
+  }
+  h2{
+    color: #c0c0c0;
+  }
 `;
 
 const FollowingClasses = styled.div`
+  height: min-content;
+  width: 90vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  margin-top: 2rem;
-  row-gap: 0.2rem;
+  text-align: center;
+  justify-content: space-between;
 `;
 
-const Class = styled.div`
-  background-color: gray;
-  width: 100%;
-  height: 40px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
+const Class = styled.article`
+  width: 90vw;
+  border: 0;
+  border-radius: 1vh;
+  margin: 2vh 0;
+  padding: 2vh 0;
+  box-shadow: 0 0 1vh #181818;
+  background-color: #3a4c82;
+  cursor: pointer;
 `;
-
 /*
 ESLINT
 "eslintConfig": {
