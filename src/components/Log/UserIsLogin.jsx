@@ -1,5 +1,4 @@
 import { Link as Linkk } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
 import { PiPlayDuotone } from "react-icons/pi";
 import exampleImg from "../../img/example.jpg";
 import styled from "styled-components";
@@ -8,10 +7,7 @@ function UserIsLogin() {
   return (
     <UserIsLoginContainer>
       <TextCourses>
-        <Link to="/mycourses">
-          pick up where you left off
-          <ArrowRight />
-        </Link>
+        <Link to="/mycourses">pick up where you left off</Link>
       </TextCourses>
 
       <ImgContainer>
@@ -58,11 +54,6 @@ const Link = styled(Linkk)`
   text-decoration: none;
   text-align: start;
   padding: 0 3rem 0 1rem;
-  color: #f5f5f5;
-`;
-
-const ArrowRight = styled(FaArrowRight)`
-  font-size: 2rem;
   color: #f5f5f5;
 `;
 
