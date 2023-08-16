@@ -5,17 +5,17 @@ import example from "../../img/rols.jpg";
 function Banner() {
   return (
     <BannerContainer>
-      {/* <TextContainer>
-        <h3>Become a Professional Trader</h3>
-        <p>Do you want to grow financially?</p>
-        <p>Get extra income?</p>
-        <p>
-          At Trading Master we show you how. It's not magic, it's just knowing
-          move money by investing it intelligently. In Forex Academy we are
-          proud to offer a flexible educational experience, personalized and
-          high quality for each and every one of the students.
-        </p>
-      </TextContainer> */}
+      <TextContainer>
+        "Keep losses small and gains big"
+        <span
+          style={{
+            marginRight: "10px",
+            fontSize: "1.8rem",
+          }}
+        >
+          William J. O'Neil
+        </span>
+      </TextContainer>
       <Img src={example} />
     </BannerContainer>
   );
@@ -30,7 +30,8 @@ const BannerContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  box-shadow: 0 0 5px #e9edc9;
+  background-color: rgba(233, 237, 201, 0.2);
   border-radius: 8px;
   row-gap: 2rem;
   text-align: center;
@@ -41,15 +42,20 @@ const TextContainer = styled.p`
   width: 40vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: end;
+  font-size: 2.3rem;
+  color: #fff;
+  letter-spacing: 0.8px;
+  font-family: "Poppins", monospace;
+  font-weight: 500;
 `;
 
 const Img = styled.img`
   height: 53vh;
-  width: 80vw;
+  width: 60vw;
   object-fit: cover;
   object-position: center;
-  border-radius: 8px;
-  filter: brightness(90%);
+  border-radius: 0 8px 8px 0;
+  filter: brightness(80%);
 `;
