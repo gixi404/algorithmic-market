@@ -1,4 +1,3 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useContext } from "react";
 import { ContextProps } from "../Context";
 import Course from "./Course.jsx";
@@ -6,7 +5,6 @@ import styled from "styled-components";
 
 function Courses() {
   const { allCourses } = useContext(ContextProps);
-  const { isAuthenticated } = useAuth0();
 
   return (
     <CoursesContainer id="allCourses">
