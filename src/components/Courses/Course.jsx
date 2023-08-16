@@ -6,41 +6,14 @@ function Course({ dataCourse }) {
     <CourseContainer>
       <Img src={rata} alt="img course" />
       <NameCourse>{dataCourse.name}</NameCourse>
-      <p
-        style={{
-          padding: "0 1rem",
-          fontFamily: "Poppins",
-          fontWeight: "400",
-          fontSize: "0.9rem",
-          textAlign: "start",
-        }}
-      >
+      <DescriptionCard>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean gravida
         ultrices justo eu pretium. Ut quis ipsum nec ligula fringilla
-      </p>
-      <p
-        style={{
-          padding: "0 1rem",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "15px",
-          fontFamily: "Poppins",
-          fontWeight: "300",
-          color: "#353535",
-          columnGap: "5px",
-          fontSize: "0.9rem",
-        }}
-      >
-        <span
-          style={{
-            fontSize: "1.5rem",
-          }}
-        >
-          🕓
-        </span>
+      </DescriptionCard>
+      <TimeCard>
+        <Span>🕓</Span>
         Tiempo estimado: 90hr
-      </p>
+      </TimeCard>
       <ButtonContainer>
         <BuyBtn dataCourse={dataCourse} />
       </ButtonContainer>
@@ -74,6 +47,28 @@ const Img = styled.img`
   object-fit: cover;
   object-position: center;
   border-radius: 8px 8px 0 0;
+`;
+const DescriptionCard = styled.p`
+    padding: 0 1rem;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-align: start;
+`;
+const TimeCard = styled.p`
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  font-family: Poppins;
+  font-weight: 300;
+  color: #353535;
+  column-gap: 5px;
+  font-size: 0.9rem;
+`;
+const Span = styled.span`
+  font-size: 1.5rem;
 `;
 const ButtonContainer = styled.div`
   height: 40px;
