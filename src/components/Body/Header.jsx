@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "../Log/LoginBtn.jsx";
-import styled from "styled-components";
 import LogoutBtn from "../Log/LogoutBtn.jsx";
-import defaultUserImg from "../../img/defaultImg.png";
+import styled from "styled-components";
 
 function Header({ pathIsMyCourses }) {
   const { user, isAuthenticated } = useAuth0();
@@ -18,87 +17,55 @@ function Header({ pathIsMyCourses }) {
   }
 
   return (
-    <HeaderPosta>
-      <Span></Span>
-      <HeaderContainer>
-        <WebContainer>
-          <Link to="/">
-            <WebName
-              style={{
-                color: "#ff6700",
-              }}
-            >
-              king of the market
-            </WebName>
-          </Link>
+    <HeaderContainer>
+      <WebContainer>
+        <Link to="/">
+          <WebName
+            style={{
+              color: "#ff6700",
+            }}
+          >
+            king of the market
+          </WebName>
+        </Link>
 
-          <NavContainer>
-            {pathIsMyCourses ? (
-              <Link to="/">Inicio</Link>
-            ) : (
-              <>
-                <NavLink href="#allCourses">Cursos</NavLink>
-                <NavLink href="#aboutUs">Nosotros</NavLink>
-              </>
-            )}
-          </NavContainer>
-        </WebContainer>
-      </HeaderContainer>
-      <User>
-        {!isAuthenticated && (
-          <ProfileContainer>
-            <LoginBtn />
-          </ProfileContainer>
-        )}
-        {showProfile && (
-          <ProfileContainer>
-            <LogoutBtn />
-          </ProfileContainer>
-        )}
-        {isAuthenticated ? (
-          <UserImg
-            src={user.picture.toString() || defaultUserImg}
-            alt={user.given_name + " img"}
-            onClick={e => handleProfile(e)}
-          />
-        ) : <Span></Span>}
-      </User>
-    </HeaderPosta>
+        <NavContainer>
+          {pathIsMyCourses ? (
+            <Link to="/">Inicio</Link>
+          ) : (
+            <>
+              <NavLink href="#allCourses">Cursos</NavLink>
+              <NavLink href="#aboutUs">Nosotros</NavLink>
+            </>
+          )}
+        </NavContainer>
+
+        {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
+      </WebContainer>
+    </HeaderContainer>
   );
 }
 
 export default Header;
 
-const HeaderPosta = styled.header`
-  height: 13vh;
-  width: 98.5vw;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #fff;
-`;
-const Span = styled.span`
-  width: 5vw;
-  height: 13vh;
-`;
 const HeaderContainer = styled.section`
-  width: 70vw;
+  background-color: #fff;
+  width: 100vw;
   height: 13vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `;
+
 const WebContainer = styled.div`
-  width: 70vw;
+  width: 80vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
+
 const WebName = styled.p`
   font-size: 1.8rem;
   text-transform: uppercase;
@@ -106,36 +73,6 @@ const WebName = styled.p`
   letter-spacing: 1.3px;
   font-style: normal;
   width: 100%;
-`;
-const User = styled.div`
-  width: max-content;
-  height: 13vh;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-`;
-const UserImg = styled.img`
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
-  outline: 2px solid rgb(193, 163, 98);
-  cursor: pointer;
-`;
-
-const ProfileContainer = styled.div`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  text-align: center;
-  justify-content: center;
-  width: 8vw;
-  height: 7.2vh;
-  right: 5vw;
-  top: 2.7vh;
-  border-radius: 8px;
-  background-color: transparent;
-  cursor: pointer;
-
 `;
 
 const NavContainer = styled.nav`

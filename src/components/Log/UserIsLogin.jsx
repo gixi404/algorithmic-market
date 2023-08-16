@@ -1,5 +1,4 @@
 import { Link as Linkk } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
 import { PiPlayDuotone } from "react-icons/pi";
 import exampleImg from "../../img/example.jpg";
 import styled from "styled-components";
@@ -8,10 +7,7 @@ function UserIsLogin() {
   return (
     <UserIsLoginContainer>
       <TextCourses>
-        <Link to="/mycourses">
-          pick up where you left off
-          <ArrowRight />
-        </Link>
+        <Link to="/mycourses">pick up where you left off</Link>
       </TextCourses>
 
       <ImgContainer>
@@ -28,8 +24,8 @@ const UserIsLoginContainer = styled.div`
   box-shadow: 0 0 5px #e9edc9;
   background-color: rgba(233, 237, 201, 0.2);
   text-transform: uppercase;
-  width: 70vw;
-  height: 40vh;
+  width: 80vw;
+  height: 50vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -58,19 +54,16 @@ const Link = styled(Linkk)`
   padding: 0 3rem 0 1rem;
   color: #f5f5f5;
 `;
-const ArrowRight = styled(FaArrowRight)`
-  font-size: 2rem;
-  color: #f5f5f5;
-`;
+
 const ImgContainer = styled.div`
-  width: 35vw;
+  width: 39vw;
   height: 100%;
   border-radius: 0 8px 8px 0;
   position: relative;
 `;
 const Img = styled.img`
-  width: 35vw;
-  height: 40vh;
+  width: 100%;
+  height: 100%;
   border-radius: 0 8px 8px 0;
   filter: brightness(50%);
 `;

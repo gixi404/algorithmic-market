@@ -12,9 +12,6 @@ function AboutUs() {
 export default AboutUs;
 
 const AboutUsContainer = styled.div`
-  background-color: #457b9d;
-  width: 70vw;
-  height: 53vh;
   display: flex;
   flex-direction: column;
   align-items: center;

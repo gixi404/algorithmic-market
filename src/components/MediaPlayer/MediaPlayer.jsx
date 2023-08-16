@@ -11,7 +11,11 @@ function MediaPlayer() {
 
   const formatCourseId = courseId.slice(0, 1);
 
-  const [classData, setClassData] = useState("");
+  const [classData, setClassData] = useState({
+    classId: myCourses[0].classes[0].id,
+    className: myCourses[0].classes[0].name,
+    classURL: myCourses[0].classes[0].URL,
+  });
 
   function handleChangeURL(classId) {
     setClassData({
@@ -23,14 +27,30 @@ function MediaPlayer() {
 
   return (
     <Container>
-      <Button>
+      <BackBtn>
         <Link to="/mycourses">Back</Link>
-      </Button>
-      <MediaContainer>
-        <Reproductor>
-          <h2>{myCourses[formatCourseId].name}</h2>
-          {classData ? (
-            <>
+      </BackBtn>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "800px",
+          marginBottom: "3rem",
+        }}
+      >
+        <MediaContainer>
+          <Reproductor>
+            <TextLevelCourse>
+              {myCourses[formatCourseId].name}
+
+              <MuerteALosGays>
+                {" - You're watching: " + classData.className}
+              </MuerteALosGays>
+            </TextLevelCourse>
+
+            {classData ? (
               <video
                 src={classData.classURL}
                 loop={false}
@@ -38,15 +58,14 @@ function MediaPlayer() {
                 playsInline
                 controls
                 width="100%"
-                height="300px"
+                height="100%"
               />
+            ) : (
+              <p>Select the class to see</p>
+            )}
+          </Reproductor>
+        </MediaContainer>
 
-              <h2>{"You're watching: " + classData.className}</h2>
-            </>
-          ) : (
-            <p>Select the class to see</p>
-          )}
-        </Reproductor>
         <FollowingClasses>
           {myCourses[formatCourseId].classes.map(_class => (
             <Class key={_class.id} onClick={() => handleChangeURL(_class.id)}>
@@ -54,7 +73,8 @@ function MediaPlayer() {
             </Class>
           ))}
         </FollowingClasses>
-      </MediaContainer>
+      </div>
+
       <Footer />
     </Container>
   );
@@ -63,87 +83,96 @@ function MediaPlayer() {
 export default withAuthenticationRequired(MediaPlayer);
 
 const Container = styled.div`
-  background-image: linear-gradient(
-  to bottom,
-  #051937,
-  #121e3a,
-  #1b233c,
-  #23283f,
-  #2b2d42
-);
   width: 100vw;
-  height: 140vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  text-align: start;
+  align-items: center;
   justify-content: space-between;
-  color: #F5F5F5;
+  color: #f5f5f5;
 `;
-const Button = styled.div`
-    margin: 1vh 0 0 1vw;
-    display: inline;
-    padding: 1vh;
-    background-color: #C0C0C0;
-    transition: all .5s ease;
-    &:hover{
-      background-color: #181818;
-      a{  
-      color: #F5F5F5;
-      }
+
+const BackBtn = styled.div`
+  margin: 1rem 0;
+  display: inline;
+  padding: 1vh;
+  background-color: #c0c0c0;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: #181818;
+    a {
+      color: #f5f5f5;
     }
-    &:active{
-      background-color: #5c5c5c;
-    }
-    a{
-      color: #202020;
-      text-decoration: none;
-    }
-`
+  }
+  &:active {
+    background-color: #5c5c5c;
+  }
+  a {
+    color: #202020;
+    text-decoration: none;
+  }
+`;
+
 const MediaContainer = styled.div`
-  width: 100vw;
-  height: 130vh;
-  margin:0 ;
+  width: 70vw;
+  height: 120vh;
+  margin: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
-  overflow: auto;
+  justify-content: center;
 `;
+
 const Reproductor = styled.section`
-  width: 90vw;
-  height: 100vh;
+  width: 70vw;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   text-align: center;
   align-items: center;
-  video{
+  row-gap: 1rem;
+  video {
     height: 80vh;
     box-shadow: 0 0 10px #181818;
     border: 0;
   }
-  h2{
+  h2 {
     color: #c0c0c0;
   }
 `;
 
+const TextLevelCourse = styled.p`
+  font-size: 2.3rem;
+  font-family: "Poppins", monospace;
+  font-weight: 500;
+  color: #ebebeb;
+  width: 100%;
+  text-align: start;
+`;
+
 const FollowingClasses = styled.div`
-  height: min-content;
-  width: 90vw;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  text-align: center;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+`;
+
+const MuerteALosGays = styled.span`
+  font-size: 1.8rem;
+  font-family: "Poppins", monospace;
+  font-weight: 500;
+  color: #ebebeb;
 `;
 
 const Class = styled.article`
-  width: 90vw;
-  border: 0;
+  width: 70vw;
   border-radius: 8px;
-  margin: 1.5vh 0;
   padding: 2vh 0;
-  box-shadow: 0 0 1vh #181818;
   background-color: #3a4c82;
   cursor: pointer;
+  text-align: center;
 `;
