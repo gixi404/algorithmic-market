@@ -43,8 +43,8 @@ const Container = styled.div`
 
 const MyCoursesContainer = styled.div`
   background-color: #457b9d;
-  width: 330px;
-  height: auto;
+  width: 90vw;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,11 +56,18 @@ const MyCoursesContainer = styled.div`
 
 const ListMyCourses = styled.ol`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 0 2rem;
-  row-gap: 3rem;
+  div{
+    margin: 0 2vw;
+    transition: all 0.3s ease;
+    &:hover{
+      cursor: pointer;
+      background-color: rgb(211, 148, 211);
+    }
+  }
 `;
 
 const WithoutCourses = styled.p`

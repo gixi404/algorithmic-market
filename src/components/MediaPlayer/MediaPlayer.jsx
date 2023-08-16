@@ -23,7 +23,9 @@ function MediaPlayer() {
 
   return (
     <Container>
-      <Link to="/mycourses">Atrás</Link>
+      <Button>
+        <Link to="/mycourses">Back</Link>
+      </Button>
       <MediaContainer>
         <Reproductor>
           <h2>{myCourses[formatCourseId].name}</h2>
@@ -61,7 +63,7 @@ function MediaPlayer() {
 export default withAuthenticationRequired(MediaPlayer);
 
 const Container = styled.div`
-background-image: linear-gradient(
+  background-image: linear-gradient(
   to bottom,
   #051937,
   #121e3a,
@@ -77,12 +79,27 @@ background-image: linear-gradient(
   text-align: start;
   justify-content: space-between;
   color: #F5F5F5;
-  a{
-    text-decoration: none;
-    color: #F5F5F5;
-  }
 `;
-
+const Button = styled.div`
+    margin: 1vh 0 0 1vw;
+    display: inline;
+    padding: 1vh;
+    background-color: #C0C0C0;
+    transition: all .5s ease;
+    &:hover{
+      background-color: #181818;
+      a{  
+      color: #F5F5F5;
+      }
+    }
+    &:active{
+      background-color: #5c5c5c;
+    }
+    a{
+      color: #202020;
+      text-decoration: none;
+    }
+`
 const MediaContainer = styled.div`
   width: 100vw;
   height: 130vh;
@@ -95,17 +112,16 @@ const MediaContainer = styled.div`
 `;
 const Reproductor = styled.section`
   width: 90vw;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: center;
   align-items: center;
   video{
     height: 80vh;
     box-shadow: 0 0 10px #181818;
-    border: 2px solid #F5F5F5;
-    border-radius: 2vh;
+    border: 0;
   }
   h2{
     color: #c0c0c0;
@@ -124,35 +140,10 @@ const FollowingClasses = styled.div`
 const Class = styled.article`
   width: 90vw;
   border: 0;
-  border-radius: 1vh;
-  margin: 2vh 0;
+  border-radius: 8px;
+  margin: 1.5vh 0;
   padding: 2vh 0;
   box-shadow: 0 0 1vh #181818;
   background-color: #3a4c82;
   cursor: pointer;
 `;
-/*
-ESLINT
-"eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-
-  <ReactPlayer
-                url={classData.classURL}
-                playing={true}
-                loop={false}
-                light={false}
-                volume={1}
-                playbackRate={1}
-                progressInterval={1}
-                playsInline
-                stopOnUnmount={false}
-                pip
-                controls={false}
-                width="100%"
-                height="300px"
-              />
-*/
