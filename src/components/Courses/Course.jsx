@@ -42,7 +42,13 @@ function Course({ dataCourse }) {
         Tiempo estimado: 90s
       </p>
 
-      <BuyBtn>Buy</BuyBtn>
+      {dataCourse.name === "Course Initial" ? (
+        <BuyBtn onClick={() => (window.location.pathname = "/mycourses")}>
+          bought
+        </BuyBtn>
+      ) : (
+        <BuyBtn>Buy</BuyBtn>
+      )}
     </CourseContainer>
   );
 }
