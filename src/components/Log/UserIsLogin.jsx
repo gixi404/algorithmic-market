@@ -36,7 +36,7 @@ const TextCourses = styled.p`
   font-size: 2.3rem;
   color: #2b2d42;
   letter-spacing: 0.8px;
-  font-family: "Inconsolata", monospace;
+  font-family: "Poppins", monospace;
   font-weight: bold;
   text-align: center;
   display: flex;
