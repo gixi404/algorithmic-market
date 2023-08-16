@@ -25,7 +25,7 @@ const LoginButton = styled.button`
 
   &:hover {
     cursor: pointer;
-    color: #212121;
+    color: #fff;
     scale: 1.1;
     box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
     outline: none;

@@ -18,6 +18,10 @@ function Course({ dataCourse }) {
       <p
         style={{
           padding: "0 1rem",
+          fontFamily: "Poppins",
+          fontWeight: "400",
+          fontSize: "0.9rem",
+          textAlign: "start",
         }}
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean gravida
@@ -30,6 +34,11 @@ function Course({ dataCourse }) {
           justifyContent: "center",
           alignItems: "center",
           marginTop: "15px",
+          fontFamily: "Poppins",
+          fontWeight: "300",
+          color: "#353535",
+          columnGap: "5px",
+          fontSize: "0.9rem",
         }}
       >
         <span
@@ -64,8 +73,13 @@ export default Course;
 const BuyBtn = styled.button`
   position: relative;
   font-family: "Poppins", monospace;
+  font-weight: 500;
   font-size: 3rem;
+  width: 80%;
+  height: 40px;
   padding: 8px 15px;
+  margin-left: 1.8rem;
+  margin-top: 1rem;
   font-size: 16px;
   color: #ff6700;
   outline: 2px solid #ff6700;
@@ -77,7 +91,7 @@ const BuyBtn = styled.button`
 
   &:hover {
     cursor: pointer;
-    color: #212121;
+    color: #fff;
     scale: 1.1;
     box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
     outline: none;
@@ -120,6 +134,7 @@ const TextGoToCourse = styled.span`
   cursor: pointer;
   display: inline-block;
   position: relative;
+
   transition: 0.5s;
   &::after {
     content: "»";
@@ -138,7 +153,7 @@ const TextGoToCourse = styled.span`
 const CourseContainer = styled.div`
   background-color: #ebebeb;
   width: 300px;
-  height: 360px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: start;
