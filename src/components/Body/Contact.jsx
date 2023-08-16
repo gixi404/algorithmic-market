@@ -5,28 +5,7 @@ function Contact() {
   return (
     <Container>
       <ContactContainer id="contact">
-        <Link to="/">Atrás</Link>
-        <p>Contáctanos</p>
-        <div>
-          <p>eltrading@gmail.com</p>
-          <p>234 534 1235</p>
-        </div>
 
-        <Form>
-          <div>
-            <label>Nombre: </label> <input />{" "}
-          </div>
-          <div>
-            <label>Teléfono: </label> <input />
-          </div>
-          <div>
-            <label>Email: </label> <input />
-          </div>
-          <div>
-            <label>Mensaje: </label> <input />
-          </div>
-          <button type="submit">Enviar</button>
-        </Form>
       </ContactContainer>
     </Container>
   );
