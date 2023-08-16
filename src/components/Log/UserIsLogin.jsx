@@ -28,15 +28,14 @@ const UserIsLoginContainer = styled.div`
   box-shadow: 0 0 5px #e9edc9;
   background-color: rgba(233, 237, 201, 0.2);
   text-transform: uppercase;
-  width: 70%;
-  height: 350px;
+  width: 70vw;
+  height: 40vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   border-radius: 8px;
 `;
-
 const TextCourses = styled.p`
   font-size: 2.3rem;
   color: #2b2d42;
@@ -48,9 +47,8 @@ const TextCourses = styled.p`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 100%;
+  height: 40vh;
 `;
-
 const Link = styled(Linkk)`
   display: flex;
   align-items: center;
@@ -60,26 +58,22 @@ const Link = styled(Linkk)`
   padding: 0 3rem 0 1rem;
   color: #f5f5f5;
 `;
-
 const ArrowRight = styled(FaArrowRight)`
   font-size: 2rem;
   color: #f5f5f5;
 `;
-
 const ImgContainer = styled.div`
-  width: 500px;
+  width: 35vw;
   height: 100%;
   border-radius: 0 8px 8px 0;
   position: relative;
 `;
-
 const Img = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 35vw;
+  height: 40vh;
   border-radius: 0 8px 8px 0;
   filter: brightness(50%);
 `;
-
 const PlayBtn = styled(PiPlayDuotone)`
   position: absolute;
   left: 50%;

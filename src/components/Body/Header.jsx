@@ -70,7 +70,7 @@ function Header({ pathIsMyCourses }) {
 export default Header;
 
 const HeaderPosta = styled.header`
-  height: 11vh;
+  height: 13vh;
   width: 98.5vw;
   box-sizing: border-box;
   display: flex;
@@ -82,11 +82,11 @@ const HeaderPosta = styled.header`
 `;
 const Span = styled.span`
   width: 5vw;
-  height: 11vh;
+  height: 13vh;
 `;
 const HeaderContainer = styled.section`
   width: 70vw;
-  height: 11vh;
+  height: 13vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -109,7 +109,7 @@ const WebName = styled.p`
 `;
 const User = styled.div`
   width: max-content;
-  height: 11vh;
+  height: 13vh;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -129,7 +129,7 @@ const ProfileContainer = styled.div`
   text-align: center;
   justify-content: center;
   width: 8vw;
-  height: 5vh;
+  height: 7.2vh;
   right: 5vw;
   top: 2.7vh;
   border-radius: 8px;
