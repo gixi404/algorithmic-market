@@ -42,7 +42,6 @@ function Home() {
         </>
       )}
       <AboutUs />
-      <Contact />
       <Footer />
     </HomeContainer>
   );

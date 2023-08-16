@@ -36,7 +36,6 @@ function Header({ pathIsMyCourses }) {
             <>
               <NavLink href="#allCourses">Courses</NavLink>
               <NavLink href="#aboutUs">Us</NavLink>
-              <NavLink href="#contact">Contact</NavLink>
             </>
           )}
         </NavContainer>

@@ -1,7 +1,9 @@
 import rata from "../../img/rata.jpg";
 import styled from "styled-components";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 function Course({ dataCourse }) {
+  const { isAuthenticated } = useAuth0()
   return (
     <CourseContainer>
       <Img src={rata} alt="img course" />
@@ -39,17 +41,21 @@ function Course({ dataCourse }) {
         >
           🕓
         </span>
-        Tiempo estimado: 90s
+        Tiempo estimado: 90hr
       </p>
 
-      {dataCourse.name === "Course Initial" ? (
-        <BuyBtn onClick={() => (window.location.pathname = "/mycourses")}>
-          bought
+      {isAuthenticated && dataCourse.name === "Course Initial" ? (
+        <BuyBtn >
+          <Link to="/mycourses" style={{
+          }}>
+            bought
+          </Link>
         </BuyBtn>
       ) : (
         <BuyBtn>Buy</BuyBtn>
-      )}
-    </CourseContainer>
+      )
+      }
+    </CourseContainer >
   );
 }
 
@@ -90,18 +96,21 @@ const BuyBtn = styled.button`
   font-size: 3rem;
   width: 80%;
   height: 40px;
+  color: #ff6700;
   padding: 8px 15px;
   margin-left: 1.8rem;
   margin-top: 1rem;
   font-size: 16px;
-  color: #ff6700;
   outline: 2px solid #ff6700;
   border-radius: 5px;
   background-color: transparent;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
   border: none;
-
+  a{
+    text-decoration: none;
+    color: #ff6700;
+  }
   &:hover {
     cursor: pointer;
     color: #fff;

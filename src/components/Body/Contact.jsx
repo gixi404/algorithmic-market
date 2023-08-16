@@ -14,11 +14,9 @@ function Contact() {
 export default Contact;
 
 const Container = styled.div`
-  width: 70%;
-  height: 400px;
-  background-color: red;
+  width: 100vw;
+  height: 70vh;
   margin: 0 auto;
-  padding: 1rem;
 `;
 
 const ContactContainer = styled.div`
@@ -31,7 +29,6 @@ const ContactContainer = styled.div`
   justify-content: center;
   row-gap: 2rem;
   text-align: center;
-  border-radius: 8px;
 `;
 
 const Form = styled.form`
