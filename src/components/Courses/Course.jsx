@@ -1,20 +1,11 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
-import { Link as Linkk } from "react-router-dom";
-import styled from "styled-components";
-import { ContextProps } from "../Context";
 import rata from "../../img/rata.jpg";
-import PayLayout from "../Courses/PayLayout.jsx";
+import styled from "styled-components";
 
 function Course({ dataCourse }) {
-  const { isAuthenticated } = useAuth0();
-  const { viewDetails, setViewDetails } = useContext(ContextProps);
-
   return (
     <CourseContainer>
       <Img src={rata} alt="img course" />
       <NameCourse>{dataCourse.name}</NameCourse>
-      {/* <b>{"$" + dataCourse.price}</b> */}
       <p
         style={{
           padding: "0 1rem",
@@ -52,23 +43,39 @@ function Course({ dataCourse }) {
       </p>
 
       <BuyBtn>Buy</BuyBtn>
-
-      {/* {isAuthenticated ? (
-        <GoToCourseBtn>
-          <TextGoToCourse>
-            <Link to={`/Mycourses/${dataCourse.id}`}>Go to Course</Link>
-          </TextGoToCourse>
-        </GoToCourseBtn>
-      ) : (
-        <Link to={`/details/${dataCourse.id}`}>
-          <DetailsCourse>see details</DetailsCourse>
-        </Link>
-      )} */}
     </CourseContainer>
   );
 }
 
 export default Course;
+
+const CourseContainer = styled.div`
+  background-color: #ebebeb;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  border-radius: 8px;
+  padding: 0;
+`;
+
+const NameCourse = styled.p`
+  font-size: 1.5rem;
+  color: black;
+  font-family: "Poppins", monospace;
+  font-weight: 500;
+  padding: 1rem;
+`;
+
+const Img = styled.img`
+  width: 300px;
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px 8px 0 0;
+`;
 
 const BuyBtn = styled.button`
   position: relative;
@@ -98,83 +105,4 @@ const BuyBtn = styled.button`
     border: none;
     background-color: #ff6700;
   }
-`;
-
-const Img = styled.img`
-  width: 300px;
-  height: 120px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 8px 8px 0 0;
-`;
-
-const GoToCourseBtn = styled.button`
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #3d405b;
-  border: none;
-  color: #ffffff;
-  text-align: center;
-  font-size: 17px;
-  padding: 16px;
-  width: 130px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-  &:hover span {
-    padding-right: 15px;
-  }
-
-  &:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
-`;
-const TextGoToCourse = styled.span`
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-
-  transition: 0.5s;
-  &::after {
-    content: "»";
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -15px;
-    transition: 0.5s;
-  }
-  a {
-    text-decoration: none;
-    color: #181818;
-  }
-`;
-
-const CourseContainer = styled.div`
-  background-color: #ebebeb;
-  width: 300px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  border-radius: 8px;
-  padding: 0;
-`;
-
-const Link = styled(Linkk)`
-  text-decoration: none;
-`;
-
-const NameCourse = styled.p`
-  font-size: 1.5rem;
-  color: black;
-  font-family: "Poppins", monospace;
-  font-weight: 500;
-  padding: 1rem;
-`;
-
-const DetailsCourse = styled.p`
-  font-size: 1.3rem;
-  color: black;
 `;

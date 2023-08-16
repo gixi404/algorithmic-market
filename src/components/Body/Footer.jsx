@@ -4,8 +4,17 @@ import styled from "styled-components";
 function Footer() {
   return (
     <FooterContainer>
-      <Link to="/privacy">Privacy Policy</Link>
-      <StaffLym>Created by Staff Lym</StaffLym>
+      <div
+        style={{
+          width: "80%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Link to="/privacy">Privacy Policy</Link>
+        <StaffLym>Created by Staff Lym</StaffLym>
+      </div>
     </FooterContainer>
   );
 }
@@ -15,12 +24,12 @@ export default Footer;
 const FooterContainer = styled.footer`
   background-color: #2b2d42;
   width: 100vw;
-  height: 70px;
+  height: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
   row-gap: 5px;
-  justify-content: space-around;
+  justify-content: center;
 `;
 
 const Link = styled(Linkk)`

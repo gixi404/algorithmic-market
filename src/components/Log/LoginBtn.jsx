@@ -11,10 +11,9 @@ export default LoginBtn;
 
 const LoginButton = styled.button`
   position: relative;
-  
   font-family: "Poppins", monospace;
-  font-size: 3rem;
-  padding: 1vh 0 1vh 2vh;
+  padding: 8px 15px;
+  text-align: center;
   font-size: 16px;
   color: #ff6700;
   outline: 2px solid #ff6700;
@@ -23,14 +22,13 @@ const LoginButton = styled.button`
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
   border: none;
-
   &:hover {
     cursor: pointer;
-    color: #fff;
+    color: #ffffff;
     scale: 1.1;
     box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
     outline: none;
     border: none;
-    background-color: #ff6700;
+    background-color: rgb(193, 163, 98);
   }
 `;

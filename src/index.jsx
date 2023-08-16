@@ -9,9 +9,8 @@ import Privacy from "./components/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Success from "./components/Courses/Success.jsx";
 import CourseDetails from "./components/Courses/CourseDetails.jsx";
-import AuthenticatedUser from "./components/AuthenticatedUser.jsx";
-import "./index.css";
 import Contact from "./components/Body/Contact.jsx";
+import "./index.css";
 
 const DOMAIN = "dev-pxe14roena18vlea.us.auth0.com",
   CLIENT_ID = "0al9hxaRhflv7QXzRwQTW6ayfjOWBRWV";
@@ -34,7 +33,6 @@ root.render(
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
             <Route path="/success/:coursedetails" element={<Success />} />
-            <Route path="/authenticateduser" element={<AuthenticatedUser />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </BrowserRouter>
