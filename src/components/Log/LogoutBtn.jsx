@@ -19,17 +19,17 @@ export default LogoutBtn;
 
 const LogoutButton = styled.button`
   position: relative;
-  font-family: "Open Sans", monospace;
-  padding: 8px 15px;
+  font-family: "Poppins", monospace;
+  padding: 1vh 0 1vh  2vh;
+  text-align: center;
   font-size: 16px;
-  color: rgb(193, 163, 98);
-  outline: 2px solid rgb(193, 163, 98);
+  color: #ff6700;
+  outline: 2px solid #ff6700;
   border-radius: 5px;
   background-color: transparent;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
   border: none;
-
   &:hover {
     cursor: pointer;
     color: #212121;

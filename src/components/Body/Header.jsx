@@ -18,69 +18,87 @@ function Header({ pathIsMyCourses }) {
   }
 
   return (
-    <HeaderContainer>
-      <WebContainer>
-        <Link to="/">
-          <WebName
-            style={{
-              color: "#ff6700",
-            }}
-          >
-            king of the market
-          </WebName>
-        </Link>
+    <HeaderPosta>
+      <Span></Span>
+      <HeaderContainer>
+        <WebContainer>
+          <Link to="/">
+            <WebName
+              style={{
+                color: "#ff6700",
+              }}
+            >
+              king of the market
+            </WebName>
+          </Link>
 
-        {isAuthenticated && (
-          <UserImg
-            src={user.picture.toString() || defaultUserImg}
-            alt={user.given_name + " img"}
-            onClick={e => handleProfile(e)}
-          />
+          <NavContainer>
+            {pathIsMyCourses ? (
+              <Link to="/">Inicio</Link>
+            ) : (
+              <>
+                <NavLink href="#allCourses">Cursos</NavLink>
+                <NavLink href="#aboutUs">Nosotros</NavLink>
+              </>
+            )}
+          </NavContainer>
+        </WebContainer>
+      </HeaderContainer>
+      <User>
+        {!isAuthenticated && (
+          <ProfileContainer>
+            <LoginBtn />
+          </ProfileContainer>
         )}
-
         {showProfile && (
           <ProfileContainer>
             <LogoutBtn />
           </ProfileContainer>
         )}
-
-        <NavContainer>
-          {pathIsMyCourses ? (
-            <Link to="/">Inicio</Link>
-          ) : (
-            <>
-              <NavLink href="#allCourses">Cursos</NavLink>
-              <NavLink href="#aboutUs">Nosotros</NavLink>
-            </>
-          )}
-        </NavContainer>
-
-        {!isAuthenticated && <LoginBtn />}
-      </WebContainer>
-    </HeaderContainer>
+        {isAuthenticated ? (
+          <UserImg
+            src={user.picture.toString() || defaultUserImg}
+            alt={user.given_name + " img"}
+            onClick={e => handleProfile(e)}
+          />
+        ) : <Span></Span>}
+      </User>
+    </HeaderPosta>
   );
 }
 
 export default Header;
 
-const HeaderContainer = styled.header`
+const HeaderPosta = styled.header`
+  height: 11vh;
+  width: 98.5vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
   background-color: #fff;
-  width: 100vw;
-  height: 100px;
+`;
+const Span = styled.span`
+  width: 5vw;
+  height: 11vh;
+`;
+const HeaderContainer = styled.section`
+  width: 70vw;
+  height: 11vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `;
-
 const WebContainer = styled.div`
-  width: 80%;
+  width: 70vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
-
 const WebName = styled.p`
   font-size: 1.8rem;
   text-transform: uppercase;
@@ -89,7 +107,13 @@ const WebName = styled.p`
   font-style: normal;
   width: 100%;
 `;
-
+const User = styled.div`
+  width: max-content;
+  height: 11vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+`;
 const UserImg = styled.img`
   height: 50px;
   width: 50px;
@@ -100,17 +124,18 @@ const UserImg = styled.img`
 
 const ProfileContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  width: 150px;
-  height: 45px;
   position: absolute;
-  right: 250px;
-  top: 18px;
+  text-align: center;
+  justify-content: center;
+  width: 8vw;
+  height: 5vh;
+  right: 5vw;
+  top: 2.7vh;
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;
+
 `;
 
 const NavContainer = styled.nav`
@@ -119,8 +144,8 @@ const NavContainer = styled.nav`
   align-items: center;
   justify-content: flex-end;
   column-gap: 1.3rem;
-  width: 53%;
-  height: 50px;
+  width: 30vw;
+  height: 5.5vh;
 `;
 
 const NavLink = styled.a`
