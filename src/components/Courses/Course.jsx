@@ -41,7 +41,9 @@ function Course({ dataCourse }) {
         </span>
         Tiempo estimado: 90hr
       </p>
-      <BuyBtn dataCourse={dataCourse} />
+      <ButtonContainer>
+        <BuyBtn dataCourse={dataCourse} />
+      </ButtonContainer>
     </CourseContainer >
   );
 }
@@ -72,4 +74,11 @@ const Img = styled.img`
   object-fit: cover;
   object-position: center;
   border-radius: 8px 8px 0 0;
+`;
+const ButtonContainer = styled.div`
+  height: 40px;
+  width: 100%;
+  display: flex;
+  margin-top: 1rem;
+  justify-content: center;
 `;
