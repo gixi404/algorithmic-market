@@ -34,8 +34,9 @@ function Header({ pathIsMyCourses }) {
             <Link to="/">Inicio</Link>
           ) : (
             <>
-              <NavLink href="#allCourses">Cursos</NavLink>
-              <NavLink href="#aboutUs">Nosotros</NavLink>
+              <NavLink href="#allCourses">Courses</NavLink>
+              <NavLink href="#aboutUs">Us</NavLink>
+              <NavLink href="#contact">Contact</NavLink>
             </>
           )}
         </NavContainer>
@@ -57,7 +58,6 @@ const HeaderContainer = styled.section`
   align-items: center;
   justify-content: center;
 `;
-
 const WebContainer = styled.div`
   width: 80vw;
   display: flex;
@@ -65,7 +65,6 @@ const WebContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-
 const WebName = styled.p`
   font-size: 1.8rem;
   text-transform: uppercase;
@@ -74,7 +73,6 @@ const WebName = styled.p`
   font-style: normal;
   width: 100%;
 `;
-
 const NavContainer = styled.nav`
   display: flex;
   flex-direction: row;
@@ -84,7 +82,6 @@ const NavContainer = styled.nav`
   width: 30vw;
   height: 5.5vh;
 `;
-
 const NavLink = styled.a`
   color: #2e2e2e;
   text-decoration: none;
@@ -97,7 +94,6 @@ const NavLink = styled.a`
     color: #888888;
   }
 `;
-
 const Link = styled(Linkk)`
   color: #2e2e2e;
   text-decoration: none;

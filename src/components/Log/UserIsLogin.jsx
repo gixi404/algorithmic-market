@@ -44,6 +44,7 @@ const TextCourses = styled.p`
   justify-content: space-evenly;
   align-items: center;
   height: 40vh;
+  width: 40vw;
 `;
 const Link = styled(Linkk)`
   display: flex;
@@ -56,13 +57,15 @@ const Link = styled(Linkk)`
 `;
 
 const ImgContainer = styled.div`
-  width: 39vw;
   height: 100%;
+  width: 40vw;
   border-radius: 0 8px 8px 0;
   position: relative;
+  display: flex;
+  justify-content: end;
 `;
 const Img = styled.img`
-  width: 100%;
+  width: 40vw;
   height: 100%;
   border-radius: 0 8px 8px 0;
   filter: brightness(50%);
