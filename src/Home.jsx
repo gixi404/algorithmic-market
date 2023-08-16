@@ -66,6 +66,9 @@ const HomeContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100vw;
-  min-height: 100vh;
+  height: 100%;
+  padding: 0;
   row-gap: 5rem;
+  overflow: hidden;
+  scrollbar-gutter: stable;
 `;

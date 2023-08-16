@@ -11,9 +11,10 @@ export default LoginBtn;
 
 const LoginButton = styled.button`
   position: relative;
+  
   font-family: "Poppins", monospace;
   font-size: 3rem;
-  padding: 8px 15px;
+  padding: 1vh 0 1vh 2vh;
   font-size: 16px;
   color: #ff6700;
   outline: 2px solid #ff6700;
