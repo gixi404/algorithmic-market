@@ -20,9 +20,6 @@ function AboutUs() {
 export default AboutUs;
 
 const AboutUsContainer = styled.div`
-  background-color: #457b9d;
-  width: 70%;
-  height: 380px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +27,4 @@ const AboutUsContainer = styled.div`
   width: 100vw;
   height: 400px;
   background-color: #c0c0c0;
-`;
-const P = styled.p`
-  width: 63vw;
 `;
