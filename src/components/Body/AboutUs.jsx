@@ -4,7 +4,7 @@ function AboutUs() {
   return (
     <AboutUsContainer id="aboutUs">
       <h4>About us?</h4>
-      <p style={{ width: "90%" }}>
+      <P>
         At Academia Forex, we offer the best online learning platform
         because students are always the spirit that mobilizes us. It is because of
         that the learning program is easily adapted and customized
@@ -12,7 +12,7 @@ function AboutUs() {
         neither their level of knowledge is found. With a passionate team,
         We have assistance by phone, email or video sessions so that
         learn this skill and become a professional trader.
-      </p>
+      </P>
     </AboutUsContainer>
   );
 }
@@ -21,8 +21,8 @@ export default AboutUs;
 
 const AboutUsContainer = styled.div`
   background-color: #457b9d;
-  width: 70%;
-  height: 380px;
+  width: 70vw;
+  height: 53vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,4 +30,7 @@ const AboutUsContainer = styled.div`
   border-radius: 8px;
   row-gap: 2rem;
   text-align: center;
+`;
+const P = styled.p`
+  width: 63vw;
 `;

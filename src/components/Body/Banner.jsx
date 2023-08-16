@@ -24,8 +24,8 @@ function Banner() {
 export default Banner;
 
 const BannerContainer = styled.div`
-  width: 80%;
-  height: 380px;
+  width: 80vw;
+  height: 53vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -37,8 +37,8 @@ const BannerContainer = styled.div`
 `;
 
 const TextContainer = styled.p`
-  height: 100%;
-  width: 50%;
+  height: 53vh;
+  width: 40vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,8 +46,8 @@ const TextContainer = styled.p`
 `;
 
 const Img = styled.img`
-  height: 100%;
-  width: 100%;
+  height: 53vh;
+  width: 80vw;
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
