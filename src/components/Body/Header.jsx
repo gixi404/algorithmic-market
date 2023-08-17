@@ -10,7 +10,6 @@ function Header({ pathIsMyCourses }) {
   const [showProfile, setShowProfile] = useState(false);
 
   window.addEventListener("click", () => setShowProfile(false));
-
   function handleProfile(e) {
     setShowProfile(!showProfile);
     e.stopPropagation();
@@ -35,7 +34,6 @@ function Header({ pathIsMyCourses }) {
             </>
           )}
         </NavContainer>
-
         {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
       </WebContainer>
     </HeaderContainer>
@@ -52,6 +50,12 @@ const HeaderContainer = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  @media(max-width: 850px){
+    height: 10vh;
+  }
+  @media(max-width: 440px){
+    height: max-content;
+  }
 `;
 const WebContainer = styled.div`
   width: 80vw;
@@ -59,6 +63,18 @@ const WebContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  @media(max-width: 850px){
+    button{
+      width: max-content;
+      padding: 6px 10px;
+    }
+  @media(max-width:690px){
+    justify-content: center;
+    button{
+      display: none;
+    }
+  }
+  }
 `;
 const WebName = styled.p`
   font-size: 1.8rem;
@@ -66,8 +82,16 @@ const WebName = styled.p`
   font-family: "Poppins", monospace;
   letter-spacing: 1.3px;
   font-style: normal;
-  width: 100%;
+  width: max-content;
   color: #ff6700;
+  @media(max-width: 850px){
+    font-size: 1.5rem;
+  }
+  @media(max-width: 440px){
+    text-align: center;
+    font-size: 1.4rem;
+    width: 80vw;
+  }
 `;
 const NavContainer = styled.nav`
   display: flex;
@@ -77,6 +101,9 @@ const NavContainer = styled.nav`
   column-gap: 1.3rem;
   width: 30vw;
   height: 5.5vh;
+  @media(max-width: 690px){
+    display: none;
+  }
 `;
 const NavLink = styled.a`
   color: #2e2e2e;
@@ -88,6 +115,9 @@ const NavLink = styled.a`
   transition-duration: 0.1s;
   &:hover {
     color: #888888;
+  }
+  @media(max-width: 850px){
+    font-size: 1rem;
   }
 `;
 const Link = styled(Linkk)`

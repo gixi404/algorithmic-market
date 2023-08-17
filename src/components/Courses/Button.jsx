@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function BuyBtn({ course, title, url }) {
-  console.log(course)
   const { isAuthenticated } = useAuth0()
   return (
     <Button >
