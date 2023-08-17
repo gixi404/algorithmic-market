@@ -5,7 +5,7 @@ import UserIsLogin from "./components/Log/UserIsLogin.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
-import Contact from "./components/Body/Contact.jsx"
+import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
 import styled from "styled-components";
 

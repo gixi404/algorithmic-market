@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Btn from '../Courses/Button'
+import Btn from "../Courses/Button";
 
 function Contact() {
-  const title = "Submit"
-  const url = "https://www.google.com"
+  const title = "Submit";
+  const url = "https://www.google.com";
   return (
     <Container>
       <ContactContainer id="contact">
@@ -13,10 +13,27 @@ function Contact() {
         </Text>
         <Form>
           <Name type="text" name="name" placeholder="Name"></Name>
-          <LastName type="text" name="apellido" placeholder="Last Name"></LastName>
-          <Mail type="email" name="Correo Electronico" placeholder="Mail Adress"></Mail>
-          <Textarea wrap="soft" maxLength={200} name="Consulta" cols="10" rows="5" placeholder="Write Your Query"></Textarea>
-          <SBtn ><Btn title={title} url={url} /></SBtn>
+          <LastName
+            type="text"
+            name="apellido"
+            placeholder="Last Name"
+          ></LastName>
+          <Mail
+            type="email"
+            name="Correo Electronico"
+            placeholder="Mail Adress"
+          ></Mail>
+          <Textarea
+            wrap="soft"
+            maxLength={200}
+            name="Consulta"
+            cols="10"
+            rows="5"
+            placeholder="Write Your Query"
+          ></Textarea>
+          <SBtn>
+            <Btn title={title} url={url} />
+          </SBtn>
         </Form>
       </ContactContainer>
     </Container>
@@ -48,7 +65,7 @@ const Text = styled.article`
   justify-content: space-between;
   color: #ababab;
   height: 12vh;
-  p{
+  p {
     font-style: normal;
     font-weight: normal;
   }
@@ -62,36 +79,36 @@ const Form = styled.form`
   display: grid;
   margin: 0 auto;
   grid-template-rows: repeat(5, 8vh);
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   column-gap: 1vw;
   row-gap: 3vh;
 `;
 const Name = styled.input`
-  border: 0 ;
-  border-radius: 8px;
-  padding-left: 2vw;
-  font-family: "Poppins", monospace;
-  width:22.5vw;
-  height: 8vh;
-  background-color: #ebebeb;
-  ::placeholder{
-    color: #c0c0c0;
-  }
-`;
-const LastName = styled.input`
-  border: 0 ;
+  border: 0;
   border-radius: 8px;
   padding-left: 2vw;
   font-family: "Poppins", monospace;
   width: 22.5vw;
   height: 8vh;
   background-color: #ebebeb;
-  ::placeholder{
+  ::placeholder {
+    color: #c0c0c0;
+  }
+`;
+const LastName = styled.input`
+  border: 0;
+  border-radius: 8px;
+  padding-left: 2vw;
+  font-family: "Poppins", monospace;
+  width: 22.5vw;
+  height: 8vh;
+  background-color: #ebebeb;
+  ::placeholder {
     color: #c0c0c0;
   }
 `;
 const Mail = styled.input`
-  border: 0 ;
+  border: 0;
   border-radius: 8px;
   grid-column: 1/3;
   padding-left: 2vw;
@@ -99,12 +116,12 @@ const Mail = styled.input`
   width: 48vw;
   height: 8vh;
   background-color: #ebebeb;
-  ::placeholder{
+  ::placeholder {
     color: #c0c0c0;
   }
 `;
 const Textarea = styled.textarea`
-  border: 0 ;
+  border: 0;
   border-radius: 8px;
   grid-column: 1/3;
   grid-row: 3/5;
@@ -115,7 +132,7 @@ const Textarea = styled.textarea`
   height: 17vh;
   background-color: #ebebeb;
   resize: none;
-  ::placeholder{
+  ::placeholder {
     color: #c0c0c0;
   }
 `;
@@ -124,10 +141,10 @@ const SBtn = styled.article`
   justify-content: end;
   grid-column: 2/3;
   height: 7vh;
-  :first-child{
+  :first-child {
     height: 7vh;
     border-radius: 8px;
-    a{
+    a {
       line-height: 7vh;
     }
   }

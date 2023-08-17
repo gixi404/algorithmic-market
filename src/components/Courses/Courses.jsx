@@ -44,7 +44,7 @@ const ListCourses = styled.section`
   justify-content: space-between;
   width: 80vw;
   padding: 2rem 0;
-  @media(max-width: 850px){
+  @media (max-width: 850px) {
     flex-direction: column;
   }
 `;

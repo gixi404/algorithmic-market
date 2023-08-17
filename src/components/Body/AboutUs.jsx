@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Imgg from '../../img/brisasexo.jpg'
+import Imgg from "../../img/brisasexo.jpg";
 
 function AboutUs() {
   return (
@@ -8,12 +8,33 @@ function AboutUs() {
         <Text>
           <P>Sobre nosotros</P>
           <p>En efecto no se con que rellenar acá pero lo intentamos</p>
-          <p>La inteligencia artificial ha revolucionado muchas industrias, desde la atención médica hasta la fabricación. Su capacidad para analizar grandes cantidades de datos y realizar tareas complejas ha llevado a avances significativos en la toma de decisiones, la automatización de procesos y la mejora de la eficiencia.</p>
-          <p>Sin embargo, también plantea desafíos éticos y de privacidad que deben abordarse con cautela para asegurar un uso responsable y beneficioso en nuestra sociedad moderna.</p>
-          <p>Los viajes espaciales han capturado la imaginación de la humanidad durante décadas. Desde los primeros pasos en la Luna hasta las misiones a Marte planificadas para el futuro, la exploración del espacio exterior continúa expandiendo nuestros horizontes.</p>
-          <p>A medida que la tecnología avanza, se abren nuevas posibilidades para comprender nuestro lugar en el universo y para resolver problemas terrestres mediante la investigación en el espacio. Sin embargo, los desafíos técnicos, los riesgos y los altos costos siguen siendo obstáculos importantes en esta emocionante búsqueda.</p>
+          <p>
+            La inteligencia artificial ha revolucionado muchas industrias, desde
+            la atención médica hasta la fabricación. Su capacidad para analizar
+            grandes cantidades de datos y realizar tareas complejas ha llevado a
+            avances significativos en la toma de decisiones, la automatización
+            de procesos y la mejora de la eficiencia.
+          </p>
+          <p>
+            Sin embargo, también plantea desafíos éticos y de privacidad que
+            deben abordarse con cautela para asegurar un uso responsable y
+            beneficioso en nuestra sociedad moderna.
+          </p>
+          <p>
+            Los viajes espaciales han capturado la imaginación de la humanidad
+            durante décadas. Desde los primeros pasos en la Luna hasta las
+            misiones a Marte planificadas para el futuro, la exploración del
+            espacio exterior continúa expandiendo nuestros horizontes.
+          </p>
+          <p>
+            A medida que la tecnología avanza, se abren nuevas posibilidades
+            para comprender nuestro lugar en el universo y para resolver
+            problemas terrestres mediante la investigación en el espacio. Sin
+            embargo, los desafíos técnicos, los riesgos y los altos costos
+            siguen siendo obstáculos importantes en esta emocionante búsqueda.
+          </p>
         </Text>
-        <ImgContainer >
+        <ImgContainer>
           <Img src={Imgg} />
         </ImgContainer>
       </AboutUss>
@@ -55,18 +76,18 @@ const Text = styled.article`
   align-items: start;
   text-align: start;
   justify-content: center;
-  p{
-  font-style: normal;
-  font-weight: normal;
-  width: 40vw;
-  white-space: break-spaces;
-  overflow: hidden;
-  padding: 1vh 0;
-  &:nth-child(2){
-    padding-top: 0;
+  p {
+    font-style: normal;
+    font-weight: normal;
+    width: 40vw;
+    white-space: break-spaces;
+    overflow: hidden;
+    padding: 1vh 0;
+    &:nth-child(2) {
+      padding-top: 0;
+    }
   }
-  }
-  p:first-child{
+  p:first-child {
     padding: 0;
   }
 `;
