@@ -30,7 +30,7 @@ function Context({ children }) {
       name: "Curso Advanced",
       price: 350,
       img: advancedCourseImg,
-    },
+    }
   ]);
 
   const [myCourses, setMyCourses] = useState([

@@ -2,7 +2,8 @@ import rata from "../../img/rata.jpg";
 import styled from "styled-components";
 import BuyBtn from "./Button";
 function Course({ dataCourse }) {
-  const name = "Buy"
+  const title = "Buy"
+  const url = "/details/1"
   return (
     <CourseContainer>
       <Img src={rata} alt="img course" />
@@ -16,9 +17,10 @@ function Course({ dataCourse }) {
         Tiempo estimado: 90hr
       </TimeCard>
       <ButtonContainer>
-        <BuyBtn dataCourse={dataCourse} name={name} />
+        <BuyBtn course={dataCourse} title={title} url={url} />
       </ButtonContainer>
     </CourseContainer >
+
   );
 }
 

@@ -15,16 +15,11 @@ function Header({ pathIsMyCourses }) {
     setShowProfile(!showProfile);
     e.stopPropagation();
   }
-
   return (
     <HeaderContainer>
       <WebContainer>
         <Link to="/">
-          <WebName
-            style={{
-              color: "#ff6700",
-            }}
-          >
+          <WebName>
             king of the market
           </WebName>
         </Link>
@@ -72,6 +67,7 @@ const WebName = styled.p`
   letter-spacing: 1.3px;
   font-style: normal;
   width: 100%;
+  color: #ff6700;
 `;
 const NavContainer = styled.nav`
   display: flex;

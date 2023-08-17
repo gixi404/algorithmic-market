@@ -2,7 +2,8 @@ import styled from "styled-components";
 import Btn from '../Courses/Button'
 
 function Contact() {
-  const name = "Submit"
+  const title = "Submit"
+  const url = "https://www.google.com"
   return (
     <Container>
       <ContactContainer id="contact">
@@ -15,7 +16,7 @@ function Contact() {
           <LastName type="text" name="apellido" placeholder="Last Name"></LastName>
           <Mail type="email" name="Correo Electronico" placeholder="Mail Adress"></Mail>
           <Textarea wrap="soft" maxLength={200} name="Consulta" cols="10" rows="5" placeholder="Write Your Query"></Textarea>
-          <SBtn ><Btn name={name} /></SBtn>
+          <SBtn ><Btn title={title} url={url} /></SBtn>
         </Form>
       </ContactContainer>
     </Container>
@@ -67,32 +68,44 @@ const Form = styled.form`
 `;
 const Name = styled.input`
   border: 0 ;
-  border-radius: 1vh;
+  border-radius: 8px;
   padding-left: 2vw;
   font-family: "Poppins", monospace;
   width:22.5vw;
   height: 7vh;
+  background-color: #ebebeb;
+  ::placeholder{
+    color: #c0c0c0;
+  }
 `;
 const LastName = styled.input`
   border: 0 ;
-  border-radius: 1vh;
+  border-radius: 8px;
   padding-left: 2vw;
   font-family: "Poppins", monospace;
   width: 22.5vw;
   height: 7vh;
+  background-color: #ebebeb;
+  ::placeholder{
+    color: #c0c0c0;
+  }
 `;
 const Mail = styled.input`
   border: 0 ;
-  border-radius: 1vh;
+  border-radius: 8px;
   grid-column: 1/3;
   padding-left: 2vw;
   font-family: "Poppins", monospace;
   width: 48vw;
   height: 7vh;
+  background-color: #ebebeb;
+  ::placeholder{
+    color: #c0c0c0;
+  }
 `;
 const Textarea = styled.textarea`
   border: 0 ;
-  border-radius: 1vh;
+  border-radius: 8px;
   grid-column: 1/3;
   grid-row: 3/5;
   padding-top: 2vh;
@@ -100,7 +113,11 @@ const Textarea = styled.textarea`
   font-family: "Poppins";
   width: 48vw;
   height: 14vh;
+  background-color: #ebebeb;
   resize: none;
+  ::placeholder{
+    color: #c0c0c0;
+  }
 `;
 const SBtn = styled.article`
   display: flex;
@@ -109,6 +126,7 @@ const SBtn = styled.article`
   height: 7vh;
   :first-child{
     height: 7vh;
+    border-radius: 8px;
     a{
       line-height: 7vh;
     }
