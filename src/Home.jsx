@@ -17,7 +17,7 @@ function Home() {
       <LoadContainer>
         <ReactLoading
           type="bars"
-          color="rgb(193, 163, 98)"
+          color="rgb(255, 255, 255)"
           width="250px"
           height="200px"
         />
