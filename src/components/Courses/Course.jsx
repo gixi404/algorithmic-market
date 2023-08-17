@@ -42,7 +42,7 @@ const CourseContainer = styled.div`
   }
   @media(max-width: 850px){
     margin: 2vh 0;
-    width: 70vw;
+    width: 80vw;
   }
 `;
 const NameCourse = styled.p`
@@ -70,7 +70,7 @@ const Img = styled.img`
     width: 25vw;
   }
   @media(max-width: 850px){
-    width: 70vw;
+    width: 80vw;
   }
 `;
 const DescriptionCard = styled.p`
@@ -118,6 +118,6 @@ const ButtonContainer = styled.div`
     width: 25vw;
   }
   @media(max-width: 850px){
-    width: 70vw;
+    width: 80vw;
   }
 `;
