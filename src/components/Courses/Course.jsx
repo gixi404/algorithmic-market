@@ -29,7 +29,7 @@ export default Course;
 const CourseContainer = styled.div`
   background-color: #ebebeb;
   width: 22.5vw;
-  height: 70vh;
+  height: max-content;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -38,13 +38,11 @@ const CourseContainer = styled.div`
   padding: 0;
   @media(max-width:1060px){
     width: 25vw;
-    height: 65vh;
     overflow: hidden;
   }
   @media(max-width: 850px){
     margin: 2vh 0;
     width: 70vw;
-    height: 60vh;
   }
 `;
 const NameCourse = styled.p`

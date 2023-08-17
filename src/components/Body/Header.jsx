@@ -51,7 +51,7 @@ const HeaderContainer = styled.section`
   align-items: center;
   justify-content: center;
   @media(max-width: 850px){
-    height: 10vh;
+    height: 13vh;
   }
   @media(max-width: 440px){
     height: max-content;
@@ -63,30 +63,21 @@ const WebContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  @media(max-width: 850px){
-    button{
-      width: max-content;
-      padding: 6px 10px;
-    }
   @media(max-width:690px){
     justify-content: center;
     button{
       display: none;
     }
   }
-  }
 `;
 const WebName = styled.p`
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-transform: uppercase;
   font-family: "Poppins", monospace;
   letter-spacing: 1.3px;
   font-style: normal;
   width: max-content;
   color: #ff6700;
-  @media(max-width: 850px){
-    font-size: 1.5rem;
-  }
   @media(max-width: 440px){
     text-align: center;
     font-size: 1.4rem;
@@ -110,14 +101,11 @@ const NavLink = styled.a`
   text-decoration: none;
   font-family: "Poppins", monospace;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   text-transform: capitalize;
   transition-duration: 0.1s;
   &:hover {
     color: #888888;
-  }
-  @media(max-width: 850px){
-    font-size: 1rem;
   }
 `;
 const Link = styled(Linkk)`
