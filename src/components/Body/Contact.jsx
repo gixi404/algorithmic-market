@@ -36,7 +36,7 @@ const Container = styled.div`
 `;
 const ContactContainer = styled.section`
   width: 80vw;
-  height: 71vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -58,13 +58,13 @@ const P = styled.p`
 `;
 const Form = styled.form`
   width: 50vw;
-  height: 44vh;
+  height: 52vh;
   display: grid;
-  margin: auto;
-  grid-template-rows: repeat(5, 7vh);
+  margin: 0 auto;
+  grid-template-rows: repeat(5, 8vh);
   grid-template-columns: 1fr 1fr ;
   column-gap: 1vw;
-  row-gap: 1vw;
+  row-gap: 3vh;
 `;
 const Name = styled.input`
   border: 0 ;
@@ -72,7 +72,7 @@ const Name = styled.input`
   padding-left: 2vw;
   font-family: "Poppins", monospace;
   width:22.5vw;
-  height: 7vh;
+  height: 8vh;
   background-color: #ebebeb;
   ::placeholder{
     color: #c0c0c0;
@@ -84,7 +84,7 @@ const LastName = styled.input`
   padding-left: 2vw;
   font-family: "Poppins", monospace;
   width: 22.5vw;
-  height: 7vh;
+  height: 8vh;
   background-color: #ebebeb;
   ::placeholder{
     color: #c0c0c0;
@@ -97,7 +97,7 @@ const Mail = styled.input`
   padding-left: 2vw;
   font-family: "Poppins", monospace;
   width: 48vw;
-  height: 7vh;
+  height: 8vh;
   background-color: #ebebeb;
   ::placeholder{
     color: #c0c0c0;
@@ -112,7 +112,7 @@ const Textarea = styled.textarea`
   padding-left: 2vw;
   font-family: "Poppins";
   width: 48vw;
-  height: 14vh;
+  height: 17vh;
   background-color: #ebebeb;
   resize: none;
   ::placeholder{
