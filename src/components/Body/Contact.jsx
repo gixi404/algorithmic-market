@@ -3,6 +3,7 @@ import Btn from '../Courses/Button'
 
 function Contact() {
   const name = "Submit"
+  const url = "https://www.gooogle.com"
   return (
     <Container>
       <ContactContainer id="contact">
@@ -15,7 +16,7 @@ function Contact() {
           <LastName type="text" name="apellido" placeholder="Last Name"></LastName>
           <Mail type="email" name="Correo Electronico" placeholder="Mail Adress"></Mail>
           <Textarea wrap="soft" maxLength={200} name="Consulta" cols="10" rows="5" placeholder="Write Your Query"></Textarea>
-          <SBtn ><Btn name={name} /></SBtn>
+          <SBtn ><Btn name={name} url={url} /></SBtn>
         </Form>
       </ContactContainer>
     </Container>

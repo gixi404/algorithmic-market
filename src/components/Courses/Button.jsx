@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-function BuyBtn({ dataCourse, name }) {
+function BuyBtn({ dataCourse, name, url }) {
   const { isAuthenticated } = useAuth0()
   return (
     <Button >
       {isAuthenticated && dataCourse.name === "Course Initial"
         ? (<Link to="/mycourses">view</Link>)
-        : (<Link to="/details/0">{name}</Link>)}
+        : (<Link to={`${url}`}>{name}</Link>)}
     </Button>
   )
 }
