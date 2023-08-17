@@ -25,24 +25,26 @@ const CoursesContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border-radius: 1rem;
-  width: 100%;
-  height: 100%;
+  border-radius: 8px;
+  width: 100vw;
+  height: max-content;
 `;
-
 const TextCourses = styled.p`
   font-size: 2.8rem;
   font-family: "Poppins", monospace;
   font-weight: 500;
   color: #ebebeb;
-  width: 80%;
+  width: 80vw;
 `;
 
-const ListCourses = styled.ol`
+const ListCourses = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 80vw;
   padding: 2rem 0;
+  @media(max-width: 850px){
+    flex-direction: column;
+  }
 `;
