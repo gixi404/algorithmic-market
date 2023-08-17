@@ -55,7 +55,7 @@ const TextContainer = styled.p`
   justify-content: space-around;
   align-items: end;
   font-size: 2.3rem;
-  color: #fff;
+  color: #ababab;
   letter-spacing: 0.8px;
   font-family: "Poppins", monospace;
   font-weight: 500;

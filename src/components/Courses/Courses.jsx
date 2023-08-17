@@ -33,10 +33,9 @@ const TextCourses = styled.p`
   font-size: 2.8rem;
   font-family: "Poppins", monospace;
   font-weight: 500;
-  color: #ebebeb;
+  color: #ababab;
   width: 80vw;
 `;
-
 const ListCourses = styled.section`
   display: flex;
   flex-direction: row;
