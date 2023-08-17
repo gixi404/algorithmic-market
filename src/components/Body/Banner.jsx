@@ -37,7 +37,6 @@ const BannerContainer = styled.div`
   }
   @media(max-width: 690px){
     height: 40vh;
-    width: 80vw;
   }
   @media(max-width: 440px){
     height: 25vh;
@@ -55,7 +54,7 @@ const TextContainer = styled.p`
   justify-content: space-around;
   align-items: end;
   font-size: 2.3rem;
-  color: #ababab;
+  color: #fff;
   letter-spacing: 0.8px;
   font-family: "Poppins", monospace;
   font-weight: 500;
@@ -77,9 +76,9 @@ const TextContainer = styled.p`
   }
   @media(max-width: 440px){
     height: 25vh;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     span{
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
 `;

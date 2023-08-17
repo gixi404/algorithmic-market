@@ -54,7 +54,7 @@ const HeaderContainer = styled.section`
     height: 13vh;
   }
   @media(max-width: 440px){
-    height: max-content;
+    height: 8vh;
   }
 `;
 const WebContainer = styled.div`

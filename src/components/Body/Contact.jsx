@@ -65,6 +65,10 @@ const Form = styled.form`
   grid-template-columns: 1fr 1fr ;
   column-gap: 1vw;
   row-gap: 3vh;
+  @media(max-width:800px){
+    width: 80vw;
+    margin: 0;
+  }
 `;
 const Name = styled.input`
   border: 0 ;
@@ -76,6 +80,9 @@ const Name = styled.input`
   background-color: #ebebeb;
   ::placeholder{
     color: #c0c0c0;
+  }
+  @media(max-width:800px){
+    width:38.5vw;
   }
 `;
 const LastName = styled.input`
@@ -89,6 +96,9 @@ const LastName = styled.input`
   ::placeholder{
     color: #c0c0c0;
   }
+  @media(max-width:800px){
+    width:38.5vw;
+  }
 `;
 const Mail = styled.input`
   border: 0 ;
@@ -101,6 +111,9 @@ const Mail = styled.input`
   background-color: #ebebeb;
   ::placeholder{
     color: #c0c0c0;
+  }
+  @media(max-width:800px){
+    width:80vw;
   }
 `;
 const Textarea = styled.textarea`
@@ -117,6 +130,9 @@ const Textarea = styled.textarea`
   resize: none;
   ::placeholder{
     color: #c0c0c0;
+  }
+  @media(max-width:800px){
+    width:80vw;
   }
 `;
 const SBtn = styled.article`
