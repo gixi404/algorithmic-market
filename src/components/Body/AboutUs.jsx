@@ -4,19 +4,19 @@ import Imgg from '../../img/brisasexo.jpg'
 function AboutUs() {
   return (
     <Container id="aboutUs">
-      <Sexo>
+      <AboutUss>
         <Text>
           <P>Sobre nosotros</P>
-          <p>en efecto no se con que rellenar acá pero lo intentamos</p>
+          <p>En efecto no se con que rellenar acá pero lo intentamos</p>
           <p>La inteligencia artificial ha revolucionado muchas industrias, desde la atención médica hasta la fabricación. Su capacidad para analizar grandes cantidades de datos y realizar tareas complejas ha llevado a avances significativos en la toma de decisiones, la automatización de procesos y la mejora de la eficiencia.</p>
           <p>Sin embargo, también plantea desafíos éticos y de privacidad que deben abordarse con cautela para asegurar un uso responsable y beneficioso en nuestra sociedad moderna.</p>
           <p>Los viajes espaciales han capturado la imaginación de la humanidad durante décadas. Desde los primeros pasos en la Luna hasta las misiones a Marte planificadas para el futuro, la exploración del espacio exterior continúa expandiendo nuestros horizontes.</p>
           <p>A medida que la tecnología avanza, se abren nuevas posibilidades para comprender nuestro lugar en el universo y para resolver problemas terrestres mediante la investigación en el espacio. Sin embargo, los desafíos técnicos, los riesgos y los altos costos siguen siendo obstáculos importantes en esta emocionante búsqueda.</p>
         </Text>
-        <ImgContainer>
+        <ImgContainer >
           <Img src={Imgg} />
         </ImgContainer>
-      </Sexo>
+      </AboutUss>
     </Container>
   );
 }
@@ -25,7 +25,7 @@ export default AboutUs;
 
 const Container = styled.div`
   width: 100vw;
-  height: 88vh;
+  height: 80vh;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -36,7 +36,7 @@ const Container = styled.div`
   background-color: #ebebeb;
   font-family: "Poppins", monospace;
 `;
-const Sexo = styled.section`
+const AboutUss = styled.section`
   height: 77vh;
   width: 80vw;
   text-align: center;

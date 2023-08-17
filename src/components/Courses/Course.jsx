@@ -2,6 +2,7 @@ import rata from "../../img/rata.jpg";
 import styled from "styled-components";
 import BuyBtn from "./Button";
 function Course({ dataCourse }) {
+  const name = "Buy"
   return (
     <CourseContainer>
       <Img src={rata} alt="img course" />
@@ -15,7 +16,7 @@ function Course({ dataCourse }) {
         Tiempo estimado: 90hr
       </TimeCard>
       <ButtonContainer>
-        <BuyBtn dataCourse={dataCourse} />
+        <BuyBtn dataCourse={dataCourse} name={name} />
       </ButtonContainer>
     </CourseContainer >
   );

@@ -2,26 +2,22 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-function BuyBtn({ dataCourse }) {
+function BuyBtn({ dataCourse, name }) {
   const { isAuthenticated } = useAuth0()
   return (
-    <>
-      <Button>
-        {isAuthenticated && dataCourse.name === "Course Initial"
-          ? (<Link to="/mycourse">bought</Link>)
-          : (<Link to="/mycourses" >buy</Link>)}
-      </Button>
-    </>
+    <Button >
+      {isAuthenticated && dataCourse.name === "Course Initial"
+        ? (<Link to="/mycourses">view</Link>)
+        : (<Link to="/details/0">{name}</Link>)}
+    </Button>
   )
 }
 
 export default BuyBtn;
 
 const Button = styled.button`
-  position: relative;
   font-family: "Poppins", monospace;
   font-weight: 500;
-  font-size: 3rem;
   color: #ff6700;
   width: 80%;
   height: 40px;
