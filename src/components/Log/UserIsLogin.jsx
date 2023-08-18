@@ -22,7 +22,7 @@ function UserIsLogin() {
 
 export default UserIsLogin;
 
-const UserIsLoginContainer = styled.div`
+const UserIsLoginContainer = styled.section`
   box-shadow: 0 0 5px #e9edc9;
   background-color: rgba(233, 237, 201, 0.2);
   text-transform: uppercase;
@@ -67,7 +67,7 @@ const Link = styled(Linkk)`
   padding: 0 3rem 0 1rem;
   color: #f5f5f5;
 `;
-const ImgContainer = styled.div`
+const ImgContainer = styled.article`
   height: 50vh;
   width: 40vw;
   border-radius: 0 8px 8px 0;

@@ -16,7 +16,7 @@ function Banner() {
 
 export default Banner;
 
-const BannerContainer = styled.div`
+const BannerContainer = styled.article`
   width: 80vw;
   height: 53vh;
   display: flex;

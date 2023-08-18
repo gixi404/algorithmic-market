@@ -44,7 +44,7 @@ function AboutUs() {
 
 export default AboutUs;
 
-const Container = styled.div`
+const Container = styled.section`
   width: 100vw;
   height: 80vh;
   text-align: center;
@@ -59,7 +59,7 @@ const Container = styled.div`
     height: max-content;
   }  
 `;
-const AboutUss = styled.section`
+const AboutUss = styled.div`
   height: max-content;
   width: 80vw;
   text-align: center;

@@ -1,6 +1,7 @@
 import rata from "../../img/rata.jpg";
 import styled from "styled-components";
 import BuyBtn from "./Button";
+
 function Course({ dataCourse }) {
   const title = "Buy";
   const id = dataCourse.id;
@@ -26,7 +27,7 @@ function Course({ dataCourse }) {
 
 export default Course;
 
-const CourseContainer = styled.div`
+const CourseContainer = styled.article`
   background-color: #ebebeb;
   width: 22.5vw;
   height: max-content;

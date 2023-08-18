@@ -65,9 +65,9 @@ const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   width: 100vw;
-  height: 100%;
+  height: 413vh;
   padding: 0;
   row-gap: 5rem;
   overflow: hidden;

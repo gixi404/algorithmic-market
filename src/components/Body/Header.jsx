@@ -42,7 +42,7 @@ function Header({ pathIsMyCourses }) {
 
 export default Header;
 
-const HeaderContainer = styled.section`
+const HeaderContainer = styled.header`
   background-color: #fff;
   width: 100vw;
   height: 13vh;

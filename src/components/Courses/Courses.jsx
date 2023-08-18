@@ -20,7 +20,7 @@ function Courses() {
 
 export default Courses;
 
-const CoursesContainer = styled.div`
+const CoursesContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
