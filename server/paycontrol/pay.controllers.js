@@ -7,8 +7,8 @@ const PRIV_KEY =
 const stripe = new Stripe(PRIV_KEY);
 
 export async function createSession(req, res) {
-  const { price, description, name, id } = req.body;
-  price = price * 100;
+  const { cash, description, name, id } = req.body;
+  const price = cash * 100;
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -18,7 +18,7 @@ export async function createSession(req, res) {
             name,
             description,
           },
-          unit_amount: precio,
+          unit_amount: price,
           currency: "usd",
         },
         quantity: 1,

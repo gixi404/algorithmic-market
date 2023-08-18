@@ -3,7 +3,8 @@ import styled from "styled-components";
 import BuyBtn from "./Button";
 function Course({ dataCourse }) {
   const title = "Buy";
-  const url = "/details/1";
+  const id = dataCourse.id;
+  const url = `/details/${id}`;
   return (
     <CourseContainer>
       <Img src={rata} alt="img course" />

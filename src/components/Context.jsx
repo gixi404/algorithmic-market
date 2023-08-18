@@ -12,7 +12,7 @@ function Context({ children }) {
       description:
         "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
       name: "Course Initial",
-      price: 200,
+      cash: 200,
       img: basicCourseImg,
     },
     {
@@ -20,7 +20,7 @@ function Context({ children }) {
       description:
         "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
       name: "Curso Medium",
-      price: 250,
+      cash: 250,
       img: middleCourseImg,
     },
     {
@@ -28,7 +28,7 @@ function Context({ children }) {
       description:
         "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
       name: "Curso Advanced",
-      price: 350,
+      cash: 350,
       img: advancedCourseImg,
     },
   ]);

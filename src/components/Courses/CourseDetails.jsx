@@ -8,7 +8,7 @@ function CourseDetails() {
   const { coursedetails } = useParams();
   const { courseSelected } = useContext(ContextProps);
 
-  const { name, price, img, description } = courseSelected(coursedetails);
+  const { name, cash, img, description } = courseSelected(coursedetails);
   if (window.location.href === "http://localhost:3000/details/0") {
   } else if (window.location.href === "http://localhost:3000/details/1") {
     console.log("atardecer");
@@ -20,7 +20,7 @@ function CourseDetails() {
       <Detaill>
         <Data>
           <Name>{name}:</Name>
-          <Precio> ${price}</Precio>
+          <Precio> ${cash}</Precio>
         </Data>
         <Img>
           <img src={img} alt="" />

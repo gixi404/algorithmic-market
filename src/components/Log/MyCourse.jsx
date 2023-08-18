@@ -22,15 +22,12 @@ function MyCourse(props) {
         ultrices justo eu pretium. Ut quis ipsum nec ligula fringilla
       </p>
 
-      {/* <Link to={`/mycourses/${dataCourse.id}`}> */}
-      <ViewBtn
-        onClick={() =>
-          (window.location.pathname = `/mycourses/${dataCourse.id}`)
-        }
-      >
-        View
+
+      <ViewBtn>
+        <Link to={`/mycourses/${dataCourse.id}`}>
+          View
+        </Link>
       </ViewBtn>
-      {/* </Link> */}
     </MyCourseContainer>
   );
 }
@@ -69,7 +66,6 @@ const ViewBtn = styled.button`
   position: relative;
   font-family: "Poppins", monospace;
   font-weight: 500;
-  font-size: 3rem;
   width: 80%;
   height: 40px;
   padding: 8px 15px;
@@ -83,15 +79,20 @@ const ViewBtn = styled.button`
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
   border: none;
-
+  a{
+    text-decoration: none;
+    color: #ff6700;
+  }
   &:hover {
     cursor: pointer;
-    color: #fff;
     scale: 1.1;
     box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
     outline: none;
     border: none;
     background-color: #ff6700;
+    a{
+      color: #ffffff;
+    }
   }
 `;
 
