@@ -66,10 +66,9 @@ const ViewBtn = styled.button`
   position: relative;
   font-family: "Poppins", monospace;
   font-weight: 500;
-  width: 80%;
+  width: 15vw;
   height: 40px;
-  padding: 8px 15px;
-  margin-left: 1.8rem;
+  margin-left: 2rem;
   margin-top: 1rem;
   font-size: 16px;
   color: #ff6700;
@@ -80,8 +79,12 @@ const ViewBtn = styled.button`
   overflow: hidden;
   border: none;
   a{
+    display: block;
     text-decoration: none;
     color: #ff6700;
+    height: 40px;
+    width: 15vw;
+    line-height: 40px;
   }
   &:hover {
     cursor: pointer;

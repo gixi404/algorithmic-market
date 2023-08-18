@@ -12,7 +12,9 @@ function UserIsLogin() {
 
       <ImgContainer>
         <Img src={exampleImg} />
-        <PlayBtn />
+        <Linnk to={`/mycourses`}>
+          <PlayBtn />
+        </Linnk>
       </ImgContainer>
     </UserIsLoginContainer>
   );
@@ -51,6 +53,10 @@ const TextCourses = styled.p`
   @media(max-width:800px){
     display: none;
   }
+`;
+const Linnk = styled(Linkk)`
+  height: 0;
+  width: 0;
 `;
 const Link = styled(Linkk)`
   display: flex;
