@@ -7,9 +7,7 @@ function Banner() {
     <BannerContainer>
       <TextContainer>
         "Keep losses small and gains big"
-        <span>
-          William J. O'Neil
-        </span>
+        <span>William J. O'Neil</span>
       </TextContainer>
       <Img src={example} />
     </BannerContainer>
@@ -29,19 +27,19 @@ const BannerContainer = styled.div`
   background-color: rgba(233, 237, 201, 0.2);
   border-radius: 8px;
   text-align: center;
-  @media(max-width: 850px){
+  @media (max-width: 850px) {
     background-image: url(${example});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right;
   }
-  @media(max-width: 690px){
+  @media (max-width: 690px) {
     height: 40vh;
   }
-  @media(max-width: 440px){
+  @media (max-width: 440px) {
     height: 25vh;
   }
-  @media(max-width: 230px){
+  @media (max-width: 230px) {
     display: none;
   }
 `;
@@ -58,23 +56,23 @@ const TextContainer = styled.p`
   letter-spacing: 0.8px;
   font-family: "Poppins", monospace;
   font-weight: 500;
-  span{
+  span {
     margin-right: 10px;
     font-size: 1.8rem;
   }
-  @media(max-width: 850px){
+  @media (max-width: 850px) {
     width: 80vw;
-    color: #1F1F1F;
+    color: #1f1f1f;
   }
-  @media(max-width:690px){
+  @media (max-width: 690px) {
     height: 40vh;
     width: 80vw;
     font-size: 2rem;
-    span{
+    span {
       font-size: 1.6rem;
     }
   }
-  @media(max-width: 440px){
+  @media (max-width: 440px) {
     height: 25vh;
     font-size: 1.4rem;
     span{
@@ -90,7 +88,7 @@ const Img = styled.img`
   object-position: center;
   border-radius: 0 8px 8px 0;
   filter: brightness(80%);
-  @media(max-width: 850px){
+  @media (max-width: 850px) {
     display: none;
   }
 `;

@@ -6,21 +6,21 @@ import LogoutBtn from "../Log/LogoutBtn.jsx";
 import styled from "styled-components";
 
 function Header({ pathIsMyCourses }) {
-  const { user, isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const [showProfile, setShowProfile] = useState(false);
 
   window.addEventListener("click", () => setShowProfile(false));
+
   function handleProfile(e) {
     setShowProfile(!showProfile);
     e.stopPropagation();
   }
+
   return (
     <HeaderContainer>
       <WebContainer>
         <Link to="/">
-          <WebName>
-            king of the market
-          </WebName>
+          <WebName>king of the market</WebName>
         </Link>
 
         <NavContainer>
@@ -50,11 +50,11 @@ const HeaderContainer = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  @media(max-width: 850px){
-    height: 13vh;
+  @media (max-width: 850px) {
+    height: 10vh;
   }
-  @media(max-width: 440px){
-    height: 8vh;
+  @media (max-width: 440px) {
+    height: max-content;
   }
 `;
 const WebContainer = styled.div`
@@ -63,10 +63,16 @@ const WebContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  @media(max-width:690px){
-    justify-content: center;
-    button{
-      display: none;
+  @media (max-width: 850px) {
+    button {
+      width: max-content;
+      padding: 6px 10px;
+    }
+    @media (max-width: 690px) {
+      justify-content: center;
+      button {
+        display: none;
+      }
     }
   }
 `;
@@ -78,7 +84,10 @@ const WebName = styled.p`
   font-style: normal;
   width: max-content;
   color: #ff6700;
-  @media(max-width: 440px){
+  @media (max-width: 850px) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 440px) {
     text-align: center;
     font-size: 1.4rem;
     width: 80vw;
@@ -92,7 +101,7 @@ const NavContainer = styled.nav`
   column-gap: 1.3rem;
   width: 30vw;
   height: 5.5vh;
-  @media(max-width: 690px){
+  @media (max-width: 690px) {
     display: none;
   }
 `;
@@ -106,6 +115,9 @@ const NavLink = styled.a`
   transition-duration: 0.1s;
   &:hover {
     color: #888888;
+  }
+  @media (max-width: 850px) {
+    font-size: 1rem;
   }
 `;
 const Link = styled(Linkk)`

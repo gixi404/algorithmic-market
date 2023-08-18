@@ -98,9 +98,10 @@ const BackBtn = styled.div`
   padding: 1vh;
   background-color: #c0c0c0;
   border-radius: 8px;
-  transition: all 0.5s ease;
+  transition: all 1s ease;
   &:hover {
     background-color: #181818;
+    transform: rotate(360deg);
     a {
       color: #f5f5f5;
     }

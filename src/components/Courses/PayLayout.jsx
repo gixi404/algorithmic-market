@@ -14,7 +14,7 @@ function PayLayout({ courseSelected, coursedetails }) {
   const [buyUrl, setBuyUrl] = useState("");
 
   const handleBuy = async () => {
-    console.log(courseSelected)
+    console.log(courseSelected);
     const res = await fetch(
       "http://localhost:3001/create-checkout-session",
       dataToFetch

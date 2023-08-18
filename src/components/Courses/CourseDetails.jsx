@@ -9,14 +9,11 @@ function CourseDetails() {
   const { courseSelected } = useContext(ContextProps);
 
   const { name, price, img, description } = courseSelected(coursedetails);
-  if (window.location.href === 'http://localhost:3000/details/0') {
-
-  }
-  else if (window.location.href === 'http://localhost:3000/details/1') {
-    console.log('atardecer')
-  }
-  else {
-    console.log('anochecer')
+  if (window.location.href === "http://localhost:3000/details/0") {
+  } else if (window.location.href === "http://localhost:3000/details/1") {
+    console.log("atardecer");
+  } else {
+    console.log("anochecer");
   }
   return (
     <Container>
@@ -40,13 +37,13 @@ function CourseDetails() {
           <span></span>
         </Header>
         <Article>
-          <Course >
+          <Course>
             <Link to="/details/0">Trader Initial</Link>
           </Course>
-          <Course >
+          <Course>
             <Link to="/details/1">Trader Medium</Link>
           </Course>
-          <Course >
+          <Course>
             <Link to="/details/2">Trader Advance</Link>
           </Course>
         </Article>
