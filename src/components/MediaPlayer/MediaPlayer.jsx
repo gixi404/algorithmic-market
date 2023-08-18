@@ -30,16 +30,7 @@ function MediaPlayer() {
       <BackBtn>
         <Link to="/mycourses">Back</Link>
       </BackBtn>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "800px",
-          marginBottom: "3rem",
-        }}
-      >
+      <Sexo>
         <MediaContainer>
           <Reproductor>
             <TextLevelCourse>
@@ -51,15 +42,14 @@ function MediaPlayer() {
             </TextLevelCourse>
 
             {classData ? (
-              <video
+              <Video
                 src={classData.classURL}
                 loop={false}
                 autoPlay
                 playsInline
                 controls
-                width="100%"
-                height="100%"
-              />
+              >
+              </Video>
             ) : (
               <p>Select the class to see</p>
             )}
@@ -73,7 +63,7 @@ function MediaPlayer() {
             </Class>
           ))}
         </FollowingClasses>
-      </div>
+      </Sexo>
 
       <Footer />
     </Container>
@@ -115,6 +105,15 @@ const BackBtn = styled.div`
   }
 `;
 
+const Sexo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  margin-bottom: 3rem;
+`;
+
 const MediaContainer = styled.div`
   width: 70vw;
   height: 120vh;
@@ -152,7 +151,10 @@ const TextLevelCourse = styled.p`
   width: 100%;
   text-align: start;
 `;
-
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+`;
 const FollowingClasses = styled.div`
   width: 100vw;
   display: flex;
