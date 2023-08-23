@@ -19,6 +19,7 @@ BuyBtn.defaultProps = {
     name: "Jonh Doe",
     id: null,
   },
+  url: '/'
 };
 export default BuyBtn;
 

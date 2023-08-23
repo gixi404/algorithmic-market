@@ -5,11 +5,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Context from "./components/Context.jsx";
 import Home from "./Home.jsx";
 import MyCourses from "./components/Log/MyCourses.jsx";
-import Privacy from "./components/Privacy.jsx";
+import Privacy from "./components/Body/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Success from "./components/Courses/Success.jsx";
 import CourseDetails from "./components/Courses/CourseDetails.jsx";
 import Contact from "./components/Body/Contact.jsx";
+import indexCart from "./ShoppingCart/indexCart.jsx";
 import "./index.css";
 
 const DOMAIN = "dev-pxe14roena18vlea.us.auth0.com",
@@ -34,6 +35,7 @@ root.render(
             <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
             <Route path="/success/:coursedetails" element={<Success />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/shoppingcart" element={<indexCart />} />
           </Routes>
         </BrowserRouter>
       </Context>
