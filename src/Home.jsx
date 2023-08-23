@@ -67,7 +67,7 @@ const HomeContainer = styled.div`
   align-items: center;
   justify-content: start;
   width: 100vw;
-  height: 413vh;
+  height: 354vh;
   padding: 0;
   row-gap: 5rem;
   overflow: hidden;
