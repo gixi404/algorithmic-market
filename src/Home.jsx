@@ -41,6 +41,7 @@ function Home() {
           <Courses />
         </>
       )}
+
       <AboutUs />
       <Contact />
       <Footer />

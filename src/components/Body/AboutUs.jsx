@@ -4,40 +4,30 @@ import Imgg from "../../img/brisasexo.jpg";
 function AboutUs() {
   return (
     <Container id="aboutUs">
-      <AboutUss>
+      <AboutUsContainer>
         <Text>
-          <P>Sobre nosotros</P>
-          <p>En efecto no se con que rellenar acá pero lo intentamos</p>
+          <Title>Sobre nosotros</Title>
           <p>
+            En efecto no se con que rellenar acá pero lo intentamos <br />
+            <br />
             La inteligencia artificial ha revolucionado muchas industrias, desde
             la atención médica hasta la fabricación. Su capacidad para analizar
             grandes cantidades de datos y realizar tareas complejas ha llevado a
             avances significativos en la toma de decisiones, la automatización
             de procesos y la mejora de la eficiencia.
-          </p>
-          <p>
+            <br /> <br />
             Sin embargo, también plantea desafíos éticos y de privacidad que
             deben abordarse con cautela para asegurar un uso responsable y
-            beneficioso en nuestra sociedad moderna.
-          </p>
-          <p>
-            Los viajes espaciales han capturado la imaginación de la humanidad
-            durante décadas. Desde los primeros pasos en la Luna hasta las
-            misiones a Marte planificadas para el futuro, la exploración del
-            espacio exterior continúa expandiendo nuestros horizontes.
-          </p>
-          <p>
-            A medida que la tecnología avanza, se abren nuevas posibilidades
-            para comprender nuestro lugar en el universo y para resolver
-            problemas terrestres mediante la investigación en el espacio. Sin
-            embargo, los desafíos técnicos, los riesgos y los altos costos
-            siguen siendo obstáculos importantes en esta emocionante búsqueda.
+            beneficioso en nuestra sociedad moderna. deben abordarse con cautela
+            para asegurar un uso responsable y beneficioso en nuestra sociedad
+            moderna.
           </p>
         </Text>
+
         <ImgContainer>
-          <Img src={Imgg} />
+          <img src={Imgg} width="100%" height="100%" />
         </ImgContainer>
-      </AboutUss>
+      </AboutUsContainer>
     </Container>
   );
 }
@@ -46,7 +36,7 @@ export default AboutUs;
 
 const Container = styled.section`
   width: 100vw;
-  height: 80vh;
+  height: auto;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -55,23 +45,29 @@ const Container = styled.section`
   border: 0;
   background-color: #ebebeb;
   font-family: "Poppins", monospace;
-  @media(max-width:1200px){
-    height: max-content;
-  }  
 `;
-const AboutUss = styled.div`
+
+const AboutUsContainer = styled.div`
   height: max-content;
-  width: 80vw;
+  width: 100vw;
   text-align: center;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border: 0;
-  @media(max-width:1024px){
-    justify-content: start;
+
+  @media (min-width: 320px) {
+    width: 80vw;
+    padding: 2rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 2rem 0;
+    justify-content: space-between;
   }
 `;
+
 const Text = styled.article`
   height: max-content;
   width: 40vw;
@@ -79,38 +75,36 @@ const Text = styled.article`
   flex-direction: column;
   align-items: start;
   text-align: start;
-  justify-content: center;
-  p {
-    font-style: normal;
-    font-weight: normal;
-    width: 40vw;
-    white-space: break-spaces;
-    overflow: hidden;
-    padding: 1vh 0;
-    &:nth-child(2) {
-      padding-top: 0;
-    }
+  justify-content: space-between;
+
+  @media (max-width: 480px) {
+    width: 100vw;
+    text-align: center;
   }
-  p:first-child {
-    padding: 0;
-  }
-  @media(max-width:1024px){
-    width: 70vw;
+
+  @media (max-width: 1024px) {
+    width: 100vw;
+    text-align: start;
   }
 `;
-const P = styled.p`
+
+const Title = styled.p`
   font-size: 2.5rem;
+
+  @media (min-width: 320px) {
+    font-size: 2rem;
+    padding-bottom: 2rem;
+  }
 `;
+
 const ImgContainer = styled.article`
-  width: 40vw;
-  height: max-content;
   display: flex;
   justify-content: center;
-  @media(max-width:1024px){
+  align-items: center;
+  width: 400px;
+  height: 400px;
+
+  @media (max-width: 1024px) {
     display: none;
   }
-`;
-const Img = styled.img`
-  height: 55vh;
-  width: 35vw;
 `;
