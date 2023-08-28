@@ -1,22 +1,42 @@
 import styled from "styled-components";
-import Btn from "../Courses/Button";
 
 function Contact() {
-  const title = "Submit";
-  const url = "https://www.google.com";
   return (
-    <Container>
-      <ContactContainer id="contact">
+    <Container id="contact">
+      <ContactContainer>
         <Text>
-          <P>Contact us</P>
-          <p>We're Here to Listen and Help. Send your doubts or queries!</p>
+          <Title>
+            Contact us
+            <TitleSpan>
+              We're Here to Listen and Help. Send your doubts or queries!
+            </TitleSpan>
+          </Title>
         </Text>
         <Form>
-          <Name type="text" name="name" placeholder="Name"></Name>
-          <LastName type="text" name="apellido" placeholder="Last Name"></LastName>
-          <Mail type="email" name="Correo Electronico" placeholder="Mail Adress"></Mail>
-          <Textarea wrap="soft" maxLength={200} name="Consulta" cols="10" rows="5" placeholder="Write Your Query"></Textarea>
-          <SBtn ><Btn title={title} url={url} /></SBtn>
+          <InputForm type="text" name="name" placeholder="Name" />
+
+          <InputForm
+            type="text"
+            name="phone-number"
+            placeholder="Number phone"
+          />
+
+          <InputForm
+            type="email"
+            name="mail-address"
+            placeholder="Mail Adress"
+          />
+
+          <Textarea
+            name="query"
+            cols="10"
+            rows="5"
+            placeholder="Query"
+          ></Textarea>
+
+          <SubmitContainer>
+            <SubmitBtn>Submit</SubmitBtn>
+          </SubmitContainer>
         </Form>
       </ContactContainer>
     </Container>
@@ -26,125 +46,123 @@ function Contact() {
 export default Contact;
 
 const Container = styled.div`
-  width: 100vw;
-  height: 70vh;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Poppins", monospace;
-`;
-const ContactContainer = styled.section`
-  width: 80vw;
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-const Text = styled.article`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
-  color: #ababab;
-  height: 12vh;
-  p {
-    font-style: normal;
-    font-weight: normal;
-  }
-`;
-const P = styled.p`
-  font-size: 2.5rem;
-`;
-const Form = styled.form`
-  width: 50vw;
-  height: 52vh;
-  display: grid;
-  margin: 0 auto;
-  grid-template-rows: repeat(5, 8vh);
-  grid-template-columns: 1fr 1fr;
-  column-gap: 1vw;
-  row-gap: 3vh;
-  @media(max-width:800px){
+    width: 100vw;
+    height: 90vh;
+    margin: 3rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", monospace;
+  `,
+  ContactContainer = styled.section`
     width: 80vw;
-    margin: 0;
-  }
-`;
-const Name = styled.input`
-  border: 0;
-  border-radius: 8px;
-  padding-left: 2vw;
-  font-family: "Poppins", monospace;
-  width: 22.5vw;
-  height: 8vh;
-  background-color: #ebebeb;
-  ::placeholder {
-    color: #c0c0c0;
-  }
-  @media(max-width:800px){
-    width:38.5vw;
-  }
-`;
-const LastName = styled.input`
-  border: 0;
-  border-radius: 8px;
-  padding-left: 2vw;
-  font-family: "Poppins", monospace;
-  width: 22.5vw;
-  height: 8vh;
-  background-color: #ebebeb;
-  ::placeholder {
-    color: #c0c0c0;
-  }
-  @media(max-width:800px){
-    width:38.5vw;
-  }
-`;
-const Mail = styled.input`
-  border: 0;
-  border-radius: 8px;
-  grid-column: 1/3;
-  padding-left: 2vw;
-  font-family: "Poppins", monospace;
-  width: 48vw;
-  height: 8vh;
-  background-color: #ebebeb;
-  ::placeholder {
-    color: #c0c0c0;
-  }
-  @media(max-width:800px){
-    width:80vw;
-  }
-`;
-const Textarea = styled.textarea`
-  border: 0;
-  border-radius: 8px;
-  grid-column: 1/3;
-  grid-row: 3/5;
-  padding-top: 2vh;
-  padding-left: 2vw;
-  font-family: "Poppins";
-  width: 48vw;
-  height: 17vh;
-  background-color: #ebebeb;
-  resize: none;
-  ::placeholder {
-    color: #c0c0c0;
-  }
-  @media(max-width:800px){
-    width:80vw;
-  }
-`;
-const SBtn = styled.article`
-  display: flex;
-  justify-content: end;
-  grid-column: 2/3;
-  height: 7vh;
-  :first-child {
-    height: 7vh;
-    border-radius: 8px;
-    a {
-      line-height: 7vh;
+    row-gap: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+
+    @media (min-width: 480px) {
+      height: 83vh;
+      row-gap: 0;
     }
-  }
-`;
+
+    @media (min-width: 1024px) {
+      row-gap: 0;
+      height: 80vh;
+      width: 80vw;
+    }
+  `,
+  Text = styled.article`
+    color: #ffffff;
+    height: 12vh;
+  `,
+  Title = styled.p`
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+  `,
+  TitleSpan = styled.span`
+    font-size: 1.4rem;
+  `,
+  Form = styled.form`
+    width: 50vw;
+    height: 60vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 3vh;
+    column-gap: 1vw;
+  `,
+  InputForm = styled.input`
+    border: none;
+    border-bottom: 2.3px solid #ff6700;
+    border-radius: 8px;
+    padding-left: 2vw;
+    font-family: "Poppins", monospace;
+    width: 48vw;
+    height: 8vh;
+    background-color: #ebebeb;
+    outline: none;
+
+    &::placeholder {
+      color: #858585;
+    }
+
+    @media (max-width: 800px) {
+      width: 80vw;
+    }
+  `,
+  Textarea = styled.textarea`
+    border: none;
+    border-bottom: 2.3px solid #ff6700;
+    outline: none;
+    border-radius: 8px;
+    padding-top: 2vh;
+    padding-left: 2vw;
+    font-family: "Poppins";
+    width: 48vw;
+    height: 17vh;
+    background-color: #ebebeb;
+    resize: none;
+
+    &::placeholder {
+      color: #858585;
+    }
+
+    @media (max-width: 800px) {
+      width: 80vw;
+    }
+  `,
+  SubmitContainer = styled.article`
+    width: 50vw;
+    text-align: end;
+  `,
+  SubmitBtn = styled.button`
+    font-family: "Poppins", monospace;
+    font-weight: 500;
+    color: #ff6700;
+    width: 15rem;
+    height: 45px;
+    font-size: 1.1rem;
+    outline: 2px solid #ff6700;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+      scale: 1.1;
+      box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+      outline: none;
+      border: none;
+      background-color: #ff6700;
+    }
+  `;
