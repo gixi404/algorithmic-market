@@ -10,3 +10,10 @@ body {
   overflow-x: hidden;
   background-color: rgb(24, 24, 84); 
 }
+
+#banner {
+  background-image: url("./img/adiospapa.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

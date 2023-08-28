@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import Btn from "../Courses/Button";
 
 function Contact() {
-  const title = "Submit";
-  const url = "https://www.google.com";
   return (
     <Container id="contact">
       <ContactContainer>
@@ -15,26 +12,18 @@ function Contact() {
             </TitleSpan>
           </Title>
         </Text>
-
         <Form>
-          <InputForm
-            style={{ gridColumn: "1/6" }}
-            type="text"
-            name="name"
-            placeholder="Name"
-          />
+          <InputForm type="text" name="name" placeholder="Name" />
 
           <InputForm
-            style={{ gridColumn: "2/6" }}
             type="text"
             name="phone-number"
             placeholder="Number phone"
           />
 
           <InputForm
-            style={{ gridColumn: "3/6" }}
             type="email"
-            name="Correo Electronico"
+            name="mail-address"
             placeholder="Mail Adress"
           />
 
@@ -43,11 +32,10 @@ function Contact() {
             cols="10"
             rows="5"
             placeholder="Query"
-            style={{ gridColumn: "4/6" }}
           ></Textarea>
 
-          <SubmitContainer style={{ gridColumn: "5/6" }}>
-            <Btn title={title} url={url} />
+          <SubmitContainer>
+            <SubmitBtn>Submit</SubmitBtn>
           </SubmitContainer>
         </Form>
       </ContactContainer>
@@ -59,8 +47,8 @@ export default Contact;
 
 const Container = styled.div`
     width: 100vw;
-    height: 70vh;
-    margin: 0 auto;
+    height: 90vh;
+    margin: 3rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,14 +56,25 @@ const Container = styled.div`
   `,
   ContactContainer = styled.section`
     width: 80vw;
-    height: 470px;
+    row-gap: 5rem;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: space-between;
+
+    @media (min-width: 480px) {
+      height: 83vh;
+      row-gap: 0;
+    }
+
+    @media (min-width: 1024px) {
+      row-gap: 0;
+      height: 80vh;
+      width: 80vw;
+    }
   `,
   Text = styled.article`
-    color: #ababab;
+    color: #ffffff;
     height: 12vh;
   `,
   Title = styled.p`
@@ -91,21 +90,17 @@ const Container = styled.div`
   Form = styled.form`
     width: 50vw;
     height: 60vh;
-    display: grid;
     margin: 0 auto;
-    grid-template-rows: repeat(6, 8vh);
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     row-gap: 3vh;
-
-    @media (max-width: 480px) {
-      column-gap: 0;
-      row-gap: 2vh;
-      width: 80vw;
-    }
+    column-gap: 1vw;
   `,
   InputForm = styled.input`
-    border: 0;
+    border: none;
+    border-bottom: 2.3px solid #ff6700;
     border-radius: 8px;
     padding-left: 2vw;
     font-family: "Poppins", monospace;
@@ -123,10 +118,10 @@ const Container = styled.div`
     }
   `,
   Textarea = styled.textarea`
-    border: 0;
+    border: none;
+    border-bottom: 2.3px solid #ff6700;
     outline: none;
     border-radius: 8px;
-
     padding-top: 2vh;
     padding-left: 2vw;
     font-family: "Poppins";
@@ -144,20 +139,30 @@ const Container = styled.div`
     }
   `,
   SubmitContainer = styled.article`
-    width: 20vw;
-    margin-top: 4rem;
+    width: 50vw;
+    text-align: end;
   `,
-  SubmitBtn = styled.button``;
+  SubmitBtn = styled.button`
+    font-family: "Poppins", monospace;
+    font-weight: 500;
+    color: #ff6700;
+    width: 15rem;
+    height: 45px;
+    font-size: 1.1rem;
+    outline: 2px solid #ff6700;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    border: none;
 
-// font-family: "Poppins", monospace;
-// font-weight: 500;
-// color: #ff6700;
-// width: 20%;
-// height: 40px;
-// font-size: 16px;
-// outline: 2px solid #ff6700;
-// border-radius: 5px;
-// background-color: transparent;
-// transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-// overflow: hidden;
-// border: none;
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+      scale: 1.1;
+      box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+      outline: none;
+      border: none;
+      background-color: #ff6700;
+    }
+  `;

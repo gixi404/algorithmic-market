@@ -52,25 +52,24 @@ function Home() {
 export default Home;
 
 const LoadContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-const HomeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  width: 100vw;
-  height: max-content;
-  padding: 0;
-  row-gap: 5rem;
-  overflow: hidden;
-  scrollbar-gutter: stable;
-`;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `,
+  HomeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 100vw;
+    height: max-content;
+    padding: 0;
+    /* row-gap: 5rem; */
+    overflow: hidden;
+    scrollbar-gutter: stable;
+  `;

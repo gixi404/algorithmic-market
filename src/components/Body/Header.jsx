@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "../Log/LoginBtn.jsx";
@@ -7,14 +6,6 @@ import styled from "styled-components";
 
 function Header({ pathIsMyCourses }) {
   const { isAuthenticated } = useAuth0();
-  const [showProfile, setShowProfile] = useState(false);
-
-  window.addEventListener("click", () => setShowProfile(false));
-
-  function handleProfile(e) {
-    setShowProfile(!showProfile);
-    e.stopPropagation();
-  }
 
   return (
     <HeaderContainer>
@@ -29,12 +20,12 @@ function Header({ pathIsMyCourses }) {
           ) : (
             <>
               <NavLink href="#allCourses">Courses</NavLink>
-              <NavLink href="#aboutUs">Us</NavLink>
+              <NavLink href="#aboutUs">About Us</NavLink>
               <NavLink href="#contact">Contact</NavLink>
             </>
           )}
+          {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
         </NavContainer>
-        {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
       </WebContainer>
     </HeaderContainer>
   );
@@ -50,6 +41,8 @@ const HeaderContainer = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  border-bottom: 4px solid #ff6700;
+
   @media (max-width: 850px) {
     height: 10vh;
   }
@@ -77,12 +70,13 @@ const WebContainer = styled.div`
   }
 `;
 const WebName = styled.p`
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
   font-family: "Poppins", monospace;
   letter-spacing: 1.3px;
   font-style: normal;
   width: max-content;
+  font-weight: 600;
   color: #ff6700;
   @media (max-width: 850px) {
     font-size: 1.5rem;

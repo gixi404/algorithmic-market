@@ -2,14 +2,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-BuyBtn.defaultProps = {
-  course: {
-    name: "Jonh Doe",
-    id: null,
-  },
-  url: "/",
-};
-
 function BuyBtn({ course, title, url }) {
   const { isAuthenticated } = useAuth0();
   return (
@@ -17,19 +9,24 @@ function BuyBtn({ course, title, url }) {
       {isAuthenticated && course.id === 0 ? (
         <Link to="/mycourses">view</Link>
       ) : (
-        <Link to={url}>{title}</Link>
+        <Link to={`${url}`}>{`${title}`}</Link>
       )}
     </Button>
   );
 }
-
+BuyBtn.defaultProps = {
+  course: {
+    name: "Jonh Doe",
+    id: null,
+  },
+};
 export default BuyBtn;
 
 const Button = styled.button`
   font-family: "Poppins", monospace;
   font-weight: 500;
   color: #ff6700;
-  width: 20%;
+  width: 80%;
   height: 40px;
   font-size: 16px;
   outline: 2px solid #ff6700;
@@ -38,7 +35,6 @@ const Button = styled.button`
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
   border: none;
-
   a {
     display: block;
     text-decoration: none;
@@ -48,7 +44,6 @@ const Button = styled.button`
     transition: all 0.5s ease;
     line-height: 40px;
   }
-
   &:hover {
     cursor: pointer;
     color: #fff;
@@ -57,7 +52,6 @@ const Button = styled.button`
     outline: none;
     border: none;
     background-color: #ff6700;
-
     a {
       color: #fff;
       scale: 1.1;
