@@ -36,17 +36,6 @@ function CourseDetails() {
           <H2>King of Trade</H2>
           <span></span>
         </Header>
-        <Article>
-          <Course>
-            <Link to="/details/0">Trader Initial</Link>
-          </Course>
-          <Course>
-            <Link to="/details/1">Trader Medium</Link>
-          </Course>
-          <Course>
-            <Link to="/details/2">Trader Advance</Link>
-          </Course>
-        </Article>
       </Detaill2>
     </Container>
   );

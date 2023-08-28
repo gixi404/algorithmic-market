@@ -1,4 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useContext } from "react";
+import { ContextProps } from "./components/Context.jsx";
 import ReactLoading from "react-loading";
 import Header from "./components/Body/Header.jsx";
 import UserIsLogin from "./components/Log/UserIsLogin.jsx";
@@ -7,10 +9,13 @@ import Courses from "./components/Courses/Courses.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
+import DetailsCourse from "./components/Courses/CourseDetails.jsx"
 import styled from "styled-components";
+import Details from './components/Courses/__pruebaDetails.jsx'
 
 function Home() {
   const { isLoading, isAuthenticated } = useAuth0();
+  const { courseSelected } = useContext(ContextProps);
 
   if (isLoading) {
     return (
@@ -39,6 +44,7 @@ function Home() {
         <>
           <Banner />
           <Courses />
+          ({courseSelected.length !== 1 ? <Details /> : <Banner /> })
         </>
       )}
       <AboutUs />
