@@ -1,17 +1,16 @@
 import { useBuyPetition } from "../../hooks/useBuyLogic";
-import Btn from './Button'
+import Btn from "./Button";
 import styled from "styled-components";
 
 function PayLayout({ courseSelected }) {
-  const { buyUrl } = useBuyPetition({ courseSelected })
-  const title = 'Buy Now!'
-  const url = buyUrl
-
+  const { buyUrl } = useBuyPetition({ courseSelected });
+  const title = "Buy Now!";
+  const url = buyUrl;
 
   return (
-    <Container >
-      <Btn title={title} url={url ? url : '/'} />
-    </Container >
+    <Container>
+      <Btn title={title} url={url ? url : "/"} />
+    </Container>
   );
 }
 export default PayLayout;

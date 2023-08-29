@@ -33,7 +33,7 @@ const UserIsLoginContainer = styled.section`
   align-items: center;
   justify-content: space-around;
   border-radius: 8px;
-  @media (max-width:800px){
+  @media (max-width: 800px) {
     height: 30vh;
   }
 `;
@@ -50,7 +50,7 @@ const TextCourses = styled.p`
   align-items: center;
   height: 40vh;
   width: 40vw;
-  @media(max-width:800px){
+  @media (max-width: 800px) {
     display: none;
   }
 `;
@@ -74,11 +74,11 @@ const ImgContainer = styled.article`
   position: relative;
   display: flex;
   justify-content: end;
-  @media(max-width:800px){
+  @media (max-width: 800px) {
     background-image: url(${exampleImg});
     background-position: center;
     background-repeat: no-repeat;
-    background-size:cover ;
+    background-size: cover;
     width: 80vw;
     height: 30vh;
   }
@@ -88,7 +88,7 @@ const Img = styled.img`
   height: 100%;
   border-radius: 0 8px 8px 0;
   filter: brightness(50%);
-  @media(max-width:800px){
+  @media (max-width: 800px) {
     display: none;
   }
 `;

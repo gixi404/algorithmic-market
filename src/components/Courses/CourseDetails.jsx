@@ -7,8 +7,8 @@ import styled from "styled-components";
 function CourseDetails() {
   const { coursedetails } = useParams();
   const { courseSelected } = useContext(ContextProps);
-
   const { name, cash, img, description } = courseSelected(coursedetails);
+
   if (window.location.href === "http://localhost:3000/details/0") {
   } else if (window.location.href === "http://localhost:3000/details/1") {
     console.log("atardecer");
