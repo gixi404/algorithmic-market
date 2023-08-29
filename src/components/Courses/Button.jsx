@@ -7,9 +7,9 @@ function BuyBtn({ course, title, url }) {
   return (
     <Button>
       {isAuthenticated && course.id === 0 ? (
-        <Link to="/mycourses">view</Link>
+        <Link to="/mycourses">View</Link>
       ) : (
-        <Link to={`${url}`}>{`${title}`}</Link>
+        <Link to={url}>{`${title}`}</Link>
       )}
     </Button>
   );

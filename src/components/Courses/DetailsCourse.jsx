@@ -1,18 +1,22 @@
-import BTN from './Button'
+import { useParams } from 'react-router-dom';
+import PayLayout from './PayLayout';
+import { useContext } from 'react';
+import { ContextProps } from '../Context';
 import styled from 'styled-components'
 
 function detailCourses2 () {
-  const title = "Buy"
+  const {courseSelected} = useContext(ContextProps)
+  const { coursedetails } = useParams();
+  const { name, cash,  description } = courseSelected(coursedetails)
   return (
     <Container>
     <Details>
-      <H2>Initial Course | Fundamentals</H2>
+        <H2>{name} | Fundamentals</H2>
       <P>Explore the fundamentals of trading in our introductory course.</P>
       <P>Learn to interpret charts, analyze trends, and make informed decisions. Acquire essential skills for trading in financial markets and build a solid foundation for your trading success.</P>
       <Article>
         <Title>Overview:</Title>
-        <Description>Dive into the exciting world of trading with our introductory course.</Description>
-        <Description>Gain essential skills like chart analysis and informed decision-making for success in financial markets.</Description>
+        <Description>{description}</Description>
       </Article>
       <CourseMetas>
         <Title>Course Highlights:</Title>
@@ -43,8 +47,8 @@ function detailCourses2 () {
       </CourseMetas>
       <Compra>
         <span></span>
-        <BTN title={title} />
-        <p>250$ USD</p>
+        <PayLayout courseSelected={courseSelected(coursedetails)} />
+        <p>${cash} USD</p>
       </Compra>
       </Details>
     </Container>
@@ -59,6 +63,7 @@ const Container = styled.div`
   position: fixed;
   background-color: transparent;
   backdrop-filter: blur(5px);
+  z-index: 200;
 `;
 
 const Details = styled.section`
