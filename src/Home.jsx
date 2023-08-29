@@ -1,17 +1,22 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactLoading from "react-loading";
 import Header from "./components/Body/Header.jsx";
 import UserIsLogin from "./components/Log/UserIsLogin.jsx";
 import Banner from "./components/Body/Banner.jsx";
+import Privacy from "./components/Body/Privacy.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
 import styled from "styled-components";
+import Details from './components/Courses/DetailsCourse.jsx'
+import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
+import Success from "./components/Courses/Success.jsx";
+import indexCart from "./ShoppingCart/indexCart.jsx";
 
-function Home() {
+function Home () {
   const { isLoading, isAuthenticated } = useAuth0();
-
   if (isLoading) {
     return (
       <LoadContainer>
@@ -27,8 +32,15 @@ function Home() {
 
   return (
     <HomeContainer>
+          <Routes>
+            <Route path="/details/:coursedetails" element={<Details />}/>
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
+            <Route path="/success/:coursedetails" element={<Success />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/shoppingcart" element={<indexCart />} />
+          </Routes>
       <Header />
-
       {isAuthenticated ? (
         <>
           <UserIsLogin />
@@ -41,7 +53,6 @@ function Home() {
           <Courses />
         </>
       )}
-
       <AboutUs />
       <Contact />
       <Footer />

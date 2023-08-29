@@ -41,6 +41,8 @@ const CourseContainer = styled.article`
     flex-direction: column;
     align-items: start;
     justify-content: space-between;
+    padding: 0;
+    z-index: 100;
     border-radius: 8px;
     border-right: 3px solid #ff6700;
     border-bottom: 3px solid #ff6700;
