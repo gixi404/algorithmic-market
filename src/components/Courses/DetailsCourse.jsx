@@ -69,14 +69,14 @@ const Container = styled.div`
 const Details = styled.section`
   background-color: #ebebeb;
   position: fixed;
-  left: 35vw;
-  top: 10vh;
-  width: 30vw;
-  height: 80vh;
+  left: 17.5vw;
+  top: 5vh;
+  width: 65vw;
+  height: 90vh;
   border: 0;
   border-radius: 8px;
-  border-bottom: 5px solid  #ff6700;
-  border-right: 5px solid  #ff6700;
+  border-bottom: .9vh solid  #ff6700;
+  border-right: .9vh solid  #ff6700;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,108 +84,125 @@ const Details = styled.section`
 `;
 
 const H2 = styled.h2`
-  width: 26vw;
+  width: 52vw;
   height: 7vh;
-  margin-bottom: 2vh;
-  line-height: 10vh;
+  word-wrap: break-word;
+  line-height: 7vh;
   color: #ff6700;
   text-align: start;
 `;
 
+const Article = styled.article`
+  height: 20vh;
+  width: 52vw;
+`;
+
 const P = styled.p`
-  width: 26vw;
+  width: 52vw;
+  font-family: "Poppins", monospace;
+  font-size: .85rem;
+  text-transform: capitalize;
   height: max-content;
   font-weight: bold;
 `;
 
 const Description = styled.p`
   margin-top:1vh ;
-  width: 26vw;
+  width: 52vw;
+  font-family: "Poppins", monospace;
+  font-size: .8rem;
+  text-transform: capitalize;
   height: max-content;
-`;
-
-const Article = styled.article`
-  height: 18vh;
-  width: 26vw;
 `;
 
 const Title = styled.h3`
   border: 0;
+  font-family: "Poppins", monospace;
   margin-top: 1vh;
   width: max-content;
   border-bottom: .5vh solid #ff6700;
 `;
+
 const CourseMetas = styled.article`
-  height: 26vh;
-  width: 26vw;
+  height: 35vh;
+  width: 52vw;
+  margin-bottom: 2vh;
   display: flex;
   flex-direction: column;
   align-items: start;
+  justify-content: space-between;
 `;
 
 const List = styled.div`
-  width: 16vw;
-  height: 15vh;
-  margin-left: 4vw;
-  margin-top: 2vh;
+  width: 40vw;
+  height: 20vh;
+  margin-left: 11vw;
   display: flex;
+  justify-content: center;
   flex-direction: column;
 `;
 
 const ListElement = styled.article`
-  width: 16vw;
-  height: 2vh;
+  width: 35vw;
+  height: 3vh;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content:space-between;
   p{
-    height: 2vh;
-    line-height: 2vh;
-    width: 16vw;
+    font-family: "Poppins", monospace;
+    height: 3vh;
+    line-height: 3vh;
+    width: 32vw;
     font-weight: bold;
     font-size: .7rem;
   }
   svg{
     margin-top:.5vh;
     width: 2vw;
-    height: 2vh;
-    line-height: 5vh;
+    height: 3vh;
+    line-height: 3vh;
   }
 `;
+
+const Span = styled.span`
+  width: .5vw;
+  margin-top: .2rem;
+  margin-left: .65rem;
+  height: 1rem;
+  background: #FF6700;
+  
+`;
+
 const Hours = styled.p`
   color: #797676;
   font-size: .8rem;
+  font-family: "Poppins", monospace;
   span{
     margin: 0 .5vw;
   }
 `;
-const Span = styled.span`
-width: .3vw;
-margin-top: .5vh;
-margin-left: .75vw;
-height: 1rem;
-background: #FF6700;
-`;
+
 const Compra = styled.div`
-  height: 12vh;
-  width: 30vw;
+  height: 15vh;
+  width: 65vw;
   border: 0;
-  border-top: .5vh solid #ff6700;
+  border-top: .9vh solid #ff6700;
   display: flex;
   justify-content: center;
   align-items: center;
   :first-child{
-    height: 4vh;
-    line-height: 4vh;
+    height: 5vh;
+    width: 20vw;
+    line-height: 5vh;
   }
   p{
-    width: 10vw;
+    width: 20vw;
     text-align: center;
     font-size: 1.1rem;
     font-weight:bold;
   }
   span{
-    width: 10vw;
+    width: 20vw;
   }
 `;
