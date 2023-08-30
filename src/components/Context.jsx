@@ -2,7 +2,6 @@ import { useState, createContext } from "react";
 import basicCourseImg from "../img/basicCourseImg.webp";
 import middleCourseImg from "../img/middleCourseImg.webp";
 import advancedCourseImg from "../img/advancedCourseImg.webp";
-import { useMediaQuery } from "react-responsive";
 
 export const ContextProps = createContext();
 
@@ -117,15 +116,11 @@ function Context({ children }) {
     allCourses.find(course => course.id === Number(coursedetails));
 
   //* Media Queries
-  function isDesktop(desktop, mobile) {
-    const isDesktopOrLaptop = useMediaQuery({
-      query: "(min-width: 1224px)",
-    });
+  // const isDesktop = useMediaQuery({
+  //   query: "(min-width: 1224px)",
+  // });
 
-    return isDesktopOrLaptop ? desktop : mobile;
-  }
-
-  const isMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  // const isMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   const contextValues = {
     allCourses,
@@ -133,8 +128,6 @@ function Context({ children }) {
     myCourses,
     setMyCourses,
     courseSelected,
-    isDesktop,
-    isMobile,
   };
 
   return (
