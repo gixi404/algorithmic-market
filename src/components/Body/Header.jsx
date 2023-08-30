@@ -29,6 +29,7 @@ function Header({ pathIsMyCourses }) {
           {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
         </NavContainer>
       </WebContainer>
+      <SuperLink to="/shoppingcart">Cart</SuperLink>
     </HeaderContainer>
   );
 }
@@ -107,6 +108,20 @@ const HeaderContainer = styled.header`
     }
   `,
   Link = styled(Linkk)`
+    color: #2e2e2e;
+    text-decoration: none;
+    font-family: "Poppins", monospace;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    transition-duration: 0.1s;
+    &:hover {
+      color: #888888;
+    }
+  `,
+  SuperLink = styled( Linkk )`
+    position: absolute;
+    right: 5vw;
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
