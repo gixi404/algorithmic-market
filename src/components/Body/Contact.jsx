@@ -12,7 +12,8 @@ function Contact() {
             </TitleSpan>
           </Title>
         </Text>
-        <Form>
+
+        <Form action="/form" method="post">
           <InputForm type="text" name="name" placeholder="Name" />
 
           <InputForm
