@@ -86,6 +86,7 @@ const Details = styled.section`
 const H2 = styled.h2`
   width: 52vw;
   height: 7vh;
+  word-wrap: break-word;
   line-height: 7vh;
   color: #ff6700;
   text-align: start;
@@ -166,8 +167,8 @@ const ListElement = styled.article`
 
 const Span = styled.span`
   width: .5vw;
-  margin-top: .6vh;
-  margin-left: .77vw;
+  margin-top: .2rem;
+  margin-left: .65rem;
   height: 1rem;
   background: #FF6700;
   
