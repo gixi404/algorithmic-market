@@ -134,10 +134,10 @@ const CourseMetas = styled.article`
 
 const List = styled.div`
   width: 40vw;
-  height: 25vh;
+  height: 20vh;
   margin-left: 11vw;
-  margin-top: 2vh;
   display: flex;
+  justify-content: center;
   flex-direction: column;
 `;
 
