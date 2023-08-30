@@ -20,14 +20,14 @@ function Header({ pathIsMyCourses }) {
       align-items: center;
       justify-content: center;
       border-bottom: 4px solid #ff6700;
-      padding-bottom: ${isDesktop("0", "1rem")};
+      padding-bottom: ${isDesktop( "0", "1rem" )};
     `,
     WebContainer = styled.div`
-      width: ${isDesktop("80%", "100%")};
+      width: ${isDesktop( "80%", "100%" )};
       display: flex;
-      flex-direction: ${isDesktop("row", "column")};
+      flex-direction: ${isDesktop( "row", "column" )};
       align-items: center;
-      justify-content: ${isDesktop("space-between", "center")};
+      justify-content: ${isDesktop( "space-between", "center" )};
       row-gap: 0.5rem;
     `,
     WebName = styled.p`
@@ -63,7 +63,21 @@ function Header({ pathIsMyCourses }) {
         color: #888888;
       }
     `,
-    Link = styled(Linkk)`
+    Link = styled( Linkk )`
+      color: #2e2e2e;
+      text-decoration: none;
+      font-family: "Poppins", monospace;
+      font-weight: 500;
+      font-size: 1.1rem;
+      text-transform: capitalize;
+      transition-duration: 0.1s;
+      &:hover {
+        color: #888888;
+      }
+    `,
+    SpecialLink = styled( Linkk )`
+      position: absolute;
+      right: 4vw;
       color: #2e2e2e;
       text-decoration: none;
       font-family: "Poppins", monospace;
@@ -75,7 +89,6 @@ function Header({ pathIsMyCourses }) {
         color: #888888;
       }
     `;
-
   return (
     <HeaderContainer>
       <WebContainer>
@@ -96,9 +109,11 @@ function Header({ pathIsMyCourses }) {
                 <NavLink href="#contact">Contact</NavLink>
               </>
             )}
-            {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
+              {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
+              
           </NavContainer>
         )}
+              <SpecialLink id="cart" to="/shoppingcart">Cart</SpecialLink>
       </WebContainer>
     </HeaderContainer>
   );
