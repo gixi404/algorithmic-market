@@ -4,7 +4,7 @@ import LoginBtn from "../Log/LoginBtn.jsx";
 import LogoutBtn from "../Log/LogoutBtn.jsx";
 import menuImg from "../../img/menu.png";
 import styled from "styled-components";
-import Icon from "./ShoppingCart/ButtonCart.jsx"
+import Icon from "../../components/Body/ShoppingCart/ButtonCart.jsx"
 
 function Header({ pathIsMyCourses }) {
   const { isAuthenticated } = useAuth0();
