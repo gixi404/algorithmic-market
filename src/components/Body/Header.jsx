@@ -4,6 +4,7 @@ import LoginBtn from "../Log/LoginBtn.jsx";
 import LogoutBtn from "../Log/LogoutBtn.jsx";
 import menuImg from "../../img/menu.png";
 import styled from "styled-components";
+import Icon from "./ShoppingCart/ButtonCart.jsx"
 
 function Header({ pathIsMyCourses }) {
   const { isAuthenticated } = useAuth0();
@@ -20,7 +21,7 @@ function Header({ pathIsMyCourses }) {
           {pathIsMyCourses ? (
             <Link to="/">Inicio</Link>
           ) : (
-            <>
+              <>
               <NavLink href="#allCourses">Courses</NavLink>
               <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
               <NavLink href="#contact">Contact</NavLink>
@@ -28,8 +29,8 @@ function Header({ pathIsMyCourses }) {
           )}
           {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
         </NavContainer>
+        <Icon />
       </WebContainer>
-      <SuperLink to="/shoppingcart">Cart</SuperLink>
     </HeaderContainer>
   );
 }
@@ -107,21 +108,7 @@ const HeaderContainer = styled.header`
       color: #888888;
     }
   `,
-  Link = styled(Linkk)`
-    color: #2e2e2e;
-    text-decoration: none;
-    font-family: "Poppins", monospace;
-    font-weight: 500;
-    font-size: 1.1rem;
-    text-transform: capitalize;
-    transition-duration: 0.1s;
-    &:hover {
-      color: #888888;
-    }
-  `,
-  SuperLink = styled( Linkk )`
-    position: absolute;
-    right: 5vw;
+  Link = styled( Linkk )`
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
