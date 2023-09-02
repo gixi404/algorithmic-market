@@ -4,17 +4,9 @@ import { config } from 'dotenv'
 config()
 import PayRoute from './routes/pay.routes.js'
 import cors from 'cors'
-import express from 'express'
-import path from 'path'
-import { config } from 'dotenv'
-import PayRoute from './routes/pay.routes.js'
-import cors from 'cors'
-config()
 
 const PORT = 3001
 export const app = express()
-
-const app = express()
 
 app.use(cors({ origin: 'http://localhost:3000' }))
 app.use(express.json())

@@ -7,7 +7,7 @@ const IconoSVG = ( { width, height } ) => {
         setOnPressClick( !onPressClick )
     }
     useEffect( () => {
-        const timer = setTimeout( () => setOnPressClick( false ), 3000 )
+        const timer = setTimeout( () => setOnPressClick( false ), 1000 )
         return () => clearTimeout( timer )
     }, [onPressClick] )
     return (
