@@ -17,6 +17,7 @@ router.get('/cancel', (req, res) =>
 router.post('/form', (req, res) => {
   const { name_form, mail_form, query_form } = req.body
   formData(name_form, mail_form, query_form)
+  if (name_form) console.log(req.body)
   res.redirect('http://localhost:3000/')
 })
 
