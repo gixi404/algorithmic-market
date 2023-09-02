@@ -25,11 +25,11 @@ function Header({ pathIsMyCourses }) {
               <NavLink href="#allCourses">Courses</NavLink>
               <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
               <NavLink href="#contact">Contact</NavLink>
-            </>
+              <Icon />
+              </>
           )}
           {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
         </NavContainer>
-        <Icon />
       </WebContainer>
     </HeaderContainer>
   );

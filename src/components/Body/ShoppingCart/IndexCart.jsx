@@ -4,7 +4,7 @@ import styled from "styled-components"
 function indexCart () {
     return (
         <CartContainer>
-            <Link to="/">Back Lady</Link>
+            <Link to="/">Back</Link>
             <h1>this is the cart.. or will be it</h1>
             <span></span>
         </CartContainer>
@@ -14,12 +14,19 @@ export default indexCart
 
 const CartContainer = styled.div`
     display: flex;
+    position: fixed;
+    top: 5vh;
+    right: 0;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
-    margin-top: 10vh;
-    height: 90vh;
+    width: 30vw;
+    background-color: #fff;
+    z-index: 300;
+    height:90vh;
+    h1{
+        text-align: center;
+    }
     a{
         text-decoration: none;
         color: #ebebeb;

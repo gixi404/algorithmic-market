@@ -12,6 +12,7 @@ import styled from "styled-components";
 import Details from './components/Courses/DetailsCourse.jsx'
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Success from "./components/Courses/Success.jsx";
+import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 
 function Home () {
   const { isLoading, isAuthenticated } = useAuth0();
@@ -35,6 +36,7 @@ function Home () {
             <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
             <Route path="/success/:coursedetails" element={<Success />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/shoppingcart" element={<IndexCart />} />
           </Routes>
       <Header />
       {isAuthenticated ? (
