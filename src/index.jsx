@@ -6,7 +6,6 @@ import Context from "./components/Context.jsx";
 import Home from "./Home.jsx";
 import MyCourses from "./components/Log/MyCourses.jsx";
 import Privacy from "./components/Body/Privacy.jsx";
-import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 import "./index.css";
 
 const DOMAIN = "dev-pxe14roena18vlea.us.auth0.com",
@@ -27,7 +26,6 @@ root.render(
             <Route path='*'  element={<Home />}/>
             <Route path="/mycourses" element={<MyCourses />} />
             <Route path="/privacy" element={<Privacy />} />
-            <Route path="/shoppingcart" element={<IndexCart />} />
           </Routes>
         </Context>
       </BrowserRouter>
