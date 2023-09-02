@@ -1,6 +1,6 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Context from "./components/Context.jsx";
 import Home from "./Home.jsx";
@@ -23,7 +23,7 @@ root.render(
       <BrowserRouter>
         <Context>
           <Routes>
-            <Route path='*'  element={<Home />}/>
+            <Route path="*" element={<Home />} />
             <Route path="/mycourses" element={<MyCourses />} />
             <Route path="/privacy" element={<Privacy />} />
           </Routes>
