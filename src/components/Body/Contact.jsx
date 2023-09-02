@@ -1,6 +1,57 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 function Contact() {
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState("");
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState(false);
+  const [sendForm, setSendForm] = useState(false);
+
+  function handleSubmitForm() {
+    const name_form = document.getElementById("name_form");
+    const mail_form = document.getElementById("mail_form");
+    const query_form = document.getElementById("query_form");
+
+    const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const regexQuery = /^(.{1,800})$/;
+
+    if (name === "") {
+      name_form.style.borderBottom = "none";
+      name_form.style.outline = "2.3px solid red";
+      setError(true);
+
+      setTimeout(() => {
+        name_form.style.outline = "none";
+        name_form.style.borderBottom = "2.3px solid #ff6700";
+        setError(false);
+      }, 3000);
+    } else if (!regexMail.test(mail) || mail === "") {
+      mail_form.style.borderBottom = "none";
+      mail_form.style.outline = "2.3px solid red";
+      setError(true);
+
+      setTimeout(() => {
+        mail_form.style.outline = "none";
+        mail_form.style.borderBottom = "2.3px solid #ff6700";
+        setError(false);
+      }, 3000);
+    } else if (!regexQuery.test(query) || query === "") {
+      query_form.style.borderBottom = "none";
+      query_form.style.outline = "2.3px solid red";
+      setError(true);
+
+      setTimeout(() => {
+        query_form.style.outline = "none";
+        query_form.style.borderBottom = "2.3px solid #ff6700";
+        setError(false);
+      }, 3000);
+    } else {
+      setSendForm(true);
+      setTimeout(() => setSendForm(false), 3000);
+    }
+  }
+
   return (
     <Container id="contact">
       <ContactContainer>
@@ -12,30 +63,49 @@ function Contact() {
             </TitleSpan>
           </Title>
         </Text>
-        <Form>
-          <InputForm type="text" name="name" placeholder="Name" />
 
+        <Form
+          onSubmit={handleSubmitForm}
+          action="http://localhost:3001/form"
+          method="post"
+        >
+          {error ? (
+            <h2 style={{ color: "red" }}>Verifica los datos ingresados</h2>
+          ) : (
+            <h2 style={{ color: "#181854" }}>-</h2>
+          )}
+          {sendForm ? (
+            <h2 style={{ color: "green" }}>Datos enviados correctamente</h2>
+          ) : (
+            <h2 style={{ color: "#181854" }}>-</h2>
+          )}
           <InputForm
+            onChange={e => setName(e.target.value)}
             type="text"
-            name="phone-number"
-            placeholder="Number phone"
+            name="name_form"
+            id="name_form"
+            placeholder="Name"
           />
 
           <InputForm
-            type="email"
-            name="mail-address"
+            onChange={e => setMail(e.target.value)}
+            type="text"
+            name="mail_form"
+            id="mail_form"
             placeholder="Mail Adress"
           />
 
           <Textarea
-            name="query"
+            onChange={e => setQuery(e.target.value)}
+            name="query_form"
+            id="query_form"
             cols="10"
             rows="5"
             placeholder="Query"
           ></Textarea>
 
           <SubmitContainer>
-            <SubmitBtn>Submit</SubmitBtn>
+            <SubmitBtn type="submit" value="Submit" />
           </SubmitContainer>
         </Form>
       </ContactContainer>
@@ -114,9 +184,9 @@ const Container = styled.div`
     background-color: #ebebeb;
     outline: none;
 
-    &::placeholder {
+    /* &::placeholder {
       color: #858585;
-    }
+    } */
 
     @media (max-width: 800px) {
       width: 80vw;
@@ -152,7 +222,7 @@ const Container = styled.div`
       text-align: end;
     }
   `,
-  SubmitBtn = styled.button`
+  SubmitBtn = styled.input`
     font-family: "Poppins", monospace;
     font-weight: 500;
     color: #ff6700;
