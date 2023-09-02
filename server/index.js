@@ -12,8 +12,7 @@ import cors from 'cors'
 config()
 
 const PORT = 3001
-export const app = express(),
-  PORT = 3001
+export const app = express()
 
 const app = express()
 
