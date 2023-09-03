@@ -13,7 +13,7 @@ const IconoSVG = ({ width, height }) => {
   return (
     <div onClick={handleState}>
       {onPressClick ? (
-        <svg
+        <Svg
           width={width}
           height={height}
           viewBox="0 0 40 41"
@@ -44,9 +44,9 @@ const IconoSVG = ({ width, height }) => {
               />
             </g>
           </g>
-        </svg>
+        </Svg>
       ) : (
-        <svg
+        <Svg
           width={width}
           height={height}
           viewBox="0 0 43 43"
@@ -93,7 +93,7 @@ const IconoSVG = ({ width, height }) => {
               />
             </g>
           </g>
-        </svg>
+        </Svg>
       )}
     </div>
   );
@@ -103,14 +103,6 @@ export default IconoSVG;
 
 const Svg = styled.svg`
   transition: all 1s ease;
-  path {
-    transition: all 0.5s ease;
-  }
-  &:hover {
-    path {
-      fill: #5e5d5d;
-    }
-  }
   &:active {
     path {
       fill: #181818;
