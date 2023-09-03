@@ -43,13 +43,12 @@ function MediaPlayer() {
 
             {classData ? (
               <Video
-                src={classData.classURL}
+                src={classData.classURL.toString()}
                 loop={false}
-                autoPlay
+                autoPlay={false}
                 playsInline
                 controls
-              >
-              </Video>
+              ></Video>
             ) : (
               <p>Select the class to see</p>
             )}

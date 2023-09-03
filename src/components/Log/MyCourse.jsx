@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import ratadOs from "../../img/rata.jpg";
 import styled from "styled-components";
 import BuyBtn from "../Courses/Button";

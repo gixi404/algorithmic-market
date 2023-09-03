@@ -43,7 +43,7 @@ function Context({ children }) {
         {
           name: "Class number 1",
           id: 0,
-          URL: "https://player.vimeo.com/external/451108090.sd.mp4?s=be43f670061443ffa8c6d96bcfe5f885b989a2e8&profile_id=164&oauth2_token_id=57447761",
+          URL: "https://www.youtube.com/watch?v=B2bLbVfWHTw",
         },
 
         {

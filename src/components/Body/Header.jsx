@@ -3,8 +3,9 @@ import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "../Log/LoginBtn.jsx";
 import LogoutBtn from "../Log/LogoutBtn.jsx";
 import menuImg from "../../img/menu.png";
+// import Icon from "../../components/Body/ShoppingCart/ButtonCart.jsx";
 import styled from "styled-components";
-import Icon from "../../components/Body/ShoppingCart/ButtonCart.jsx"
+import Profile from "./Profile.jsx";
 
 function Header({ pathIsMyCourses }) {
   const { isAuthenticated } = useAuth0();
@@ -21,14 +22,17 @@ function Header({ pathIsMyCourses }) {
           {pathIsMyCourses ? (
             <Link to="/">Inicio</Link>
           ) : (
-              <>
+            <>
               <NavLink href="#allCourses">Courses</NavLink>
               <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
               <NavLink href="#contact">Contact</NavLink>
-              <Icon />
-              </>
+
+              {/* <Icon /> */}
+              {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
+            </>
           )}
-          {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
+
+          <Profile />
         </NavContainer>
       </WebContainer>
     </HeaderContainer>
@@ -108,7 +112,7 @@ const HeaderContainer = styled.header`
       color: #888888;
     }
   `,
-  Link = styled( Linkk )`
+  Link = styled(Linkk)`
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
