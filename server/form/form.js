@@ -1,19 +1,21 @@
 import nodemailer from "nodemailer";
 
-async function formData(name_form, mail_form, query_form) {
-  const config = {
-      host: "smtp.gmail.com",
-      port: 587,
-      auth: {
-        user: "gixipixel@gmail.com",
-        pass: "dxemxhhcypdpbkht",
+async function formData(name_form, mail_form, query_form, error) {
+  console.log(error)
+  if (error === false) {
+    const config = {
+        host: "smtp.gmail.com",
+        port: 587,
+        auth: {
+          user: "gixipixel@gmail.com",
+          pass: "dxemxhhcypdpbkht",
+        },
       },
-    },
-    message = {
-      from: "gixipixel@gmail.com",
-      to: "gioliotta.io@gmail.com",
-      subject: "Support King of the Market",
-      html: `
+      message = {
+        from: "gixipixel@gmail.com",
+        to: "javuchin100@gmail.com",
+        subject: "Support King of the Market",
+        html: `
        <div style="text-align: center">
          <h1>Hola, soy ${name_form}</h1>. <br />
          <p>Mi consulta es ${query_form}</p> <br />
@@ -24,6 +26,11 @@ async function formData(name_form, mail_form, query_form) {
   const transporter = nodemailer.createTransport(config);
   const response = await transporter.sendMail(message);
   console.log(name_form, mail_form, query_form);
+      `
+      }
+    const transporter = nodemailer.createTransport(config)
+    const responses = await transporter.sendMail(message)
+  }
 }
 
 export default formData;
