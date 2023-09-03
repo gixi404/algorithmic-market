@@ -46,6 +46,7 @@ const Container = styled.section`
     align-items: center;
     justify-content: center;
     border-bottom: 4px solid #ff6700;
+    border-top: 4px solid #ff6700;
     background-color: #ebebeb;
     font-family: "Poppins", monospace;
   `,

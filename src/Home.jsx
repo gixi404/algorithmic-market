@@ -41,15 +41,10 @@ function Home() {
       </Routes>
       <Header />
       <Banner />
-      {isAuthenticated ? (
-        <UserIsLogin />
-      ) : (
-        <>
-          <AboutUs />
-          <Contact />
-        </>
-      )}
-
+      <Courses />
+      {isAuthenticated && <UserIsLogin />}
+      <AboutUs />
+      <Contact />
       <Footer />
     </HomeContainer>
   );
