@@ -1,71 +1,131 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 
-function Contact () {
-  const Name = useRef( null )
-  const Mail = useRef( null )
-  const Query = useRef( null )
-  const [error, setError] = useState( false );
-  const [sendForm, setSendForm] = useState( false );
-  function handleSubmitForm ( e ) {
-    e.preventDefault();
-    const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const regexQuery = /^(.{1,800})$/;
-    if ( Name.current.value == '' ) {
-      Name.current.style.backgroundColor = '#222'
-      Name.current.style.borderBottom = '5px solid #f00'
-      setError(true)
-    }
-    if ( regexMail && Mail.current.value == '' ) {
-      Mail.current.style.backgroundColor = '#222'
-      Mail.current.style.borderBottom = '5px solid #f00'
-      setError( true )
-    }
-    if (regexQuery && Query.current.value == '' ) {
-      Query.current.style.backgroundColor = '#222'
-      Query.current.style.borderBottom = '5px solid #f00'
-      setError(true)
-    }
-    else{setSendForm(true)}
-    setTimeout( () => {
-      setError(false)
-      Name.current.style.backgroundColor = '#fff'
-      Name.current.style.borderBottom = '0'
-      Mail.current.style.backgroundColor = '#fff'
-      Mail.current.style.borderBottom = '0'
-      Query.current.style.backgroundColor = '#fff'
-      Query.current.style.borderBottom = '0'
-      setSendForm(false)},3000)
-    const dataToFetch = async () => {
-      const dataForm = {
-        'name_form': name_form.value,
-        'mail_form': mail_form.value,
-        'query_form': query_form.value,
-        'error': error
-      }
+function Contact() {
+  const [error, setError] = useState(false);
+  const [sendForm, setSendForm] = useState(false);
 
-      try {
-        const res = await fetch( 'http://localhost:3001/form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer yourAccessToken'
-          },
-          body: JSON.stringify( dataForm )
-        } )
-        const resp = await res.json()
-        console.log( resp )
+  const Name = useRef(null),
+    Mail = useRef(null),
+    Query = useRef(null);
+
+  let hasError = false;
+
+  function handleSubmitForm(event) {
+    event.preventDefault();
+
+    const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+      regexQuery = /^(.{1,800})$/;
+
+    function changeInputColor(input) {
+      switch (input) {
+        case "Name":
+          {
+            setError(true);
+            Name.current.style.backgroundColor = "#222";
+            Name.current.style.borderBottom = "5px solid #f00";
+
+            setTimeout(() => {
+              Name.current.style.backgroundColor = "#ebebeb";
+              Name.current.style.borderBottom = "2.3px solid #ff6700";
+              setError(false);
+            }, 2000);
+          }
+          break;
+
+        case "Mail":
+          {
+            setError(true);
+            Mail.current.style.backgroundColor = "#222";
+            Mail.current.style.borderBottom = "5px solid #f00";
+
+            setTimeout(() => {
+              Mail.current.style.backgroundColor = "#ebebeb";
+              Mail.current.style.borderBottom = "2.3px solid #ff6700";
+              setError(false);
+            }, 2000);
+          }
+          break;
+
+        case "Query":
+          {
+            setError(true);
+            Query.current.style.backgroundColor = "#222";
+            Query.current.style.borderBottom = "5px solid #f00";
+
+            setTimeout(() => {
+              Query.current.style.backgroundColor = "#ebebeb";
+              Query.current.style.borderBottom = "2.3px solid #ff6700";
+              setError(false);
+            }, 2000);
+          }
+          break;
+
+        default:
+          {
+            Name.current.style.backgroundColor = "#ebebeb";
+            Name.current.style.borderBottom = "2.3px solid #ff6700";
+            setError(false);
+          }
+          break;
       }
-      catch ( e ) { console.log( e ) }
     }
-    dataToFetch()
+
+    if (Name.current.value === "") {
+      changeInputColor("Name");
+      hasError = true;
+    }
+
+    if (!regexMail.test(Mail.current.value) || Mail.current.value === "") {
+      changeInputColor("Mail");
+      hasError = true;
+    }
+
+    if (!regexQuery.test(Query.current.value) || Query.current.value === "") {
+      changeInputColor("Query");
+      hasError = true;
+    }
+
+    if (!hasError) {
+      setSendForm(true);
+      async function dataToFetch() {
+        const dataForm = {
+          name_form: Name.current.value,
+          mail_form: Mail.current.value,
+          query_form: Query.current.value,
+        };
+
+        try {
+          const res = await fetch("http://localhost:3001/form", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer yourAccessToken",
+            },
+            body: JSON.stringify(dataForm),
+          });
+          const resp = await res.json();
+          console.log(resp);
+        } catch (error) {
+          console.error(error);
+          setSendForm(false);
+        }
+      }
+      dataToFetch();
+      console.log("Datos enviados");
+
+      setTimeout(() => {
+        (Name.current.value = ""),
+          (Mail.current.value = ""),
+          (Query.current.value = "");
+        setSendForm(false);
+      }, 2000);
+    } else {
+      console.error("Datos incompletos");
+    }
   }
-  useEffect( () => {
-    Name.current.value = ''
-    Mail.current.value = ''
-    Query.current.value = ''
-  }, [sendForm] )
+
   return (
     <Container id="contact">
       <ContactContainer>
@@ -78,19 +138,19 @@ function Contact () {
           </Title>
         </Text>
 
-        <Form
-          onSubmit={handleSubmitForm}
-        >
-          {error ? (
-            <h2 style={{ color: "red" }}>Verifica los datos ingresados</h2>
-          ) : (
-            <h2 style={{ color: "#181854" }}>-</h2>
+        <Form onSubmit={handleSubmitForm}>
+          {error && (
+            <MessageValidation>
+              <ErrorValidation>Check the entered data</ErrorValidation>
+            </MessageValidation>
           )}
-          {sendForm ? (
-            <h2 style={{ color: "green" }}>Datos enviados correctamente</h2>
-          ) : (
-            <h2 style={{ color: "#181854" }}>-</h2>
+
+          {sendForm && (
+            <MessageValidation>
+              <ConfirmValidation>data sent successfully</ConfirmValidation>
+            </MessageValidation>
           )}
+
           <InputForm
             type="text"
             name="name_form"
@@ -114,8 +174,7 @@ function Contact () {
             cols="10"
             rows="5"
             placeholder="Query"
-          >
-          </Textarea>
+          ></Textarea>
 
           <SubmitContainer>
             <SubmitBtn type="submit" value="Submit" />
@@ -130,8 +189,8 @@ export default Contact;
 
 const Container = styled.div`
     width: 100vw;
-    height: 90vh;
-    margin: 3rem auto;
+    height: 80vh;
+    margin: 3rem auto 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,30 +198,18 @@ const Container = styled.div`
   `,
   ContactContainer = styled.section`
     width: 80vw;
-    row-gap: 5rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: space-between;
-
-    @media (min-width: 480px) {
-      height: 83vh;
-      row-gap: 0;
-    }
-
-    @media (min-width: 1024px) {
-      row-gap: 0;
-      height: 80vh;
-      width: 80vw;
-    }
   `,
   Text = styled.article`
     color: #ffffff;
-    height: 12vh;
-    margin-bottom: 1rem;
+    height: 10vh;
 
-    @media (min-width: 1224px) {
-      margin-bottom: 0;
+    @media (max-width: 480px) {
+      margin-bottom: 4rem;
     }
   `,
   Title = styled.p`
@@ -177,7 +224,7 @@ const Container = styled.div`
   `,
   Form = styled.form`
     width: 50vw;
-    height: 60vh;
+    height: 90vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -196,10 +243,6 @@ const Container = styled.div`
     height: 8vh;
     background-color: #ebebeb;
     outline: none;
-
-    /* &::placeholder {
-      color: #858585;
-    } */
 
     @media (max-width: 800px) {
       width: 80vw;
@@ -257,5 +300,39 @@ const Container = styled.div`
       outline: none;
       border: none;
       background-color: #ff6700;
+    }
+  `,
+  MessageValidation = styled.div`
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 480px) {
+      height: 2vh;
+    }
+  `,
+  ErrorValidation = styled.p`
+    font-family: "Poppins", monospace;
+    font-weight: 400;
+    color: red;
+    font-size: 2rem;
+    text-transform: uppercase;
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
+  `,
+  ConfirmValidation = styled.p`
+    font-family: "Poppins", monospace;
+    font-weight: 400;
+    color: green;
+    font-size: 2rem;
+    text-transform: uppercase;
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
     }
   `;

@@ -10,10 +10,8 @@ function Courses() {
     <CoursesContainer id="allCourses">
       <Text>
         <Title>
-          Contact us
-          <TitleSpan>
-            We're Here to Listen and Help. Send your doubts or queries!
-          </TitleSpan>
+          Courses
+          <TitleSpan>Elevate your skills, from beginner to advanced.</TitleSpan>
         </Title>
       </Text>
       <ListCourses>

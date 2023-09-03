@@ -9,13 +9,14 @@ import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
 import styled from "styled-components";
-import Details from './components/Courses/DetailsCourse.jsx'
+import Details from "./components/Courses/DetailsCourse.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Success from "./components/Courses/Success.jsx";
 import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 
-function Home () {
+function Home() {
   const { isLoading, isAuthenticated } = useAuth0();
+
   if (isLoading) {
     return (
       <LoadContainer>
@@ -31,28 +32,24 @@ function Home () {
 
   return (
     <HomeContainer>
-          <Routes>
-            <Route path="/details/:coursedetails" element={<Details />}/>
-            <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
-            <Route path="/success/:coursedetails" element={<Success />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/shoppingcart" element={<IndexCart />} />
-          </Routes>
+      <Routes>
+        <Route path="/details/:coursedetails" element={<Details />} />
+        <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
+        <Route path="/success/:coursedetails" element={<Success />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/shoppingcart" element={<IndexCart />} />
+      </Routes>
       <Header />
+      <Banner />
       {isAuthenticated ? (
-        <>
-          <UserIsLogin />
-          <Courses />
-          <Banner />
-        </>
+        <UserIsLogin />
       ) : (
         <>
-          <Banner />
-          <Courses />
+          <AboutUs />
+          <Contact />
         </>
       )}
-      <AboutUs />
-      <Contact />
+
       <Footer />
     </HomeContainer>
   );
@@ -78,7 +75,6 @@ const LoadContainer = styled.div`
     width: 100vw;
     height: max-content;
     padding: 0;
-    /* row-gap: 5rem; */
     overflow: hidden;
     scrollbar-gutter: stable;
   `;

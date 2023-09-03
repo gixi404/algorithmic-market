@@ -18,7 +18,7 @@ export default Footer;
 const FooterContainer = styled.div`
     background-color: #1e1e1e;
     width: 100vw;
-    height: 85px;
+    height: 75px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -28,18 +28,16 @@ const FooterContainer = styled.div`
     padding: 0.7rem 0;
   `,
   TextContainer = styled.div`
-    width: 80vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: start;
-    row-gap: 0.5rem;
+    align-items: start;
+    row-gap: 0.6rem;
     justify-content: center;
 
-    @media (min-width: 1224px) {
+    @media (min-width: 1024px) {
+      width: 80vw;
       flex-direction: row;
-      align-items: end;
-      row-gap: 2rem;
+      align-items: center;
       justify-content: space-around;
     }
   `,

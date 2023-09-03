@@ -22,7 +22,6 @@ const Container = styled.article`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
     text-align: center;
     border-bottom: 4px solid #ff6700;
 
