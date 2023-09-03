@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer'
 
 async function formData(name_form, mail_form, query_form, error) {
-  console.log(error)
   if (error === false) {
     const config = {
         host: 'smtp.gmail.com',
