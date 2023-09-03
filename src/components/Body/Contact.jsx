@@ -1,57 +1,71 @@
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 
-function Contact() {
-  const [name, setName] = useState("");
-  const [mail, setMail] = useState("");
-  const [query, setQuery] = useState("");
-  const [error, setError] = useState(false);
-  const [sendForm, setSendForm] = useState(false);
-
-  function handleSubmitForm() {
-    const name_form = document.getElementById("name_form");
-    const mail_form = document.getElementById("mail_form");
-    const query_form = document.getElementById("query_form");
-
+function Contact () {
+  const Name = useRef( null )
+  const Mail = useRef( null )
+  const Query = useRef( null )
+  const [error, setError] = useState( false );
+  const [sendForm, setSendForm] = useState( false );
+  function handleSubmitForm ( e ) {
+    e.preventDefault();
     const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const regexQuery = /^(.{1,800})$/;
-
-    if (name === "") {
-      name_form.style.borderBottom = "none";
-      name_form.style.outline = "2.3px solid red";
-      setError(true);
-
-      setTimeout(() => {
-        name_form.style.outline = "none";
-        name_form.style.borderBottom = "2.3px solid #ff6700";
-        setError(false);
-      }, 3000);
-    } else if (!regexMail.test(mail) || mail === "") {
-      mail_form.style.borderBottom = "none";
-      mail_form.style.outline = "2.3px solid red";
-      setError(true);
-
-      setTimeout(() => {
-        mail_form.style.outline = "none";
-        mail_form.style.borderBottom = "2.3px solid #ff6700";
-        setError(false);
-      }, 3000);
-    } else if (!regexQuery.test(query) || query === "") {
-      query_form.style.borderBottom = "none";
-      query_form.style.outline = "2.3px solid red";
-      setError(true);
-
-      setTimeout(() => {
-        query_form.style.outline = "none";
-        query_form.style.borderBottom = "2.3px solid #ff6700";
-        setError(false);
-      }, 3000);
-    } else {
-      setSendForm(true);
-      setTimeout(() => setSendForm(false), 3000);
+    if ( Name.current.value == '' ) {
+      Name.current.style.backgroundColor = '#222'
+      Name.current.style.borderBottom = '5px solid #f00'
+      setError(true)
     }
-  }
+    if ( regexMail && Mail.current.value == '' ) {
+      Mail.current.style.backgroundColor = '#222'
+      Mail.current.style.borderBottom = '5px solid #f00'
+      setError( true )
+    }
+    if (regexQuery && Query.current.value == '' ) {
+      Query.current.style.backgroundColor = '#222'
+      Query.current.style.borderBottom = '5px solid #f00'
+      setError(true)
+    }
+    else{setSendForm(true)}
+    setTimeout( () => {
+      setError(false)
+      Name.current.style.backgroundColor = '#fff'
+      Name.current.style.borderBottom = '0'
+      Mail.current.style.backgroundColor = '#fff'
+      Mail.current.style.borderBottom = '0'
+      Query.current.style.backgroundColor = '#fff'
+      Query.current.style.borderBottom = '0'
+      setSendForm(false)},3000)
+    const dataToFetch = async () => {
+      const dataForm = {
+        'name_form': name_form.value,
+        'mail_form': mail_form.value,
+        'query_form': query_form.value,
+        'error': error
+      }
 
+      try {
+        const res = await fetch( 'http://localhost:3001/form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer yourAccessToken'
+          },
+          body: JSON.stringify( dataForm )
+        } )
+        const resp = await res.json()
+        console.log( resp )
+      }
+      catch ( e ) { console.log( e ) }
+    }
+    dataToFetch()
+  }
+  useEffect( () => {
+    Name.current.value = ''
+    Mail.current.value = ''
+    Query.current.value = ''
+  }, [sendForm] )
   return (
     <Container id="contact">
       <ContactContainer>
@@ -66,8 +80,6 @@ function Contact() {
 
         <Form
           onSubmit={handleSubmitForm}
-          action="http://localhost:3001/form"
-          method="post"
         >
           {error ? (
             <h2 style={{ color: "red" }}>Verifica los datos ingresados</h2>
@@ -80,29 +92,30 @@ function Contact() {
             <h2 style={{ color: "#181854" }}>-</h2>
           )}
           <InputForm
-            onChange={e => setName(e.target.value)}
             type="text"
             name="name_form"
             id="name_form"
+            ref={Name}
             placeholder="Name"
           />
 
           <InputForm
-            onChange={e => setMail(e.target.value)}
             type="text"
             name="mail_form"
+            ref={Mail}
             id="mail_form"
             placeholder="Mail Adress"
           />
 
           <Textarea
-            onChange={e => setQuery(e.target.value)}
             name="query_form"
             id="query_form"
+            ref={Query}
             cols="10"
             rows="5"
             placeholder="Query"
-          ></Textarea>
+          >
+          </Textarea>
 
           <SubmitContainer>
             <SubmitBtn type="submit" value="Submit" />
