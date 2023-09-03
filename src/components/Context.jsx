@@ -5,7 +5,10 @@ import advancedCourseImg from "../img/advancedCourseImg.webp";
 
 export const ContextProps = createContext();
 
-function Context({ children }) {
+function Context ( { children } ) {
+  const [coursesCart, setCoursesCart] = useState( [] )
+  const removeCart = (product) => {setCoursesCart(prevState => prevState.filter(item => item.id !== product.id))}
+  const [idCourse, setIdCourse] = useState('')
   const [allCourses, setAllCourses] = useState([
     {
       id: 0,
@@ -115,19 +118,18 @@ function Context({ children }) {
   const courseSelected = coursedetails =>
     allCourses.find(course => course.id === Number(coursedetails));
 
-  //* Media Queries
-  // const isDesktop = useMediaQuery({
-  //   query: "(min-width: 1224px)",
-  // });
-
-  // const isMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-
   const contextValues = {
     allCourses,
     setAllCourses,
     myCourses,
     setMyCourses,
     courseSelected,
+    coursesCart,
+    coursesCart,
+    setCoursesCart,
+    idCourse,
+    setIdCourse,
+    removeCart
   };
 
   return (
