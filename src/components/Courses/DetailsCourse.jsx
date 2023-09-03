@@ -25,21 +25,21 @@ function detailCourses2 () {
             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
               <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
             </svg>
-            <p>Primera clase de orientacion sexual.</p>
+            <p>Primera clase de orientacion.</p>
           </ListElement>
             <Span></Span>
           <ListElement>
             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
               <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
             </svg>
-            <p>Segunda clase de orientacion sexual.</p>
+            <p>Segunda clase de orientacion.</p>
           </ListElement>
             <Span></Span>
           <ListElement>
             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
               <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
             </svg>
-            <p>Tercera clase de orientacion sexual.</p>
+            <p>Tercera clase de orientacion.</p>
           </ListElement>
             <Span></Span>
         </List>
