@@ -4,13 +4,28 @@ import ItemCart from "./ItemCart";
 import { useContext } from "react";
 import { ContextProps } from "../../Context";
 import styled from "styled-components"
+import { useEffect } from "react";
+import { useState } from "react";
 
 function indexCart () {
-    
     const { coursesCart, setCoursesCart } = useContext( ContextProps )
+    const [value, setValue] = useState( 0 )
+
+    const recuderCash = () => {
+        if ( coursesCart.length < 0 )
+        {
+            return 0
+        }
+            const price = coursesCart.reduce( ( ac, cv ) => ac + cv.cash, 0 )
+            setValue(price)
+    }
+
+    useEffect(()=>{recuderCash()},[coursesCart])
+
     const handleClick = () => {
         setCoursesCart([])
     }
+    
     return (
         <CartContainer>
             <Header>
@@ -26,7 +41,7 @@ function indexCart () {
             <Footer>
                 <Article>
                     <p>Bag Subtotal</p>
-                    <strong>$0</strong>
+                    <strong>${value}</strong>
                 </Article>
           <SubmitContainer>
             <SubmitBtn value="Buy now!" />
