@@ -1,17 +1,23 @@
 import styled from "styled-components";
+import { useContext, useState } from "react";
+import { ContextProps } from "../../Context";
 import { Link } from "react-router-dom";
 import Img from '../../../img/pexels-alesia-kozik-6770610 2.png'
 
-function ItemCart () {
+function ItemCart ( { data } ) {
+    const { removeCart } = useContext( ContextProps )
+    const handleClick = () => {
+        removeCart(data)
+    }
     return (
         <Item>
             <IMG src={Img} alt="" />
             <Article>
                 <div>
-                    <h3>Premier Course</h3>
-                    <p><strong>$250</strong></p>
+                    <h3>{data.name}</h3>
+                    <p><strong>${data.cash}</strong></p>
                 </div>
-                <p>delete</p>
+                <p onClick={handleClick}>delete</p>
             </Article>
         </Item>
     )

@@ -4,8 +4,8 @@ import { useContext } from 'react';
 import { ContextProps } from '../Context';
 import styled from 'styled-components'
 
-function detailCourses2 () {
-  const {courseSelected} = useContext(ContextProps)
+function detailCourses () {
+  const { courseSelected } = useContext( ContextProps )
   const { coursedetails } = useParams();
   const { name, cash,  description } = courseSelected(coursedetails)
   return (
@@ -55,7 +55,7 @@ function detailCourses2 () {
   )
 }
 
-export default detailCourses2
+export default detailCourses
 
 const Container = styled.div`
   height: 100vh;

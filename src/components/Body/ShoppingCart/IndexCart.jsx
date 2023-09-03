@@ -1,22 +1,32 @@
 import { Link } from "react-router-dom";
+import { useBuyPetition } from "../../../hooks/useBuyLogic";
 import ItemCart from "./ItemCart";
+import { useContext } from "react";
+import { ContextProps } from "../../Context";
 import styled from "styled-components"
 
 function indexCart () {
+    
+    const { coursesCart, setCoursesCart } = useContext( ContextProps )
+    const handleClick = () => {
+        setCoursesCart([])
+    }
     return (
         <CartContainer>
             <Header>
                 <h3>Added to bag</h3>
                 <Link to='/'>cerrar</Link>
+                <p onClick={handleClick}>trash</p>
             </Header>
             <ItemContainer>
-                <ItemCart></ItemCart>
-                <ItemCart></ItemCart>
+                {coursesCart.map( course => (
+                    <ItemCart key={course.id} data={course} />
+                ) )}
             </ItemContainer>
             <Footer>
                 <Article>
                     <p>Bag Subtotal</p>
-                    <strong>$250</strong>
+                    <strong>$0</strong>
                 </Article>
           <SubmitContainer>
             <SubmitBtn value="Buy now!" />
@@ -30,7 +40,7 @@ export default indexCart;
 const CartContainer = styled.div`
     display: flex;
     position: fixed;
-    top: 5vh;
+    top: 0;
     right: 0;
     flex-direction: column;
     justify-content: space-between;
@@ -39,7 +49,7 @@ const CartContainer = styled.div`
     border-radius: 8px;
     background-color: #fff;
     z-index: 300;
-    height:90vh;
+    height:95vh;
     h1{
         text-align: center;
     }
@@ -64,7 +74,7 @@ const Header = styled.header`
  padding: 0 1vw;
  border-top-left-radius: 8px;
  border-top-right-radius: 8px;
- height: 15vh;
+ height: 12vh;
  border-bottom: .5vh solid #ff6700;
  display: flex;
  align-items: center;
@@ -89,11 +99,19 @@ const Header = styled.header`
         background-color: transparent;
         }
    }
-
+ p{
+    transition: all .5s ease;
+    cursor: pointer;
+    &:hover{
+        color: #222;
+        padding: 0 2vw;
+        background-color: #ff6700;
+    }
+ }
 `;
 
 const ItemContainer = styled.main`
-    height:61vh ;
+    height:66vh ;
     overflow: auto;
     scrollbar-gutter: stable;
 `;
@@ -126,7 +144,8 @@ const SubmitContainer = styled.article`
     @media (min-width: 1224px) {
       width: 28vw;
     }
-  `
+`
+
 const SubmitBtn = styled.input`
     margin: auto 0;
     font-family: "Poppins", monospace;
@@ -152,4 +171,4 @@ const SubmitBtn = styled.input`
       border: none;
       background-color: #ff6700;
     }
-  `;
+`;
