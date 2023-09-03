@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 
 async function formData(name_form, mail_form, query_form, error) {
-  console.log(error)
   if (error === false) {
     const config = {
         host: "smtp.gmail.com",
@@ -22,14 +21,9 @@ async function formData(name_form, mail_form, query_form, error) {
          Mail: <b>${mail_form}</b></p>
        </div>
       `,
-    };
-  const transporter = nodemailer.createTransport(config);
-  const response = await transporter.sendMail(message);
-  console.log(name_form, mail_form, query_form);
-      `
-      }
-    const transporter = nodemailer.createTransport(config)
-    const responses = await transporter.sendMail(message)
+      };
+    const transporter = nodemailer.createTransport(config);
+    const responses = await transporter.sendMail(message);
   }
 }
 
