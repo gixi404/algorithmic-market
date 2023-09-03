@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
+import styled from "styled-components";
 
 function Privacy() {
   return (
