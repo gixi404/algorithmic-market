@@ -156,7 +156,7 @@ function Contact() {
             name="name_form"
             id="name_form"
             ref={Name}
-            placeholder="Name"
+            placeholder="Name *"
           />
 
           <InputForm
@@ -164,7 +164,7 @@ function Contact() {
             name="mail_form"
             ref={Mail}
             id="mail_form"
-            placeholder="Mail Adress"
+            placeholder="Mail Adress *"
           />
 
           <Textarea
@@ -173,7 +173,7 @@ function Contact() {
             ref={Query}
             cols="10"
             rows="5"
-            placeholder="Query"
+            placeholder="Query *"
           ></Textarea>
 
           <SubmitContainer>
