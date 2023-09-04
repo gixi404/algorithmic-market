@@ -59,37 +59,37 @@ const IconoSVG = ({ width, height }) => {
                 id="Vector"
                 d="M1 1H4.56702C6.78102 1 8.5235 2.9065 8.339 5.1L6.6375 25.518C6.3505 28.8595 8.99498 31.7295 12.357 31.7295H34.1895C37.1415 31.7295 39.7245 29.3105 39.95 26.379L41.057 11.004C41.303 7.601 38.72 4.8335 35.2965 4.8335H8.83102"
                 stroke="#292D32"
-                stroke-width="2"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 id="Vector_2"
                 d="M30.2125 42C31.6278 42 32.775 40.8528 32.775 39.4375C32.775 38.0222 31.6278 36.875 30.2125 36.875C28.7972 36.875 27.65 38.0222 27.65 39.4375C27.65 40.8528 28.7972 42 30.2125 42Z"
                 stroke="#292D32"
-                stroke-width="2"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 id="Vector_3"
                 d="M13.8125 42C15.2277 42 16.375 40.8528 16.375 39.4375C16.375 38.0222 15.2277 36.875 13.8125 36.875C12.3973 36.875 11.25 38.0222 11.25 39.4375C11.25 40.8528 12.3973 42 13.8125 42Z"
                 stroke="#292D32"
-                stroke-width="2"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 id="Vector_4"
                 d="M15.35 13.3H39.95"
                 stroke="#292D32"
-                stroke-width="2"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </g>
           </g>

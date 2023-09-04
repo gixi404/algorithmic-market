@@ -6,6 +6,7 @@ import Context from "./components/Context.jsx";
 import Home from "./Home.jsx";
 import MyCourses from "./components/Log/MyCourses.jsx";
 import Privacy from "./components/Body/Privacy.jsx";
+import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import "./index.css";
 
 const DOMAIN = "dev-pxe14roena18vlea.us.auth0.com",
@@ -25,6 +26,7 @@ root.render(
           <Routes>
             <Route path="*" element={<Home />} />
             <Route path="/mycourses" element={<MyCourses />} />
+            <Route path="/mycourses/:coursename" element={<MediaPlayer />} />
             <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </Context>

@@ -17,7 +17,8 @@ function Header({ pathIsMyCourses }) {
           <WebName>king of the market</WebName>
         </Link>
 
-        <Menu src={menuImg} />
+        {/* <Menu src={menuImg} /> */}
+
         <NavContainer>
           {pathIsMyCourses ? (
             <Link to="/">Inicio</Link>
@@ -95,9 +96,9 @@ const HeaderContainer = styled.header`
     min-width: 30vw;
     height: 5.5vh;
 
-    @media (max-width: 1224px) {
+    /* @media (max-width: 1224px) {
       display: none;
-    }
+    } */
   `,
   NavLink = styled.a`
     color: #2e2e2e;

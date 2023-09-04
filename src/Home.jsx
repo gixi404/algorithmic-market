@@ -46,6 +46,7 @@ function Home() {
       <AboutUs />
       <Contact />
       <Footer />
+      {/* <MediaPlayer /> */}
     </HomeContainer>
   );
 }
