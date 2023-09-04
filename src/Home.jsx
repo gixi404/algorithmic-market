@@ -39,14 +39,14 @@ function Home() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/shoppingcart" element={<IndexCart />} />
       </Routes>
-      <Header />
+      {/* <Header />
       <Banner />
       <Courses />
       {isAuthenticated && <UserIsLogin />}
       <AboutUs />
       <Contact />
-      <Footer />
-      {/* <MediaPlayer /> */}
+      <Footer /> */}
+      <MediaPlayer />
     </HomeContainer>
   );
 }
