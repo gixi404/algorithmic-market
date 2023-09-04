@@ -14,7 +14,7 @@ function indexCart () {
     const recuderCash = () => {
         if ( coursesCart.length < 0 )
         {
-            return 0
+            return '0'
         }
             const price = coursesCart.reduce( ( ac, cv ) => ac + cv.cash, 0 )
             setValue(price)
