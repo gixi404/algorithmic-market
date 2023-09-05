@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { useBuyPetition } from "../../../hooks/useBuyLogic";
 import ItemCart from "./ItemCart";
+import trash from '../../../img/trash-bin-2-svgrepo-com.svg'
+import X from '../../../img/close-svgrepo-com.svg'
 import { useContext } from "react";
 import { ContextProps } from "../../Context";
 import styled from "styled-components"
@@ -14,7 +15,7 @@ function indexCart () {
     const recuderCash = () => {
         if ( coursesCart.length < 0 )
         {
-            return 0
+            return '0'
         }
             const price = coursesCart.reduce( ( ac, cv ) => ac + cv.cash, 0 )
             setValue(price)
@@ -30,8 +31,8 @@ function indexCart () {
         <CartContainer>
             <Header>
                 <h3>Added to bag</h3>
-                <Link to='/'>cerrar</Link>
-                <p onClick={handleClick}>trash</p>
+                <Img src={trash} alt="eraser buys" onClick={handleClick}/>
+                <Link to='/'><Img src={X} alt="close cart"/></Link>
             </Header>
             <ItemContainer>
                 {coursesCart.map( course => (
@@ -93,12 +94,13 @@ const Header = styled.header`
  border-bottom: .5vh solid #ff6700;
  display: flex;
  align-items: center;
- justify-content: space-between;
+ justify-content: end;
  h3{
-    text-align: center;
+    text-align: start;
     font-family: "Poppins", monospace;
+    font-size: 1.5rem;
     color: #ff6700;
-    width: 16vw;
+    width: 18vw;
  }
  a{
     font-family: "Poppins", monospace;
@@ -106,7 +108,7 @@ const Header = styled.header`
     background-color: transparent;
     color: #2e2e2e;
     width: max-content;
-    padding: 0 .5vw;
+    padding: 0 ;
     cursor: pointer;
     transition: all .5s ease;
     &:hover{
@@ -124,7 +126,18 @@ const Header = styled.header`
     }
  }
 `;
-
+const Img = styled.img`
+    height: 4vh;
+    width: 4vw;
+    cursor: pointer;
+    transition: all .5s ease;
+    &:hover{
+        scale: 1.1;
+    }
+    &:active{
+        scale: 1;
+    }
+`;
 const ItemContainer = styled.main`
     height:66vh ;
     overflow: auto;

@@ -4,6 +4,7 @@ function Profile() {
   const UserSVG = () => (
     <div
       style={{
+        cursor:'pointer',
         border: "2px solid #FF6700",
         borderRadius: "10px",
         padding: "0.5rem 0.8em ",
