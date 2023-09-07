@@ -1,101 +1,198 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ContextProps } from "../Context";
 import Header from "../Body/Header";
 import Footer from "../Body/Footer";
-import ReactLoading from "react-loading";
-import styled from "styled-components";
-import { useEffect } from "react";
 import ProgressBar from "./ProgressBar";
 import TitleCourse from "./TitleCourse";
+import ArrowBack from "../Body/ArrowBack";
 import ClassVideo from "./ClassVideo";
 import ControlsVideo from "./ControlsVideo";
+import FinishCourse from "./FinishCourse";
+import CircleSVG from "./CircleSVG";
+import Skeleton from "react-loading-skeleton";
+import styled from "styled-components";
 
 function MediaPlayer() {
-  const { myCourses } = useContext(ContextProps);
   const { coursename } = useParams();
+  const { myCourses } = useContext(ContextProps);
   const [classData, setClassData] = useState({});
   const [numberClass, setNumberClass] = useState(0);
-  // const [isLoad, setIsLoad] = useState(true);
+  const [courseInProgress, setCourseInProgress] = useState(true);
+  const [loadContent, setLoadContent] = useState(false);
+  const [progressValue, setProgressValue] = useState(11.11);
+  const [lastClass, setLastClass] = useState(0);
 
   useEffect(() => {
     function selectCourse() {
       switch (coursename) {
         case "Curso Inicial":
-          setClassData({
-            classId: myCourses[0].classes[0].id,
-            className: myCourses[0].classes[0].name,
-            classURL: myCourses[0].classes[0].URL,
-          });
+          {
+            setClassData({
+              classId: direction(0).id,
+              className: direction(0).name,
+              classURL: direction(0).URL,
+            });
+            setLastClass(myCourses[0].classes.length);
+          }
           break;
 
         case "Curso Medio":
-          setClassData({
-            classId: myCourses[1].classes[0].id,
-            className: myCourses[1].classes[0].name,
-            classURL: myCourses[1].classes[0].URL,
-          });
+          {
+            setClassData({
+              classId: direction(1).id,
+              className: direction(1).name,
+              classURL: direction(1).URL,
+            });
+            setLastClass(myCourses[1].classes.length);
+          }
           break;
 
         default:
+          {
+            setClassData({
+              classId: direction(0).id,
+              className: direction(0).name,
+              classURL: direction(0).URL,
+            });
+            setLastClass(myCourses[0].classes.length);
+          }
           break;
       }
     }
 
-    selectCourse();
+    return () => selectCourse();
   }, [coursename]);
 
-  function nextClass() {
-    if (numberClass < myCourses[0].classes.length - 1) {
-      const nextClassData = {
-        classId: myCourses[0].classes[numberClass + 1].id,
-        className: myCourses[0].classes[numberClass + 1].name,
-        classURL: myCourses[0].classes[numberClass + 1].URL,
-      };
-      setNumberClass(numberClass + 1);
-      setClassData(nextClassData);
-      // setIsLoad(true);
+  function direction(numberCourse, numberClass = 0) {
+    return myCourses[numberCourse].classes[numberClass];
+  }
+
+  function previousClass() {
+    setLoadContent(true);
+
+    if (numberClass > 0) {
+      let previousClassData = {};
+
+      switch (coursename) {
+        case "Curso Inicial":
+          {
+            previousClassData = {
+              classId: direction(0, numberClass - 1).id,
+              className: direction(0, numberClass - 1).name,
+              classURL: direction(0, numberClass - 1).URL,
+            };
+          }
+          break;
+
+        case "Curso Medio":
+          {
+            previousClassData = {
+              classId: direction(1, numberClass - 1).id,
+              className: direction(1, numberClass - 1).name,
+              classURL: direction(1, numberClass - 1).URL,
+            };
+          }
+          break;
+
+        default:
+          {
+            previousClassData = {
+              classId: direction(0, numberClass - 1).id,
+              className: direction(0, numberClass - 1).name,
+              classURL: direction(0, numberClass - 1).URL,
+            };
+          }
+          break;
+      }
+
+      setCourseInProgress(true);
+      setNumberClass(numberClass - 1);
+      setClassData(previousClassData);
+      setProgressValue(progressValue - 11.11);
     }
   }
 
-  const CircleSVG = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="25"
-      viewBox="0 0 29 29"
-      fill="none"
-    >
-      <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
-    </svg>
-  );
+  function nextClass() {
+    setLoadContent(true);
+
+    if (numberClass < lastClass - 1) {
+      let nextClassData = {};
+
+      switch (coursename) {
+        case "Curso Inicial":
+          {
+            nextClassData = {
+              classId: direction(0, numberClass + 1).id,
+              className: direction(0, numberClass + 1).name,
+              classURL: direction(0, numberClass + 1).URL,
+            };
+          }
+          break;
+
+        case "Curso Medio":
+          {
+            nextClassData = {
+              classId: direction(1, numberClass + 1).id,
+              className: direction(1, numberClass + 1).name,
+              classURL: direction(1, numberClass + 1).URL,
+            };
+          }
+          break;
+
+        default:
+          {
+            nextClassData = {
+              classId: direction(0, numberClass + 1).id,
+              className: direction(0, numberClass + 1).name,
+              classURL: direction(0, numberClass + 1).URL,
+            };
+          }
+          break;
+      }
+      setNumberClass(numberClass + 1);
+      setClassData(nextClassData);
+      setProgressValue(progressValue + 11.11);
+    }
+  }
 
   return (
     <Container>
       <Header />
-      <Link to="/mycourses">Atrás</Link>
+
+      <ArrowBack route="/mycourses" />
 
       <MediaContainer>
-        <HeaderMedia>
-          <TitleCourse coursename={coursename} classData={classData} />
-          <ProgressBar />
-        </HeaderMedia>
+        {!loadContent ? (
+          <HeaderMedia>
+            <TitleCourse coursename={coursename} classData={classData} />
+            <ProgressBar progressValue={progressValue} />
+          </HeaderMedia>
+        ) : (
+          <HeaderMediaSkeleton>
+            <Skeleton />
+          </HeaderMediaSkeleton>
+        )}
 
-        {/* {isLoad && (
-          <Load>
-            <ReactLoading
-              type="cubes"
-              color="rgb(255, 255, 255)"
-              width="200px"
-              height="200px"
-            />
-          </Load>
-        )} */}
+        {courseInProgress ? (
+          <ClassVideo
+            classData={classData}
+            loadContent={loadContent}
+            setLoadContent={setLoadContent}
+          />
+        ) : (
+          <FinishCourse setCourseInProgress={setCourseInProgress} />
+        )}
 
-        <ClassVideo classData={classData} />
-
-        <ControlsVideo nextClass={nextClass} />
+        <ControlsVideo
+          numberClass={numberClass}
+          previousClass={previousClass}
+          nextClass={nextClass}
+          lastClass={lastClass}
+          courseInProgress={courseInProgress}
+          setCourseInProgress={setCourseInProgress}
+        />
       </MediaContainer>
 
       <ContentContainer>
@@ -133,6 +230,7 @@ function MediaPlayer() {
             </FollowingClasses>
           </Article>
         </Themes>
+
         <Footer />
       </ContentContainer>
     </Container>
@@ -142,204 +240,155 @@ function MediaPlayer() {
 export default withAuthenticationRequired(MediaPlayer);
 
 const Container = styled.div`
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  color: #f5f5f5;
-  row-gap: 5rem;
-`;
-
-const MediaContainer = styled.div`
-  width: 80vw;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-between;
-  row-gap: 2.3rem;
-
-  @media (max-width: 992px) {
-    width: 90vw;
-  }
-
-  @media (max-width: 576px) {
     width: 100vw;
-  }
-`;
-
-const HeaderMedia = styled.header`
-  display: flex;
-  flex-direction: row;
-  align-items: end;
-  justify-content: space-between;
-  width: 100%;
-
-  @media (max-width: 992px) {
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 1.5rem;
-  }
-`;
-
-const Load = styled.div`
-  position: absolute;
-  top: 58%;
-`;
-
-const ContentContainer = styled.section`
-  background-color: #ffffff;
-  width: 100vw;
-  height: auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: start;
-  row-gap: 2.3rem;
-  padding-top: 2rem;
-  border-top: 4px solid #ff6700;
-`;
-
-const TitleContent = styled.p`
-  font-family: "Poppins", sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
-  width: 80vw;
-  color: #000;
-  span {
-    font-size: 1.1rem;
-    font-weight: 400;
-    display: block;
-  }
-
-  @media (max-width: 576px) {
-    width: 100vw;
-    font-size: 1.5rem;
-    text-align: center;
-    span {
-      font-size: 0.9rem;
-    }
-  }
-`;
-
-const NameCourse = styled.p`
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #ff6700;
-  text-align: center;
-  width: 100vw;
-`;
-
-const Themes = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  column-gap: 1.5rem;
-  row-gap: 3rem;
-
-  @media (max-width: 576px) {
-    row-gap: 1rem;
-  }
-`;
-
-const Article = styled.article`
-  width: 50vw;
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  justify-content: center;
-
-  @media (max-width: 576px) {
-    width: 100vw;
+    justify-content: space-between;
+    color: #f5f5f5;
+    row-gap: 5rem;
+  `,
+  MediaContainer = styled.div`
+    width: 80vw;
+    display: flex;
     align-items: center;
-  }
-`;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 2.3rem;
 
-const FirstClass = styled.p`
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 1.2rem;
-  color: #000000;
+    @media (max-width: 992px) {
+      width: 90vw;
+    }
 
-  @media (max-width: 576px) {
-    font-size: 1rem;
-  }
-`;
+    @media (max-width: 576px) {
+      width: 100vw;
+    }
+  `,
+  HeaderMedia = styled.header`
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    width: 100%;
+    height: 77px;
 
-const FollowingClasses = styled.p`
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: #000000;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  width: 70%;
-  row-gap: 0.5rem;
+    @media (max-width: 992px) {
+      flex-direction: column;
+      align-items: center;
+      row-gap: 1.5rem;
+    }
+  `,
+  HeaderMediaSkeleton = styled.header`
+    width: 100%;
+    height: 77px;
+    border-radius: 0.6rem;
+    animation-name: skeleton;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
 
-  @media (max-width: 576px) {
-    font-size: 1rem;
-    width: 58%;
-  }
-`;
+    @keyframes skeleton {
+      0% {
+        background-color: rgb(24, 24, 84);
+      }
+      50% {
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+      100% {
+        background-color: rgb(24, 24, 84);
+      }
+    }
+  `,
+  ContentContainer = styled.section`
+    background-color: #ffffff;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    row-gap: 2.3rem;
+    padding-top: 2rem;
+    border-top: 4px solid #ff6700;
+  `,
+  TitleContent = styled.p`
+    font-family: "Poppins", sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 80vw;
+    color: #000;
+    span {
+      font-size: 1.1rem;
+      font-weight: 400;
+      display: block;
+    }
 
-/*const { myCourses } = useContext(ContextProps);
-  const { coursename } = useParams();
+    @media (max-width: 576px) {
+      width: 100vw;
+      font-size: 1.5rem;
+      text-align: center;
+      span {
+        font-size: 0.9rem;
+      }
+    }
+  `,
+  NameCourse = styled.p`
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #ff6700;
+    text-align: center;
+    width: 100vw;
+  `,
+  Themes = styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    column-gap: 1.5rem;
+    row-gap: 3rem;
 
-  const formatCourseId = courseId.slice(0, 1);
+    @media (max-width: 576px) {
+      row-gap: 1rem;
+    }
+  `,
+  Article = styled.article`
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
 
-  const [classData, setClassData] = useState({
-    classId: myCourses[0].classes[0].id,
-    className: myCourses[0].classes[0].name,
-    classURL: myCourses[0].classes[0].URL,
-  });
+    @media (max-width: 576px) {
+      width: 100vw;
+      align-items: center;
+    }
+  `,
+  FirstClass = styled.p`
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #000000;
 
-  function handleChangeURL(classId) {
-    setClassData({
-      classId: myCourses[formatCourseId].classes[classId].id,
-      className: myCourses[formatCourseId].classes[classId].name,
-      classURL: myCourses[formatCourseId].classes[classId].URL,
-    });
-  }
+    @media (max-width: 576px) {
+      font-size: 1rem;
+    }
+  `,
+  FollowingClasses = styled.p`
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 70%;
+    row-gap: 0.5rem;
 
-   <BackBtn>
-        <Link to="/mycourses">Back</Link>
-      </BackBtn> 
-   <Sexo>
-        <MediaContainer>
-          <Reproductor>
-            <TextLevelCourse>
-              {myCourses[formatCourseId].name}
-
-              <MuerteALosGays>
-                {" - You're watching: " + classData.className}
-              </MuerteALosGays>
-            </TextLevelCourse>
-
-            {classData ? (
-              <Video
-                src={classData.classURL.toString()}
-                loop={false}
-                autoPlay={false}
-                playsInline
-                controls
-              ></Video>
-            ) : (
-              <p>Select the class to see</p>
-            )}
-          </Reproductor>
-        </MediaContainer>
-
-        <FollowingClasses>
-          {myCourses[formatCourseId].classes.map(_class => (
-            <Class key={_class.id} onClick={() => handleChangeURL(_class.id)}>
-              {_class.name}
-            </Class>
-          ))}
-        </FollowingClasses>
-      </Sexo> */
+    @media (max-width: 576px) {
+      font-size: 1rem;
+      width: 58%;
+    }
+  `;

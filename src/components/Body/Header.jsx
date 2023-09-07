@@ -14,7 +14,7 @@ function Header({ pathIsMyCourses }) {
     <HeaderContainer>
       <WebContainer>
         <Link to="/">
-          <WebName>king of the market</WebName>
+          <WebName>Algorithmic Market</WebName>
         </Link>
 
         {/* <Menu src={menuImg} /> */}
