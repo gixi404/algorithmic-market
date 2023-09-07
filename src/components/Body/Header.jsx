@@ -96,19 +96,17 @@ const HeaderContainer = styled.header`
     justify-content: space-around;
     column-gap: 1.3rem;
     min-width: 30vw;
-    height: 5.5vh;
+    height: 80px;
     div{
-      margin-top: 8px;
+      margin-top: 16px;
     }
   `,
   NavLink = styled.a`
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
-    font-weight: 500;
-    height: 80px;
-    line-height: 96px;
     font-size: 1rem;
+    margin-top: 16px;
     text-transform: capitalize;
     transition-duration: 0.1s;
     &:hover {

@@ -29,7 +29,7 @@ export default Profile;
       cursor:pointer;
       border: 2px solid #FF6700;
       border-radius: 10px;
-      padding: 0.5rem 0.8em;
+      padding: 0.3rem 0.5rem;
       transition: all ease .3s;
       &:hover{
         scale: 1.1;
