@@ -11,7 +11,7 @@ const IconoSVG = ({ width, height }) => {
     return () => clearTimeout(timer);
   }, [onPressClick]);
   return (
-    <div onClick={handleState}>
+    <SvgContainer onClick={handleState}>
       {onPressClick ? (
         <Svg
           width={width}
@@ -95,7 +95,7 @@ const IconoSVG = ({ width, height }) => {
           </g>
         </Svg>
       )}
-    </div>
+    </SvgContainer>
   );
 };
 
@@ -108,4 +108,9 @@ const Svg = styled.svg`
       fill: #181818;
     }
   }
+`;
+const SvgContainer = styled.div`
+  height: 80px;
+  line-height: 96px;
+  width: 1rem;
 `;

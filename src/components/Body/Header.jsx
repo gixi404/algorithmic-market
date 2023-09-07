@@ -43,7 +43,7 @@ export default Header;
 const HeaderContainer = styled.header`
     background-color: #fff;
     width: 100vw;
-    min-height: 13vh;
+    min-height: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -57,6 +57,7 @@ const HeaderContainer = styled.header`
   `,
   WebContainer = styled.div`
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,6 +77,8 @@ const HeaderContainer = styled.header`
     letter-spacing: 1.3px;
     font-weight: 600;
     color: #ff6700;
+    height:80px;
+    line-height: 96px;
   `,
   Menu = styled.img`
     display: block;
@@ -94,12 +97,17 @@ const HeaderContainer = styled.header`
     column-gap: 1.3rem;
     min-width: 30vw;
     height: 5.5vh;
+    div{
+      margin-top: 8px;
+    }
   `,
   NavLink = styled.a`
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
     font-weight: 500;
+    height: 80px;
+    line-height: 96px;
     font-size: 1rem;
     text-transform: capitalize;
     transition-duration: 0.1s;
@@ -113,6 +121,8 @@ const HeaderContainer = styled.header`
     font-family: "Poppins", monospace;
     font-weight: 500;
     font-size: 1rem;
+    height: 80px;
+    line-height: 96px;
     text-transform: capitalize;
     transition-duration: 0.1s;
     &:hover {
