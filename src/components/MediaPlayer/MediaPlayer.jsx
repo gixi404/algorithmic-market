@@ -11,7 +11,6 @@ import ClassVideo from "./ClassVideo";
 import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
 import CircleSVG from "./CircleSVG";
-import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 
 function MediaPlayer() {
@@ -49,6 +48,17 @@ function MediaPlayer() {
           }
           break;
 
+        case "Curso Avanzado":
+          {
+            setClassData({
+              classId: direction(2).id,
+              className: direction(2).name,
+              classURL: direction(2).URL,
+            });
+            setLastClass(myCourses[2].classes.length);
+          }
+          break;
+
         default:
           {
             setClassData({
@@ -70,9 +80,8 @@ function MediaPlayer() {
   }
 
   function previousClass() {
-    setLoadContent(true);
-
     if (numberClass > 0) {
+      setLoadContent(true);
       let previousClassData = {};
 
       switch (coursename) {
@@ -96,6 +105,16 @@ function MediaPlayer() {
           }
           break;
 
+        case "Curso Avanzado":
+          {
+            setClassData({
+              classId: direction(2, numberClass - 1).id,
+              className: direction(2, numberClass - 1).name,
+              classURL: direction(2, numberClass - 1).URL,
+            });
+          }
+          break;
+
         default:
           {
             previousClassData = {
@@ -115,9 +134,8 @@ function MediaPlayer() {
   }
 
   function nextClass() {
-    setLoadContent(true);
-
     if (numberClass < lastClass - 1) {
+      setLoadContent(true);
       let nextClassData = {};
 
       switch (coursename) {
@@ -137,6 +155,16 @@ function MediaPlayer() {
               classId: direction(1, numberClass + 1).id,
               className: direction(1, numberClass + 1).name,
               classURL: direction(1, numberClass + 1).URL,
+            };
+          }
+          break;
+
+        case "Curso Avanzado":
+          {
+            nextClassData = {
+              classId: direction(2, numberClass + 1).id,
+              className: direction(2, numberClass + 1).name,
+              classURL: direction(2, numberClass + 1).URL,
             };
           }
           break;
@@ -164,16 +192,10 @@ function MediaPlayer() {
       <ArrowBack route="/mycourses" />
 
       <MediaContainer>
-        {!loadContent ? (
-          <HeaderMedia>
-            <TitleCourse coursename={coursename} classData={classData} />
-            <ProgressBar progressValue={progressValue} />
-          </HeaderMedia>
-        ) : (
-          <HeaderMediaSkeleton>
-            <Skeleton />
-          </HeaderMediaSkeleton>
-        )}
+        <HeaderMedia>
+          <TitleCourse coursename={coursename} classData={classData} />
+          <ProgressBar progressValue={progressValue} />
+        </HeaderMedia>
 
         {courseInProgress ? (
           <ClassVideo
@@ -182,7 +204,10 @@ function MediaPlayer() {
             setLoadContent={setLoadContent}
           />
         ) : (
-          <FinishCourse setCourseInProgress={setCourseInProgress} />
+          <FinishCourse
+            setCourseInProgress={setCourseInProgress}
+            setLoadContent={setLoadContent}
+          />
         )}
 
         <ControlsVideo
@@ -277,26 +302,6 @@ const Container = styled.div`
       flex-direction: column;
       align-items: center;
       row-gap: 1.5rem;
-    }
-  `,
-  HeaderMediaSkeleton = styled.header`
-    width: 100%;
-    height: 77px;
-    border-radius: 0.6rem;
-    animation-name: skeleton;
-    animation-duration: 0.8s;
-    animation-iteration-count: infinite;
-
-    @keyframes skeleton {
-      0% {
-        background-color: rgb(24, 24, 84);
-      }
-      50% {
-        background-color: rgba(255, 255, 255, 0.7);
-      }
-      100% {
-        background-color: rgb(24, 24, 84);
-      }
     }
   `,
   ContentContainer = styled.section`
