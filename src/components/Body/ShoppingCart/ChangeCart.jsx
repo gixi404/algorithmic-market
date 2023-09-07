@@ -113,4 +113,11 @@ const SvgContainer = styled.div`
   height: 80px;
   line-height: 96px;
   width: 1rem;
+  transition: all ease .3s;
+  &:hover{
+    scale: 1.1;
+  }
+  &:active{
+    scale: 1;
+  }
 `;

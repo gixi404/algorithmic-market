@@ -30,4 +30,11 @@ export default Profile;
       border: 2px solid #FF6700;
       border-radius: 10px;
       padding: 0.5rem 0.8em;
+      transition: all ease .3s;
+      &:hover{
+        scale: 1.1;
+      }
+      &:active{
+        scale: 1;
+      }
 `
