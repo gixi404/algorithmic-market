@@ -1,7 +1,6 @@
 import ratadOs from "../../img/rata.jpg";
-import styled from "styled-components";
-import BuyBtn from "../Courses/Button";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function MyCourse(props) {
   const { dataCourse } = props;

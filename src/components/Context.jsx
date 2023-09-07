@@ -5,10 +5,9 @@ import advancedCourseImg from "../img/advancedCourseImg.webp";
 
 export const ContextProps = createContext();
 
-function Context ( { children } ) {
-  const [coursesCart, setCoursesCart] = useState( [] )
-  const removeCart = (product) => {setCoursesCart(prevState => prevState.filter(item => item.id !== product.id))}
-  const [idCourse, setIdCourse] = useState('')
+function Context({ children }) {
+  const [coursesCart, setCoursesCart] = useState([]);
+  const [idCourse, setIdCourse] = useState("");
   const [allCourses, setAllCourses] = useState([
     {
       id: 0,
@@ -35,85 +34,119 @@ function Context ( { children } ) {
       img: advancedCourseImg,
     },
   ]);
-
   const [myCourses, setMyCourses] = useState([
     {
-      name: "Course Initial",
+      name: "Curso Inicial",
       price: 200,
       img: basicCourseImg,
       id: 0 + " initialCourse",
       classes: [
         {
-          name: "Class number 1",
+          name: "1 - Introducción a mercados",
           id: 0,
-          URL: "https://www.youtube.com/watch?v=B2bLbVfWHTw",
+          URL: "https://www.youtube.com/embed/d6P7kWUiDMY",
         },
-
         {
-          name: "Class number 2",
+          name: "2 - PIP, Lot Size, Trading View",
           id: 1,
-          URL: "https://player.vimeo.com/external/451108713.sd.mp4?s=949f31b35a0b6d12b4480c2a1ba71a1b249e91a5&profile_id=164&oauth2_token_id=57447761",
+          URL: "https://www.youtube.com/embed/vzSQ8b7cRMQ",
         },
-
         {
-          name: "Clase número 3",
+          name: "3 - Price Delivery",
           id: 2,
-          URL: "https://player.vimeo.com/external/568582611.sd.mp4?s=0767de924426aef1ea713c202c595d259576ae07&profile_id=164&oauth2_token_id=57447761",
+          URL: "https://www.youtube.com/embed/lgsITUruYFw",
+        },
+        {
+          name: "4 - Book of Price",
+          id: 3,
+          URL: "https://www.youtube.com/embed/re_dUQh2Vtg",
+        },
+        {
+          name: "5 - Risk to Reward",
+          id: 4,
+          URL: "https://www.youtube.com/embed/Vq2evS44q7s",
+        },
+        {
+          name: "6 - Liquidity",
+          id: 5,
+          URL: "https://www.youtube.com/embed/gkVzfv84lU0",
+        },
+        {
+          name: "7 - Premium Discount",
+          id: 6,
+          URL: "https://www.youtube.com/embed/xb9cSfPOb1c",
+        },
+        {
+          name: "8 - High Impact News",
+          id: 7,
+          URL: "https://www.youtube.com/embed/iaJKy1Ic3_I",
+        },
+        {
+          name: "9 - Higher Timeframes to Lower",
+          id: 8,
+          URL: "https://www.youtube.com/embed/h3DY-SAYhvY",
         },
       ],
     },
-    // {
-    //   name: "Course Middle",
-    //   price: 350,
-    //   img: middleCourseImg,
-    //   id: 1 + " middleCourse",
-    //   classes: [
-    //     {
-    //       name: "Class number 1",
-    //       id: 0,
-    //       URL: "https://player.vimeo.com/external/468451144.sd.mp4?s=1a225f021e1bb831f8973685579845d84fb2521c&profile_id=164&oauth2_token_id=57447761",
-    //     },
-
-    //     {
-    //       name: "Class number 2",
-    //       id: 1,
-    //       URL: "https://player.vimeo.com/external/584755638.sd.mp4?s=80aed001e5b45d9f760d196d10f14f6793fa046d&profile_id=164&oauth2_token_id=57447761",
-    //     },
-
-    //     {
-    //       name: "Class number 3",
-    //       id: 2,
-    //       URL: "https://player.vimeo.com/external/535200449.sd.mp4?s=9e665fae0edddd4abd7bb8fdc8df6381fc14aa71&profile_id=164&oauth2_token_id=57447761",
-    //     },
-    //   ],
-    // },
-    // {
-    //   name: "Course Advanced",
-    //   price: 350,
-    //   img: advancedCourseImg,
-
-    //   id: 2 + " advancedCourse",
-    //   classes: [
-    //     {
-    //       name: "Class number 1",
-    //       id: 0,
-    //       URL: "https://player.vimeo.com/external/311319079.sd.mp4?s=1104ffd451e8c0ed695e21a5fcaea20bc16bc69c&profile_id=164&oauth2_token_id=57447761",
-    //     },
-
-    //     {
-    //       name: "Class number 2",
-    //       id: 1,
-    //       URL: "https://player.vimeo.com/external/539049879.sd.mp4?s=d764d5179f94ee66e86f31a9a4808d5abca97e4c&profile_id=164&oauth2_token_id=57447761",
-    //     },
-
-    //     {
-    //       name: "Class number 3",
-    //       id: 2,
-    //       URL: "https://player.vimeo.com/external/473216752.sd.mp4?s=44c9e58521bd9fb5046d71011ee3059717ab9a05&profile_id=164&oauth2_token_id=57447761",
-    //     },
-    //   ],
-    // },
+    {
+      name: "Curso Medio",
+      price: 200,
+      img: basicCourseImg,
+      id: 1 + " midCourse",
+      classes: [
+        {
+          name: "1 - Pijas gratis",
+          id: 0,
+          URL: "https://www.youtube.com/embed/d6P7kWUiDMY",
+        },
+        {
+          name: "2 - Pene sanguíneo",
+          id: 1,
+          URL: "https://www.youtube.com/embed/vzSQ8b7cRMQ",
+        },
+        {
+          name: "3 - Vibora",
+          id: 2,
+          URL: "https://www.youtube.com/embed/lgsITUruYFw",
+        },
+        {
+          name: "4 - El cuarteto de nos",
+          id: 3,
+          URL: "https://www.youtube.com/embed/re_dUQh2Vtg",
+        },
+        {
+          name: "5 - Ratata",
+          id: 4,
+          URL: "https://www.youtube.com/embed/Vq2evS44q7s",
+        },
+        {
+          name: "6 - Laureles",
+          id: 5,
+          URL: "https://www.youtube.com/embed/gkVzfv84lU0",
+        },
+        {
+          name: "7 - Disconformidad",
+          id: 6,
+          URL: "https://www.youtube.com/embed/xb9cSfPOb1c",
+        },
+        {
+          name: "8 - Nazaret",
+          id: 7,
+          URL: "https://www.youtube.com/embed/iaJKy1Ic3_I",
+        },
+        {
+          name: "9 - Hiligths",
+          id: 8,
+          URL: "https://www.youtube.com/embed/h3DY-SAYhvY",
+        },
+      ],
+    },
   ]);
+
+  const removeCart = product =>
+    setCoursesCart(prevState =>
+      prevState.filter(item => item.id !== product.id)
+    );
 
   const courseSelected = coursedetails =>
     allCourses.find(course => course.id === Number(coursedetails));
@@ -125,11 +158,10 @@ function Context ( { children } ) {
     setMyCourses,
     courseSelected,
     coursesCart,
-    coursesCart,
     setCoursesCart,
     idCourse,
     setIdCourse,
-    removeCart
+    removeCart,
   };
 
   return (

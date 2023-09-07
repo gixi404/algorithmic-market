@@ -1,96 +1,207 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ContextProps } from "../Context";
 import Header from "../Body/Header";
 import Footer from "../Body/Footer";
+import ProgressBar from "./ProgressBar";
+import TitleCourse from "./TitleCourse";
+import ArrowBack from "../Body/ArrowBack";
+import ClassVideo from "./ClassVideo";
+import ControlsVideo from "./ControlsVideo";
+import FinishCourse from "./FinishCourse";
+import CircleSVG from "./CircleSVG";
+import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 
 function MediaPlayer() {
-  let progressCourse = 25;
+  const { coursename } = useParams();
+  const { myCourses } = useContext(ContextProps);
+  const [classData, setClassData] = useState({});
+  const [numberClass, setNumberClass] = useState(0);
+  const [courseInProgress, setCourseInProgress] = useState(true);
+  const [loadContent, setLoadContent] = useState(false);
+  const [progressValue, setProgressValue] = useState(11.11);
+  const [lastClass, setLastClass] = useState(0);
 
-  const ProgressSVG = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="346"
-      height="16"
-      viewBox="0 0 346 16"
-      fill="none"
-      color="#FF6700"
-    >
-      <path
-        d="M8 8L338 8.00003"
-        stroke="#f2a470"
-        strokeWidth="15"
-        strokeLinecap="round"
-      />
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="120"
-        height="16"
-        viewBox="0 0 120 16"
-        fill="none"
-      >
-        <path
-          d="M8 8H112"
-          stroke="#FF6700"
-          strokeWidth="15"
-          strokeLinecap="round"
-        />
-      </svg>
-    </svg>
-  );
+  useEffect(() => {
+    function selectCourse() {
+      switch (coursename) {
+        case "Curso Inicial":
+          {
+            setClassData({
+              classId: direction(0).id,
+              className: direction(0).name,
+              classURL: direction(0).URL,
+            });
+            setLastClass(myCourses[0].classes.length);
+          }
+          break;
 
-  const CircleSVG = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="25"
-      viewBox="0 0 29 29"
-      fill="none"
-    >
-      <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
-    </svg>
-  );
+        case "Curso Medio":
+          {
+            setClassData({
+              classId: direction(1).id,
+              className: direction(1).name,
+              classURL: direction(1).URL,
+            });
+            setLastClass(myCourses[1].classes.length);
+          }
+          break;
+
+        default:
+          {
+            setClassData({
+              classId: direction(0).id,
+              className: direction(0).name,
+              classURL: direction(0).URL,
+            });
+            setLastClass(myCourses[0].classes.length);
+          }
+          break;
+      }
+    }
+
+    return () => selectCourse();
+  }, [coursename]);
+
+  function direction(numberCourse, numberClass = 0) {
+    return myCourses[numberCourse].classes[numberClass];
+  }
+
+  function previousClass() {
+    setLoadContent(true);
+
+    if (numberClass > 0) {
+      let previousClassData = {};
+
+      switch (coursename) {
+        case "Curso Inicial":
+          {
+            previousClassData = {
+              classId: direction(0, numberClass - 1).id,
+              className: direction(0, numberClass - 1).name,
+              classURL: direction(0, numberClass - 1).URL,
+            };
+          }
+          break;
+
+        case "Curso Medio":
+          {
+            previousClassData = {
+              classId: direction(1, numberClass - 1).id,
+              className: direction(1, numberClass - 1).name,
+              classURL: direction(1, numberClass - 1).URL,
+            };
+          }
+          break;
+
+        default:
+          {
+            previousClassData = {
+              classId: direction(0, numberClass - 1).id,
+              className: direction(0, numberClass - 1).name,
+              classURL: direction(0, numberClass - 1).URL,
+            };
+          }
+          break;
+      }
+
+      setCourseInProgress(true);
+      setNumberClass(numberClass - 1);
+      setClassData(previousClassData);
+      setProgressValue(progressValue - 11.11);
+    }
+  }
+
+  function nextClass() {
+    setLoadContent(true);
+
+    if (numberClass < lastClass - 1) {
+      let nextClassData = {};
+
+      switch (coursename) {
+        case "Curso Inicial":
+          {
+            nextClassData = {
+              classId: direction(0, numberClass + 1).id,
+              className: direction(0, numberClass + 1).name,
+              classURL: direction(0, numberClass + 1).URL,
+            };
+          }
+          break;
+
+        case "Curso Medio":
+          {
+            nextClassData = {
+              classId: direction(1, numberClass + 1).id,
+              className: direction(1, numberClass + 1).name,
+              classURL: direction(1, numberClass + 1).URL,
+            };
+          }
+          break;
+
+        default:
+          {
+            nextClassData = {
+              classId: direction(0, numberClass + 1).id,
+              className: direction(0, numberClass + 1).name,
+              classURL: direction(0, numberClass + 1).URL,
+            };
+          }
+          break;
+      }
+      setNumberClass(numberClass + 1);
+      setClassData(nextClassData);
+      setProgressValue(progressValue + 11.11);
+    }
+  }
 
   return (
     <Container>
       <Header />
 
+      <ArrowBack route="/mycourses" />
+
       <MediaContainer>
-        <HeaderMedia>
-          <TitleCourse>
-            Course Initial
-            <span>Unit 2.1 Derivatives Trading</span>
-          </TitleCourse>
+        {!loadContent ? (
+          <HeaderMedia>
+            <TitleCourse coursename={coursename} classData={classData} />
+            <ProgressBar progressValue={progressValue} />
+          </HeaderMedia>
+        ) : (
+          <HeaderMediaSkeleton>
+            <Skeleton />
+          </HeaderMediaSkeleton>
+        )}
 
-          <ProgressContainer>
-            <ProgressSVG name="progress-course" max="100" value="25" />
-            <LabelBar htmlFor="progress-course">
-              Progress {progressCourse}%
-            </LabelBar>
-          </ProgressContainer>
-        </HeaderMedia>
+        {courseInProgress ? (
+          <ClassVideo
+            classData={classData}
+            loadContent={loadContent}
+            setLoadContent={setLoadContent}
+          />
+        ) : (
+          <FinishCourse setCourseInProgress={setCourseInProgress} />
+        )}
 
-        <Video
-          src="https://www.youtube.com/embed/9Wc-WVV9Jdw"
-          frameBorder="0"
-          allowFullScreen={true}
+        <ControlsVideo
+          numberClass={numberClass}
+          previousClass={previousClass}
+          nextClass={nextClass}
+          lastClass={lastClass}
+          courseInProgress={courseInProgress}
+          setCourseInProgress={setCourseInProgress}
         />
-
-        <Controls>
-          <ControlBtn>Previous Class</ControlBtn>
-          <ControlBtn>Next Class</ControlBtn>
-        </Controls>
       </MediaContainer>
 
       <ContentContainer>
         <TitleContent>
-          Content
-          <span>Here the process and content of this course will be shown</span>
+          Contenido
+          <span>Aquí se mostrará el proceso y contenido de este curso.</span>
         </TitleContent>
 
-        <NameCourse>Premier Course: Mastering the Markets</NameCourse>
+        <NameCourse>Curso Inicial: Master en trading</NameCourse>
 
         <Themes>
           <Article>
@@ -104,55 +215,22 @@ function MediaPlayer() {
               }}
             >
               <CircleSVG />
-              <FirstClass>Unit 1: Advanced Technical Analysis</FirstClass>
+              <FirstClass>Unidad 1: Avances técnicos</FirstClass>
             </div>
             <FollowingClasses>
-              <span>1.1. Introduction to Advanced Technical Analysis</span>
-              <span>1.2. Oscillators and Momentum Indicators</span>
-              <span>1.3. Advanced Technical Analysis Strategies</span>
-            </FollowingClasses>
-          </Article>
-
-          <Article>
-            <div
-              style={{
-                display: "flex",
-                columnGap: "1.3rem",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-              }}
-            >
-              <CircleSVG />
-              <FirstClass>Unit 1: Advanced Technical Analysis</FirstClass>
-            </div>
-            <FollowingClasses>
-              <span>1.1. Introduction to Advanced Technical Analysis</span>
-              <span>1.2. Oscillators and Momentum Indicators</span>
-              <span>1.3. Advanced Technical Analysis Strategies</span>
-            </FollowingClasses>
-          </Article>
-
-          <Article>
-            <div
-              style={{
-                display: "flex",
-                columnGap: "1.3rem",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-              }}
-            >
-              <CircleSVG />
-              <FirstClass>Unit 1: Advanced Technical Analysis</FirstClass>
-            </div>
-            <FollowingClasses>
-              <span>1.1. Introduction to Advanced Technical Analysis</span>
-              <span>1.2. Oscillators and Momentum Indicators</span>
-              <span>1.3. Advanced Technical Analysis Strategies</span>
+              <span>1.1 Introducción a los avances técnicos</span>
+              <span>1.2 Oscilación e indicadores</span>
+              <span>1.3 Monumentos de velas</span>
+              <span>1.4 Introducción a los avances técnicos</span>
+              <span>1.5 Oscilación e indicadores</span>
+              <span>1.6 Introducción a los avances técnicos</span>
+              <span>1.7 Oscilación e indicadores</span>
+              <span>1.8 Monumentos de velas</span>
+              <span>1.9 Monumentos de velas</span>
             </FollowingClasses>
           </Article>
         </Themes>
+
         <Footer />
       </ContentContainer>
     </Container>
@@ -179,7 +257,11 @@ const Container = styled.div`
     justify-content: space-between;
     row-gap: 2.3rem;
 
-    @media (max-width: 480px) {
+    @media (max-width: 992px) {
+      width: 90vw;
+    }
+
+    @media (max-width: 576px) {
       width: 100vw;
     }
   `,
@@ -189,92 +271,32 @@ const Container = styled.div`
     align-items: end;
     justify-content: space-between;
     width: 100%;
+    height: 77px;
 
-    @media (max-width: 480px) {
+    @media (max-width: 992px) {
       flex-direction: column;
       align-items: center;
       row-gap: 1.5rem;
     }
   `,
-  TitleCourse = styled.p`
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    font-family: "Poppins", sans-serif;
-    font-size: 2rem;
+  HeaderMediaSkeleton = styled.header`
+    width: 100%;
+    height: 77px;
+    border-radius: 0.6rem;
+    animation-name: skeleton;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
 
-    span {
-      color: #939393;
-      font-size: 1.2rem;
-    }
-  `,
-  ProgressContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    column-gap: 1.3rem;
-
-    @media (max-width: 480px) {
-      flex-direction: column-reverse;
-      align-items: start;
-      row-gap: 0.5rem;
-    }
-  `,
-  LabelBar = styled.label`
-    font-family: "Poppins", sans-serif;
-    font-size: 1.3rem;
-    font-weight: 300;
-  `,
-  Video = styled.iframe`
-    width: 99.3%;
-    height: 62vh;
-    background-color: rgb(24, 24, 84);
-
-    @media (max-width: 480px) {
-      width: 100vw;
-      height: 26vh;
-    }
-  `,
-  Controls = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 99.2%;
-    align-items: center;
-    justify-content: space-between;
-
-    @media (max-width: 480px) {
-      width: 95vw;
-      flex-direction: row;
-      column-gap: 1rem;
-    }
-  `,
-  ControlBtn = styled.button`
-    display: flex;
-    width: 27.1875vw;
-    padding: 10px 18px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
-    border: 2px solid #ff6700;
-    background-color: transparent;
-    outline: none;
-    color: #ff6700;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 1.3rem;
-    transition-duration: 0.2s;
-
-    &:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
-
-    @media (max-width: 480px) {
-      width: 45vw;
-      font-size: 1rem;
+    @keyframes skeleton {
+      0% {
+        background-color: rgb(24, 24, 84);
+      }
+      50% {
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+      100% {
+        background-color: rgb(24, 24, 84);
+      }
     }
   `,
   ContentContainer = styled.section`
@@ -301,7 +323,7 @@ const Container = styled.div`
       display: block;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       width: 100vw;
       font-size: 1.5rem;
       text-align: center;
@@ -327,7 +349,7 @@ const Container = styled.div`
     column-gap: 1.5rem;
     row-gap: 3rem;
 
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       row-gap: 1rem;
     }
   `,
@@ -338,7 +360,7 @@ const Container = styled.div`
     align-items: end;
     justify-content: center;
 
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       width: 100vw;
       align-items: center;
     }
@@ -349,7 +371,7 @@ const Container = styled.div`
     font-size: 1.2rem;
     color: #000000;
 
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       font-size: 1rem;
     }
   `,
@@ -365,64 +387,8 @@ const Container = styled.div`
     width: 70%;
     row-gap: 0.5rem;
 
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       font-size: 1rem;
       width: 58%;
     }
   `;
-
-// const { myCourses } = useContext(ContextProps);
-// const { coursename } = useParams();
-
-// const formatCourseId = courseId.slice(0, 1);
-
-// const [classData, setClassData] = useState({
-//   classId: myCourses[0].classes[0].id,
-//   className: myCourses[0].classes[0].name,
-//   classURL: myCourses[0].classes[0].URL,
-// });
-
-// function handleChangeURL(classId) {
-//   setClassData({
-//     classId: myCourses[formatCourseId].classes[classId].id,
-//     className: myCourses[formatCourseId].classes[classId].name,
-//     classURL: myCourses[formatCourseId].classes[classId].URL,
-//   });
-// }
-
-/* <BackBtn>
-        <Link to="/mycourses">Back</Link>
-      </BackBtn> */
-/* <Sexo>
-        <MediaContainer>
-          <Reproductor>
-            <TextLevelCourse>
-              {myCourses[formatCourseId].name}
-
-              <MuerteALosGays>
-                {" - You're watching: " + classData.className}
-              </MuerteALosGays>
-            </TextLevelCourse>
-
-            {classData ? (
-              <Video
-                src={classData.classURL.toString()}
-                loop={false}
-                autoPlay={false}
-                playsInline
-                controls
-              ></Video>
-            ) : (
-              <p>Select the class to see</p>
-            )}
-          </Reproductor>
-        </MediaContainer>
-
-        <FollowingClasses>
-          {myCourses[formatCourseId].classes.map(_class => (
-            <Class key={_class.id} onClick={() => handleChangeURL(_class.id)}>
-              {_class.name}
-            </Class>
-          ))}
-        </FollowingClasses>
-      </Sexo> */
