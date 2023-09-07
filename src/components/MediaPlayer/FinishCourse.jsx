@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function FinishCourse() {
+function FinishCourse(props) {
+  const { setLoadContent } = props;
+
+  useEffect(() => setLoadContent(false), []);
+
   return (
     <FinishLetter>
       <Title>
@@ -9,14 +14,12 @@ function FinishCourse() {
         Te invitamos a continuar avanzando en tu camino hacia la excelencia
         financiera con nuestro próximo curso.
       </Title>
-      <MyCoursesBtn>
-        <Link
-          to="/mycourses"
-          style={{ textDecoration: "none", color: "#ff6700" }}
-        >
-          Ir a mis cursos
-        </Link>
-      </MyCoursesBtn>
+      <Link
+        to="/mycourses"
+        style={{ textDecoration: "none", color: "#ff6700" }}
+      >
+        <MyCoursesBtn>Ir a mis cursos</MyCoursesBtn>
+      </Link>
     </FinishLetter>
   );
 }

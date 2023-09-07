@@ -1,17 +1,11 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-import Skeleton from "react-loading-skeleton";
 
 function ClassVideo(props) {
   const { classData, setLoadContent, loadContent } = props;
 
   return (
     <>
-      {loadContent && (
-        <SkeletonContainer>
-          <Skeleton />
-        </SkeletonContainer>
-      )}
+      {loadContent && <SkeletonContainer />}
 
       <Video
         src={classData.classURL}
