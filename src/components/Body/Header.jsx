@@ -8,8 +8,8 @@ import styled from "styled-components";
 import Profile from "./Profile.jsx";
 
 function Header({ pathIsMyCourses }) {
-  const { isAuthenticated } = useAuth0();
-
+  const { isAuthenticated, } = useAuth0();
+  
   return (
     <HeaderContainer>
       <WebContainer>
@@ -17,7 +17,6 @@ function Header({ pathIsMyCourses }) {
           <WebName>Algorithmic Market</WebName>
         </Link>
 
-        {/* <Menu src={menuImg} /> */}
 
         <NavContainer>
           {pathIsMyCourses ? (
@@ -28,11 +27,11 @@ function Header({ pathIsMyCourses }) {
               <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
               <NavLink href="#contact">Contact</NavLink>
               <Icon />
-              {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
+              {!isAuthenticated &&  <LoginBtn />}
             </>
           )}
 
-          <Profile />
+          {isAuthenticated && <Profile />}
         </NavContainer>
       </WebContainer>
     </HeaderContainer>
@@ -44,7 +43,7 @@ export default Header;
 const HeaderContainer = styled.header`
     background-color: #fff;
     width: 100vw;
-    min-height: 13vh;
+    min-height: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -58,6 +57,7 @@ const HeaderContainer = styled.header`
   `,
   WebContainer = styled.div`
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,12 +71,14 @@ const HeaderContainer = styled.header`
     }
   `,
   WebName = styled.p`
-    font-size: 1.8rem;
+    font-size: 2rem;
     text-transform: uppercase;
     font-family: "Poppins", monospace;
     letter-spacing: 1.3px;
     font-weight: 600;
     color: #ff6700;
+    height:80px;
+    line-height: 96px;
   `,
   Menu = styled.img`
     display: block;
@@ -95,17 +97,18 @@ const HeaderContainer = styled.header`
     column-gap: 1.3rem;
     min-width: 30vw;
     height: 5.5vh;
-
-    /* @media (max-width: 1224px) {
-      display: none;
-    } */
+    div{
+      margin-top: 8px;
+    }
   `,
   NavLink = styled.a`
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
     font-weight: 500;
-    font-size: 1.3rem;
+    height: 80px;
+    line-height: 96px;
+    font-size: 1rem;
     text-transform: capitalize;
     transition-duration: 0.1s;
     &:hover {
@@ -117,7 +120,9 @@ const HeaderContainer = styled.header`
     text-decoration: none;
     font-family: "Poppins", monospace;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    height: 80px;
+    line-height: 96px;
     text-transform: capitalize;
     transition-duration: 0.1s;
     &:hover {

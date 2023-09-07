@@ -2,17 +2,10 @@ import styled from "styled-components";
 
 function Profile() {
   const UserSVG = () => (
-    <div
-      style={{
-        cursor:'pointer',
-        border: "2px solid #FF6700",
-        borderRadius: "10px",
-        padding: "0.5rem 0.8em ",
-      }}
-    >
+    <SvgContainer>
       <svg
-        width="24"
-        height="27"
+        width="16"
+        height="16"
         viewBox="0 0 24 27"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -26,9 +19,22 @@ function Profile() {
           fill="#FF6700"
         />
       </svg>
-    </div>
+    </SvgContainer>
   );
   return <UserSVG />;
 }
 
 export default Profile;
+ const SvgContainer = styled.div`
+      cursor:pointer;
+      border: 2px solid #FF6700;
+      border-radius: 10px;
+      padding: 0.5rem 0.8em;
+      transition: all ease .3s;
+      &:hover{
+        scale: 1.1;
+      }
+      &:active{
+        scale: 1;
+      }
+`

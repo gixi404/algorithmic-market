@@ -22,6 +22,7 @@ const FooterContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-family: "Poppins", monospace;
     justify-content: center;
     row-gap: 5px;
     border-top: 4px solid #ff6700;
@@ -33,6 +34,7 @@ const FooterContainer = styled.div`
     align-items: start;
     row-gap: 0.6rem;
     justify-content: center;
+    font-family: "Poppins", monospace;
 
     @media (min-width: 1024px) {
       width: 80vw;

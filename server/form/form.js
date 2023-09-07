@@ -23,7 +23,6 @@ async function formData(name_form, mail_form, query_form) {
     };
   const transporter = nodemailer.createTransport(config);
   const responses = await transporter.sendMail(message);
-  console.log(responses);
 }
 
 export default formData;

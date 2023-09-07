@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import useDataUser from "./hooks/useDataUser.js";
 import ReactLoading from "react-loading";
 import Header from "./components/Body/Header.jsx";
 import UserIsLogin from "./components/Log/UserIsLogin.jsx";
@@ -15,8 +16,9 @@ import Success from "./components/Courses/Success.jsx";
 import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 
 function Home() {
-  const { isLoading, isAuthenticated } = useAuth0();
-
+  const { isLoading, isAuthenticated} = useAuth0();
+  if(isAuthenticated){
+    const{profile}=useDataUser(isAuthenticated)}
   if (isLoading) {
     return (
       <LoadContainer>

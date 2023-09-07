@@ -213,14 +213,16 @@ const Container = styled.div`
     }
   `,
   Title = styled.p`
-    font-size: 2.5rem;
+    font-size: 2rem;
     display: flex;
     flex-direction: column;
     align-items: start;
+    font-family: "Poppins", monospace;
     justify-content: center;
   `,
   TitleSpan = styled.span`
-    font-size: 1.4rem;
+    font-size: 1rem;
+    font-family: "Poppins", monospace;
   `,
   Form = styled.form`
     width: 50vw;

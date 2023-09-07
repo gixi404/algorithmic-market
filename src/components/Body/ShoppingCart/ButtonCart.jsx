@@ -5,7 +5,7 @@ import IconoSVG from './ChangeCart';
 function ButtonCart() {
   return (
     <SpecialLink to="/shoppingcart">
-      <IconoSVG width="5vw" height="5vh" />
+      <IconoSVG width="2rem" height="2rem" />
     </SpecialLink>
   );
 }
