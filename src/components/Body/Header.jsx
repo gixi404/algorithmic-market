@@ -94,17 +94,13 @@ const HeaderContainer = styled.header`
     column-gap: 1.3rem;
     min-width: 30vw;
     height: 5.5vh;
-
-    /* @media (max-width: 1224px) {
-      display: none;
-    } */
   `,
   NavLink = styled.a`
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1rem;
     text-transform: capitalize;
     transition-duration: 0.1s;
     &:hover {
@@ -116,7 +112,7 @@ const HeaderContainer = styled.header`
     text-decoration: none;
     font-family: "Poppins", monospace;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-transform: capitalize;
     transition-duration: 0.1s;
     &:hover {
