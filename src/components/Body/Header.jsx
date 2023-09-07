@@ -8,8 +8,8 @@ import styled from "styled-components";
 import Profile from "./Profile.jsx";
 
 function Header({ pathIsMyCourses }) {
-  const { isAuthenticated } = useAuth0();
-
+  const { isAuthenticated, } = useAuth0();
+  
   return (
     <HeaderContainer>
       <WebContainer>
@@ -17,7 +17,6 @@ function Header({ pathIsMyCourses }) {
           <WebName>king of the market</WebName>
         </Link>
 
-        {/* <Menu src={menuImg} /> */}
 
         <NavContainer>
           {pathIsMyCourses ? (
@@ -28,11 +27,11 @@ function Header({ pathIsMyCourses }) {
               <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
               <NavLink href="#contact">Contact</NavLink>
               <Icon />
-              {isAuthenticated ? <LogoutBtn /> : <LoginBtn />}
+              {!isAuthenticated &&  <LoginBtn />}
             </>
           )}
 
-          <Profile />
+          {isAuthenticated && <Profile />}
         </NavContainer>
       </WebContainer>
     </HeaderContainer>
@@ -71,7 +70,7 @@ const HeaderContainer = styled.header`
     }
   `,
   WebName = styled.p`
-    font-size: 1.8rem;
+    font-size: 2rem;
     text-transform: uppercase;
     font-family: "Poppins", monospace;
     letter-spacing: 1.3px;

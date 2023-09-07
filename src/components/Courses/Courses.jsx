@@ -45,6 +45,7 @@ const CoursesContainer = styled.main`
     }
   `,
   Title = styled.p`
+  font-family: "Poppins", monospace;
     font-size: 2.5rem;
     display: flex;
     flex-direction: column;
@@ -53,7 +54,7 @@ const CoursesContainer = styled.main`
     row-gap: 0.5rem;
   `,
   TitleSpan = styled.span`
-    font-size: 1.4rem;
+    font-size: 1rem;
   `,
   ListCourses = styled.section`
     display: flex;

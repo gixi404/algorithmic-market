@@ -77,6 +77,7 @@ const Container = styled.section`
     flex-direction: column;
     align-items: start;
     text-align: start;
+    font-family: "Poppins", monospace;
     justify-content: space-between;
 
     @media (max-width: 480px) {
@@ -90,7 +91,8 @@ const Container = styled.section`
     }
   `,
   Title = styled.p`
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-family: "Poppins", monospace;
 
     @media (min-width: 320px) {
       font-size: 2rem;
