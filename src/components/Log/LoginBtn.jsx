@@ -9,7 +9,7 @@ function LoginBtn() {
 export default LoginBtn;
 
 const LoginButton = styled.button`
-  margin-top: 8px;
+  margin-top: 16px;
   position: relative;
   font-family: "Poppins", monospace;
   padding: 8px 15px;
