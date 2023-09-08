@@ -107,10 +107,7 @@ const Header = styled.header`
     padding: 0 ;
     cursor: pointer;
     transition: all .5s ease;
-    &:hover{
-        color: #222;
-        background-color: transparent;
-        }
+    margin-top: 1vh;
    }
  p{
     transition: all .5s ease;
@@ -124,6 +121,7 @@ const Header = styled.header`
 `;
 const Img = styled.img`
     height: 4vh;
+    margin-top: .3vh;
     width: 4vw;
     cursor: pointer;
     transition: all .5s ease;
