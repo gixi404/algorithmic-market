@@ -41,7 +41,7 @@ function indexCart () {
                     (coursesCart.map( course => (
                         <ItemCart key={course.id} data={course} />
                     ) ))
-                    :( 'no hay cursos aun...')
+                    :(<P title="chupapija"> aun no hay cursos...</P>)
                 }
             </ItemContainer>
             <Footer>
@@ -138,8 +138,16 @@ const ItemContainer = styled.main`
     height:66vh ;
     width: 28vw;
     overflow: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
 `;
-
+const P = styled.p`
+    font-family: "Poppins", monospace;
+    font-weight: 500;
+    cursor: pointer;
+`;
 const Footer = styled.footer`
     height: 13vh;
     width: 26vw;
