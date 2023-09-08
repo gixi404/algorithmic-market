@@ -3,11 +3,7 @@ import styled from "styled-components";
 function ItemClass(props) {
   const { item, selectClassManually } = props;
 
-  return (
-    <P key={item.id} onClick={() => selectClassManually(item.id)}>
-      {item.name}
-    </P>
-  );
+  return <P onClick={() => selectClassManually(item.id)}>{item.name}</P>;
 }
 
 export default ItemClass;

@@ -279,6 +279,7 @@ function MediaPlayer() {
             <ListFollowingClasses>
               {myCourses[courseId]?.classes.map(item => (
                 <ItemClass
+                  key={item.id}
                   item={item}
                   selectClassManually={selectClassManually}
                 />
