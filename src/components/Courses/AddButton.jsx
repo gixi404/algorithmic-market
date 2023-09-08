@@ -5,7 +5,7 @@ import { ContextProps } from '../Context';
 import styled from "styled-components";
 import { useEffect } from "react";
 
-function PayLayout ( { courseSelected } ) {
+function AddButton ( { courseSelected } ) {
   const {setCoursesCart,coursesCart} = useContext(ContextProps)
   const title = "Buy Now!";
   const addCart = () => {
@@ -19,21 +19,13 @@ function PayLayout ( { courseSelected } ) {
   const handleClick = () => {
     addCart()
   }
-  /*
-  const { setCoursesCart, coursesCart } = useContext( ContextProps )
-  const { buyUrl } = useBuyPetition( { courseSelected } );
-  const url = buyUrl;
-  useEffect( () => {
-    setCoursesCart( [courseSelected] )
-    console.log(coursesCart)
-  }, [buyUrl] ) */
   return (
     <Container>
       <Btn to='/shoppingcart' onClick={handleClick}>{title}</Btn>
     </Container>
   );
 }
-export default PayLayout;
+export default AddButton;
 
 const Container = styled.div`
   position: relative;

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import PayLayout from './PayLayout';
+import AddButton from './AddButton.jsx';
 import { useContext } from 'react';
 import { ContextProps } from '../Context';
 import styled from 'styled-components'
@@ -47,7 +47,7 @@ function detailCourses () {
       </CourseMetas>
       <Compra>
         <span></span>
-        <PayLayout courseSelected={courseSelected(coursedetails)} />
+        <AddButton courseSelected={courseSelected(coursedetails)} />
         <p>${cash} USD</p>
       </Compra>
       </Details>

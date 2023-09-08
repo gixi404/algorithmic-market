@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
-import ItemCart from "./ItemCart";
-import trash from '../../../img/trash-bin-2-svgrepo-com.svg'
-import X from '../../../img/close-svgrepo-com.svg'
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect,useState } from "react";
 import { useContext } from "react";
 import { ContextProps } from "../../Context";
+import ItemCart from "./ItemCart.jsx";
+import Btn from './ButtonCart.jsx'
+import trash from '../../../img/trash-bin-2-svgrepo-com.svg'
+import X from '../../../img/close-svgrepo-com.svg'
 import styled from "styled-components"
-import { useEffect } from "react";
-import { useState } from "react";
 
 function indexCart () {
+    const {isAuthenticated, loginWithPopup} = useAuth0()
     const { coursesCart, setCoursesCart } = useContext( ContextProps )
     const [value, setValue] = useState( 0 )
 
@@ -26,7 +28,6 @@ function indexCart () {
     const handleClick = () => {
         setCoursesCart([])
     }
-    
     return (
         <CartContainer>
             <Header>
@@ -35,18 +36,27 @@ function indexCart () {
                 <Link to='/'><Img src={X} alt="close cart"/></Link>
             </Header>
             <ItemContainer>
-                {coursesCart.map( course => (
-                    <ItemCart key={course.id} data={course} />
-                ) )}
+                {
+                    coursesCart.length > 0 ? 
+                    (coursesCart.map( course => (
+                        <ItemCart key={course.id} data={course} />
+                    ) ))
+                    :( 'no hay cursos aun...')
+                }
             </ItemContainer>
             <Footer>
                 <Article>
                     <p>Bag Subtotal</p>
                     <strong>${value}</strong>
                 </Article>
-          <SubmitContainer>
-            <SubmitBtn value="Buy now!" />
-          </SubmitContainer>
+                {isAuthenticated ? (
+                <Btn courses={coursesCart}/>)
+                
+                :(
+                <SubmitContainer>
+                    <SubmitBtn onClick={loginWithPopup}>Buy Now!</SubmitBtn>
+                </SubmitContainer>)
+                }
             </Footer>
         </CartContainer>
     )
@@ -68,20 +78,6 @@ const CartContainer = styled.div`
     height:95vh;
     h1{
         text-align: center;
-    }
-    a{
-        text-decoration: none;
-        color: #ebebeb;
-        background-color: #ff6700;
-        border-radius: 20px;
-        padding: 1vh 2vw;
-        transition:  all .3s ease;
-        &:hover{
-            background-color: #f88335;
-        }
-        &:active{
-            background-color: #a55621;
-        }
     }
 `;
 
@@ -140,8 +136,8 @@ const Img = styled.img`
 `;
 const ItemContainer = styled.main`
     height:66vh ;
+    width: 28vw;
     overflow: auto;
-    scrollbar-gutter: stable;
 `;
 
 const Footer = styled.footer`
@@ -174,7 +170,7 @@ const SubmitContainer = styled.article`
     }
 `
 
-const SubmitBtn = styled.input`
+const SubmitBtn = styled.button`
     margin: auto 0;
     font-family: "Poppins", monospace;
     font-weight: 500;
