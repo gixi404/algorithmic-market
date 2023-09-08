@@ -18,6 +18,7 @@ function LogoutBtn() {
 export default LogoutBtn;
 
 const LogoutButton = styled.button`
+  margin-top: 16px;
   position: relative;
   font-family: "Poppins", monospace;
   padding: 8px 15px;
