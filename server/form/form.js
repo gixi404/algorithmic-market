@@ -12,17 +12,23 @@ async function formData(name_form, mail_form, query_form) {
     message = {
       from: "gixipixel@gmail.com",
       to: "gioliotta.io@gmail.com",
-      subject: "Support King of the Market",
+      subject: "Soporte Algorithmic Market",
       html: `
        <div style="text-align: center">
-         <h1>Hola, soy ${name_form}</h1>. <br />
-         <p>Mi consulta es ${query_form}</p> <br />
-         Mail: <b>${mail_form}</b></p>
+         <h1>
+            Hola, soy ${name_form}
+         </h1>. 
+         <br />
+         <p>
+            Mi consulta es ${query_form} <br />
+            Mail: <b>${mail_form}</b>
+         </p>
        </div>
       `,
     };
   const transporter = nodemailer.createTransport(config);
   const responses = await transporter.sendMail(message);
+  console.log(responses);
 }
 
 export default formData;

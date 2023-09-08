@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 export function useBuyPetition({ courses }) {
   const [buyUrl, setBuyUrl] = useState('')
-  const [courseList, setCourseList] = useState(['medallones de papa'])
   const mappedList = courses.map(course=>
     ({
       price_data: {
@@ -17,17 +16,17 @@ export function useBuyPetition({ courses }) {
 
   async function handleBuy() {
     const dataToFetch = {
-      method: 'POST',
+      method: "post",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer yourAccessToken'
+        "Content-Type": "application/json",
+        Authorization: "Bearer yourAccessToken",
       },
       body: JSON.stringify(mappedList)
     }
 
     try {
       const res = await fetch(
-        'http://localhost:3001/create-checkout-session',
+        "http://localhost:3001/create-checkout-session",
         dataToFetch
       )
       const data = await res.json()
@@ -41,5 +40,5 @@ export function useBuyPetition({ courses }) {
     handleBuy()
   }, [courses])
 
-  return { buyUrl }
+  return { buyUrl };
 }

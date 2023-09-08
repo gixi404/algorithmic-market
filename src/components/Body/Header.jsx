@@ -8,15 +8,14 @@ import styled from "styled-components";
 import Profile from "./Profile.jsx";
 
 function Header({ pathIsMyCourses }) {
-  const { isAuthenticated, } = useAuth0();
-  
+  const { isAuthenticated } = useAuth0();
+
   return (
     <HeaderContainer>
       <WebContainer>
         <Link to="/">
-          <WebName>Algorithmic Market</WebName>
+          <WebName translate="no">Algorithmic Market</WebName>
         </Link>
-
 
         <NavContainer>
           {pathIsMyCourses ? (
@@ -27,7 +26,7 @@ function Header({ pathIsMyCourses }) {
               <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
               <NavLink href="#contact">Contact</NavLink>
               <Icon />
-              {!isAuthenticated &&  <LoginBtn />}
+              {!isAuthenticated && <LoginBtn />}
             </>
           )}
 
@@ -70,14 +69,14 @@ const HeaderContainer = styled.header`
       justify-content: space-between;
     }
   `,
-  WebName = styled.p`
+  WebName = styled.h1`
     font-size: 2rem;
     text-transform: uppercase;
     font-family: "Poppins", monospace;
     letter-spacing: 1.3px;
     font-weight: 600;
     color: #ff6700;
-    height:80px;
+    height: 80px;
     line-height: 96px;
   `,
   Menu = styled.img`
@@ -97,7 +96,7 @@ const HeaderContainer = styled.header`
     column-gap: 1.3rem;
     min-width: 30vw;
     height: 80px;
-    div{
+    div {
       margin-top: 16px;
     }
   `,

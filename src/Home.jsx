@@ -16,9 +16,10 @@ import Success from "./components/Courses/Success.jsx";
 import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 
 function Home() {
-  const { isLoading, isAuthenticated} = useAuth0();
-  if(isAuthenticated){
-    const{profile}=useDataUser(isAuthenticated)}
+  const { isLoading, isAuthenticated } = useAuth0();
+  if (isAuthenticated) {
+    const { profile } = useDataUser(isAuthenticated);
+  }
   if (isLoading) {
     return (
       <LoadContainer>
@@ -42,6 +43,7 @@ function Home() {
         <Route path="/shoppingcart" element={<IndexCart />} />
       </Routes>
       <Header />
+
       <Banner />
       <Courses />
       {isAuthenticated && <UserIsLogin />}
