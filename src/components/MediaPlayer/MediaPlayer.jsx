@@ -12,6 +12,7 @@ import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
 import CircleSVG from "./CircleSVG";
 import styled from "styled-components";
+import ItemClass from "./ItemClass";
 
 function MediaPlayer() {
   const { coursename } = useParams();
@@ -22,6 +23,7 @@ function MediaPlayer() {
   const [loadContent, setLoadContent] = useState(false);
   const [progressValue, setProgressValue] = useState(11.11);
   const [lastClass, setLastClass] = useState(0);
+  const [courseId, setCourseId] = useState(null);
 
   useEffect(() => {
     function selectCourse() {
@@ -33,6 +35,7 @@ function MediaPlayer() {
               className: direction(0).name,
               classURL: direction(0).URL,
             });
+            setCourseId(myCourses[0].id);
             setLastClass(myCourses[0].classes.length);
           }
           break;
@@ -44,6 +47,7 @@ function MediaPlayer() {
               className: direction(1).name,
               classURL: direction(1).URL,
             });
+            setCourseId(myCourses[1].id);
             setLastClass(myCourses[1].classes.length);
           }
           break;
@@ -55,6 +59,7 @@ function MediaPlayer() {
               className: direction(2).name,
               classURL: direction(2).URL,
             });
+            setCourseId(myCourses[2].id);
             setLastClass(myCourses[2].classes.length);
           }
           break;
@@ -66,6 +71,7 @@ function MediaPlayer() {
               className: direction(0).name,
               classURL: direction(0).URL,
             });
+            setCourseId(myCourses[0].id);
             setLastClass(myCourses[0].classes.length);
           }
           break;
@@ -185,6 +191,33 @@ function MediaPlayer() {
     }
   }
 
+  function selectClassManually(classId) {
+    function updateClass() {
+      const classSelected = myCourses[courseId].classes.find(
+        _class => _class.id === classId
+      );
+
+      const { id: idClass } = classSelected;
+
+      setClassData({
+        classId: direction(courseId, idClass).id,
+        className: direction(courseId, idClass).name,
+        classURL: direction(courseId, idClass).URL,
+      });
+    }
+
+    function scrollToVideo() {
+      setLoadContent(true);
+      const container = document.querySelector("#elScrollVaInThisSite");
+      const position = container.getBoundingClientRect();
+      window.scrollTo(position.x, position.y);
+      //Para vos vitto que te los vas a preguntar, si coloco el id del scroll en el componente "ClassVideo" sube prácticamente hasta el Header y nao nao.
+    }
+
+    updateClass();
+    scrollToVideo();
+  }
+
   return (
     <Container>
       <Header />
@@ -220,13 +253,13 @@ function MediaPlayer() {
         />
       </MediaContainer>
 
-      <ContentContainer>
+      <ContentContainer id="elScrollVaInThisSite">
         <TitleContent>
           Contenido
-          <span>Aquí se mostrará el proceso y contenido de este curso.</span>
+          <span>Aquí se mostrará el proceso de este curso.</span>
         </TitleContent>
 
-        <NameCourse>Curso Inicial: Master en trading</NameCourse>
+        <NameCourse>{coursename}</NameCourse>
 
         <Themes>
           <Article>
@@ -240,19 +273,17 @@ function MediaPlayer() {
               }}
             >
               <CircleSVG />
-              <FirstClass>Unidad 1: Avances técnicos</FirstClass>
+              <ClassesText>Clases</ClassesText>
             </div>
-            <FollowingClasses>
-              <span>1.1 Introducción a los avances técnicos</span>
-              <span>1.2 Oscilación e indicadores</span>
-              <span>1.3 Monumentos de velas</span>
-              <span>1.4 Introducción a los avances técnicos</span>
-              <span>1.5 Oscilación e indicadores</span>
-              <span>1.6 Introducción a los avances técnicos</span>
-              <span>1.7 Oscilación e indicadores</span>
-              <span>1.8 Monumentos de velas</span>
-              <span>1.9 Monumentos de velas</span>
-            </FollowingClasses>
+
+            <ListFollowingClasses>
+              {myCourses[courseId]?.classes.map(item => (
+                <ItemClass
+                  item={item}
+                  selectClassManually={selectClassManually}
+                />
+              ))}
+            </ListFollowingClasses>
           </Article>
         </Themes>
 
@@ -340,7 +371,7 @@ const Container = styled.div`
   NameCourse = styled.p`
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #ff6700;
     text-align: center;
     width: 100vw;
@@ -370,7 +401,7 @@ const Container = styled.div`
       align-items: center;
     }
   `,
-  FirstClass = styled.p`
+  ClassesText = styled.p`
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 1.2rem;
@@ -380,7 +411,7 @@ const Container = styled.div`
       font-size: 1rem;
     }
   `,
-  FollowingClasses = styled.p`
+  ListFollowingClasses = styled.ul`
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-size: 1.1rem;

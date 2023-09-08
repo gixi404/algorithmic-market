@@ -61,7 +61,7 @@ const TextMyCourses = styled.p`
 
 const ListMyCourses = styled.ol`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 80%;

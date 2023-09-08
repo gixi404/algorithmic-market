@@ -1,37 +1,38 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 export function useBuyPetition({ courseSelected }) {
-  const [buyUrl, setBuyUrl] = useState('')
+  const [buyUrl, setBuyUrl] = useState("");
+
   async function handleBuy() {
     const dataToFetch = {
-      method: 'POST',
+      method: "post",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer yourAccessToken'
+        "Content-Type": "application/json",
+        Authorization: "Bearer yourAccessToken",
       },
-      body: JSON.stringify(courseSelected)
-    }
+      body: JSON.stringify(courseSelected),
+    };
 
     try {
       const res = await fetch(
-        'http://localhost:3001/create-checkout-session',
+        "http://localhost:3001/create-checkout-session",
         dataToFetch
-      )
+      );
 
       if (!res.ok) {
-        throw new Error('La solicitud de compra falló.')
+        throw new Error("La solicitud de compra falló.");
       }
 
-      const data = await res.json()
-      setBuyUrl(data)
+      const data = await res.json();
+      setBuyUrl(data);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 
   useEffect(() => {
-    handleBuy()
-  }, [courseSelected])
+    handleBuy();
+  }, [courseSelected]);
 
-  return { buyUrl }
+  return { buyUrl };
 }

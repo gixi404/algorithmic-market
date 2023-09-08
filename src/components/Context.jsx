@@ -39,7 +39,7 @@ function Context({ children }) {
       name: "Curso Inicial",
       price: 200,
       img: basicCourseImg,
-      id: 0 + " initialCourse",
+      id: 0,
       classes: [
         {
           name: "1 - Introducción a mercados",
@@ -92,12 +92,12 @@ function Context({ children }) {
       name: "Curso Medio",
       price: 200,
       img: basicCourseImg,
-      id: 1 + " midCourse",
+      id: 1,
       classes: [
         {
           name: "1 - Pijas gratis",
           id: 0,
-          URL: "https://www.youtube.com/embed/d6P7kWUiDMY",
+          URL: "que pase acceso el vigilante",
         },
         {
           name: "2 - Pene sanguíneo",
@@ -145,7 +145,7 @@ function Context({ children }) {
       name: "Curso Avanzado",
       price: 500,
       img: basicCourseImg,
-      id: 2 + " advancedCourse",
+      id: 2,
       classes: [
         {
           name: "1 - Y yo debí pasar",
