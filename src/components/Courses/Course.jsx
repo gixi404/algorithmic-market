@@ -7,7 +7,7 @@ function Course({ dataCourse }) {
     id = dataCourse.id,
     url = `/details/${id}`;
 
-  return (
+  return ( 
     <CourseContainer>
       <Img src={rata} alt="img course" />
 

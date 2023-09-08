@@ -6,7 +6,7 @@ export const connectDB = async () => {
       "mongodb+srv://algorithmicmarket:inssOPGpboy5SpFs@algorithnicmarket.hk7cd85.mongodb.net/?retryWrites=true&w=majority"
     );
     console.log("DB conected");
-  } catch (e) {
-    throw new Error("no se logro conectar con la base de datos");
+  } catch (error) {
+    throw new Error("Conexión con DB fallida: " + error.message);
   }
 };

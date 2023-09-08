@@ -15,15 +15,15 @@ import styled from "styled-components";
 import ItemClass from "./ItemClass";
 
 function MediaPlayer() {
-  const { coursename } = useParams();
-  const { myCourses } = useContext(ContextProps);
-  const [classData, setClassData] = useState({});
-  const [numberClass, setNumberClass] = useState(0);
-  const [courseInProgress, setCourseInProgress] = useState(true);
-  const [loadContent, setLoadContent] = useState(false);
-  const [progressValue, setProgressValue] = useState(11.11);
-  const [lastClass, setLastClass] = useState(0);
-  const [courseId, setCourseId] = useState(null);
+  const { coursename } = useParams(),
+    { myCourses } = useContext(ContextProps),
+    [classData, setClassData] = useState({}),
+    [numberClass, setNumberClass] = useState(0),
+    [courseInProgress, setCourseInProgress] = useState(true),
+    [loadContent, setLoadContent] = useState(false),
+    [progressValue, setProgressValue] = useState(11.11),
+    [lastClass, setLastClass] = useState(0),
+    [courseId, setCourseId] = useState(null);
 
   useEffect(() => {
     function selectCourse() {
@@ -185,6 +185,7 @@ function MediaPlayer() {
           }
           break;
       }
+
       setNumberClass(numberClass + 1);
       setClassData(nextClassData);
       setProgressValue(progressValue + 11.11);
@@ -204,6 +205,7 @@ function MediaPlayer() {
         className: direction(courseId, idClass).name,
         classURL: direction(courseId, idClass).URL,
       });
+      setNumberClass(idClass);
     }
 
     function scrollToVideo() {

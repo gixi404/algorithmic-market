@@ -2,8 +2,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function BuyBtn({ course, title, url }) {
-  const { isAuthenticated } = useAuth0();
+function BuyBtn(props) {
+  const { course, title, url } = props,
+    { isAuthenticated } = useAuth0();
+
+  BuyBtn.defaultProps = {
+    course: {
+      name: "Jonh Doe",
+      id: null,
+    },
+  };
+
   return (
     <Button>
       {isAuthenticated && course.id === 0 ? (
@@ -14,12 +23,7 @@ function BuyBtn({ course, title, url }) {
     </Button>
   );
 }
-BuyBtn.defaultProps = {
-  course: {
-    name: "Jonh Doe",
-    id: null,
-  },
-};
+
 export default BuyBtn;
 
 const Button = styled.button`

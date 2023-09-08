@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function MyCourse(props) {
-  const { dataCourse } = props;
-  const title = "View",
-    url = `/mycourses/${dataCourse.name}`;
+  const { dataCourse } = props,
+    routeCourse = `/mycourses/${dataCourse.name}}`;
 
   return (
     <>
@@ -26,7 +25,7 @@ function MyCourse(props) {
 
         <ButtonContainer>
           {/* <BuyBtn course={dataCourse} title={title} url={url} /> */}
-          <Link to={`/mycourses/${dataCourse.name}`}>go to course</Link>
+          <Link to={routeCourse}>go to course</Link>
         </ButtonContainer>
       </CourseContainer>
     </>

@@ -45,7 +45,6 @@ function Home() {
         <Route path="/shoppingcart" element={<IndexCart />} />
       </Routes>
       <Header />
-
       <Banner />
       <Courses />
       {isAuthenticated && <UserIsLogin />}

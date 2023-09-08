@@ -34,41 +34,37 @@ function MyCourses() {
 export default withAuthenticationRequired(MyCourses);
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 100vh;
-`;
-
-const MyCoursesContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-`;
-
-const TextMyCourses = styled.p`
-  font-size: 2.8rem;
-  font-family: "Poppins", monospace;
-  font-weight: 500;
-  color: #ebebeb;
-  width: 80%;
-  margin-top: 3rem;
-`;
-
-const ListMyCourses = styled.ol`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 80%;
-  padding: 2rem 0;
-  margin-bottom: 3rem;
-`;
-
-const WithoutCourses = styled.p`
-  color: #fff;
-`;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+  `,
+  MyCoursesContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  `,
+  TextMyCourses = styled.p`
+    font-size: 2.8rem;
+    font-family: "Poppins", monospace;
+    font-weight: 500;
+    color: #ebebeb;
+    width: 80%;
+    margin-top: 3rem;
+  `,
+  ListMyCourses = styled.ol`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+  `,
+  WithoutCourses = styled.p`
+    color: #fff;
+  `;

@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 
-export function useBuyPetition({ courseSelected }) {
-  const [buyUrl, setBuyUrl] = useState("");
+export function useBuyPetition(props) {
+  const { courseSelected } = props,
+    [buyUrl, setBuyUrl] = useState("");
+
+  useEffect(() => handleBuy(), [courseSelected]);
 
   async function handleBuy() {
     const dataToFetch = {
@@ -29,10 +32,6 @@ export function useBuyPetition({ courseSelected }) {
       console.error(error);
     }
   }
-
-  useEffect(() => {
-    handleBuy();
-  }, [courseSelected]);
 
   return { buyUrl };
 }

@@ -1,6 +1,5 @@
-import React, { StrictMode } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Context from "./components/Context.jsx";
@@ -9,15 +8,13 @@ import MyCourses from "./components/Log/MyCourses.jsx";
 import Privacy from "./components/Body/Privacy.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import "./index.css";
-import { useEffect } from "react";
 
 const DOMAIN = "algorithmicmarket.us.auth0.com",
-  CLIENT_ID = "CgBwpjVSJetDXDlBGJZD37NdKzmc8IWT";
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
+  CLIENT_ID = "CgBwpjVSJetDXDlBGJZD37NdKzmc8IWT",
+  root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <StrictMode>
+  <React.StrictMode>
     <Auth0Provider
       domain={DOMAIN}
       clientId={CLIENT_ID}
@@ -28,11 +25,14 @@ root.render(
           <Routes>
             <Route path="*" element={<Home />} />
             <Route path="/mycourses" element={<MyCourses />} />
-            <Route path="/mycourses/:coursename" element={<MediaPlayer />} />
+            <Route
+              path="/mycourses/:coursename/:classid"
+              element={<MediaPlayer />}
+            />
             <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </Context>
       </BrowserRouter>
     </Auth0Provider>
-  </StrictMode>
+  </React.StrictMode>
 );
