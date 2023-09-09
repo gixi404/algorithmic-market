@@ -1,13 +1,8 @@
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
-import PayLayout from "./PayLayout";
-import { ContextProps } from "../Context";
-import styled from "styled-components";
-
-function detailCourses() {
-  const { courseSelected } = useContext(ContextProps),
-    { coursedetails } = useParams(),
-    { name, cash, description } = courseSelected(coursedetails);
+import { useParams } from 'react-router-dom';
+import AddButton from './AddButton.jsx';
+import { useContext } from 'react';
+import { ContextProps } from '../Context';
+import styled from 'styled-components'
 
   return (
     <Container>
@@ -65,16 +60,14 @@ function detailCourses() {
               <p>Tercera clase de orientacion.</p>
             </ListElement>
             <Span></Span>
-          </List>
-          <Hours>
-            <span>🕛</span>Estimated Time: 30hrs
-          </Hours>
-        </CourseMetas>
-        <Compra>
-          <span></span>
-          <PayLayout courseSelected={courseSelected(coursedetails)} />
-          <p>${cash} USD</p>
-        </Compra>
+        </List>
+        <Hours><span>🕛</span>Estimated Time: 30hrs</Hours>
+      </CourseMetas>
+      <Compra>
+        <span></span>
+        <PayLayout courseSelected={courseSelected(coursedetails)} />
+        <p>${cash} USD</p>
+      </Compra>
       </Details>
     </Container>
   );

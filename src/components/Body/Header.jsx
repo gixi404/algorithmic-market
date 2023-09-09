@@ -1,7 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "../Log/LoginBtn.jsx";
-import Icon from "../../components/Body/ShoppingCart/ButtonCart.jsx";
+import LogoutBtn from "../Log/LogoutBtn.jsx";
+import menuImg from "../../img/menu.png";
+import Icon from "../../components/Body/ShoppingCart/IconCart.jsx";
 import styled from "styled-components";
 import Profile from "./Profile.jsx";
 

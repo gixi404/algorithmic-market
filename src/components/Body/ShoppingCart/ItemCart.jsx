@@ -31,15 +31,22 @@ const Item = styled.article`
     margin: 1.5vh 0;
     background-color: #fff5ef;
     height: 20vh;
-    width: 28vw;
+    width: 27vw;
     display: flex;
     font-family: "Poppins", monospace;
     align-items: center;
     justify-content: space-around;
     box-shadow: 1px 1px 3px #ff6700;
     border-radius: 8px;
-  `,
-  IMG = styled.img`
+    transition: all .5s ease;
+    cursor: pointer;
+    &:hover{
+        background-color: #000;
+        transform: rotate(360deg);
+    }
+`;
+
+const IMG = styled.img`
     height: 16vh;
     width: 10vw;
   `,

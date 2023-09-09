@@ -1,14 +1,19 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect,useState } from "react";
+import { useContext } from "react";
 import { ContextProps } from "../../Context";
-import ItemCart from "./ItemCart";
-import trash from "../../../img/trash-bin-2-svgrepo-com.svg";
-import X from "../../../img/close-svgrepo-com.svg";
-import styled from "styled-components";
+import ItemCart from "./ItemCart.jsx";
+import Btn from './ButtonCart.jsx'
+import trash from '../../../img/trash-bin-2-svgrepo-com.svg'
+import X from '../../../img/close-svgrepo-com.svg'
+import styled from "styled-components"
 
-function indexCart() {
-  const { coursesCart, setCoursesCart } = useContext(ContextProps),
-    [value, setValue] = useState(0);
+function indexCart () {
+    const {isAuthenticated, loginWithPopup} = useAuth0()
+    const { coursesCart, setCoursesCart } = useContext( ContextProps )
+    const [value, setValue] = useState( 0 )
 
   useEffect(() => {
     function recuderCash() {
@@ -20,35 +25,33 @@ function indexCart() {
     recuderCash();
   }, [coursesCart]);
 
-  const handleClick = () => setCoursesCart([]);
-
-  return (
-    <CartContainer>
-      <Header>
-        <h3>Added to bag</h3>
-        <Img src={trash} alt="eraser buys" onClick={handleClick} />
-        <Link to="/">
-          <Img src={X} alt="close cart" />
-        </Link>
-      </Header>
-
-      <ItemContainer>
-        {coursesCart.map(course => (
-          <ItemCart key={course.id} data={course} />
-        ))}
-      </ItemContainer>
-
-      <Footer>
-        <Article>
-          <p>Bag Subtotal</p>
-          <strong>${value}</strong>
-        </Article>
-        <SubmitContainer>
-          <SubmitBtn value="Buy now!" />
-        </SubmitContainer>
-      </Footer>
-    </CartContainer>
-  );
+    const handleClick = () => {
+        setCoursesCart([])
+    }
+    
+    return (
+        <CartContainer>
+            <Header>
+                <h3>Added to bag</h3>
+                <Img src={trash} alt="eraser buys" onClick={handleClick}/>
+                <Link to='/'><Img src={X} alt="close cart"/></Link>
+            </Header>
+            <ItemContainer>
+                {coursesCart.map( course => (
+                    <ItemCart key={course.id} data={course} />
+                ) )}
+            </ItemContainer>
+            <Footer>
+                <Article>
+                    <p>Bag Subtotal</p>
+                    <strong>${value}</strong>
+                </Article>
+          <SubmitContainer>
+            <SubmitBtn value="Buy now!" />
+          </SubmitContainer>
+            </Footer>
+        </CartContainer>
+    )
 }
 export default indexCart;
 
@@ -68,56 +71,57 @@ const CartContainer = styled.div`
     h1 {
       text-align: center;
     }
-    a {
-      text-decoration: none;
-      color: #ebebeb;
-      background-color: #ff6700;
-      border-radius: 20px;
-      padding: 1vh 2vw;
-      transition: all 0.3s ease;
-      &:hover {
-        background-color: #f88335;
-      }
-      &:active {
-        background-color: #a55621;
-      }
+    a{
+        text-decoration: none;
+        color: #ebebeb;
+        background-color: #ff6700;
+        border-radius: 20px;
+        padding: 1vh 2vw;
+        transition:  all .3s ease;
+        &:hover{
+            background-color: #f88335;
+        }
+        &:active{
+            background-color: #a55621;
+        }
     }
-  `,
-  Header = styled.header`
-    width: 28vw;
-    padding: 0 1vw;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    height: 12vh;
-    border-bottom: 0.5vh solid #ff6700;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    h3 {
-      text-align: start;
-      font-family: "Poppins", monospace;
-      font-size: 1.5rem;
-      color: #ff6700;
-      width: 18vw;
-    }
-    a {
-      font-family: "Poppins", monospace;
-      width: 5vw;
-      background-color: transparent;
-      color: #2e2e2e;
-      width: max-content;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.5s ease;
-      &:hover {
+`;
+
+const Header = styled.header`
+ width: 28vw;
+ padding: 0 1vw;
+ border-top-left-radius: 8px;
+ border-top-right-radius: 8px;
+ height: 12vh;
+ border-bottom: .5vh solid #ff6700;
+ display: flex;
+ align-items: center;
+ justify-content: end;
+ h3{
+    text-align: start;
+    font-family: "Poppins", monospace;
+    font-size: 1.5rem;
+    color: #ff6700;
+    width: 18vw;
+ }
+ a{
+    font-family: "Poppins", monospace;
+    width: 5vw;
+    background-color: transparent;
+    color: #2e2e2e;
+    width: max-content;
+    padding: 0 ;
+    cursor: pointer;
+    transition: all .5s ease;
+    &:hover{
         color: #222;
         background-color: transparent;
-      }
-    }
-    p {
-      transition: all 0.5s ease;
-      cursor: pointer;
-      &:hover {
+        }
+   }
+ p{
+    transition: all .5s ease;
+    cursor: pointer;
+    &:hover{
         color: #222;
         padding: 0 2vw;
         background-color: #ff6700;
@@ -125,23 +129,24 @@ const CartContainer = styled.div`
     }
   `;
 const Img = styled.img`
-  height: 4vh;
-  width: 4vw;
-  cursor: pointer;
-  transition: all 0.5s ease;
-  &:hover {
-    scale: 1.1;
-  }
-  &:active {
-    scale: 1;
-  }
+    height: 4vh;
+    width: 4vw;
+    cursor: pointer;
+    transition: all .5s ease;
+    &:hover{
+        scale: 1.1;
+    }
+    &:active{
+        scale: 1;
+    }
 `;
 const ItemContainer = styled.main`
-    height: 66vh;
+    height:66vh ;
     overflow: auto;
     scrollbar-gutter: stable;
-  `,
-  Footer = styled.footer`
+`;
+
+const Footer = styled.footer`
     height: 13vh;
     width: 26vw;
     padding: 0 2vw;
@@ -167,8 +172,9 @@ const ItemContainer = styled.main`
     @media (min-width: 1224px) {
       width: 28vw;
     }
-  `,
-  SubmitBtn = styled.input`
+`
+
+const SubmitBtn = styled.input`
     margin: auto 0;
     font-family: "Poppins", monospace;
     font-weight: 500;
