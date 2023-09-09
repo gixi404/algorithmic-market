@@ -1,8 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect,useState } from "react";
-import { useContext } from "react";
 import { ContextProps } from "../../Context";
 import ItemCart from "./ItemCart.jsx";
 import Btn from './ButtonCart.jsx'
@@ -46,9 +44,14 @@ function indexCart () {
                     <p>Bag Subtotal</p>
                     <strong>${value}</strong>
                 </Article>
-          <SubmitContainer>
-            <SubmitBtn value="Buy now!" />
-          </SubmitContainer>
+                {isAuthenticated ? (
+                <Btn courses={coursesCart}/>)
+                
+                :(
+                <SubmitContainer>
+                    <SubmitBtn onClick={loginWithPopup}>Buy Now!</SubmitBtn>
+                </SubmitContainer>)
+                }
             </Footer>
         </CartContainer>
     )
