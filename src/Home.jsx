@@ -44,6 +44,7 @@ function Home() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/shoppingcart" element={<IndexCart />} />
       </Routes>
+
       <Header />
       <Banner />
       <Courses />
