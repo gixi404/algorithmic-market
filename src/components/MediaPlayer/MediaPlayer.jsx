@@ -10,7 +10,6 @@ import ArrowBack from "../Body/ArrowBack";
 import ClassVideo from "./ClassVideo";
 import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
-import CircleSVG from "./CircleSVG";
 import ItemClass from "./ItemClass";
 import styled from "styled-components";
 
@@ -76,6 +75,7 @@ function MediaPlayer() {
           break;
       }
     }
+
     return () => selectCourse();
   }, [coursename]);
 

@@ -2,7 +2,7 @@ import { useState, createContext } from "react";
 import basicCourseImg from "../img/basicCourseImg.webp";
 import middleCourseImg from "../img/middleCourseImg.webp";
 import advancedCourseImg from "../img/advancedCourseImg.webp";
-import initial1 from "../videos/initial/1-introduccion-a-mercados.mp4";
+import initial1 from "../videos/1-introduccion-a-mercados.mp4";
 
 export const ContextProps = createContext();
 
