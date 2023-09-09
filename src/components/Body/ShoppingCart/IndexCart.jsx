@@ -1,3 +1,4 @@
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect,useState } from "react";
@@ -14,20 +15,20 @@ function indexCart () {
     const { coursesCart, setCoursesCart } = useContext( ContextProps )
     const [value, setValue] = useState( 0 )
 
-    const recuderCash = () => {
-        if ( coursesCart.length < 0 )
-        {
-            return '0'
-        }
-            const price = coursesCart.reduce( ( ac, cv ) => ac + cv.cash, 0 )
-            setValue(price)
+  useEffect(() => {
+    function recuderCash() {
+      if (coursesCart.length < 0) return "0";
+      const price = coursesCart.reduce((ac, cv) => ac + cv.cash, 0);
+      setValue(price);
     }
 
-    useEffect(()=>{recuderCash()},[coursesCart])
+    recuderCash();
+  }, [coursesCart]);
 
     const handleClick = () => {
         setCoursesCart([])
     }
+    
     return (
         <CartContainer>
             <Header>
@@ -36,27 +37,18 @@ function indexCart () {
                 <Link to='/'><Img src={X} alt="close cart"/></Link>
             </Header>
             <ItemContainer>
-                {
-                    coursesCart.length > 0 ? 
-                    (coursesCart.map( course => (
-                        <ItemCart key={course.id} data={course} />
-                    ) ))
-                    :(<P title="chupapija"> aun no hay cursos...</P>)
-                }
+                {coursesCart.map( course => (
+                    <ItemCart key={course.id} data={course} />
+                ) )}
             </ItemContainer>
             <Footer>
                 <Article>
                     <p>Bag Subtotal</p>
                     <strong>${value}</strong>
                 </Article>
-                {isAuthenticated ? (
-                <Btn courses={coursesCart}/>)
-                
-                :(
-                <SubmitContainer>
-                    <SubmitBtn onClick={loginWithPopup}>Buy Now!</SubmitBtn>
-                </SubmitContainer>)
-                }
+          <SubmitContainer>
+            <SubmitBtn value="Buy now!" />
+          </SubmitContainer>
             </Footer>
         </CartContainer>
     )
@@ -75,9 +67,23 @@ const CartContainer = styled.div`
     border-radius: 8px;
     background-color: #fff;
     z-index: 300;
-    height:95vh;
-    h1{
-        text-align: center;
+    height: 95vh;
+    h1 {
+      text-align: center;
+    }
+    a{
+        text-decoration: none;
+        color: #ebebeb;
+        background-color: #ff6700;
+        border-radius: 20px;
+        padding: 1vh 2vw;
+        transition:  all .3s ease;
+        &:hover{
+            background-color: #f88335;
+        }
+        &:active{
+            background-color: #a55621;
+        }
     }
 `;
 
@@ -107,7 +113,10 @@ const Header = styled.header`
     padding: 0 ;
     cursor: pointer;
     transition: all .5s ease;
-    margin-top: 1vh;
+    &:hover{
+        color: #222;
+        background-color: transparent;
+        }
    }
  p{
     transition: all .5s ease;
@@ -116,12 +125,11 @@ const Header = styled.header`
         color: #222;
         padding: 0 2vw;
         background-color: #ff6700;
+      }
     }
- }
-`;
+  `;
 const Img = styled.img`
     height: 4vh;
-    margin-top: .3vh;
     width: 4vw;
     cursor: pointer;
     transition: all .5s ease;
@@ -134,18 +142,10 @@ const Img = styled.img`
 `;
 const ItemContainer = styled.main`
     height:66vh ;
-    width: 28vw;
     overflow: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
+    scrollbar-gutter: stable;
 `;
-const P = styled.p`
-    font-family: "Poppins", monospace;
-    font-weight: 500;
-    cursor: pointer;
-`;
+
 const Footer = styled.footer`
     height: 13vh;
     width: 26vw;
@@ -153,20 +153,18 @@ const Footer = styled.footer`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-top: .5vh solid #ff6700;
-`;
-
-const Article = styled.article`
+    border-top: 0.5vh solid #ff6700;
+  `,
+  Article = styled.article`
     height: 5vh;
     align-items: center;
-    display:flex;
+    display: flex;
     justify-content: space-between;
-    p{
-    font-family: "Poppins", monospace;
+    p {
+      font-family: "Poppins", monospace;
     }
-`;
-
-const SubmitContainer = styled.article`
+  `,
+  SubmitContainer = styled.article`
     width: 10vw;
     height: 7vh;
     text-align: center;
@@ -176,7 +174,7 @@ const SubmitContainer = styled.article`
     }
 `
 
-const SubmitBtn = styled.button`
+const SubmitBtn = styled.input`
     margin: auto 0;
     font-family: "Poppins", monospace;
     font-weight: 500;
@@ -201,4 +199,4 @@ const SubmitBtn = styled.button`
       border: none;
       background-color: #ff6700;
     }
-`;
+  `;

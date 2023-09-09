@@ -25,16 +25,17 @@ function Profile() {
 }
 
 export default Profile;
- const SvgContainer = styled.div`
-      cursor:pointer;
-      border: 2px solid #FF6700;
-      border-radius: 10px;
-      padding: 0.3rem 0.5rem;
-      transition: all ease .3s;
-      &:hover{
-        scale: 1.1;
-      }
-      &:active{
-        scale: 1;
-      }
-`
+
+const SvgContainer = styled.div`
+  cursor: pointer;
+  border: 2px solid #ff6700;
+  border-radius: 10px;
+  padding: 0.3rem 0.5rem;
+  transition: all ease 0.3s;
+  &:hover {
+    scale: 1.1;
+  }
+  &:active {
+    scale: 1;
+  }
+`;

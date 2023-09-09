@@ -7,8 +7,9 @@ import Icon from "../../components/Body/ShoppingCart/IconCart.jsx";
 import styled from "styled-components";
 import Profile from "./Profile.jsx";
 
-function Header({ pathIsMyCourses }) {
-  const { isAuthenticated } = useAuth0();
+function Header(props) {
+  const { pathIsMyCourses } = props,
+    { isAuthenticated } = useAuth0();
 
   return (
     <HeaderContainer>

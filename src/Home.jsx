@@ -17,9 +17,11 @@ import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 
 function Home() {
   const { isLoading, isAuthenticated } = useAuth0();
-  if (isAuthenticated) {
-    const { profile } = useDataUser(isAuthenticated);
-  }
+
+  // if (isAuthenticated) {
+  //   const { profile } = useDataUser(isAuthenticated);
+  // }
+
   if (isLoading) {
     return (
       <LoadContainer>
@@ -42,11 +44,11 @@ function Home() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/shoppingcart" element={<IndexCart />} />
       </Routes>
-      <Header />
 
+      <Header />
       <Banner />
       <Courses />
-      {isAuthenticated && <UserIsLogin />}
+      {/* {isAuthenticated && <UserIsLogin />} */}
       <AboutUs />
       <Contact />
       <Footer />
@@ -62,7 +64,7 @@ const LoadContainer = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   `,

@@ -2,15 +2,24 @@ import styled from "styled-components";
 
 function ControlsVideo(props) {
   const {
-    numberClass,
-    previousClass,
-    nextClass,
-    lastClass,
-    courseInProgress,
-    setCourseInProgress,
-  } = props;
+      numberClass,
+      previousClass,
+      nextClass,
+      lastClass,
+      courseInProgress,
+      setCourseInProgress,
+    } = props,
+    isFirstClass = Number(numberClass) === 0,
+    isLastClass = Number(numberClass + 1) === Number(lastClass);
 
-  if (Number(numberClass + 1) === Number(lastClass)) {
+  if (isFirstClass) {
+    return (
+      <Controls>
+        <PreviousZero onClick={previousClass}>Clase&nbsp;Anterior</PreviousZero>
+        <ControlBtn onClick={nextClass}>Clase&nbsp;Siguiente</ControlBtn>
+      </Controls>
+    );
+  } else if (isLastClass) {
     return (
       <Controls>
         <ControlBtn onClick={previousClass}>Clase&nbsp;Anterior</ControlBtn>
@@ -23,23 +32,14 @@ function ControlsVideo(props) {
         )}
       </Controls>
     );
-  }
-
-  if (Number(numberClass) === 0) {
+  } else {
     return (
       <Controls>
-        <PreviousZero onClick={previousClass}>Clase&nbsp;Anterior</PreviousZero>
+        <ControlBtn onClick={previousClass}>Clase&nbsp;Anterior</ControlBtn>
         <ControlBtn onClick={nextClass}>Clase&nbsp;Siguiente</ControlBtn>
       </Controls>
     );
   }
-
-  return (
-    <Controls>
-      <ControlBtn onClick={previousClass}>Clase&nbsp;Anterior</ControlBtn>
-      <ControlBtn onClick={nextClass}>Clase&nbsp;Siguiente</ControlBtn>
-    </Controls>
-  );
 }
 
 export default ControlsVideo;

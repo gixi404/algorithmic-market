@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const IconoSVG = ({ width, height }) => {
-  const [onPressClick, setOnPressClick] = useState(false);
-  const handleState = () => {
-    setOnPressClick(!onPressClick);
-  };
+function IconoSVG(props) {
+  const { width, height } = props,
+    [onPressClick, setOnPressClick] = useState(false);
+
+  const handleState = () => setOnPressClick(!onPressClick);
+
   useEffect(() => {
     const timer = setTimeout(() => setOnPressClick(false), 2000);
     return () => clearTimeout(timer);
   }, [onPressClick]);
+
   return (
     <SvgContainer onClick={handleState}>
       {onPressClick ? (
@@ -97,27 +99,27 @@ const IconoSVG = ({ width, height }) => {
       )}
     </SvgContainer>
   );
-};
+}
 
 export default IconoSVG;
 
 const Svg = styled.svg`
-  transition: all 1s ease;
-  &:active {
-    path {
-      fill: #181818;
+    transition: all 1s ease;
+    &:active {
+      path {
+        fill: #181818;
+      }
     }
-  }
-`;
-const SvgContainer = styled.div`
-  height: 80px;
-  line-height: 100px;
-  width: max-content;
-  transition: all ease .3s;
-  &:hover{
-    scale: 1.1;
-  }
-  &:active{
-    scale: 1;
-  }
-`;
+  `,
+  SvgContainer = styled.div`
+    height: 80px;
+    line-height: 100px;
+    width: max-content;
+    transition: all ease 0.3s;
+    &:hover {
+      scale: 1.1;
+    }
+    &:active {
+      scale: 1;
+    }
+  `;

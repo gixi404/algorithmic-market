@@ -11,19 +11,18 @@ import ClassVideo from "./ClassVideo";
 import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
 import CircleSVG from "./CircleSVG";
-import styled from "styled-components";
 import ItemClass from "./ItemClass";
+import styled from "styled-components";
 
 function MediaPlayer() {
-  const { coursename } = useParams();
-  const { myCourses } = useContext(ContextProps);
-  const [classData, setClassData] = useState({});
-  const [numberClass, setNumberClass] = useState(0);
-  const [courseInProgress, setCourseInProgress] = useState(true);
-  const [loadContent, setLoadContent] = useState(false);
-  const [progressValue, setProgressValue] = useState(11.11);
-  const [lastClass, setLastClass] = useState(0);
-  const [courseId, setCourseId] = useState(null);
+  const { coursename } = useParams(),
+    { myCourses, loadContent, setLoadContent } = useContext(ContextProps),
+    [classData, setClassData] = useState({}),
+    [numberClass, setNumberClass] = useState(0),
+    [courseInProgress, setCourseInProgress] = useState(true),
+    [progressValue, setProgressValue] = useState(11.11),
+    [lastClass, setLastClass] = useState(0),
+    [courseId, setCourseId] = useState(null);
 
   useEffect(() => {
     function selectCourse() {
@@ -77,7 +76,6 @@ function MediaPlayer() {
           break;
       }
     }
-
     return () => selectCourse();
   }, [coursename]);
 
@@ -185,36 +183,49 @@ function MediaPlayer() {
           }
           break;
       }
+
       setNumberClass(numberClass + 1);
       setClassData(nextClassData);
       setProgressValue(progressValue + 11.11);
     }
   }
 
-  function selectClassManually(classId) {
+  function selectClassManually(classId, loadBoolean) {
     function updateClass() {
-      const classSelected = myCourses[courseId].classes.find(
-        _class => _class.id === classId
-      );
+      if (numberClass !== classId) {
+        const classSelected = myCourses[courseId].classes.find(
+          _class => _class.id === classId
+        );
 
-      const { id: idClass } = classSelected;
+        const { id: idClass } = classSelected;
 
-      setClassData({
-        classId: direction(courseId, idClass).id,
-        className: direction(courseId, idClass).name,
-        classURL: direction(courseId, idClass).URL,
-      });
+        setClassData({
+          classId: direction(courseId, idClass).id,
+          className: direction(courseId, idClass).name,
+          classURL: direction(courseId, idClass).URL,
+        });
+        setNumberClass(idClass);
+      }
+    }
+
+    function updateProgressBar() {
+      classId++;
+      let newProgress = Math.ceil(11.11 * classId);
+      newProgress = newProgress === 101 ? newProgress-- : newProgress;
+      setProgressValue(newProgress);
     }
 
     function scrollToVideo() {
-      setLoadContent(true);
-      const container = document.querySelector("#elScrollVaInThisSite");
-      const position = container.getBoundingClientRect();
+      setLoadContent(loadBoolean);
+      const container = document.querySelector("#elScrollVaInThisSite"),
+        position = container.getBoundingClientRect();
+      document.documentElement.style.scrollBehavior = "smooth";
       window.scrollTo(position.x, position.y);
-      //Para vos vitto que te los vas a preguntar, si coloco el id del scroll en el componente "ClassVideo" sube prácticamente hasta el Header y nao nao.
     }
 
+    setCourseInProgress(true);
     updateClass();
+    updateProgressBar();
     scrollToVideo();
   }
 
@@ -261,31 +272,16 @@ function MediaPlayer() {
 
         <NameCourse>{coursename}</NameCourse>
 
-        <Themes>
-          <Article>
-            <div
-              style={{
-                display: "flex",
-                columnGap: "1.3rem",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-              }}
-            >
-              <CircleSVG />
-              <ClassesText>Clases</ClassesText>
-            </div>
-
-            <ListFollowingClasses>
-              {myCourses[courseId]?.classes.map(item => (
-                <ItemClass
-                  item={item}
-                  selectClassManually={selectClassManually}
-                />
-              ))}
-            </ListFollowingClasses>
-          </Article>
-        </Themes>
+        <ListFollowingClasses>
+          {myCourses[courseId]?.classes.map(item => (
+            <ItemClass
+              key={item.id}
+              item={item}
+              numberClass={numberClass}
+              selectClassManually={selectClassManually}
+            />
+          ))}
+        </ListFollowingClasses>
 
         <Footer />
       </ContentContainer>
@@ -303,7 +299,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     color: #f5f5f5;
-    row-gap: 5rem;
+    row-gap: 5em;
   `,
   MediaContainer = styled.div`
     width: 80vw;
@@ -311,7 +307,7 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
-    row-gap: 2.3rem;
+    row-gap: 2.3em;
 
     @media (max-width: 992px) {
       width: 90vw;
@@ -332,7 +328,7 @@ const Container = styled.div`
     @media (max-width: 992px) {
       flex-direction: column;
       align-items: center;
-      row-gap: 1.5rem;
+      row-gap: 1.5em;
     }
   `,
   ContentContainer = styled.section`
@@ -340,53 +336,105 @@ const Container = styled.div`
     width: 100vw;
     height: auto;
     display: flex;
-    align-items: center;
+    align-items: end;
     flex-direction: column;
     justify-content: start;
-    row-gap: 2.3rem;
-    padding-top: 2rem;
     border-top: 4px solid #ff6700;
+    padding-top: 2.5em;
+    row-gap: 0.8em;
   `,
   TitleContent = styled.p`
     font-family: "Poppins", sans-serif;
-    font-size: 2rem;
+    font-size: 1.7em;
     font-weight: bold;
-    width: 80vw;
+    width: 90vw;
     color: #000;
+    margin-bottom: 1.3em;
+    text-align: start;
+
     span {
-      font-size: 1.1rem;
+      font-size: 0.8em;
       font-weight: 400;
       display: block;
     }
 
     @media (max-width: 576px) {
       width: 100vw;
-      font-size: 1.5rem;
+      margin-bottom: 1em;
       text-align: center;
-      span {
-        font-size: 0.9rem;
-      }
     }
   `,
   NameCourse = styled.p`
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-    font-size: 1.8rem;
+    font-size: 1.5em;
     color: #ff6700;
-    text-align: center;
-    width: 100vw;
+    text-align: start;
+    width: 75vw;
+
+    @media (max-width: 576px) {
+      width: 100vw;
+      font-size: 1.3em;
+      text-align: center;
+    }
   `,
-  Themes = styled.section`
+  ListFollowingClasses = styled.ul`
+    font-family: "Poppins", sans-serif;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 70vw;
+    row-gap: 0.5em;
+    padding-bottom: 2.5em;
+
+    @media (max-width: 576px) {
+      width: 90vw;
+    }
+  `;
+
+/* Lo guardo por si las moscas
+<Themes>
+          <Article>
+            <div
+              style={{
+                display: "flex",
+                columnGap: "1.3em",
+                alignItems: "center",
+                justifyContent: "start",
+                width: "100%",
+              }}
+            >
+              <CircleSVG />
+              <ClassesText>Clases</ClassesText>
+            </div>
+
+            <ListFollowingClasses>
+              {myCourses[courseId]?.classes.map(item => (
+                <ItemClass
+                  key={item.id}
+                  item={item}
+                  numberClass={numberClass}
+                  selectClassManually={selectClassManually}
+                />
+              ))}
+            </ListFollowingClasses>
+          </Article>
+        </Themes>
+
+
+        Themes = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    column-gap: 1.5rem;
-    row-gap: 3rem;
+    column-gap: 1.5em;
+    row-gap: 3em;
 
     @media (max-width: 576px) {
-      row-gap: 1rem;
+      row-gap: 1em;
     }
   `,
   Article = styled.article`
@@ -404,27 +452,12 @@ const Container = styled.div`
   ClassesText = styled.p`
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     color: #000000;
 
     @media (max-width: 576px) {
-      font-size: 1rem;
+      font-size: 1em;
     }
   `,
-  ListFollowingClasses = styled.ul`
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-size: 1.1rem;
-    color: #000000;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    width: 70%;
-    row-gap: 0.5rem;
 
-    @media (max-width: 576px) {
-      font-size: 1rem;
-      width: 58%;
-    }
-  `;
+*/
