@@ -10,7 +10,7 @@ function AboutUs() {
           <p>
             At{" "}
             <span style={{ fontStyle: "italic", color: "#ff6700" }}>
-              King Of The Market
+              Algorithmic Market
             </span>
             , we're not just a company we're a community of passionate traders
             dedicated to transforming financial aspirations into reality.

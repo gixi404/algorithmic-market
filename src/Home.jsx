@@ -45,10 +45,9 @@ function Home() {
         <Route path="/shoppingcart" element={<IndexCart />} />
       </Routes>
       <Header />
-
       <Banner />
       <Courses />
-      {isAuthenticated && <UserIsLogin />}
+      {/* {isAuthenticated && <UserIsLogin />} */}
       <AboutUs />
       <Contact />
       <Footer />
@@ -64,7 +63,7 @@ const LoadContainer = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   `,
