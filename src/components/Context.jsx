@@ -2,17 +2,7 @@ import { useState, createContext } from "react";
 import basicCourseImg from "../img/basicCourseImg.webp";
 import middleCourseImg from "../img/middleCourseImg.webp";
 import advancedCourseImg from "../img/advancedCourseImg.webp";
-
-//* initial
 import initial1 from "../videos/initial/1-introduccion-a-mercados.mp4";
-import initial2 from "../videos/initial/2-pip-tradingview.mp4";
-import initial3 from "../videos/initial/3-PRICE-DELIVERY.mp4";
-import initial4 from "../videos/initial/4-BOOK-OF-PRICE.mp4";
-import initial5 from "../videos/initial/5-risk-to-reward.mp4";
-import initial6 from "../videos/initial/6-liquidity.mp4";
-import initial7 from "../videos/initial/7-premium-discount.mp4";
-import initial8 from "../videos/initial/8-high-impact-news.mp4";
-import initial9 from "../videos/initial/9-HIGHER-TIMEFRAMES-TO-LOWER.mp4";
 
 export const ContextProps = createContext();
 
@@ -61,42 +51,42 @@ function Context({ children }) {
           {
             name: "2 - PIP, Lot Size, Trading View",
             id: 1,
-            URL: initial2,
+            URL: initial1,
           },
           {
             name: "3 - Price Delivery",
             id: 2,
-            URL: initial3,
+            URL: initial1,
           },
           {
             name: "4 - Book of Price",
             id: 3,
-            URL: initial4,
+            URL: initial1,
           },
           {
             name: "5 - Risk to Reward",
             id: 4,
-            URL: initial5,
+            URL: initial1,
           },
           {
             name: "6 - Liquidity",
             id: 5,
-            URL: initial6,
+            URL: initial1,
           },
           {
             name: "7 - Premium Discount",
             id: 6,
-            URL: initial7,
+            URL: initial1,
           },
           {
             name: "8 - High Impact News",
             id: 7,
-            URL: initial8,
+            URL: initial1,
           },
           {
             name: "9 - Higher Timeframes to Lower",
             id: 8,
-            URL: initial9,
+            URL: initial1,
           },
         ],
       },
@@ -114,42 +104,42 @@ function Context({ children }) {
           {
             name: "2 - Pene sanguíneo",
             id: 1,
-            URL: initial2,
+            URL: initial1,
           },
           {
             name: "3 - Vibora",
             id: 2,
-            URL: initial3,
+            URL: initial1,
           },
           {
             name: "4 - El cuarteto de nos",
             id: 3,
-            URL: initial4,
+            URL: initial1,
           },
           {
             name: "5 - Ratata",
             id: 4,
-            URL: initial5,
+            URL: initial1,
           },
           {
             name: "6 - Laureles",
             id: 5,
-            URL: initial6,
+            URL: initial1,
           },
           {
             name: "7 - Disconformidad",
             id: 6,
-            URL: initial7,
+            URL: initial1,
           },
           {
             name: "8 - Nazaret",
             id: 7,
-            URL: initial8,
+            URL: initial1,
           },
           {
             name: "9 - Hiligths",
             id: 8,
-            URL: initial9,
+            URL: initial1,
           },
         ],
       },
@@ -167,42 +157,42 @@ function Context({ children }) {
           {
             name: "2 - A buscarte",
             id: 1,
-            URL: initial2,
+            URL: initial1,
           },
           {
             name: "3 - La verdad que me gustaste",
             id: 2,
-            URL: initial3,
+            URL: initial1,
           },
           {
             name: "4 - No quiero molestar",
             id: 3,
-            URL: initial4,
+            URL: initial1,
           },
           {
             name: "5 - turututu",
             id: 4,
-            URL: initial5,
+            URL: initial1,
           },
           {
             name: "6 - Y es que la verdad",
             id: 5,
-            URL: initial6,
+            URL: initial1,
           },
           {
             name: "7 - no sé",
             id: 6,
-            URL: initial7,
+            URL: initial1,
           },
           {
             name: "8 - Lo que va pasar",
             id: 7,
-            URL: initial8,
+            URL: initial1,
           },
           {
             name: "9 - beibe",
             id: 8,
-            URL: initial9,
+            URL: initial1,
           },
         ],
       },
