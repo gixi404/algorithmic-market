@@ -1,9 +1,14 @@
 import { useParams } from 'react-router-dom';
-import AddButton from './AddButton.jsx';
+import AddButton from '../Courses/AddButton.jsx';
 import { useContext } from 'react';
 import { ContextProps } from '../Context';
 import styled from 'styled-components'
 
+function detailCourses () {
+  const { courseSelected } = useContext( ContextProps )
+  const { coursedetails } = useParams();
+  const { name, cash,  description } = courseSelected(coursedetails)
+  
   return (
     <Container>
       <Details>
@@ -65,7 +70,7 @@ import styled from 'styled-components'
       </CourseMetas>
       <Compra>
         <span></span>
-        <PayLayout courseSelected={courseSelected(coursedetails)} />
+        <AddButton courseSelected={courseSelected(coursedetails)} />
         <p>${cash} USD</p>
       </Compra>
       </Details>

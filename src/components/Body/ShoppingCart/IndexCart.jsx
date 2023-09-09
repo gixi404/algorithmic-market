@@ -25,35 +25,38 @@ function indexCart() {
     recuderCash();
   }, [coursesCart]);
 
-  const handleClick = () => {
-    setCoursesCart([]);
-  };
-
-  return (
-    <CartContainer>
-      <Header>
-        <h3>Added to bag</h3>
-        <Img src={trash} alt="eraser buys" onClick={handleClick} />
-        <Link to="/">
-          <Img src={X} alt="close cart" />
-        </Link>
-      </Header>
-      <ItemContainer>
-        {coursesCart.map(course => (
-          <ItemCart key={course.id} data={course} />
-        ))}
-      </ItemContainer>
-      <Footer>
-        <Article>
-          <p>Bag Subtotal</p>
-          <strong>${value}</strong>
-        </Article>
-        <SubmitContainer>
-          <SubmitBtn value="Buy now!" />
-        </SubmitContainer>
-      </Footer>
-    </CartContainer>
-  );
+    const handleClick = () => {
+        setCoursesCart([])
+    }
+    
+    return (
+        <CartContainer>
+            <Header>
+                <h3>Added to bag</h3>
+                <Img src={trash} alt="eraser buys" onClick={handleClick}/>
+                <Link to='/'><Img src={X} alt="close cart"/></Link>
+            </Header>
+            <ItemContainer>
+                {coursesCart.map( course => (
+                    <ItemCart key={course.id} data={course} />
+                ) )}
+            </ItemContainer>
+            <Footer>
+                <Article>
+                    <p>Bag Subtotal</p>
+                    <strong>${value}</strong>
+                </Article>
+                {isAuthenticated ? (
+                <Btn courses={coursesCart}/>)
+                
+                :(
+                <SubmitContainer>
+                    <SubmitBtn onClick={loginWithPopup}>Buy Now!</SubmitBtn>
+                </SubmitContainer>)
+                }
+            </Footer>
+        </CartContainer>
+    )
 }
 export default indexCart;
 
