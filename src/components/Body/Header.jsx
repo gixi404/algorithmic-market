@@ -3,12 +3,13 @@ import { Link as Linkk } from "react-router-dom";
 import LoginBtn from "../Log/LoginBtn.jsx";
 import LogoutBtn from "../Log/LogoutBtn.jsx";
 import menuImg from "../../img/menu.png";
-import Icon from "../../components/Body/ShoppingCart/ButtonCart.jsx";
+import Icon from "../../components/Body/ShoppingCart/IconCart.jsx";
 import styled from "styled-components";
 import Profile from "./Profile.jsx";
 
-function Header({ pathIsMyCourses }) {
-  const { isAuthenticated } = useAuth0();
+function Header(props) {
+  const { pathIsMyCourses } = props,
+    { isAuthenticated } = useAuth0();
 
   return (
     <HeaderContainer>

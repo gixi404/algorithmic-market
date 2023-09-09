@@ -183,6 +183,7 @@ function MediaPlayer() {
           }
           break;
       }
+
       setNumberClass(numberClass + 1);
       setClassData(nextClassData);
       setProgressValue(progressValue + 11.11);

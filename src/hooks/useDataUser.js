@@ -2,29 +2,34 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function useDataUser(isAuthenticated) {
-  const { user, getAccessTokenSilently } = useAuth0();
-  const [profile, setProfile] = useState("");
+  const { user, getAccessTokenSilently } = useAuth0(),
+    [profile, setProfile] = useState("");
+
+  useEffect(() => isAuthenticated && getToken(), []);
 
   async function sendData(data) {
     const info = {
-      token: { data },
-      user: user,
-    };
-    const requestOptions = {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
+        token: { data },
+        user: user,
       },
-      body: JSON.stringify(info),
-    };
+      requestOptions = {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(info),
+      };
+
     try {
       const res = await fetch(
         "http://localhost:3001/guardartoken",
         requestOptions
       );
+
       if (!res.ok) {
         throw new Error("la solicitud falló");
       }
+
       const json = await res.json();
       console.log(json);
     } catch (error) {
@@ -45,11 +50,7 @@ function useDataUser(isAuthenticated) {
       }
     }
   }
-  useEffect(() => {
-    if (isAuthenticated) {
-      getToken();
-    }
-  }, []);
+
   return { profile };
 }
 export default useDataUser;

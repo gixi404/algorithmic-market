@@ -1,27 +1,29 @@
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import ItemCart from "./ItemCart";
-import trash from '../../../img/trash-bin-2-svgrepo-com.svg'
-import X from '../../../img/close-svgrepo-com.svg'
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect,useState } from "react";
 import { useContext } from "react";
 import { ContextProps } from "../../Context";
+import ItemCart from "./ItemCart.jsx";
+import Btn from './ButtonCart.jsx'
+import trash from '../../../img/trash-bin-2-svgrepo-com.svg'
+import X from '../../../img/close-svgrepo-com.svg'
 import styled from "styled-components"
-import { useEffect } from "react";
-import { useState } from "react";
 
 function indexCart () {
+    const {isAuthenticated, loginWithPopup} = useAuth0()
     const { coursesCart, setCoursesCart } = useContext( ContextProps )
     const [value, setValue] = useState( 0 )
 
-    const recuderCash = () => {
-        if ( coursesCart.length < 0 )
-        {
-            return '0'
-        }
-            const price = coursesCart.reduce( ( ac, cv ) => ac + cv.cash, 0 )
-            setValue(price)
+  useEffect(() => {
+    function recuderCash() {
+      if (coursesCart.length < 0) return "0";
+      const price = coursesCart.reduce((ac, cv) => ac + cv.cash, 0);
+      setValue(price);
     }
 
-    useEffect(()=>{recuderCash()},[coursesCart])
+    recuderCash();
+  }, [coursesCart]);
 
     const handleClick = () => {
         setCoursesCart([])
@@ -65,9 +67,9 @@ const CartContainer = styled.div`
     border-radius: 8px;
     background-color: #fff;
     z-index: 300;
-    height:95vh;
-    h1{
-        text-align: center;
+    height: 95vh;
+    h1 {
+      text-align: center;
     }
     a{
         text-decoration: none;
@@ -123,9 +125,9 @@ const Header = styled.header`
         color: #222;
         padding: 0 2vw;
         background-color: #ff6700;
+      }
     }
- }
-`;
+  `;
 const Img = styled.img`
     height: 4vh;
     width: 4vw;
@@ -151,20 +153,18 @@ const Footer = styled.footer`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-top: .5vh solid #ff6700;
-`;
-
-const Article = styled.article`
+    border-top: 0.5vh solid #ff6700;
+  `,
+  Article = styled.article`
     height: 5vh;
     align-items: center;
-    display:flex;
+    display: flex;
     justify-content: space-between;
-    p{
-    font-family: "Poppins", monospace;
+    p {
+      font-family: "Poppins", monospace;
     }
-`;
-
-const SubmitContainer = styled.article`
+  `,
+  SubmitContainer = styled.article`
     width: 10vw;
     height: 7vh;
     text-align: center;
@@ -199,4 +199,4 @@ const SubmitBtn = styled.input`
       border: none;
       background-color: #ff6700;
     }
-`;
+  `;

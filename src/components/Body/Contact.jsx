@@ -1,12 +1,10 @@
-import { useRef } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
 function Contact() {
-  const [error, setError] = useState(false);
-  const [sendForm, setSendForm] = useState(false);
-
-  const Name = useRef(null),
+  const [error, setError] = useState(false),
+    [sendForm, setSendForm] = useState(false),
+    Name = useRef(null),
     Mail = useRef(null),
     Query = useRef(null);
 
