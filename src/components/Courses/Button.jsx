@@ -15,7 +15,7 @@ function BuyBtn(props) {
 
   return (
     <Button>
-      {isAuthenticated && course.id === 0 ? (
+      {!isAuthenticated  ? (
         <Link to="/mycourses">View</Link>
       ) : (
         <Link to={url}>{title}</Link>
