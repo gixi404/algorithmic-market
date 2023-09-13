@@ -1,15 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link as Linkk } from "react-router-dom";
-import LoginBtn from "../Log/LoginBtn.jsx";
-import LogoutBtn from "../Log/LogoutBtn.jsx";
-import menuImg from "../../img/menu.png";
-import Icon from "../../components/Body/ShoppingCart/IconCart.jsx";
+import LoginBtn from "../../Log/LoginBtn.jsx";
 import styled from "styled-components";
-import Profile from "./Profile.jsx";
+import Profile from "../Profile/Profile.jsx";
+import PopupMyCourses from "./PopupMyCourses.jsx";
 
-function Header(props) {
-  const { pathIsMyCourses } = props,
-    { isAuthenticated } = useAuth0();
+function Header() {
+  const { isAuthenticated } = useAuth0();
 
   return (
     <HeaderContainer>
@@ -19,20 +16,23 @@ function Header(props) {
         </Link>
 
         <NavContainer>
-          {pathIsMyCourses ? (
-            <Link to="/">Inicio</Link>
-          ) : (
-            <>
-              <NavLink href="#allCourses">Courses</NavLink>
-              <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
-              <NavLink href="#contact">Contact</NavLink>
-              <Icon />
-              {!isAuthenticated && <LoginBtn />}
-            </>
-          )}
-
-          {isAuthenticated && <Profile />}
+          <NavLink href="#allCourses">Courses</NavLink>
+          <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
+          <NavLink href="#contact">Contact</NavLink>
         </NavContainer>
+
+        {/* <Icon /> */}
+
+        {isAuthenticated ? (
+          <>
+            <PopupMyCourses />
+            <Profile />
+          </>
+        ) : (
+          <LoginBtn />
+        )}
+
+        {/* <MenuSVG /> */}
       </WebContainer>
     </HeaderContainer>
   );
@@ -79,15 +79,6 @@ const HeaderContainer = styled.header`
     color: #ff6700;
     height: 80px;
     line-height: 96px;
-  `,
-  Menu = styled.img`
-    display: block;
-    width: 45px;
-    height: 45px;
-
-    @media (min-width: 1224px) {
-      display: none;
-    }
   `,
   NavContainer = styled.nav`
     display: flex;

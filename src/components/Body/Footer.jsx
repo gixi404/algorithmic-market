@@ -45,7 +45,7 @@ const FooterContainer = styled.div`
   `,
   Text = styled(Link)`
     color: #fff;
-    font-size: 0.8em;
+    font-size: 1em;
     text-decoration: none;
     font-weight: 300;
     letter-spacing: 0.3px;
