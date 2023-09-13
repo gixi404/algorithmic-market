@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { number } from "yargs";
 
 const CourseSchema = mongoose.Schema({
     name: {
@@ -15,8 +14,9 @@ const CourseSchema = mongoose.Schema({
         unique: true
     },
     clases:{
-        type: number,
+        type: String,
+        required: true
     }
 })
 
-export default mongoose.model('course',CourseSchema)
+export default mongoose.model('Course',CourseSchema)

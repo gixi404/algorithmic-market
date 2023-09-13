@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { createSession } from "../paycontrol/pay.controllers.js";
+import { createCourse } from "../controllers/course.db.controllers.js";
+import { createUser } from "../controllers/user.db.controller.js";
+import { createSession, prueba1 } from "../controllers/pay.controllers.js";
 import formData from "../form/form.js";
 
 const FRONT_PORT = 3000,
   router = Router();
 
-router.post("/create-checkout-session", createSession);
+router.post("/create-checkout-session", createSession, prueba1);
 
 router.get("/success", (req, res) =>
   res.redirect(`http://localhost:${FRONT_PORT}/success`)
@@ -14,6 +16,14 @@ router.get("/success", (req, res) =>
 router.get("/cancel", (req, res) =>
   res.redirect(`http://localhost:${FRONT_PORT}/`)
 );
+
+router.post('/createcourse',createCourse)
+
+router.post('/users', createUser)
+
+router.get('/buy',(req, res) => {
+  res.redirect('http://localhost:3000/')
+})
 
 router.post("/guardartoken", async (req, res) => {
   const { token, user } = await req.body;

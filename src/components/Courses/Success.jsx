@@ -5,7 +5,17 @@ import Imgg from "../../img/alex-shuper-KwrPZDvZRPk-unsplash.jpg";
 import styled from "styled-components";
 
 function Success() {
+  const List =JSON.parse(localStorage.getItem('list'))
+  const Id = JSON.parse(localStorage.getItem('id'))
   const { courseSelected } = useContext(ContextProps);
+  
+  const mappedList = List.map(item => ({
+  name :item.price_data.product_data.name,
+  des:item.price_data.product_data.description, 
+  price:(item.price_data.unit_amount/100),
+  id: Id.id
+  }))
+  
   let selectCourse = courseSelected;
 
   if (window.location.pathname === "/success/0")
@@ -17,41 +27,22 @@ function Success() {
   if (window.location.pathname === "/success/2")
     selectCourse = courseSelected(2);
 
-  const { price, name, description } = selectCourse;
-
   return (
     <Div>
       <Section>
-        <UserData>
-          <H2>Purchase completed successfully</H2>
-          <Article>
-            <Img src={Imgg} alt="img piola" />
-            <P>Juan Carlos</P>
-            <H4>XXXX-XXXX-XXXX-4242</H4>
-            <H4>${price}</H4>
-          </Article>
-        </UserData>
-
-        <TransactionData>
-          <H2>Info. Transaction</H2>
-          <Data>
-            <ArticleData>
-              <strong>Date: 13/12/2003</strong>
-              <strong>Mail: sexinthecuty@gmail.com</strong>
-            </ArticleData>
-            <ArticleDataShell>
-              <strong>N° transaction: 3w732237032</strong>
-              <strong>{name}</strong>
-              <strong>{description}</strong>
-              <strong>Imprimir Comprobante</strong>
-            </ArticleDataShell>
-          </Data>
-        </TransactionData>
         <ExtraData>
           <Link to="/">
             <Back>Back</Back>
           </Link>
         </ExtraData>
+        {
+          mappedList.map(item =>(
+          <article key={item.id}>
+            <p >{item.name}</p>
+            <p >{item.des}</p>
+            <p >${item.price}</p>
+          </article>))
+        }
       </Section>
     </Div>
   );
@@ -155,6 +146,9 @@ const ArticleDataShell = styled.article`
 `;
 const ExtraData = styled.article`
   width: max-content;
+  a{
+    text-decoration: none;
+  }
 `;
 const Back = styled.h2`
   transition: all 0.3s ease;

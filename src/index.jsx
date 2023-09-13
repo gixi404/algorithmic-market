@@ -5,6 +5,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import Home from "./Home.jsx";
 import Context from "./components/Context.jsx";
 import MyCourses from "./components/Log/MyCourses.jsx";
+import Success from "./components/Courses/Success.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Privacy from "./components/Body/Privacy.jsx";
 import StaffLym from "./components/Body/StaffLym.jsx";
@@ -27,6 +28,7 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
               <Route path="/mycourses" element={<MyCourses />} />
               <Route path="/mycourses/:coursename" element={<MediaPlayer />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/success/:coursedetails" element={<Success />} />
               <Route path="/stafflym" element={<StaffLym />} />
             </Routes>
           </Context>

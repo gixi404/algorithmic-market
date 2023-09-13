@@ -40,8 +40,8 @@ function indexCart () {
                     coursesCart.length > 0 ? 
                     (coursesCart.map( course => (
                         <ItemCart key={course.id} data={course} />
-                    ) ))
-                    :(<P title="chupapija"> aun no hay cursos...</P>)
+                    )))
+                    :(<P> aun no hay cursos...</P>)
                 }
             </ItemContainer>
             <Footer>

@@ -3,11 +3,11 @@ import {useBuyPetition} from '../../../hooks/useBuyLogic.js'
 import styled from 'styled-components'
 
 function ButtonCart({courses}){
-    const {buyUrl} = useBuyPetition({courses})
+    const {buyUrl, handleBuy} = useBuyPetition({courses})
     const url = buyUrl
     return(
     <Container>
-    <Btn to={url}>Buy Now!</Btn>
+    <Btn to={url}onClick={handleBuy}>Buy Now!</Btn>
     </Container>
     )
 }

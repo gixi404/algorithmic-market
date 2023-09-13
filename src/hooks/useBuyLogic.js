@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-export function useBuyPetition({ courses }) {
+
+export function useBuyPetition ({ courses }) {
   const [buyUrl, setBuyUrl] = useState('')
   const mappedList = courses.map(course=>
     ({
@@ -13,32 +14,32 @@ export function useBuyPetition({ courses }) {
         currency: "usd",
       },
       quantity: 1}))
+      const mappedId = courses.map(course => ({id : course.id}))
+      const infoBuy = {list: mappedList, id: mappedId}
+      async function handleBuy() {
+        const dataToFetch = {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(infoBuy)
+        }
+        
+        try {
+          const res = await fetch(
+            "http://localhost:3001/create-checkout-session",
+            dataToFetch
+            )
+            const data = await res.json()
 
-  async function handleBuy() {
-    const dataToFetch = {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer yourAccessToken",
-      },
-      body: JSON.stringify(mappedList)
-    }
+            const {sessionUrl} = data
 
-    try {
-      const res = await fetch(
-        "http://localhost:3001/create-checkout-session",
-        dataToFetch
-      )
-      const data = await res.json()
-      setBuyUrl(data)
-    } catch (error) {
-        console.log('La solicitud de compra falló.')
-    }
+            setBuyUrl(sessionUrl)
+
+            localStorage.setItem('id', JSON.stringify(mappedId))
+          } catch (error) {
+            console.log('La solicitud de compra falló.')
+          }
   }
-
-  useEffect(() => {
-    handleBuy()
-  }, [courses])
-
-  return { buyUrl };
+  return { buyUrl, handleBuy };
 }
