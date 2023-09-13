@@ -123,7 +123,7 @@ function Contact() {
       console.error("Datos incompletos");
     }
   }
-
+ 
   return (
     <Container id="contact">
       <ContactContainer>

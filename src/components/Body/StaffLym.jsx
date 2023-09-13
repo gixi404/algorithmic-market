@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../Body/Header/Header";
 import Footer from "./Footer";
 import styled from "styled-components";
 

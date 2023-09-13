@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Routes, Route } from "react-router-dom";
 import useDataUser from "./hooks/useDataUser.js";
 import ReactLoading from "react-loading";
-import Header from "./components/Body/Header.jsx";
+import Header from "./components/Body/Header/Header.jsx";
 import UserIsLogin from "./components/Log/UserIsLogin.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import Courses from "./components/Courses/Courses.jsx";

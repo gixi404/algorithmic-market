@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-function Profile() {
-  const UserSVG = () => (
+function UserSVG() {
+  return (
     <SvgContainer>
       <svg
         width="16"
@@ -21,10 +21,9 @@ function Profile() {
       </svg>
     </SvgContainer>
   );
-  return <UserSVG />;
 }
 
-export default Profile;
+export default UserSVG;
 
 const SvgContainer = styled.div`
   cursor: pointer;

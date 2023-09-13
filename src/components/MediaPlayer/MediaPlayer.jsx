@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { useParams } from "react-router-dom";
 import { ContextProps } from "../Context";
-import Header from "../Body/Header";
+import Header from "../Body/Header/Header";
 import Footer from "../Body/Footer";
 import ProgressBar from "./ProgressBar";
 import TitleCourse from "./TitleCourse";
@@ -15,11 +15,17 @@ import styled from "styled-components";
 
 function MediaPlayer() {
   const { coursename } = useParams(),
-    { myCourses, loadContent, setLoadContent } = useContext(ContextProps),
+    {
+      myCourses,
+      loadContent,
+      setLoadContent,
+      progressValue,
+      setProgressValue,
+      setCourseName,
+    } = useContext(ContextProps),
     [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
     [courseInProgress, setCourseInProgress] = useState(true),
-    [progressValue, setProgressValue] = useState(11.11),
     [lastClass, setLastClass] = useState(0),
     [courseId, setCourseId] = useState(null);
 
@@ -35,6 +41,7 @@ function MediaPlayer() {
             });
             setCourseId(myCourses[0].id);
             setLastClass(myCourses[0].classes.length);
+            setCourseName(coursename);
           }
           break;
 
@@ -47,6 +54,7 @@ function MediaPlayer() {
             });
             setCourseId(myCourses[1].id);
             setLastClass(myCourses[1].classes.length);
+            setCourseName(coursename);
           }
           break;
 
@@ -59,6 +67,7 @@ function MediaPlayer() {
             });
             setCourseId(myCourses[2].id);
             setLastClass(myCourses[2].classes.length);
+            setCourseName(coursename);
           }
           break;
 
@@ -71,6 +80,7 @@ function MediaPlayer() {
             });
             setCourseId(myCourses[0].id);
             setLastClass(myCourses[0].classes.length);
+            setCourseName(coursename);
           }
           break;
       }
