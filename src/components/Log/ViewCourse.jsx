@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function BuyBtn(props) {
+function ViewCourse(props) {
   const { url } = props;
-
   return (
     <Button>
-      <Link to={url}>More Information</Link>
+      <Link to={url}>View</Link>
     </Button>
   );
 }
 
-export default BuyBtn;
+export default ViewCourse;
 
 const Button = styled.button`
   font-family: "Poppins", monospace;

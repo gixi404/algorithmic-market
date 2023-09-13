@@ -1,13 +1,13 @@
-import rata from "../../img/rata.jpg";
+import { useState } from "react";
+import ViewCourse from "../Log/ViewCourse";
 import BuyBtn from "./Button";
+import rata from "../../img/rata.jpg";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
-  const title = "More Information",
-    id = dataCourse.id,
-    url = `/details/${id}`;
+  const [purchasedCourse, setPurchasedCourse] = useState(false);
 
-  return ( 
+  return (
     <CourseContainer>
       <Img src={rata} alt="img course" />
 
@@ -24,7 +24,11 @@ function Course({ dataCourse }) {
       </TimeCard>
 
       <ButtonContainer>
-        <BuyBtn course={dataCourse} title={title} url={url} />
+        {!purchasedCourse ? (
+          <ViewCourse url={`/mycourses/${dataCourse.id}`} />
+        ) : (
+          <BuyBtn url={`/details/${dataCourse.id}`} />
+        )}
       </ButtonContainer>
     </CourseContainer>
   );

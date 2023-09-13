@@ -1,25 +1,18 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Routes, Route } from "react-router-dom";
-import useDataUser from "./hooks/useDataUser.js";
 import ReactLoading from "react-loading";
 import Header from "./components/Body/Header/Header.jsx";
-import UserIsLogin from "./components/Log/UserIsLogin.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
-import styled from "styled-components";
 import Details from "./components/Courses/DetailsCourse.jsx";
-import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
+import styled from "styled-components";
 
 function Home() {
-  const { isLoading, isAuthenticated } = useAuth0();
-
-  // if (isAuthenticated) {
-  //   const { profile } = useDataUser(isAuthenticated);
-  // }
+  const { isLoading } = useAuth0();
 
   if (isLoading) {
     return (
@@ -38,15 +31,12 @@ function Home() {
     <HomeContainer>
       <Routes>
         <Route path="/details/:coursedetails" element={<Details />} />
-        <Route path="/mycourses/:courseId" element={<MediaPlayer />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/shoppingcart" element={<IndexCart />} />
       </Routes>
-
       <Header />
       <Banner />
       <Courses />
-      {/* {isAuthenticated && <UserIsLogin />} */}
       <AboutUs />
       <Contact />
       <Footer />

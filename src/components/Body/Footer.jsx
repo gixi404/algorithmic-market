@@ -5,9 +5,12 @@ function Footer() {
   return (
     <FooterContainer>
       <TextContainer>
-        <Text to="/stafflym">Created by Staff Lym</Text>
-        <Text to="/privacy">Privacy Policy</Text>
-        <Text style={{ cursor: "default" }}>&copy; All rights reserved</Text>
+        <Text to="/stafflym">Creado por Staff Lym</Text>
+
+        <Text to="/privacy">Política de Privacidad</Text>
+        <Text style={{ cursor: "default" }}>
+          &copy; Todos los derechos reservados
+        </Text>
       </TextContainer>
     </FooterContainer>
   );

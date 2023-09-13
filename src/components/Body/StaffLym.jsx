@@ -1,47 +1,40 @@
 import Header from "../Body/Header/Header";
 import Footer from "./Footer";
+import { WhatsAppSVG, GmailSVG, TelegramSVG } from "../svgs";
 import styled from "styled-components";
 
 function StaffLym() {
+  const phone = 2615731250,
+    mail = "gioliotta.io@gmail.com",
+    user = "gixi_lym",
+    message = encodeURIComponent("Hola, me gustaría adquirir sus servicios"),
+    urlWhatsApp = `https://wa.me/${phone}?text=${message}`,
+    urlMail = `mailto:${mail}`,
+    urlTelegram = `https://t.me/${user}?text=${message}`;
+
   return (
     <Container>
       <Header />
 
       <StaffLymContainer>
-        <p>
-          orem ipsum es el texto que se usa habitualmente en diseño gráfico en
-          demostraciones de tipografías o de borradores de diseño para probar el
-          diseño visual antes de insertar el texto final. Aunque no posee
-          actualmente fuentes para justificar sus hipótesis, el profesor de
-          filología clásica orem ipsum esorem ipsum es el texto que se usa
-          habitualmente en diseño gráfico en demostraciones de tipografías o de
-          borradores de diseño para probar el diseño visual antes de insertar el
-          texto final. Aunque no posee actualmente fuentes para justificar sus
-          hipótesis, el profesor de filología clásicaorem ipsum es el texto que
-          <br /> <br />
-          tipografías o de borradoresorem ipsum es el texto que se usa
-          habitualmente en diseño gráfico en demostraciones de tipografías o de
-          borradores de diseño para probar el diseño visual antes de insertar el
-          texto final. Aunque no posee actualmente fuentes para justificar sus
-          hipótesis, el profesor de filología clásicaorem ipsum es el texto que
-          se usa habitualmente en diseño gráfico en demostraciones de
-          <br /> <br />
-          tipografías o de borradores de diseño para probar el diseño visual
-          antes de insertar el texto final. Aunque no posee actualmente fuentes
-          para justificar sus hipótesis, el profesor de filología clásica de
-          diseño para probar el diseño visual antes de insertar el texto final.
-          Aunque no posee actualmente fuentes para justificar sus hipótesis, el
-          profesor de filología clásicaorem ipsum es el texto que se usa
-          habitualmente en diseño gráfico en demostraciones de tipografías o de
-          borradores de diseño para probar el diseño visual antes de insertar el
-          <br /> <br />
-          texto final. Aunque no posee actualmente fuentes para justificar sus
-          hipótesis, el profesor de filología clásica el texto que se usa
-          habitualmente en diseño gráfico en demostraciones de tipografías o de
-          borradores de diseño para probar el diseño visual antes de insertar el
-          texto final. Aunque no posee actualmente fuentes para justificar sus
-          hipótesis, el profesor de filología clásica
-        </p>
+        <Text>
+          En <i>Staff Lym</i>, convertimos tus ideas en realidad. Nos dedicamos
+          al desarrollo de aplicaciones web y móviles. Si tienes algún proyecto
+          en mente o cualquier consulta, contactanos por estos medios:
+        </Text>
+        <ContactContainer>
+          <a href={urlWhatsApp} target="_blank" rel="noopener noreferrer">
+            <WhatsAppSVG />
+          </a>
+
+          <a href={urlMail} target="_blank" rel="noopener noreferrer">
+            <GmailSVG />
+          </a>
+
+          <a href={urlTelegram} target="_blank" rel="noopener noreferrer">
+            <TelegramSVG />
+          </a>
+        </ContactContainer>
       </StaffLymContainer>
 
       <Footer />
@@ -58,20 +51,42 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    font-family: "Poppins", monospace;
   `,
   StaffLymContainer = styled.div`
     background-color: #ebebeb;
     width: 80vw;
-    height: max-content;
+    min-height: 50vh;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem 2rem;
-    margin: 2rem 0;
+    row-gap: 3em;
+
     @media (max-width: 480px) {
       width: 90vw;
+      margin: 3em 0;
+      padding: 2em 0;
+    }
+  `,
+  Text = styled.p`
+    text-align: center;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    font-family: "Poppins", monospace;
+    width: 80%;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  `,
+  ContactContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    column-gap: 1em;
+    @media (max-width: 480px) {
+      flex-direction: column;
+      row-gap: 1em;
     }
   `;
