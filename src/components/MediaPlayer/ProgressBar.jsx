@@ -3,42 +3,8 @@ import styled from "styled-components";
 function ProgressBar(props) {
   const { progressValue } = props;
 
-  /* const ProgressSVG = () => (
-    <progress>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="300"
-        height="16"
-        viewBox="0 0 346 16"
-        fill="none"
-        color="#FF6700"
-      >
-        <path
-          d="M8 8L338 8.00003"
-          stroke="#f2a470"
-          strokeWidth="15"
-          strokeLinecap="round"
-        />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="200"
-          height="16"
-          viewBox="0 0 120 16"
-          fill="none"
-        >
-          <path
-            d="M8 8H112"
-            stroke="#FF6700"
-            strokeWidth="15"
-            strokeLinecap="round"
-          />
-        </svg>
-      </svg>
-    </progress>
-  );*/
-
   return (
-    <ProgressContainer>
+    <ProgressContainer id="progress">
       <Progress
         name="progress-course"
         value={Math.ceil(progressValue)}

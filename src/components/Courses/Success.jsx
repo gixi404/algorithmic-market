@@ -1,57 +1,48 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ContextProps } from "../Context";
 import Imgg from "../../img/alex-shuper-KwrPZDvZRPk-unsplash.jpg";
 import styled from "styled-components";
 
 function Success() {
+  const List =JSON.parse(localStorage.getItem('list'))
+  const Id = JSON.parse(localStorage.getItem('id'))
   const { courseSelected } = useContext(ContextProps);
+  
+  const mappedList = List.map(item => ({
+  name :item.price_data.product_data.name,
+  des:item.price_data.product_data.description, 
+  price:(item.price_data.unit_amount/100),
+  id: Id.id
+  }))
+  
   let selectCourse = courseSelected;
 
-  if (window.location.pathname === "/success/0") {
+  if (window.location.pathname === "/success/0")
     selectCourse = courseSelected(0);
-  } else if (window.location.pathname === "/success/1") {
-    selectCourse = courseSelected(1);
-  } else if (window.location.pathname === "/success/2") {
-    selectCourse = courseSelected(2);
-  }
 
-  const { price, name, description } = selectCourse;
+  if (window.location.pathname === "/success/1")
+    selectCourse = courseSelected(1);
+
+  if (window.location.pathname === "/success/2")
+    selectCourse = courseSelected(2);
 
   return (
     <Div>
       <Section>
-        <UserData>
-          <H2>Purchase completed successfully</H2>
-          <Article>
-            <Img src={Imgg} alt="img piola" />
-            <P>Juan Carlos</P>
-            <H4>XXXX-XXXX-XXXX-4242</H4>
-            <H4>${price}</H4>
-          </Article>
-        </UserData>
-
-        <TransactionData>
-          <H2>Info. Transaction</H2>
-          <Data>
-            <ArticleData>
-              <strong>Date: 13/12/2003</strong>
-              <strong>Mail: sexinthecuty@gmail.com</strong>
-            </ArticleData>
-            <ArticleDataShell>
-              <strong>N° transaction: 3w732237032</strong>
-              <strong>{name}</strong>
-              <strong>{description}</strong>
-              <strong>Imprimir Comprobante</strong>
-            </ArticleDataShell>
-          </Data>
-        </TransactionData>
         <ExtraData>
           <Link to="/">
             <Back>Back</Back>
           </Link>
         </ExtraData>
+        {
+          mappedList.map(item =>(
+          <article key={item.id}>
+            <p >{item.name}</p>
+            <p >{item.des}</p>
+            <p >${item.price}</p>
+          </article>))
+        }
       </Section>
     </Div>
   );
@@ -60,95 +51,86 @@ function Success() {
 export default Success;
 
 const Div = styled.div`
-  scrollbar-gutter: stable both-edges;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80vw;
-  height: 90vh;
-  border-radius: 15px;
-  background-image: linear-gradient(
-    to bottom,
-    #051937,
-    #121e3a,
-    #1b233c,
-    #23283f,
-    #2b2d42
-  );
-  box-shadow: 0 0 35px #000;
-`;
-
-const UserData = styled.main`
-  border: 0;
-  padding: 2vh 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 20vh;
-  width: 80vw;
-`;
-
-const H2 = styled.h2`
-  text-align: center;
-  margin: 2vh 0;
-  color: #f5f5f5;
-`;
-
-const Article = styled.article`
-  display: flex;
-  text-align: center;
-  justify-content: space-evenly;
-  flex-direction: row;
-  width: 82vw;
-  border: 0;
-  border-radius: 5px;
-  margin: 0 -1vw;
-  background-color: #bbbbbb;
-  box-shadow: 0 0 20px #000;
-  box-sizing: border-box;
-`;
-
-const Img = styled.img`
-  height: 50px;
-  width: 50px;
-  padding: 1vh;
-  border-radius: 100%;
-`;
-
-const P = styled.p`
-  line-height: 60px;
-  font-weight: bold;
-`;
-
-const H4 = styled.h4`
-  line-height: 60px;
-`;
-
-const TransactionData = styled.div`
-  height: 55vh;
-`;
-
-const Data = styled.section`
-  display: flex;
-  flex-direction: column;
-  height: 45vh;
-  width: 82vw;
-  border: 0;
-  border-radius: 5px;
-  margin: 0 -1vw;
-  background-color: #bbbbbb;
-  box-shadow: 0 0 20px #000;
-  box-sizing: border-box;
-`;
+    scrollbar-gutter: stable both-edges;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `,
+  Section = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw;
+    height: 90vh;
+    border-radius: 15px;
+    background-image: linear-gradient(
+      to bottom,
+      #051937,
+      #121e3a,
+      #1b233c,
+      #23283f,
+      #2b2d42
+    );
+    box-shadow: 0 0 35px #000;
+  `,
+  UserData = styled.main`
+    border: 0;
+    padding: 2vh 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20vh;
+    width: 80vw;
+  `,
+  H2 = styled.h2`
+    text-align: center;
+    margin: 2vh 0;
+    color: #f5f5f5;
+  `,
+  Article = styled.article`
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 82vw;
+    border: 0;
+    border-radius: 5px;
+    margin: 0 -1vw;
+    background-color: #bbbbbb;
+    box-shadow: 0 0 20px #000;
+    box-sizing: border-box;
+  `,
+  Img = styled.img`
+    height: 50px;
+    width: 50px;
+    padding: 1vh;
+    border-radius: 100%;
+  `,
+  P = styled.p`
+    line-height: 60px;
+    font-weight: bold;
+  `,
+  H4 = styled.h4`
+    line-height: 60px;
+  `,
+  TransactionData = styled.div`
+    height: 55vh;
+  `,
+  Data = styled.section`
+    display: flex;
+    flex-direction: column;
+    height: 45vh;
+    width: 82vw;
+    border: 0;
+    border-radius: 5px;
+    margin: 0 -1vw;
+    background-color: #bbbbbb;
+    box-shadow: 0 0 20px #000;
+    box-sizing: border-box;
+  `;
 const ArticleData = styled.article`
   height: 10vh;
   display: flex;
@@ -164,6 +146,9 @@ const ArticleDataShell = styled.article`
 `;
 const ExtraData = styled.article`
   width: max-content;
+  a{
+    text-decoration: none;
+  }
 `;
 const Back = styled.h2`
   transition: all 0.3s ease;

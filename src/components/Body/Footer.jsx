@@ -1,13 +1,16 @@
-import { Link as Linkk } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Footer() {
   return (
     <FooterContainer>
       <TextContainer>
-        <StaffLym>Created by Staff Lym</StaffLym>
-        <Link to="/privacy">Privacy Policy</Link>
-        <Link to="/privacy">&copy; All rights reserved</Link>
+        <Text to="/stafflym">Creado por Staff Lym</Text>
+
+        <Text to="/privacy">Política de Privacidad</Text>
+        <Text style={{ cursor: "default" }}>
+          &copy; Todos los derechos reservados
+        </Text>
       </TextContainer>
     </FooterContainer>
   );
@@ -26,13 +29,13 @@ const FooterContainer = styled.div`
     justify-content: center;
     row-gap: 5px;
     border-top: 4px solid #ff6700;
-    padding: 0.7rem 0;
+    padding: 0.7em 0;
   `,
   TextContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
-    row-gap: 0.6rem;
+    row-gap: 0.6em;
     justify-content: center;
     font-family: "Poppins", monospace;
 
@@ -40,15 +43,13 @@ const FooterContainer = styled.div`
       width: 80vw;
       flex-direction: row;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
     }
   `,
-  Link = styled(Linkk)`
-    color: #ffffff;
+  Text = styled(Link)`
+    color: #fff;
+    font-size: 1em;
     text-decoration: none;
-    font-size: 1rem;
-  `,
-  StaffLym = styled.p`
-    color: #ffffff;
-    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.3px;
   `;

@@ -1,25 +1,16 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function BuyBtn({ course, title, url }) {
-  const { isAuthenticated } = useAuth0();
+function BuyBtn(props) {
+  const { url } = props;
+
   return (
     <Button>
-      {isAuthenticated && course.id === 0 ? (
-        <Link to="/mycourses">View</Link>
-      ) : (
-        <Link to={url}>{title}</Link>
-      )}
+      <Link to={url}>More Information</Link>
     </Button>
   );
 }
-BuyBtn.defaultProps = {
-  course: {
-    name: "Jonh Doe",
-    id: null,
-  },
-};
+
 export default BuyBtn;
 
 const Button = styled.button`

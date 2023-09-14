@@ -1,38 +1,45 @@
 import { useState, useEffect } from "react";
 
-export function useBuyPetition({ courseSelected }) {
-  const [buyUrl, setBuyUrl] = useState("");
 
-  async function handleBuy() {
-    const dataToFetch = {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer yourAccessToken",
+export function useBuyPetition ({ courses }) {
+  const [buyUrl, setBuyUrl] = useState('')
+  const mappedList = courses.map(course=>
+    ({
+      price_data: {
+        product_data: {
+          name:course.name,
+          description: course.description
+        },
+        unit_amount: (course.cash *100),
+        currency: "usd",
       },
-      body: JSON.stringify(courseSelected),
-    };
+      quantity: 1}))
+      const mappedId = courses.map(course => ({id : course.id}))
+      const infoBuy = {list: mappedList, id: mappedId}
+      async function handleBuy() {
+        const dataToFetch = {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(infoBuy)
+        }
+        
+        try {
+          const res = await fetch(
+            "http://localhost:3001/create-checkout-session",
+            dataToFetch
+            )
+            const data = await res.json()
 
-    try {
-      const res = await fetch(
-        "http://localhost:3001/create-checkout-session",
-        dataToFetch
-      );
+            const {sessionUrl} = data
 
-      if (!res.ok) {
-        throw new Error("La solicitud de compra falló.");
-      }
+            setBuyUrl(sessionUrl)
 
-      const data = await res.json();
-      setBuyUrl(data);
-    } catch (error) {
-      console.error(error);
-    }
+            localStorage.setItem('id', JSON.stringify(mappedId))
+          } catch (error) {
+            console.log('La solicitud de compra falló.')
+          }
   }
-
-  useEffect(() => {
-    handleBuy();
-  }, [courseSelected]);
-
-  return { buyUrl };
+  return { buyUrl, handleBuy };
 }

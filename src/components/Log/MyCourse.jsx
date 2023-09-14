@@ -1,11 +1,18 @@
-import ratadOs from "../../img/rata.jpg";
+import { useContext } from "react";
+import { ContextProps } from "../Context";
 import { Link } from "react-router-dom";
+import ratadOs from "../../img/rata.jpg";
 import styled from "styled-components";
 
 function MyCourse(props) {
-  const { dataCourse } = props;
-  const title = "View",
-    url = `/mycourses/${dataCourse.name}`;
+  const { dataCourse } = props,
+    { setLoadContent } = useContext(ContextProps);
+
+  function onVisitCourse() {
+    document.documentElement.style.scrollBehavior = "auto";
+    setLoadContent(true);
+    window.scrollTo(0, 0);
+  }
 
   return (
     <>
@@ -24,8 +31,7 @@ function MyCourse(props) {
           Tiempo estimado: 90hr
         </TimeCard>
 
-        <ButtonContainer>
-          {/* <BuyBtn course={dataCourse} title={title} url={url} /> */}
+        <ButtonContainer onClick={onVisitCourse}>
           <Link to={`/mycourses/${dataCourse.name}`}>go to course</Link>
         </ButtonContainer>
       </CourseContainer>
