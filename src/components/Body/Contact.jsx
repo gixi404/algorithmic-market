@@ -12,7 +12,6 @@ function Contact() {
 
   function handleSubmitForm(event) {
     event.preventDefault();
-
     const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
       regexQuery = /^(.{1,800})$/;
 
@@ -21,11 +20,10 @@ function Contact() {
         case "Name":
           {
             setError(true);
-            Name.current.style.backgroundColor = "#222";
+
             Name.current.style.borderBottom = "5px solid #f00";
 
             setTimeout(() => {
-              Name.current.style.backgroundColor = "#ebebeb";
               Name.current.style.borderBottom = "2.3px solid #ff6700";
               setError(false);
             }, 2000);
@@ -35,11 +33,10 @@ function Contact() {
         case "Mail":
           {
             setError(true);
-            Mail.current.style.backgroundColor = "#222";
+
             Mail.current.style.borderBottom = "5px solid #f00";
 
             setTimeout(() => {
-              Mail.current.style.backgroundColor = "#ebebeb";
               Mail.current.style.borderBottom = "2.3px solid #ff6700";
               setError(false);
             }, 2000);
@@ -49,11 +46,10 @@ function Contact() {
         case "Query":
           {
             setError(true);
-            Query.current.style.backgroundColor = "#222";
+
             Query.current.style.borderBottom = "5px solid #f00";
 
             setTimeout(() => {
-              Query.current.style.backgroundColor = "#ebebeb";
               Query.current.style.borderBottom = "2.3px solid #ff6700";
               setError(false);
             }, 2000);
@@ -62,7 +58,6 @@ function Contact() {
 
         default:
           {
-            Name.current.style.backgroundColor = "#ebebeb";
             Name.current.style.borderBottom = "2.3px solid #ff6700";
             setError(false);
           }
@@ -123,15 +118,15 @@ function Contact() {
       console.error("Datos incompletos");
     }
   }
- 
+
   return (
     <Container id="contact">
       <ContactContainer>
         <Text>
           <Title>
-            Contact us
+            Contacto
             <TitleSpan>
-              We're Here to Listen and Help. Send your doubts or queries!
+              Estamos para escuchar y ayudate. ¡Envía tus dudas o consultas!
             </TitleSpan>
           </Title>
         </Text>
@@ -139,13 +134,13 @@ function Contact() {
         <Form onSubmit={handleSubmitForm}>
           {error && (
             <MessageValidation>
-              <ErrorValidation>Check the entered data</ErrorValidation>
+              <ErrorValidation>Revisa la información</ErrorValidation>
             </MessageValidation>
           )}
 
           {sendForm && (
             <MessageValidation>
-              <ConfirmValidation>data sent successfully</ConfirmValidation>
+              <ConfirmValidation>Información enviada</ConfirmValidation>
             </MessageValidation>
           )}
 
@@ -154,7 +149,7 @@ function Contact() {
             name="name_form"
             id="name_form"
             ref={Name}
-            placeholder="Name *"
+            placeholder="Nombre *"
           />
 
           <InputForm
@@ -162,7 +157,7 @@ function Contact() {
             name="mail_form"
             ref={Mail}
             id="mail_form"
-            placeholder="Mail Adress *"
+            placeholder="Correo electrónico *"
           />
 
           <Textarea
@@ -171,7 +166,7 @@ function Contact() {
             ref={Query}
             cols="10"
             rows="5"
-            placeholder="Query *"
+            placeholder="Consulta *"
           ></Textarea>
 
           <SubmitContainer>
@@ -319,6 +314,9 @@ const Container = styled.div`
     font-weight: 400;
     color: red;
     font-size: 2rem;
+    background-color: #fff;
+    border-radius: 0.3em;
+    padding: 0.3em 1em;
     text-transform: uppercase;
 
     @media (max-width: 480px) {
@@ -329,6 +327,9 @@ const Container = styled.div`
     font-family: "Poppins", monospace;
     font-weight: 400;
     color: green;
+    background-color: #fff;
+    border-radius: 0.3em;
+    padding: 0.3em 1em;
     font-size: 2rem;
     text-transform: uppercase;
 

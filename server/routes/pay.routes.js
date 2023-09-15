@@ -17,13 +17,13 @@ router.get("/cancel", (req, res) =>
   res.redirect(`http://localhost:${FRONT_PORT}/`)
 );
 
-router.post('/createcourse',createCourse)
+router.post("/createcourse", createCourse);
 
-router.post('/users', createUser)
+router.post("/users", createUser);
 
-router.get('/buy',(req, res) => {
-  res.redirect('http://localhost:3000/')
-})
+router.get("/buy", (req, res) => {
+  res.redirect("http://localhost:3000/");
+});
 
 router.post("/guardartoken", async (req, res) => {
   const { token, user } = await req.body;

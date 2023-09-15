@@ -5,8 +5,8 @@ function Banner() {
     <Container id="banner">
       <BannerContainer>
         <TextContainer>
-          <TextSpan>Unlock your financial potential</TextSpan>
-          with cutting-edge trading courses on <b>our platform</b>
+          <TextSpan>Libere su potencial financiero</TextSpan>
+          con los cursos de trading de <b>Algorithmic Market</b>
         </TextContainer>
       </BannerContainer>
     </Container>

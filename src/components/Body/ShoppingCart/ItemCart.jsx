@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ContextProps } from "../../Context";
-import Img from "../../../img/pexels-alesia-kozik-6770610 2.png";
+import courseImg from "../../../img/course-img.jpg";
 import styled from "styled-components";
 
 function ItemCart(props) {
@@ -11,7 +11,7 @@ function ItemCart(props) {
 
   return (
     <Item>
-      <IMG src={Img} alt="nose" />
+      <IMG src={courseImg} alt="curso imágen" />
       <Article>
         <div>
           <h3>{data.name}</h3>
@@ -19,7 +19,7 @@ function ItemCart(props) {
             <strong>${data.cash}</strong>
           </p>
         </div>
-        <p onClick={handleClick}>delete</p>
+        <p onClick={handleClick}>Borrar</p>
       </Article>
     </Item>
   );
@@ -27,23 +27,19 @@ function ItemCart(props) {
 export default ItemCart;
 
 const Item = styled.article`
-    border: 0;
-    margin: 1.5vh 0;
-    background-color: #fff5ef;
-    height: 20vh;
-    width: 27vw;
-    display: flex;
-    font-family: "Poppins", monospace;
-    align-items: center;
-    justify-content: space-around;
-    box-shadow: 1px 1px 3px #ff6700;
-    border-radius: 8px;
-    transition: all .5s ease;
-    cursor: pointer;
-    &:hover{
-        background-color: #000;
-        transform: rotate(360deg);
-    }
+  border: 0;
+  margin: 1.5vh 0;
+  background-color: #fff5ef;
+  height: 20vh;
+  width: 27vw;
+  display: flex;
+  font-family: "Poppins", monospace;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 1px 1px 3px #ff6700;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  cursor: pointer;
 `;
 
 const IMG = styled.img`
@@ -68,10 +64,5 @@ const IMG = styled.img`
       padding: 0 0.5vw;
       cursor: pointer;
       transition: all 0.5s ease;
-      &:hover {
-        color: #222;
-        background-color: transparent;
-        text-decoration: underline;
-      }
     }
   `;

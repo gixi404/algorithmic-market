@@ -1,15 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function useMoveInfo() {
   const [succesData, setSuccessData] = useState([]);
 
   useEffect(() => {
+    const list = localStorage.getItem("list");
 
-    const list = localStorage.getItem('list');
-    
     if (list) {
-    
-        setSuccessData(list);
+      setSuccessData(list);
     }
   }, []);
   return { succesData };

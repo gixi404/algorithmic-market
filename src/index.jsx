@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Home from "./Home.jsx";
 import Context from "./components/Context.jsx";
-import MyCourses from "./components/Log/MyCourses.jsx";
 import Success from "./components/Courses/Success.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Privacy from "./components/Body/Privacy.jsx";
@@ -24,7 +23,6 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
         <BrowserRouter>
           <Context>
             <Routes>
-              {/* <Route path="/mycourses" element={<MyCourses />} /> */}
               <Route path="*" element={<Home />} />
               <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
               <Route path="/success/:coursedetails" element={<Success />} />

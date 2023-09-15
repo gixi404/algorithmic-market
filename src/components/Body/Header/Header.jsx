@@ -1,9 +1,11 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { Link as Linkk } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import LoginBtn from "../../Log/LoginBtn.jsx";
-import styled from "styled-components";
 import Profile from "../Profile/Profile.jsx";
 import PopupMyCourses from "./PopupMyCourses.jsx";
+import logo from "../../../img/logo.png";
+import styled from "styled-components";
+import IconCart from "../ShoppingCart/IconCart.jsx";
 
 function Header() {
   const { isAuthenticated } = useAuth0();
@@ -12,25 +14,30 @@ function Header() {
     <HeaderContainer>
       <WebContainer>
         <Link to="/">
-          <WebName translate="no">Algorithmic Market</WebName>
+          <Logo
+            src={logo}
+            title="Algorithmic Market"
+            alt="Algorithmic Market Logo"
+          />
         </Link>
 
         <NavContainer>
-          <NavLink href="#allCourses">Courses</NavLink>
-          <NavLink href="#aboutUs">About&nbsp;Us</NavLink>
-          <NavLink href="#contact">Contact</NavLink>
+          <NavLink href="#allCourses">Cursos</NavLink>
+          <NavLink href="#aboutUs">Sobre&nbsp;Nosotros</NavLink>
+          <NavLink href="#contact">Contacto</NavLink>
         </NavContainer>
 
-        {/* <Icon /> */}
-
-        {isAuthenticated ? (
-          <>
-            <PopupMyCourses />
-            <Profile />
-          </>
-        ) : (
-          <LoginBtn />
-        )}
+        <CotainerPopLog>
+          <IconCart />
+          {isAuthenticated ? (
+            <>
+              <PopupMyCourses />
+              <Profile />
+            </>
+          ) : (
+            <LoginBtn />
+          )}
+        </CotainerPopLog>
 
         {/* <MenuSVG /> */}
       </WebContainer>
@@ -70,27 +77,20 @@ const HeaderContainer = styled.header`
       justify-content: space-between;
     }
   `,
-  WebName = styled.h1`
-    font-size: 2rem;
-    text-transform: uppercase;
-    font-family: "Poppins", monospace;
-    letter-spacing: 1.3px;
-    font-weight: 600;
-    color: #ff6700;
-    height: 80px;
-    line-height: 96px;
+  Logo = styled.img`
+    height: 96px;
+    width: 120px;
+    object-fit: cover;
+    object-position: center;
   `,
   NavContainer = styled.nav`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     column-gap: 1.3rem;
-    min-width: 30vw;
+    min-width: 25vw;
     height: 80px;
-    div {
-      margin-top: 16px;
-    }
   `,
   NavLink = styled.a`
     color: #2e2e2e;
@@ -117,4 +117,12 @@ const HeaderContainer = styled.header`
     &:hover {
       color: #888888;
     }
+  `,
+  CotainerPopLog = styled.div`
+    height: "100%";
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2em;
   `;

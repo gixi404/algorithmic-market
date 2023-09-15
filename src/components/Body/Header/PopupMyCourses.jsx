@@ -1,15 +1,15 @@
 import { useState } from "react";
-import ArrowSVG from "./ArrowSVG";
 import Popup from "./Popup";
+import { ArrowSVG } from "../../svgs";
 import styled from "styled-components";
 
 function PopupMyCourses() {
   const [popupOpen, setPopupOpen] = useState(false);
 
   return (
-    <Container>
+    <Container onClick={() => setPopupOpen(!popupOpen)}>
       <Title>Seguir Curso</Title>
-      <ArrowSVG popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
+      <ArrowSVG popupOpen={popupOpen} />
       {popupOpen && <Popup />}
     </Container>
   );
@@ -23,6 +23,8 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     column-gap: 0.8em;
+    cursor: pointer;
+    padding-top: 1em;
   `,
   Title = styled.p`
     font-size: 1.1em;

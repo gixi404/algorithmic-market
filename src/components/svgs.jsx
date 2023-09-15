@@ -1,3 +1,8 @@
+import { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ContextProps } from "./Context";
+import styled from "styled-components";
+
 function TelegramSVG() {
   return (
     <svg
@@ -81,4 +86,321 @@ function GmailSVG() {
   );
 }
 
-export { TelegramSVG, WhatsAppSVG, GmailSVG };
+function CloseCartSVG() {
+  return (
+    <svg
+      width="40px"
+      height="40px"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path
+          d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z"
+          fill="#ff6700"
+        />{" "}
+      </g>
+    </svg>
+  );
+}
+
+function TrashSVG() {
+  return (
+    <svg
+      width="40px"
+      height="40px"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.75 6.16667C2.75 5.70644 3.09538 5.33335 3.52143 5.33335L6.18567 5.3329C6.71502 5.31841 7.18202 4.95482 7.36214 4.41691C7.36688 4.40277 7.37232 4.38532 7.39185 4.32203L7.50665 3.94993C7.5769 3.72179 7.6381 3.52303 7.72375 3.34536C8.06209 2.64349 8.68808 2.1561 9.41147 2.03132C9.59457 1.99973 9.78848 1.99987 10.0111 2.00002H13.4891C13.7117 1.99987 13.9056 1.99973 14.0887 2.03132C14.8121 2.1561 15.4381 2.64349 15.7764 3.34536C15.8621 3.52303 15.9233 3.72179 15.9935 3.94993L16.1083 4.32203C16.1279 4.38532 16.1333 4.40277 16.138 4.41691C16.3182 4.95482 16.8778 5.31886 17.4071 5.33335H19.9786C20.4046 5.33335 20.75 5.70644 20.75 6.16667C20.75 6.62691 20.4046 7 19.9786 7H3.52143C3.09538 7 2.75 6.62691 2.75 6.16667Z"
+        fill="#ff6700"
+      />
+      <path
+        d="M11.6068 21.9998H12.3937C15.1012 21.9998 16.4549 21.9998 17.3351 21.1366C18.2153 20.2734 18.3054 18.8575 18.4855 16.0256L18.745 11.945C18.8427 10.4085 18.8916 9.6402 18.45 9.15335C18.0084 8.6665 17.2628 8.6665 15.7714 8.6665H8.22905C6.73771 8.6665 5.99204 8.6665 5.55047 9.15335C5.10891 9.6402 5.15777 10.4085 5.25549 11.945L5.515 16.0256C5.6951 18.8575 5.78515 20.2734 6.66534 21.1366C7.54553 21.9998 8.89927 21.9998 11.6068 21.9998Z"
+        fill="#ff6700"
+      />
+    </svg>
+  );
+}
+
+function MenuSVG() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="33"
+      height="20"
+      viewBox="0 0 33 20"
+      fill="none"
+    >
+      <path
+        d="M2 2H30.8"
+        stroke="#FF6700"
+        strokeWidth="3.41817"
+        strokeLinecap="round"
+      />
+      <path
+        d="M2 10H30.8"
+        stroke="#FF6700"
+        strokeWidth="3.41817"
+        strokeLinecap="round"
+      />
+      <path
+        d="M2 18H30.8"
+        stroke="#FF6700"
+        strokeWidth="3.41817"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function ArrowSVG(props) {
+  const { popupOpen } = props;
+
+  return popupOpen ? (
+    <svg
+      style={{ cursor: "pointer" }}
+      xmlns="http://www.w3.org/2000/svg"
+      width="23"
+      height="11"
+      viewBox="0 0 23 11"
+      fill="none"
+    >
+      <path
+        d="M11.5 11C10.5712 11 9.64246 10.6545 8.93926 9.97644L0.288579 1.63449C-0.0961928 1.26345 -0.0961928 0.64932 0.288579 0.27828C0.67335 -0.0927599 1.31021 -0.0927599 1.69498 0.27828L10.3457 8.62023C10.9825 9.23436 12.0174 9.23436 12.6543 8.62023L21.305 0.27828C21.6898 -0.0927599 22.3267 -0.0927599 22.7114 0.27828C23.0962 0.64932 23.0962 1.26345 22.7114 1.63449L14.0607 9.97644C13.3575 10.6545 12.4287 11 11.5 11Z"
+        fill="#FF6700"
+        transform="scale(-1, 1) translate(-23, 0)"
+      />
+    </svg>
+  ) : (
+    <svg
+      style={{ cursor: "pointer" }}
+      xmlns="http://www.w3.org/2000/svg"
+      width="23"
+      height="11"
+      viewBox="0 0 23 11"
+      fill="none"
+    >
+      <path
+        d="M11.5 0C10.5712 0 9.64246 0.345451 8.93926 1.02356L0.288579 9.36551C-0.0961928 9.73655 -0.0961928 10.3507 0.288579 10.7217C0.67335 11.0928 1.31021 11.0928 1.69498 10.7217L10.3457 2.37977C10.9825 1.76564 12.0174 1.76564 12.6543 2.37977L21.305 10.7217C21.6898 11.0928 22.3267 11.0928 22.7114 10.7217C23.0962 10.3507 23.0962 9.73655 22.7114 9.36551L14.0607 1.02356C13.3575 0.345451 12.4287 0 11.5 0Z"
+        fill="#FF6700"
+      />
+    </svg>
+  );
+}
+
+function VisitSVG() {
+  const { courseID } = useContext(ContextProps);
+
+  return (
+    <Link to={`/mycourses/${courseID}`}>
+      <Visit
+        width="38px"
+        height="38px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 15L16 12M16 12L13 9M16 12H8M7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V7.2C20 6.0799 20 5.51984 19.782 5.09202C19.5903 4.71569 19.2843 4.40973 18.908 4.21799C18.4802 4 17.9201 4 16.8 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.07989 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20Z"
+          stroke="#ff6700"
+          strokeWidth="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Visit>
+    </Link>
+  );
+}
+
+function UserSVG() {
+  return (
+    <User>
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 27"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 13C15.866 13 19 10.0898 19 6.5C19 2.91015 15.866 0 12 0C8.13401 0 5 2.91015 5 6.5C5 10.0898 8.13401 13 12 13Z"
+          fill="#FF6700"
+        />
+        <path
+          d="M12 16C5.38613 16 0 20.62 0 26.3125C0 26.6975 0.290428 27 0.660065 27H23.3399C23.7096 27 24 26.6975 24 26.3125C24 20.62 18.6139 16 12 16Z"
+          fill="#FF6700"
+        />
+      </svg>
+    </User>
+  );
+}
+
+function IconSVG(props) {
+  const { width, height } = props,
+    [onPressClick, setOnPressClick] = useState(false),
+    handleState = () => setOnPressClick(!onPressClick);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setOnPressClick(false), 2000);
+    return () => clearTimeout(timer);
+  }, [onPressClick]);
+
+  return (
+    <IconContainer onClick={handleState}>
+      {onPressClick ? (
+        <Icon
+          width={width}
+          height={height}
+          viewBox="0 0 40 41"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="&#240;&#159;&#166;&#134; icon &#34;shopping cart&#34;">
+            <g id="Group">
+              <path
+                id="Vector"
+                d="M28.9412 41C30.8059 41 32.3176 39.4883 32.3176 37.6235C32.3176 35.7587 30.8059 34.247 28.9412 34.247C27.0764 34.247 25.5647 35.7587 25.5647 37.6235C25.5647 39.4883 27.0764 41 28.9412 41Z"
+                fill="#292D32"
+              />
+              <path
+                id="Vector_2"
+                d="M13.5059 41C15.3706 41 16.8823 39.4883 16.8823 37.6235C16.8823 35.7587 15.3706 34.247 13.5059 34.247C11.6411 34.247 10.1294 35.7587 10.1294 37.6235C10.1294 39.4883 11.6411 41 13.5059 41Z"
+                fill="#292D32"
+              />
+              <path
+                id="Vector_3"
+                d="M6.92659 5.19012L6.54071 9.91718C6.46353 10.824 7.17741 11.5765 8.08424 11.5765H37.6235C38.4339 11.5765 39.1092 10.9591 39.1671 10.1487C39.4179 6.73365 36.8132 3.95529 33.3981 3.95529H9.68565C9.49271 3.10635 9.10682 2.296 8.50871 1.62071C7.544 0.598118 6.19341 0 4.80424 0H1.44706C0.656 0 0 0.656 0 1.44706C0 2.23812 0.656 2.89412 1.44706 2.89412H4.80424C5.40235 2.89412 5.96188 3.14494 6.36706 3.56941C6.77224 4.01318 6.96518 4.592 6.92659 5.19012Z"
+                fill="#292D32"
+              />
+              <path
+                id="Vector_4"
+                d="M37.8548 12H8.25751C7.44716 12 6.79116 12.6174 6.71399 13.4085L6.0194 21.8014C5.74928 25.1007 8.33469 27.9176 11.634 27.9176H33.0891C35.9833 27.9176 38.5301 25.5445 38.7423 22.6504L39.379 13.64C39.4562 12.7525 38.7616 12 37.8548 12Z"
+                fill="#292D32"
+              />
+            </g>
+          </g>
+        </Icon>
+      ) : (
+        <Icon
+          width={width}
+          height={height}
+          viewBox="0 0 43 43"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="&#240;&#159;&#166;&#134; icon &#34;shopping cart&#34;">
+            <g id="Group">
+              <path
+                id="Vector"
+                d="M1 1H4.56702C6.78102 1 8.5235 2.9065 8.339 5.1L6.6375 25.518C6.3505 28.8595 8.99498 31.7295 12.357 31.7295H34.1895C37.1415 31.7295 39.7245 29.3105 39.95 26.379L41.057 11.004C41.303 7.601 38.72 4.8335 35.2965 4.8335H8.83102"
+                stroke="#292D32"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                id="Vector_2"
+                d="M30.2125 42C31.6278 42 32.775 40.8528 32.775 39.4375C32.775 38.0222 31.6278 36.875 30.2125 36.875C28.7972 36.875 27.65 38.0222 27.65 39.4375C27.65 40.8528 28.7972 42 30.2125 42Z"
+                stroke="#292D32"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                id="Vector_3"
+                d="M13.8125 42C15.2277 42 16.375 40.8528 16.375 39.4375C16.375 38.0222 15.2277 36.875 13.8125 36.875C12.3973 36.875 11.25 38.0222 11.25 39.4375C11.25 40.8528 12.3973 42 13.8125 42Z"
+                stroke="#292D32"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                id="Vector_4"
+                d="M15.35 13.3H39.95"
+                stroke="#292D32"
+                strokeWidth="2"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </g>
+          </g>
+        </Icon>
+      )}
+    </IconContainer>
+  );
+}
+
+export {
+  TelegramSVG,
+  WhatsAppSVG,
+  GmailSVG,
+  CloseCartSVG,
+  TrashSVG,
+  MenuSVG,
+  ArrowSVG,
+  VisitSVG,
+  UserSVG,
+  IconSVG,
+};
+
+const Visit = styled.svg`
+    transition-duration: 0.3s;
+    &:hover {
+      cursor: pointer;
+      fill: #ff6700;
+      transform: scale(1.1);
+      path {
+        stroke: #fff;
+      }
+    }
+  `,
+  User = styled.div`
+    cursor: pointer;
+    border: 2px solid #ff6700;
+    border-radius: 10px;
+    padding: 0.3rem 0.5rem;
+    transition: all ease 0.3s;
+    &:hover {
+      scale: 1.1;
+    }
+    &:active {
+      scale: 1;
+    }
+  `,
+  Icon = styled.svg`
+    transition: all 1s ease;
+    &:active {
+      path {
+        fill: #181818;
+      }
+    }
+  `,
+  IconContainer = styled.div`
+    height: 80px;
+    line-height: 100px;
+    width: max-content;
+    transition: all ease 0.3s;
+    &:hover {
+      scale: 1.1;
+    }
+    &:active {
+      scale: 1;
+    }
+  `;

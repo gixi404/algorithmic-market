@@ -1,30 +1,29 @@
-import { useParams } from 'react-router-dom';
-import AddButton from '../Courses/AddButton.jsx';
-import { useContext } from 'react';
-import { ContextProps } from '../Context';
-import styled from 'styled-components'
+import { useParams } from "react-router-dom";
+import AddButton from "../Courses/AddButton.jsx";
+import { useContext } from "react";
+import { ContextProps } from "../Context";
+import styled from "styled-components";
 
-function detailCourses () {
-  const { courseSelected } = useContext( ContextProps )
-  const { coursedetails } = useParams();
-  const { name, cash,  description } = courseSelected(coursedetails)
-  
+function detailCourses() {
+  const { courseSelected } = useContext(ContextProps),
+    { coursedetails } = useParams(),
+    { name, cash, description } = courseSelected(coursedetails);
+
   return (
     <Container>
       <Details>
-        <H2>{name} | Fundamentals</H2>
-        <P>Explore the fundamentals of trading in our introductory course.</P>
+        <H2>{name} | Fundamentales</H2>
+        <P>Explora los fundamentales de este curso re fachero</P>
         <P>
-          Learn to interpret charts, analyze trends, and make informed
-          decisions. Acquire essential skills for trading in financial markets
-          and build a solid foundation for your trading success.
+          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho
+          de manera sencilla y poderosamente evolutiva, vamos milei.",
         </P>
         <Article>
           <Title>Overview:</Title>
           <Description>{description}</Description>
         </Article>
         <CourseMetas>
-          <Title>Course Highlights:</Title>
+          <Title>Curso Highlights:</Title>
           <List>
             <ListElement>
               <svg
@@ -65,14 +64,16 @@ function detailCourses () {
               <p>Tercera clase de orientacion.</p>
             </ListElement>
             <Span></Span>
-        </List>
-        <Hours><span>🕛</span>Estimated Time: 30hrs</Hours>
-      </CourseMetas>
-      <Compra>
-        <span></span>
-        <AddButton courseSelected={courseSelected(coursedetails)} />
-        <p>${cash} USD</p>
-      </Compra>
+          </List>
+          <Hours>
+            <span>🕛</span>Estimated Time: 30hrs
+          </Hours>
+        </CourseMetas>
+        <Compra>
+          <span></span>
+          <AddButton courseSelected={courseSelected(coursedetails)} />
+          <p>${cash} USD</p>
+        </Compra>
       </Details>
     </Container>
   );
