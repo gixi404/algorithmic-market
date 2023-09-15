@@ -1,8 +1,5 @@
 import { useState } from "react";
 
-export function useBuyPetition({ courses }) {
-  const [buyUrl, setBuyUrl] = useState("");
-
 export function useBuyPetition ({ courses }) {
   const [buyUrl, setBuyUrl] = useState('')
 

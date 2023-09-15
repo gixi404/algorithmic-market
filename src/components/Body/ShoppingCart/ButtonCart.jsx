@@ -48,5 +48,5 @@ const Container = styled.article`
       box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
       outline: none;
       border: none;
-      background-color: #ff6700;
+      background-color: #ff6700;}
   `;
