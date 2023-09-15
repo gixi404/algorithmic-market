@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ViewCourse from "../Log/ViewCourse";
 import BuyBtn from "./Button";
-import rata from "../../img/rata.jpg";
+import courseImg from "../../img/course-img.jpg";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
@@ -9,14 +9,11 @@ function Course({ dataCourse }) {
 
   return (
     <CourseContainer>
-      <Img src={rata} alt="img course" />
+      <Img src={courseImg} alt="img course" />
 
       <NameCourse>{dataCourse.name}</NameCourse>
 
-      <DescriptionCard>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean gravida
-        ultrices justo eu pretium. Ut quis ipsum nec ligula fringilla
-      </DescriptionCard>
+      <DescriptionCard>{dataCourse.description}</DescriptionCard>
 
       <TimeCard>
         <Span>🕓</Span>
@@ -24,7 +21,7 @@ function Course({ dataCourse }) {
       </TimeCard>
 
       <ButtonContainer>
-        {!purchasedCourse ? (
+        {purchasedCourse ? (
           <ViewCourse url={`/mycourses/${dataCourse.id}`} />
         ) : (
           <BuyBtn url={`/details/${dataCourse.id}`} />

@@ -1,5 +1,4 @@
-import UserSVG from "../Profile/UserSVG";
-import styled from "styled-components";
+import { UserSVG } from "../../svgs";
 
 function Profile() {
   return <UserSVG />;

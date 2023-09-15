@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ContextProps } from "../../Context";
-import VisitSVG from "./VisitSVG";
+import { VisitSVG } from "../../svgs";
 import styled from "styled-components";
 
 function Course() {
@@ -16,14 +16,22 @@ function Course() {
 
       <progress
         style={{ width: "80%", height: "3vh" }}
-        value={verifyData(Math.ceil(progressValue), 0)}
+        value={verifyData(
+          Math.ceil(progressValue === 101 ? progressValue-- : progressValue),
+          0
+        )}
         max="100"
         name="progress"
       />
 
       <Div>
         <label htmlFor="progress">
-          Progreso {verifyData(Math.ceil(progressValue), 0)}%
+          Progreso{" "}
+          {verifyData(
+            Math.ceil(progressValue === 101 ? progressValue-- : progressValue),
+            0
+          )}
+          %
         </label>
         {verifyData(<VisitSVG />)}
       </Div>

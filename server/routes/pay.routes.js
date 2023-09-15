@@ -10,9 +10,9 @@ const FRONT_PORT = 3000,
 
 router.post("/create-checkout-session", createSession);
 
-router.post('/createcourse',createCourse)
+router.post("/createcourse", createCourse);
 
-router.post('/users', createUser)
+router.post("/users", createUser);
 
 router.post('/buylist', createShoppingCart)
 

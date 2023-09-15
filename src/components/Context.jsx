@@ -1,7 +1,5 @@
 import { useState, createContext } from "react";
-import basicCourseImg from "../img/basicCourseImg.webp";
-import middleCourseImg from "../img/middleCourseImg.webp";
-import advancedCourseImg from "../img/advancedCourseImg.webp";
+import exampleImg from "../img/course-img.jpg";
 
 export const ContextProps = createContext();
 
@@ -15,33 +13,33 @@ function Context({ children }) {
       {
         id: 0,
         description:
-          "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
-        name: "Course Initial",
+          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        name: "Curso Inicial",
         cash: 200,
-        img: basicCourseImg,
+        img: exampleImg,
       },
       {
         id: 1,
         description:
-          "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
-        name: "Curso Medium",
+          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        name: "Curso Medio",
         cash: 250,
-        img: middleCourseImg,
+        img: exampleImg,
       },
       {
         id: 2,
         description:
-          "A trading course is a learning program designed to teach people how to trade the financial markets. Trading courses can cover a wide range of topics, including technical analysis, fundamental analysis, risk management, and trading psychology. ",
-        name: "Curso Advanced",
+          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        name: "Curso Avanzado",
         cash: 350,
-        img: advancedCourseImg,
+        img: exampleImg,
       },
     ]),
     [myCourses, setMyCourses] = useState([
       {
         name: "Curso Inicial",
         price: 200,
-        img: basicCourseImg,
+        img: exampleImg,
         id: 0,
         classes: [
           {
@@ -94,11 +92,11 @@ function Context({ children }) {
       {
         name: "Curso Medio",
         price: 200,
-        img: basicCourseImg,
+        img: exampleImg,
         id: 1,
         classes: [
           {
-            name: "1 - Pijas gratis",
+            name: "1 - Mirtha Legrand desnuda",
             id: 0,
             URL: "https://youtube.com/embed/d6P7kWUiDMY?si=NU2c4YIPYqX53FOz",
           },
@@ -147,7 +145,7 @@ function Context({ children }) {
       {
         name: "Curso Avanzado",
         price: 500,
-        img: basicCourseImg,
+        img: exampleImg,
         id: 2,
         classes: [
           {

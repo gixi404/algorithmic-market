@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
-import {useBuyPetition} from '../../../hooks/useBuyLogic.js'
-import styled from 'styled-components'
+import { Link } from "react-router-dom";
+import { useBuyPetition } from "../../../hooks/useBuyLogic.js";
+import styled from "styled-components";
 
 function ButtonCart({courses}){
     const {buyUrl} = useBuyPetition({courses})
@@ -9,10 +9,10 @@ function ButtonCart({courses}){
     <Container>
     <Btn to={url}>Buy Now!</Btn>
     </Container>
-    )
+  );
 }
 
-export default  ButtonCart
+export default ButtonCart;
 
 const Container = styled.article`
     width: 10vw;
@@ -22,9 +22,8 @@ const Container = styled.article`
     @media (min-width: 1224px) {
       width: 100%;
     }
-`
-
-const Btn = styled(Link)`
+  `,
+  Btn = styled(Link)`
     display: flex;
     justify-content: center;
     text-decoration: none;
@@ -50,5 +49,4 @@ const Btn = styled(Link)`
       outline: none;
       border: none;
       background-color: #ff6700;
-    }
-`;
+  `;

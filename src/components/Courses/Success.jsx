@@ -1,21 +1,20 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ContextProps } from "../Context";
-import Imgg from "../../img/alex-shuper-KwrPZDvZRPk-unsplash.jpg";
 import styled from "styled-components";
 
 function Success() {
-  const List =JSON.parse(localStorage.getItem('list'))
-  const Id = JSON.parse(localStorage.getItem('id'))
+  const List = JSON.parse(localStorage.getItem("list"));
+  const Id = JSON.parse(localStorage.getItem("id"));
   const { courseSelected } = useContext(ContextProps);
-  
+
   const mappedList = List.map(item => ({
-  name :item.price_data.product_data.name,
-  des:item.price_data.product_data.description, 
-  price:(item.price_data.unit_amount/100),
-  id: Id.id
-  }))
-  
+    name: item.price_data.product_data.name,
+    des: item.price_data.product_data.description,
+    price: item.price_data.unit_amount / 100,
+    id: Id.id,
+  }));
+
   let selectCourse = courseSelected;
 
   if (window.location.pathname === "/success/0")
@@ -32,17 +31,16 @@ function Success() {
       <Section>
         <ExtraData>
           <Link to="/">
-            <Back>Back</Back>
+            <Back>Atrás</Back>
           </Link>
         </ExtraData>
-        {
-          mappedList.map(item =>(
+        {mappedList.map(item => (
           <article key={item.id}>
-            <p >{item.name}</p>
-            <p >{item.des}</p>
-            <p >${item.price}</p>
-          </article>))
-        }
+            <p>{item.name}</p>
+            <p>{item.des}</p>
+            <p>${item.price}</p>
+          </article>
+        ))}
       </Section>
     </Div>
   );
@@ -146,7 +144,7 @@ const ArticleDataShell = styled.article`
 `;
 const ExtraData = styled.article`
   width: max-content;
-  a{
+  a {
     text-decoration: none;
   }
 `;

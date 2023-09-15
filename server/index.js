@@ -17,10 +17,5 @@ app.use(cookieParser());
 app.use(express.static(path.resolve("src/components")));
 app.use(PayRoute);
 
-// Configura las políticas de permisos para eliminar "ch-ua-form-factor"
-app.use((req, res, next) => {
-  res.setHeader("Permissions-Policy", "ch-ua-form-factor 'none'");
-  next();
-});
 
 app.listen(PORT, console.log("running on port", PORT));

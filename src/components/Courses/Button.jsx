@@ -6,7 +6,7 @@ function BuyBtn(props) {
 
   return (
     <Button>
-      <Link to={url}>More Information</Link>
+      <Link to={url}>Más Información</Link>
     </Button>
   );
 }

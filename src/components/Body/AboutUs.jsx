@@ -1,4 +1,4 @@
-import Imgg from "../../img/pito.jpg";
+import Imgg from "../../img/about-us-img.jpg";
 import styled from "styled-components";
 
 function AboutUs() {
@@ -6,24 +6,25 @@ function AboutUs() {
     <Container id="aboutUs">
       <AboutUsContainer>
         <Text>
-          <Title>About Us</Title>
+          <Title>Sobre Nosotros</Title>
           <p>
-            At{" "}
+            En{" "}
             <span style={{ fontStyle: "italic", color: "#ff6700" }}>
               Algorithmic Market
             </span>
-            , we're not just a company we're a community of passionate traders
-            dedicated to transforming financial aspirations into reality.
-            Established with a vision to empower individuals with the knowledge
-            and tools to conquer the world of trading, King Of The Market has
-            become a beacon of excellence in the industry.
-            <br />
-            <br />
-            Our mission is simple: to provide top-tier education, cutting-edge
-            resources, and unparalleled support to traders of all levels. From
-            novices taking their first steps to seasoned professionals seeking
-            to refine their skills, we offer a range of meticulously crafted
-            courses that cater to diverse needs.
+            , no somos solo una empresa, somos una comunidad de traders
+            apasionados dedicados a transformar las aspiraciones financieras en
+            realidad. Establecido con la visión de brindar a las personas el
+            conocimiento y las herramientas para conquistar el mundo del
+            trading, Algorithmic Market se ha convertido en un modelo de
+            excelencia en la industria.
+            <br /> <br />
+            Nuestra misión es simple: brindar educación de primer nivel,
+            recursos de vanguardia y soporte incomparable a operadores de todos
+            los niveles. Desde principiantes que dan sus primeros pasos hasta
+            profesionales experimentados que buscan perfeccionar sus
+            habilidades, ofrecemos una variedad de cursos meticulosamente
+            elaborados que satisfacen diversas necesidades.
           </p>
         </Text>
 

@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
+export function useBuyPetition({ courses }) {
+  const [buyUrl, setBuyUrl] = useState("");
 
 export function useBuyPetition ({ courses }) {
   const [buyUrl, setBuyUrl] = useState('')
@@ -36,9 +38,9 @@ export function useBuyPetition ({ courses }) {
             )
             const data = await res.json()
 
-            const {sessionUrl} = data
+      const { sessionUrl } = data;
 
-            setBuyUrl(sessionUrl)
+      setBuyUrl(sessionUrl);
 
             localStorage.setItem('id', JSON.stringify(mappedId))
 

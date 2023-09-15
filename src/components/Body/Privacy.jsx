@@ -8,8 +8,6 @@ function Privacy() {
       <Header />
 
       <PrivacyContainer>
-        {/* <IconBack /> */}
-
         <p>
           Please read carefully Wix.com cares deeply about the privacy of its
           visitors and users. Accordingly, in the present Privacy Policy

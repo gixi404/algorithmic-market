@@ -10,8 +10,10 @@ function Courses() {
     <CoursesContainer id="allCourses">
       <Text>
         <Title>
-          Courses
-          <TitleSpan>Elevate your skills, from beginner to advanced.</TitleSpan>
+          Cursos
+          <TitleSpan>
+            Eleva tus habilidades de un nivel inicial a avanzado.
+          </TitleSpan>
         </Title>
       </Text>
       <ListCourses>

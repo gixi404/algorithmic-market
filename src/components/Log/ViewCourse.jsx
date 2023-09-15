@@ -5,7 +5,7 @@ function ViewCourse(props) {
   const { url } = props;
   return (
     <Button>
-      <Link to={url}>View</Link>
+      <Link to={url}>Ver</Link>
     </Button>
   );
 }

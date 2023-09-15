@@ -5,7 +5,7 @@ export const connectDB = async () => {
     await mongoose.connect(
       "mongodb+srv://AlgorithmicMarket:hRGx4SFBtYqbRgJ@cluster0.mvyno5f.mongodb.net/AlgorithmicMarket?retryWrites=true&w=majority"
     );
-    console.log("DB conected"); 
+    console.log("DB conected");
   } catch (e) {
     throw new Error("no se logro conectar con la base de datos");
   }

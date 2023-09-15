@@ -2,8 +2,9 @@ import Stripe from "stripe";
 import { config } from "dotenv";
 config();
 
-const PRIV_KEY ="sk_test_51NdfNbCPshfmc7ctMo1Y4L8E9Hkl6KMeF8KzjSqdPgRxHdQRfREoONTs37h7wvbrJk2jixgjSLvT7EbRRJctHKpO00wQnsY8yV",
-stripe = new Stripe(PRIV_KEY);
+const PRIV_KEY =
+    "sk_test_51NdfNbCPshfmc7ctMo1Y4L8E9Hkl6KMeF8KzjSqdPgRxHdQRfREoONTs37h7wvbrJk2jixgjSLvT7EbRRJctHKpO00wQnsY8yV",
+  stripe = new Stripe(PRIV_KEY);
 
 export async function createSession(req, res) {
   const {id, list} = req.body
@@ -19,8 +20,6 @@ export async function createSession(req, res) {
       sessionUrl: session.url
     });
   }
-  catch(e){
-    return res.status(500).json({error:'No se realizo la compra'})
-  }
+}
 
 }
