@@ -1,12 +1,13 @@
 import  User  from "../../src/DB/user.model.js";
 
 export const createUser = async(req, res) => {
-    const {username, email, password} = req.body
+    const {username, email, courses, waitingcourse} = req.body
 
     const newUser = new User({
         username,
         email,
-        password
+        courses,
+        waitingcourse,
     })
     const userSaved = await newUser.save()
     res.json(userSaved)

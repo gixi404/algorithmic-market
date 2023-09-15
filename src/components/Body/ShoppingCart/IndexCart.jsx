@@ -8,15 +8,7 @@ import Btn from './ButtonCart.jsx'
 import trash from '../../../img/trash-bin-2-svgrepo-com.svg'
 import X from '../../../img/close-svgrepo-com.svg'
 import styled from "styled-components"
-import Btn from './ButtonCart.jsx'
-import trash from '../../../img/trash-bin-2-svgrepo-com.svg'
-import X from '../../../img/close-svgrepo-com.svg'
-import styled from "styled-components"
 
-function indexCart () {
-    const {isAuthenticated, loginWithPopup} = useAuth0()
-    const { coursesCart, setCoursesCart } = useContext( ContextProps )
-    const [value, setValue] = useState( 0 )
 function indexCart () {
     const {isAuthenticated, loginWithPopup} = useAuth0()
     const { coursesCart, setCoursesCart } = useContext( ContextProps )
@@ -109,14 +101,13 @@ const Header = styled.header`
  display: flex;
  align-items: center;
  justify-content: end;
+}
  h3{
     text-align: start;
     font-family: "Poppins", monospace;
     font-size: 1.5rem;
     color: #ff6700;
     width: 18vw;
- }
- a{
  }
  a{
     font-family: "Poppins", monospace;
@@ -138,7 +129,7 @@ const Header = styled.header`
         padding: 0 2vw;
         background-color: #ff6700;
     }
- }
+}
 `;
 const Img = styled.img`
     height: 4vh;
@@ -195,7 +186,6 @@ const SubmitContainer = styled.article`
     @media (min-width: 1224px) {
       width: 28vw;
     }
-`
 `
 
 const SubmitBtn = styled.button`

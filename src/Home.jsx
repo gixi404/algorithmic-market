@@ -1,9 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Routes, Route } from "react-router-dom";
-import useDataUser from "./hooks/useDataUser.js";
 import ReactLoading from "react-loading";
 import Header from "./components/Body/Header/Header.jsx";
-import UserIsLogin from "./components/Log/UserIsLogin.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
@@ -16,10 +14,6 @@ import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 
 function Home() {
   const { isLoading, isAuthenticated } = useAuth0();
-
-  // if (isAuthenticated) {
-  //   const { profile } = useDataUser(isAuthenticated);
-  // }
 
   if (isLoading) {
     return (
