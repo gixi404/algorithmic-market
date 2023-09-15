@@ -10,7 +10,7 @@ function Context({ children }) {
     [idCourse, setIdCourse] = useState(""),
     [loadContent, setLoadContent] = useState(false),
     [progressValue, setProgressValue] = useState(11.11),
-    [courseName, setCourseName] = useState(""),
+    [courseID, setCourseID] = useState(null),
     [allCourses, setAllCourses] = useState([
       {
         id: 0,
@@ -209,6 +209,20 @@ function Context({ children }) {
     return allCourses.find(course => course.id === Number(coursedetails));
   }
 
+  function idToName(id) {
+    id = Number(id);
+    switch (id) {
+      case 0:
+        return "Curso Inicial";
+      case 1:
+        return "Curso Medio";
+      case 2:
+        return "Curso Avanzado";
+      default:
+        return "Inicia tu curso...";
+    }
+  }
+
   const contextValues = {
     allCourses,
     setAllCourses,
@@ -219,13 +233,14 @@ function Context({ children }) {
     setCoursesCart,
     idCourse,
     progressValue,
-    courseName,
-    setCourseName,
+    courseID,
+    setCourseID,
     setProgressValue,
     setIdCourse,
     removeCart,
     loadContent,
     setLoadContent,
+    idToName,
   };
 
   return (

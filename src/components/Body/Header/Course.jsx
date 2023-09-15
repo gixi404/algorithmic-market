@@ -4,13 +4,15 @@ import VisitSVG from "./VisitSVG";
 import styled from "styled-components";
 
 function Course() {
-  const { progressValue, courseName } = useContext(ContextProps),
-    verifyData = (isTrue, isFalse = null) =>
-      courseName !== "" ? isTrue : isFalse;
+  const { progressValue, courseID, idToName } = useContext(ContextProps);
+
+  function verifyData(isTrue, isFalse = null) {
+    return courseID !== null ? isTrue : isFalse;
+  }
 
   return (
     <Container>
-      <Name>{verifyData(courseName, "Inicia tu curso...")}</Name>
+      <Name>{idToName(courseID)}</Name>
 
       <progress
         style={{ width: "80%", height: "3vh" }}

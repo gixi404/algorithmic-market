@@ -14,80 +14,34 @@ import ItemClass from "./ItemClass";
 import styled from "styled-components";
 
 function MediaPlayer() {
-  const { coursename } = useParams(),
+  const { courseid } = useParams(),
     {
       myCourses,
       loadContent,
       setLoadContent,
       progressValue,
       setProgressValue,
-      setCourseName,
+      setCourseID,
+      idToName,
     } = useContext(ContextProps),
     [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
     [courseInProgress, setCourseInProgress] = useState(true),
-    [lastClass, setLastClass] = useState(0),
-    [courseId, setCourseId] = useState(null);
+    [lastClass, setLastClass] = useState(0);
 
   useEffect(() => {
     function selectCourse() {
-      switch (coursename) {
-        case "Curso Inicial":
-          {
-            setClassData({
-              classId: direction(0).id,
-              className: direction(0).name,
-              classURL: direction(0).URL,
-            });
-            setCourseId(myCourses[0].id);
-            setLastClass(myCourses[0].classes.length);
-            setCourseName(coursename);
-          }
-          break;
-
-        case "Curso Medio":
-          {
-            setClassData({
-              classId: direction(1).id,
-              className: direction(1).name,
-              classURL: direction(1).URL,
-            });
-            setCourseId(myCourses[1].id);
-            setLastClass(myCourses[1].classes.length);
-            setCourseName(coursename);
-          }
-          break;
-
-        case "Curso Avanzado":
-          {
-            setClassData({
-              classId: direction(2).id,
-              className: direction(2).name,
-              classURL: direction(2).URL,
-            });
-            setCourseId(myCourses[2].id);
-            setLastClass(myCourses[2].classes.length);
-            setCourseName(coursename);
-          }
-          break;
-
-        default:
-          {
-            setClassData({
-              classId: direction(0).id,
-              className: direction(0).name,
-              classURL: direction(0).URL,
-            });
-            setCourseId(myCourses[0].id);
-            setLastClass(myCourses[0].classes.length);
-            setCourseName(coursename);
-          }
-          break;
-      }
+      setClassData({
+        classId: direction(courseid).id,
+        className: direction(courseid).name,
+        classURL: direction(courseid).URL,
+      });
+      setLastClass(myCourses[courseid].classes.length);
+      setCourseID(courseid);
     }
 
     return () => selectCourse();
-  }, [coursename]);
+  }, [courseid]);
 
   function direction(numberCourse, numberClass = 0) {
     return myCourses[numberCourse].classes[numberClass];
@@ -96,50 +50,11 @@ function MediaPlayer() {
   function previousClass() {
     if (numberClass > 0) {
       setLoadContent(true);
-      let previousClassData = {};
-
-      switch (coursename) {
-        case "Curso Inicial":
-          {
-            previousClassData = {
-              classId: direction(0, numberClass - 1).id,
-              className: direction(0, numberClass - 1).name,
-              classURL: direction(0, numberClass - 1).URL,
-            };
-          }
-          break;
-
-        case "Curso Medio":
-          {
-            previousClassData = {
-              classId: direction(1, numberClass - 1).id,
-              className: direction(1, numberClass - 1).name,
-              classURL: direction(1, numberClass - 1).URL,
-            };
-          }
-          break;
-
-        case "Curso Avanzado":
-          {
-            setClassData({
-              classId: direction(2, numberClass - 1).id,
-              className: direction(2, numberClass - 1).name,
-              classURL: direction(2, numberClass - 1).URL,
-            });
-          }
-          break;
-
-        default:
-          {
-            previousClassData = {
-              classId: direction(0, numberClass - 1).id,
-              className: direction(0, numberClass - 1).name,
-              classURL: direction(0, numberClass - 1).URL,
-            };
-          }
-          break;
-      }
-
+      let previousClassData = {
+        classId: direction(courseid, numberClass - 1).id,
+        className: direction(courseid, numberClass - 1).name,
+        classURL: direction(courseid, numberClass - 1).URL,
+      };
       setCourseInProgress(true);
       setNumberClass(numberClass - 1);
       setClassData(previousClassData);
@@ -150,52 +65,14 @@ function MediaPlayer() {
   function nextClass() {
     if (numberClass < lastClass - 1) {
       setLoadContent(true);
-      let nextClassData = {};
-
-      switch (coursename) {
-        case "Curso Inicial":
-          {
-            nextClassData = {
-              classId: direction(0, numberClass + 1).id,
-              className: direction(0, numberClass + 1).name,
-              classURL: direction(0, numberClass + 1).URL,
-            };
-          }
-          break;
-
-        case "Curso Medio":
-          {
-            nextClassData = {
-              classId: direction(1, numberClass + 1).id,
-              className: direction(1, numberClass + 1).name,
-              classURL: direction(1, numberClass + 1).URL,
-            };
-          }
-          break;
-
-        case "Curso Avanzado":
-          {
-            nextClassData = {
-              classId: direction(2, numberClass + 1).id,
-              className: direction(2, numberClass + 1).name,
-              classURL: direction(2, numberClass + 1).URL,
-            };
-          }
-          break;
-
-        default:
-          {
-            nextClassData = {
-              classId: direction(0, numberClass + 1).id,
-              className: direction(0, numberClass + 1).name,
-              classURL: direction(0, numberClass + 1).URL,
-            };
-          }
-          break;
-      }
-
+      let nxetClassData = {
+        classId: direction(courseid, numberClass + 1).id,
+        className: direction(courseid, numberClass + 1).name,
+        classURL: direction(courseid, numberClass + 1).URL,
+      };
+      setCourseInProgress(true);
       setNumberClass(numberClass + 1);
-      setClassData(nextClassData);
+      setClassData(nxetClassData);
       setProgressValue(progressValue + 11.11);
     }
   }
@@ -203,16 +80,16 @@ function MediaPlayer() {
   function selectClassManually(classId, loadBoolean) {
     function updateClass() {
       if (numberClass !== classId) {
-        const classSelected = myCourses[courseId].classes.find(
+        const classSelected = myCourses[courseid].classes.find(
           _class => _class.id === classId
         );
 
         const { id: idClass } = classSelected;
 
         setClassData({
-          classId: direction(courseId, idClass).id,
-          className: direction(courseId, idClass).name,
-          classURL: direction(courseId, idClass).URL,
+          classId: direction(courseid, idClass).id,
+          className: direction(courseid, idClass).name,
+          classURL: direction(courseid, idClass).URL,
         });
         setNumberClass(idClass);
       }
@@ -243,11 +120,11 @@ function MediaPlayer() {
     <Container>
       <Header />
 
-      <ArrowBack route="/mycourses" />
+      <ArrowBack route="/" />
 
       <MediaContainer>
         <HeaderMedia>
-          <TitleCourse coursename={coursename} classData={classData} />
+          <TitleCourse coursename={idToName(courseid)} classData={classData} />
           <ProgressBar progressValue={progressValue} />
         </HeaderMedia>
 
@@ -280,10 +157,10 @@ function MediaPlayer() {
           <span>Aquí se mostrará el proceso de este curso.</span>
         </TitleContent>
 
-        <NameCourse>{coursename}</NameCourse>
+        <NameCourse>{idToName(courseid)}</NameCourse>
 
         <ListFollowingClasses>
-          {myCourses[courseId]?.classes.map(item => (
+          {myCourses[courseid]?.classes.map(item => (
             <ItemClass
               key={item.id}
               item={item}
@@ -405,6 +282,64 @@ const Container = styled.div`
   `;
 
 /* Lo guardo por si las moscas
+
+function selectCourse() {
+      switch (courseid) {
+        case 0:
+          {
+            setClassData({
+              classId: direction(0).id,
+              className: direction(0).name,
+              classURL: direction(0).URL,
+            });
+            // setCourseId(myCourses[0].id);
+            setLastClass(myCourses[0].classes.length);
+            setCourseID(courseid);
+          }
+          break;
+
+        case 1:
+          {
+            setClassData({
+              classId: direction(1).id,
+              className: direction(1).name,
+              classURL: direction(1).URL,
+            });
+            // setCourseId(myCourses[1].id);
+            setLastClass(myCourses[1].classes.length);
+            setCourseID(courseid);
+          }
+          break;
+
+        case 2:
+          {
+            setClassData({
+              classId: direction(2).id,
+              className: direction(2).name,
+              classURL: direction(2).URL,
+            });
+            //  setCourseId(myCourses[2].id);
+            setLastClass(myCourses[2].classes.length);
+            setCourseID(courseid);
+          }
+          break;
+
+        default:
+          {
+            setClassData({
+              classId: direction(0).id,
+              className: direction(0).name,
+              classURL: direction(0).URL,
+            });
+            //  setCourseId(myCourses[0].id);
+            setLastClass(myCourses[0].classes.length);
+            setCourseID(courseid);
+          }
+          break;
+      }
+    }
+
+
 <Themes>
           <Article>
             <div

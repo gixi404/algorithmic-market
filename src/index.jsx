@@ -24,11 +24,11 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
         <BrowserRouter>
           <Context>
             <Routes>
+              {/* <Route path="/mycourses" element={<MyCourses />} /> */}
               <Route path="*" element={<Home />} />
-              <Route path="/mycourses" element={<MyCourses />} />
-              <Route path="/mycourses/:coursename" element={<MediaPlayer />} />
-              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
               <Route path="/success/:coursedetails" element={<Success />} />
+              <Route path="/privacy" element={<Privacy />} />
               <Route path="/stafflym" element={<StaffLym />} />
             </Routes>
           </Context>
