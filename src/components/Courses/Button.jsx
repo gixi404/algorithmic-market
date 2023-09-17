@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function BuyBtn(props) {
-  const { url } = props;
+  const { url, title, logOut } = props;
 
   return (
-    <Button>
-      <Link to={url}>Más Información</Link>
+    <Button onClick={title === "Cerrar Sesión" ? logOut : null}>
+      <Link to={url}>{title}</Link>
     </Button>
   );
 }
@@ -19,7 +19,7 @@ const Button = styled.button`
   color: #ff6700;
   width: 80%;
   height: 40px;
-  font-size: 16px;
+  font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
   outline: 2px solid #ff6700;
   border-radius: 5px;
   background-color: transparent;

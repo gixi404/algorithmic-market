@@ -201,12 +201,12 @@ const Container = styled.div`
     color: #ffffff;
     height: 10vh;
 
-    @media (max-width: 480px) {
+    /* @media (max-width: 480px) {
       margin-bottom: 4rem;
-    }
+    } */
   `,
   Title = styled.p`
-    font-size: 2rem;
+    font-size: calc(30px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -214,7 +214,7 @@ const Container = styled.div`
     justify-content: center;
   `,
   TitleSpan = styled.span`
-    font-size: 1rem;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     font-family: "Poppins", monospace;
   `,
   Form = styled.form`
@@ -234,6 +234,7 @@ const Container = styled.div`
     border-radius: 8px;
     padding-left: 2vw;
     font-family: "Poppins", monospace;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 48vw;
     height: 8vh;
     background-color: #ebebeb;
@@ -251,6 +252,8 @@ const Container = styled.div`
     padding-top: 2vh;
     padding-left: 2vw;
     font-family: "Poppins";
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+
     width: 48vw;
     height: 17vh;
     background-color: #ebebeb;
@@ -279,7 +282,8 @@ const Container = styled.div`
     color: #ff6700;
     width: 13rem;
     height: 45px;
-    font-size: 1.1rem;
+    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+
     outline: 2px solid #ff6700;
     border-radius: 8px;
     background-color: transparent;

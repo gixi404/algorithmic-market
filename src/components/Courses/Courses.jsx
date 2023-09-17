@@ -48,7 +48,7 @@ const CoursesContainer = styled.main`
   `,
   Title = styled.p`
     font-family: "Poppins", monospace;
-    font-size: 2rem;
+    font-size: calc(32px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -56,7 +56,7 @@ const CoursesContainer = styled.main`
     row-gap: 0.5rem;
   `,
   TitleSpan = styled.span`
-    font-size: 1rem;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
   `,
   ListCourses = styled.section`
     display: flex;

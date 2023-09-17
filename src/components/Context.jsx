@@ -3,12 +3,18 @@ import exampleImg from "../img/course-img.jpg";
 
 export const ContextProps = createContext();
 
+const VERIFY_IS_MOBILE =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
 function Context({ children }) {
   const [coursesCart, setCoursesCart] = useState([]),
     [idCourse, setIdCourse] = useState(""),
     [loadContent, setLoadContent] = useState(false),
     [progressValue, setProgressValue] = useState(11.11),
     [courseID, setCourseID] = useState(null),
+    [isMobile, setisMobile] = useState(VERIFY_IS_MOBILE),
     [allCourses, setAllCourses] = useState([
       {
         id: 0,
@@ -238,6 +244,8 @@ function Context({ children }) {
     removeCart,
     loadContent,
     setLoadContent,
+    isMobile,
+    setisMobile,
     idToName,
   };
 

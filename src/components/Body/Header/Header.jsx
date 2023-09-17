@@ -1,14 +1,43 @@
 import { Link as Linkk } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginBtn from "../../Log/LoginBtn.jsx";
-import Profile from "../Profile/Profile.jsx";
 import PopupMyCourses from "./PopupMyCourses.jsx";
 import logo from "../../../img/logo.png";
 import styled from "styled-components";
 import IconCart from "../ShoppingCart/IconCart.jsx";
+import { MenuSVG, UserSVG } from "../../svgs.jsx";
+import { useState } from "react";
+import PopupProfile from "./PopupProfile.jsx";
+import Popup from "./Popup.jsx";
+import Menu from "./Menu.jsx";
+import { useContext } from "react";
+import { ContextProps } from "../../Context.jsx";
 
 function Header() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0(),
+    { isMobile } = useContext(ContextProps),
+    [openProfile, setOpenProfile] = useState(false),
+    [openCourse, setOpenCourse] = useState(false),
+    [menuActive, setMenuActive] = useState(false);
+
+  if (isMobile) {
+    return menuActive ? (
+      <Menu menuActive={menuActive} setMenuActive={setMenuActive} />
+    ) : (
+      <HeaderContainer>
+        <WebContainerMobile>
+          <Link to="/">
+            <LogoMobile
+              src={logo}
+              title="Algorithmic Market"
+              alt="Algorithmic Market Logo"
+            />
+          </Link>
+          <MenuSVG menuActive={menuActive} setMenuActive={setMenuActive} />
+        </WebContainerMobile>
+      </HeaderContainer>
+    );
+  }
 
   return (
     <HeaderContainer>
@@ -28,19 +57,28 @@ function Header() {
         </NavContainer>
 
         <CotainerPopLog>
-          <IconCart />
           {isAuthenticated ? (
             <>
-              <PopupMyCourses />
-              <Profile />
+              <PopupMyCourses
+                openCourse={openCourse}
+                setOpenCourse={setOpenCourse}
+                setOpenProfile={setOpenProfile}
+              />
+              <IconCart />
+              <UserSVG
+                openProfile={openProfile}
+                setOpenProfile={setOpenProfile}
+                setOpenCourse={setOpenCourse}
+              />
             </>
           ) : (
             <LoginBtn />
           )}
         </CotainerPopLog>
-
-        {/* <MenuSVG /> */}
       </WebContainer>
+
+      {openCourse && <Popup />}
+      {openProfile && <PopupProfile />}
     </HeaderContainer>
   );
 }
@@ -52,14 +90,13 @@ const HeaderContainer = styled.header`
     width: 100vw;
     min-height: 80px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-bottom: 4px solid #ff6700;
-    padding-bottom: 0;
 
     @media (min-width: 1224px) {
-      padding-bottom: 1rem;
+      padding-bottom: 1em;
     }
   `,
   WebContainer = styled.div`
@@ -76,6 +113,21 @@ const HeaderContainer = styled.header`
       flex-direction: row;
       justify-content: space-between;
     }
+  `,
+  WebContainerMobile = styled.div`
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    row-gap: 0.5rem;
+    justify-content: space-between;
+  `,
+  LogoMobile = styled.img`
+    height: 80px;
+    width: 100px;
+    object-fit: cover;
+    object-position: center;
   `,
   Logo = styled.img`
     height: 96px;
@@ -96,7 +148,7 @@ const HeaderContainer = styled.header`
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
-    font-size: 1rem;
+    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     margin-top: 16px;
     text-transform: capitalize;
     transition-duration: 0.1s;
@@ -109,11 +161,11 @@ const HeaderContainer = styled.header`
     text-decoration: none;
     font-family: "Poppins", monospace;
     font-weight: 500;
-    font-size: 1rem;
     height: 80px;
     line-height: 96px;
     text-transform: capitalize;
     transition-duration: 0.1s;
+
     &:hover {
       color: #888888;
     }

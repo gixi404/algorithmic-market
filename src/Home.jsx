@@ -8,7 +8,6 @@ import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
 import Details from "./components/Courses/DetailsCourse.jsx";
-import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 import styled from "styled-components";
 
 function Home() {
@@ -32,7 +31,6 @@ function Home() {
       <Routes>
         <Route path="/details/:coursedetails" element={<Details />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/shoppingcart" element={<IndexCart />} />
       </Routes>
       <Header />
       <Banner />

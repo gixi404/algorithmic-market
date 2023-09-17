@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ContextProps } from "../../Context";
 import ItemCart from "./ItemCart.jsx";
-import Btn from "./ButtonCart.jsx";
 import { CloseCartSVG } from "../../svgs";
+import Header from "../Header/Header";
+import Footer from "../Footer";
 import styled from "styled-components";
 
-function indexCart() {
-  const { isAuthenticated, loginWithPopup } = useAuth0(),
-    { coursesCart, setCoursesCart } = useContext(ContextProps),
+function IndexCart() {
+  const { loginWithPopup } = useAuth0(),
+    { coursesCart } = useContext(ContextProps),
     [value, setValue] = useState(0);
 
   useEffect(() => recuderCash(), [coursesCart]);
@@ -23,65 +24,76 @@ function indexCart() {
   }
 
   return (
-    <CartContainer>
-      <Header>
-        <h3>Añadido al carrito</h3>
+    <Container>
+      <Header />
 
-        <Link to="/">
-          <CloseCartSVG />
-        </Link>
-      </Header>
+      <CartContainer>
+        <HeaderCart>
+          <h3 style={{ color: "black" }}>Carrito</h3>
+          <Link to="/">
+            <CloseCartSVG />
+          </Link>
+        </HeaderCart>
 
-      <ItemContainer>
-        {coursesCart.length > 0 ? (
-          coursesCart.map(course => <ItemCart key={course.id} data={course} />)
-        ) : (
-          <P title="No hay cursos">Sin cursos</P>
-        )}
-      </ItemContainer>
+        <ItemContainer>
+          {coursesCart.length > 0 ? (
+            coursesCart.map(course => (
+              <ItemCart key={course.id} data={course} />
+            ))
+          ) : (
+            <P title="No hay cursos">Sin cursos</P>
+          )}
+        </ItemContainer>
 
-      <Footer>
-        <Article>
-          <p>Monto total</p>
-          <strong>${value} USD</strong>
-        </Article>
+        <FooterCart>
+          <Article>
+            <p>Monto total</p>
+            <strong>${value} USD</strong>
+          </Article>
+        </FooterCart>
 
-        {isAuthenticated ? (
-          <Btn courses={coursesCart} />
-        ) : (
-          <SubmitContainer>
-            <SubmitBtn onClick={loginWithPopup}>¡Comprar Ahora!</SubmitBtn>
-          </SubmitContainer>
-        )}
-      </Footer>
-    </CartContainer>
+        <SubmitContainer>
+          <SubmitBtn onClick={loginWithPopup}>¡Comprar Ahora!</SubmitBtn>
+        </SubmitContainer>
+      </CartContainer>
+
+      <Footer />
+    </Container>
   );
 }
-export default indexCart;
+export default IndexCart;
 
-const CartContainer = styled.div`
+const Container = styled.div`
+    width: 100vw;
+    min-height: 100vh;
     display: flex;
-    position: fixed;
-    top: 0;
-    right: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  `,
+  CartContainer = styled.div`
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 30vw;
+    width: 100%;
+    max-width: 500px;
     border-radius: 8px;
     background-color: #fff;
-    z-index: 300;
-    height: 95vh;
+    margin: 3em 0;
+    height: 70vh;
     h1 {
       text-align: center;
     }
+
+    @media (max-width: 480px) {
+      width: 100vw;
+      border-radius: 0px;
+    }
   `,
-  Header = styled.header`
-    width: 28vw;
-    padding: 0 1vw;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    height: 12vh;
+  HeaderCart = styled.header`
+    width: 90%;
+    height: 100px;
     border-bottom: 0.5vh solid #ff6700;
     display: flex;
     align-items: center;
@@ -89,11 +101,10 @@ const CartContainer = styled.div`
     h3 {
       text-align: start;
       font-family: "Poppins", monospace;
-      font-size: 1.5rem;
+      font-size: calc(26px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
       color: #ff6700;
-      width: 18vw;
     }
-    a {
+    /* a {
       font-family: "Poppins", monospace;
       width: 5vw;
       background-color: transparent;
@@ -111,26 +122,12 @@ const CartContainer = styled.div`
         color: #222;
         padding: 0 2vw;
         background-color: #ff6700;
-      }
-    }
-  `,
-  Img = styled.img`
-    height: 4vh;
-    margin-top: 0.3vh;
-    width: 4vw;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    &:hover {
-      scale: 1.1;
-    }
-    &:active {
-      scale: 1;
-    }
+      } 
+    }*/
   `,
   ItemContainer = styled.main`
-    height: 66vh;
-    width: 28vw;
-    overflow: auto;
+    height: 60vh;
+    width: 90%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -141,17 +138,18 @@ const CartContainer = styled.div`
     font-weight: 500;
     cursor: pointer;
   `,
-  Footer = styled.footer`
-    height: 13vh;
-    width: 26vw;
-    padding: 0 2vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  FooterCart = styled.footer`
+    width: 90%;
+    margin-top: 2vw;
+    height: 100px;
     border-top: 0.5vh solid #ff6700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   `,
   Article = styled.article`
     height: 5vh;
+    width: 100%;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -160,13 +158,9 @@ const CartContainer = styled.div`
     }
   `,
   SubmitContainer = styled.article`
-    width: 10vw;
-    height: 7vh;
+    width: 75%;
+    height: 10vh;
     text-align: center;
-
-    @media (min-width: 1224px) {
-      width: 28vw;
-    }
   `,
   SubmitBtn = styled.button`
     margin: auto 0;
@@ -176,8 +170,8 @@ const CartContainer = styled.div`
     outline: 2px solid #ff6700;
     font-weight: 700;
     border-radius: 8px;
-    width: 20vw;
-    height: 6vh;
+    width: 70%;
+    height: 5vh;
     padding: 0 2vw;
     text-align: center;
     border: 0;

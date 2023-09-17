@@ -80,6 +80,7 @@ const Container = styled.section`
     text-align: start;
     font-family: "Poppins", monospace;
     justify-content: space-between;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
 
     @media (max-width: 480px) {
       width: 100vw;
@@ -92,11 +93,9 @@ const Container = styled.section`
     }
   `,
   Title = styled.p`
-    font-size: 2rem;
+    font-size: calc(26px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     font-family: "Poppins", monospace;
-
     @media (min-width: 320px) {
-      font-size: 2rem;
       padding-bottom: 2rem;
     }
   `,
