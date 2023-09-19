@@ -12,9 +12,9 @@ function indexCart() {
     { coursesCart, setCoursesCart } = useContext(ContextProps),
     [value, setValue] = useState(0);
 
-  useEffect(() => recuderCash(), [coursesCart]);
+  useEffect(() => reducerCash(), [coursesCart]);
 
-  function recuderCash() {
+  function reducerCash() {
     const price = coursesCart.reduce((ac, cv) => ac + cv.cash, 0);
     if (coursesCart.length < 0) {
       return "0";

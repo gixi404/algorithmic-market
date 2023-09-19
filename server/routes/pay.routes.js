@@ -18,7 +18,7 @@ router.post('/buylist', createShoppingCart)
 
 router.get('/cleanlist', deleteShoppingCart)
 
-router.get('/buy', confirmShopping);
+router.get('/buy/:idcourse1/:idcourse2/:idcourse3', confirmShopping);
 
 router.post('/buy',redirectShopping)
 

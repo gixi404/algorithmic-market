@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 export function useBuyPetition ({ courses }) {
   const [buyUrl, setBuyUrl] = useState('')

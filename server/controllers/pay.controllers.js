@@ -8,18 +8,22 @@ const PRIV_KEY =
 
 export async function createSession(req, res) {
   const {id, list} = req.body
-  const Id = id[0]?.id || null
+  const Id = id[0]?.id 
+  const Id1 = id[1]?.id 
+  const Id2 = id[2]?.id
   try{
     const session = await stripe.checkout.sessions.create({
       line_items: list,
       mode: "payment",
-      success_url: "http://localhost:3001/buy",
+      success_url: `http://localhost:3001/buy/${Id}/${Id1}/${Id2}`,
       cancel_url: "http://localhost:3001/cleanlist",
     });
     return res.json({
       sessionUrl: session.url
     });
   }
-}
+  catch(e){
+    return res.status(500).json({error:'No se realizo la compra'})
+  }
 
 }

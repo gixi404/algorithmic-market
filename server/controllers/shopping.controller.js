@@ -1,4 +1,5 @@
 import shopping from "../../src/DB/shopping.model.js";
+import course from "../../src/DB/course.model.js";
 import user from "../../src/DB/user.model.js";
 
 //CRUD con mongoDB
@@ -43,7 +44,7 @@ export async function getShoppingCart () {
 }
 
 async function getShoppingId () {
-    
+    const list  = shopping.findById({})
 }
 
 export async function deleteShoppingCart (req,res) {
@@ -58,13 +59,18 @@ export async function deleteShoppingCart (req,res) {
     }
 }
 
-//validacion de compras con base de datpos
+//validacion de compras con base de datos
 export async function confirmShopping (req, res) {
+    const {idcourse1, idcourse2, idcourse3} = req.params
     try {
         const data = await fetch('http://localhost:3001/buy', {
             method: 'post',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: 'compra realizada' }),
+            body: JSON.stringify({ coursecomprado:{
+                1:idcourse1,
+                2:idcourse2,
+                3:idcourse3
+            } }),
         });
         const json = await data.json();
         const ret = json.url
@@ -77,6 +83,12 @@ export async function confirmShopping (req, res) {
 }
 
 export  async function redirectShopping (req, res) {
-
-    res.json({url:'http://localhost:3000/'})
+    const {coursecomprado} = req.body
+    console.log(coursecomprado)
+    const coincidencia = await course.findOne({id:"2"})
+    console.log(coincidencia)
+    res.json(
+        {
+            url:'http://localhost:3000/',
+        })
 }
