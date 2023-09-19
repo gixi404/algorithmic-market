@@ -21,18 +21,13 @@ export default Footer;
 const FooterContainer = styled.div`
     background-color: #1e1e1e;
     width: 100vw;
-    height: 75px;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-family: "Poppins", monospace;
     justify-content: center;
     row-gap: 5px;
     border-top: 4px solid #ff6700;
-    padding: 0.5em 0;
-    @media (max-width: 480px) {
-      padding: 1.5em 0;
-    }
   `,
   TextContainer = styled.div`
     display: flex;
@@ -41,6 +36,7 @@ const FooterContainer = styled.div`
     row-gap: 0.6em;
     justify-content: center;
     font-family: "Poppins", monospace;
+
     @media (min-width: 1024px) {
       width: 80vw;
       flex-direction: row;

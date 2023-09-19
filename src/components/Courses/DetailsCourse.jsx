@@ -39,7 +39,7 @@ function detailCourses() {
   }
 
   return (
-    <Container>
+    <Container to="Home">
       <Details>
         <H2>{name} | Fundamentales</H2>
         <P>Explora los fundamentales de este curso re fachero</P>
@@ -160,13 +160,16 @@ const ContainerMobile = styled.div`
     }
   `;
 
-const Container = styled.div`
+const Container = styled(Link)`
     height: 100vh;
     width: 100vw;
     position: fixed;
     background-color: transparent;
     backdrop-filter: blur(5px);
     z-index: 200;
+    cursor: default;
+    text-decoration: none;
+    color: inherit;
   `,
   Details = styled.section`
     background-color: #ebebeb;

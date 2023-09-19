@@ -36,10 +36,10 @@ function Home() {
         <Route path="/details/:coursedetails" element={<Details />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/coursepurchased" element={<CoursePurchased />} />
+        //! Acá Juan Carlos ^^^^
       </Routes>
       <Header />
       {IS_MOBILE && !isAuthenticated && <LoginBtn />}
-      <Link to="/coursepurchased">lol</Link>
       <Banner />
       <Courses />
       <AboutUs />

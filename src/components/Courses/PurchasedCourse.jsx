@@ -20,7 +20,7 @@ function CoursePurchased() {
     );
   } else {
     return (
-      <Container onClick={() => (window.location.pathname = "/")}>
+      <Container to="Home">
         <Letter>
           <Title>
             <span>Compra realizada correctamente</span>
@@ -38,7 +38,7 @@ function CoursePurchased() {
 
 export default CoursePurchased;
 
-const Container = styled.div`
+const Container = styled(Link)`
     min-height: 100vh;
     width: 100vw;
     position: fixed;
@@ -49,6 +49,9 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    text-decoration: none;
+    cursor: default;
+    color: inherit;
   `,
   Letter = styled.div`
     border-radius: 8px;
@@ -104,8 +107,10 @@ const Container = styled.div`
     transition-duration: 0.2s;
 
     &:hover {
-      transform: scale(0.955);
+      transform: scale(0.9);
       cursor: pointer;
+      background-color: #ff6700;
+      color: #fff;
     }
   `;
 

@@ -15,7 +15,7 @@ function Profile() {
     <Container>
       <Header />
       <UserContainer>
-        <Img src={user?.picture} />
+        <Img src={user?.picture} alt={`Imágen de ${user?.name}`} />
         <Name>{user?.name}</Name>
         <Name>{user?.email}</Name>
         <BuyBtn title="Cerrar Sesión" logOut={logOut} />
