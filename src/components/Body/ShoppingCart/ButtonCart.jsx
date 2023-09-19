@@ -7,7 +7,7 @@ function ButtonCart({courses}){
     const url = buyUrl
     return(
     <Container>
-    <Btn to={url}>Buy Now!</Btn>
+    <Btn to={url}>Compra ahora!</Btn>
     </Container>
   );
 }
@@ -27,7 +27,7 @@ const Container = styled.article`
     display: flex;
     justify-content: center;
     text-decoration: none;
-    margin: auto 0;
+    margin: auto;
     font-family: "Poppins", monospace;
     color: #ff6700;
     outline: 2px solid #ff6700;

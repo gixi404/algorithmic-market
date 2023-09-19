@@ -5,11 +5,12 @@ import { useMyContext } from "../../Context";
 import ItemCart from "./ItemCart.jsx";
 import Header from "../Header/Header";
 import Footer from "../Footer";
+import Btn from "./ButtonCart.jsx";
 import { CloseCartSVG } from "../../svgs";
 import styled from "styled-components";
 
 function IndexCart() {
-  const { loginWithPopup } = useAuth0(),
+  const { loginWithPopup, isAuthenticated } = useAuth0(),
     { coursesCart } = useMyContext(),
     [value, setValue] = useState(0);
 
@@ -52,9 +53,13 @@ function IndexCart() {
           </Article>
         </FooterCart>
 
-        <SubmitContainer>
-          <SubmitBtn onClick={loginWithPopup}>¡Comprar Ahora!</SubmitBtn>
-        </SubmitContainer>
+        {isAuthenticated ? (
+          <Btn courses={coursesCart} />
+        ) : (
+          <SubmitContainer>
+            <SubmitBtn onClick={loginWithPopup}>¡Comprar Ahora!</SubmitBtn>
+          </SubmitContainer>
+        )}
       </CartContainer>
 
       <Footer />
