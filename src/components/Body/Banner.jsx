@@ -6,7 +6,7 @@ function Banner() {
       <BannerContainer>
         <TextContainer>
           <TextSpan>Libere su potencial financiero</TextSpan>
-          con los cursos de trading de <b>Algorithmic Market</b>
+          con los cursos de trading de <b>ALGORITHMIC MARKET</b>
         </TextContainer>
       </BannerContainer>
     </Container>
@@ -24,7 +24,6 @@ const Container = styled.article`
     justify-content: center;
     text-align: center;
     border-bottom: 4px solid #ff6700;
-
     @media (max-width: 800px) {
       height: 53vh;
     }
@@ -42,7 +41,7 @@ const Container = styled.article`
     @media (max-width: 800px) {
       width: 100vw;
       height: 53vh;
-      background-color: rgba(235, 235, 235, 0.9);
+      background-color: rgba(235, 235, 235, 0.7);
       border-radius: 0px;
     }
   `,
@@ -53,7 +52,7 @@ const Container = styled.article`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     color: #000000;
     letter-spacing: 0.8px;
     font-family: "Poppins", monospace;
@@ -66,20 +65,15 @@ const Container = styled.article`
     @media (max-width: 690px) {
       height: 40vh;
       width: 80vw;
-      font-size: 2rem;
-      span {
-        font-size: 1.6rem;
-      }
     }
     @media (max-width: 440px) {
       height: 25vh;
-      font-size: 1.4rem;
     }
   `,
   TextSpan = styled.span`
     color: #ff6700;
     font-family: "Poppins", monospace;
     font-weight: 600;
-    font-size: 2.3rem;
+    font-size: calc(28px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     text-transform: capitalize;
   `;

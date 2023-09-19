@@ -1,18 +1,21 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import ReactLoading from "react-loading";
 import Header from "./components/Body/Header/Header.jsx";
 import Banner from "./components/Body/Banner.jsx";
-import Courses from "./components/Courses/Courses.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
+import Courses from "./components/Courses/Courses.jsx";
 import Details from "./components/Courses/DetailsCourse.jsx";
-import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
+import LoginBtn from "./components/Log/LoginBtn.jsx";
+import { useMyContext } from "./components/Context.jsx";
+import CoursePurchased from "./components/Courses/PurchasedCourse.jsx";
 import styled from "styled-components";
 
 function Home() {
-  const { isLoading } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0(),
+    { IS_MOBILE } = useMyContext();
 
   if (isLoading) {
     return (
@@ -32,9 +35,11 @@ function Home() {
       <Routes>
         <Route path="/details/:coursedetails" element={<Details />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/shoppingcart" element={<IndexCart />} />
+        <Route path="/coursepurchased" element={<CoursePurchased />} />
+        //! Acá Juan Carlos ^^^^
       </Routes>
       <Header />
+      {IS_MOBILE && !isAuthenticated && <LoginBtn />}
       <Banner />
       <Courses />
       <AboutUs />
@@ -52,7 +57,7 @@ const LoadContainer = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
   `,

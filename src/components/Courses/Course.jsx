@@ -5,7 +5,8 @@ import courseImg from "../../img/course-img.jpg";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
-  const [purchasedCourse, setPurchasedCourse] = useState(false);
+  const [purchasedCourse, setPurchasedCourse] = useState(false),
+    [completedCourse, setCompletedCourse] = useState(false);
 
   return (
     <CourseContainer>
@@ -21,10 +22,12 @@ function Course({ dataCourse }) {
       </TimeCard>
 
       <ButtonContainer>
-        {purchasedCourse ? (
+        {purchasedCourse && completedCourse ? (
+          <button>terminado</button>
+        ) : purchasedCourse ? (
           <ViewCourse url={`/mycourses/${dataCourse.id}`} />
         ) : (
-          <BuyBtn url={`/details/${dataCourse.id}`} />
+          <BuyBtn title="Más Información" url={`/details/${dataCourse.id}`} />
         )}
       </ButtonContainer>
     </CourseContainer>
@@ -51,9 +54,13 @@ const CourseContainer = styled.article`
     @media (min-width: 1224px) {
       height: 420px;
     }
+
+    @media (max-width: 480px) {
+      height: 380px;
+    }
   `,
   NameCourse = styled.p`
-    font-size: 1.5rem;
+    font-size: calc(20px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     color: black;
     width: 100%;
     text-align: start;
@@ -73,7 +80,7 @@ const CourseContainer = styled.article`
     padding-left: 1.6rem;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: calc(12px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     text-align: start;
   `,
   TimeCard = styled.p`
@@ -81,15 +88,14 @@ const CourseContainer = styled.article`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-top: 2.5vh; */
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     color: #353535;
     column-gap: 5px;
-    font-size: 0.9rem;
+    font-size: calc(10px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
   `,
   Span = styled.span`
-    font-size: 1.5rem;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
   `,
   ButtonContainer = styled.div`
     height: 7vh;

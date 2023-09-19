@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { ContextProps } from "../Context";
+import { useMyContext } from "../Context";
 import styled from "styled-components";
 
 function AddButton({ courseSelected }) {
-  const { setCoursesCart, coursesCart } = useContext(ContextProps),
+  const { setCoursesCart, coursesCart } = useMyContext(),
     title = "¡Comprar Ahora!",
     addCart = () => {
       const indexCart = coursesCart.findIndex(
@@ -15,39 +14,48 @@ function AddButton({ courseSelected }) {
       }
     },
     handleClick = () => addCart();
+
   return (
-    <Container>
-      <Btn to="/shoppingcart" onClick={handleClick}>
+    <ContainerMobile>
+      <BtnMobile to="/shoppingcart" onClick={handleClick}>
         {title}
-      </Btn>
-    </Container>
+      </BtnMobile>
+    </ContainerMobile>
   );
 }
 export default AddButton;
 
-const Container = styled.div`
-    position: relative;
+const ContainerMobile = styled.div`
     display: flex;
-    height: max-content;
-    width: 20vw;
+    width: 60vw;
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   `,
-  Btn = styled(Link)`
+  BtnMobile = styled(Link)`
     font-family: "Poppins", monospace;
     font-weight: 500;
     color: #ff6700;
+    background-color: transparent;
     width: 80%;
-    height: 40px;
+    height: 100%;
     font-size: 16px;
     text-align: center;
     outline: 2px solid #ff6700;
     text-decoration: none;
     border-radius: 5px;
-    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+
     overflow: hidden;
     border: none;
+
     &:hover {
       cursor: pointer;
       color: #fff;

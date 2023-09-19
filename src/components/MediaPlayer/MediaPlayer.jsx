@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { useParams } from "react-router-dom";
-import { ContextProps } from "../Context";
+import { useMyContext } from "../Context";
 import Header from "../Body/Header/Header";
 import Footer from "../Body/Footer";
 import ProgressBar from "./ProgressBar";
@@ -23,7 +23,7 @@ function MediaPlayer() {
       setProgressValue,
       setCourseID,
       idToName,
-    } = useContext(ContextProps),
+    } = useMyContext(),
     [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
     [courseInProgress, setCourseInProgress] = useState(true),

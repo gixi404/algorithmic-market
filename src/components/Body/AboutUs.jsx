@@ -1,4 +1,4 @@
-import Imgg from "../../img/about-us-img.jpg";
+import aboutUsImg from "../../img/about-us-img.jpg";
 import styled from "styled-components";
 
 function AboutUs() {
@@ -22,14 +22,12 @@ function AboutUs() {
             Nuestra misión es simple: brindar educación de primer nivel,
             recursos de vanguardia y soporte incomparable a operadores de todos
             los niveles. Desde principiantes que dan sus primeros pasos hasta
-            profesionales experimentados que buscan perfeccionar sus
-            habilidades, ofrecemos una variedad de cursos meticulosamente
-            elaborados que satisfacen diversas necesidades.
+            profesionales experimentados.
           </p>
         </Text>
 
         <ImgContainer>
-          <Img src={Imgg} />
+          <Img src={aboutUsImg} alt="Imágen de trabajo en equipo" />
         </ImgContainer>
       </AboutUsContainer>
     </Container>
@@ -80,6 +78,7 @@ const Container = styled.section`
     text-align: start;
     font-family: "Poppins", monospace;
     justify-content: space-between;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
 
     @media (max-width: 480px) {
       width: 100vw;
@@ -92,11 +91,9 @@ const Container = styled.section`
     }
   `,
   Title = styled.p`
-    font-size: 2rem;
+    font-size: calc(26px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     font-family: "Poppins", monospace;
-
     @media (min-width: 320px) {
-      font-size: 2rem;
       padding-bottom: 2rem;
     }
   `,

@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ContextProps } from "../Context";
+import { useMyContext } from "../Context";
 import styled from "styled-components";
 
 function Success() {
   const List = JSON.parse(localStorage.getItem("list"));
   const Id = JSON.parse(localStorage.getItem("id"));
-  const { courseSelected } = useContext(ContextProps);
+  const { courseSelected } = useMyContext();
 
   const mappedList = List.map(item => ({
     name: item.price_data.product_data.name,

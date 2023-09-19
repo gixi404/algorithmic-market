@@ -1,11 +1,14 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 import exampleImg from "../img/course-img.jpg";
 
-export const ContextProps = createContext();
+const ContextProps = createContext(),
+  IS_MOBILE =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
 
 function Context({ children }) {
   const [coursesCart, setCoursesCart] = useState([]),
-    [idCourse, setIdCourse] = useState(""),
     [loadContent, setLoadContent] = useState(false),
     [progressValue, setProgressValue] = useState(11.11),
     [courseID, setCourseID] = useState(null),
@@ -204,7 +207,9 @@ function Context({ children }) {
   }
 
   function courseSelected(coursedetails) {
-    return allCourses.find(course => course.id === Number(coursedetails));
+    return allCourses.find(
+      course => Number(course.id) === Number(coursedetails)
+    );
   }
 
   function idToName(id) {
@@ -222,22 +227,21 @@ function Context({ children }) {
   }
 
   const contextValues = {
+    IS_MOBILE,
+    coursesCart,
+    setCoursesCart,
+    loadContent,
+    setLoadContent,
+    progressValue,
+    setProgressValue,
+    courseID,
+    setCourseID,
     allCourses,
     setAllCourses,
     myCourses,
     setMyCourses,
-    courseSelected,
-    coursesCart,
-    setCoursesCart,
-    idCourse,
-    progressValue,
-    courseID,
-    setCourseID,
-    setProgressValue,
-    setIdCourse,
     removeCart,
-    loadContent,
-    setLoadContent,
+    courseSelected,
     idToName,
   };
 
@@ -249,3 +253,5 @@ function Context({ children }) {
 }
 
 export default Context;
+
+export const useMyContext = () => useContext(ContextProps);
