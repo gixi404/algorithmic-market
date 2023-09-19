@@ -27,7 +27,7 @@ function useDataUser(isAuthenticated) {
       );
 
       if (!res.ok) {
-        throw new Error("la solicitud falló");
+        throw new Error("La solicitud falló");
       }
 
       const json = await res.json();
@@ -45,8 +45,8 @@ function useDataUser(isAuthenticated) {
         const User = { user: user, token: accessToken };
         window.localStorage.setItem("loggedUser", JSON.stringify(User));
         setProfile(User);
-      } catch (e) {
-        throw new Error("no se puedo obtene el token");
+      } catch (err) {
+        throw new Error("No se logró obtener el token: " + err.message);
       }
     }
   }

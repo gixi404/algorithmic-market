@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ContextProps } from "./Context";
+import { useMyContext } from "./Context";
 import styled from "styled-components";
 
 function TelegramSVG() {
@@ -173,7 +172,7 @@ function ArrowSVG(props) {
 }
 
 function VisitSVG() {
-  const { courseID } = useContext(ContextProps);
+  const { courseID } = useMyContext();
 
   return (
     <Link to={`/mycourses/${courseID}`}>
@@ -290,16 +289,30 @@ function MenuSVG(props) {
     >
       <path
         d="M1 12C1 11.4477 1.44772 11 2 11H22C22.5523 11 23 11.4477 23 12C23 12.5523 22.5523 13 22 13H2C1.44772 13 1 12.5523 1 12Z"
-        fill="#0F0F0F"
+        fill="#ff6700"
       />
       <path
         d="M1 4C1 3.44772 1.44772 3 2 3H22C22.5523 3 23 3.44772 23 4C23 4.55228 22.5523 5 22 5H2C1.44772 5 1 4.55228 1 4Z"
-        fill="#0F0F0F"
+        fill="#ff6700"
       />
       <path
         d="M1 20C1 19.4477 1.44772 19 2 19H22C22.5523 19 23 19.4477 23 20C23 20.5523 22.5523 21 22 21H2C1.44772 21 1 20.5523 1 20Z"
-        fill="#0F0F0F"
+        fill="#ff6700"
       />
+    </svg>
+  );
+}
+
+function CircleSVG() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      viewBox="0 0 29 29"
+      fill="none"
+    >
+      <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
     </svg>
   );
 }
@@ -315,6 +328,7 @@ export {
   VisitSVG,
   UserSVG,
   IconSVG,
+  CircleSVG,
 };
 
 const Visit = styled.svg`

@@ -5,7 +5,8 @@ import courseImg from "../../img/course-img.jpg";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
-  const [purchasedCourse, setPurchasedCourse] = useState(false);
+  const [purchasedCourse, setPurchasedCourse] = useState(false),
+    [completedCourse, setCompletedCourse] = useState(false);
 
   return (
     <CourseContainer>
@@ -21,7 +22,9 @@ function Course({ dataCourse }) {
       </TimeCard>
 
       <ButtonContainer>
-        {purchasedCourse ? (
+        {purchasedCourse && completedCourse ? (
+          <button>terminado</button>
+        ) : purchasedCourse ? (
           <ViewCourse url={`/mycourses/${dataCourse.id}`} />
         ) : (
           <BuyBtn title="Más Información" url={`/details/${dataCourse.id}`} />

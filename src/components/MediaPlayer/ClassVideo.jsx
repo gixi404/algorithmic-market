@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
-import { ContextProps } from "../Context";
+import { useState } from "react";
+import { useMyContext } from "../Context";
 import ErrorVideo from "./ErrorVideo";
 import styled from "styled-components";
 
 function ClassVideo(props) {
   const { classData } = props,
-    { loadContent, setLoadContent } = useContext(ContextProps),
+    { loadContent, setLoadContent } = useMyContext(),
     [errorVideo, setErrorVideo] = useState(false);
 
   return (

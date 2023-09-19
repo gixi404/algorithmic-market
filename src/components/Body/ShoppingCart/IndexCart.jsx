@@ -1,16 +1,16 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { ContextProps } from "../../Context";
+import { useMyContext } from "../../Context";
 import ItemCart from "./ItemCart.jsx";
-import { CloseCartSVG } from "../../svgs";
 import Header from "../Header/Header";
 import Footer from "../Footer";
+import { CloseCartSVG } from "../../svgs";
 import styled from "styled-components";
 
 function IndexCart() {
   const { loginWithPopup } = useAuth0(),
-    { coursesCart } = useContext(ContextProps),
+    { coursesCart } = useMyContext(),
     [value, setValue] = useState(0);
 
   useEffect(() => recuderCash(), [coursesCart]);
@@ -81,7 +81,8 @@ const Container = styled.div`
     border-radius: 8px;
     background-color: #fff;
     margin: 3em 0;
-    height: 70vh;
+
+    height: auto;
     h1 {
       text-align: center;
     }
@@ -126,9 +127,10 @@ const Container = styled.div`
     }*/
   `,
   ItemContainer = styled.main`
-    height: 60vh;
+    min-height: 40vh;
+    height: auto;
     width: 90%;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     display: flex;
     flex-direction: column;
     align-items: center;

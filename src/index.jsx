@@ -9,8 +9,8 @@ import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Privacy from "./components/Body/Privacy.jsx";
 import StaffLym from "./components/Body/StaffLym.jsx";
 import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
-import "./index.css";
 import Profile from "./components/Body/Header/Profile.jsx";
+import "./index.css";
 
 const DOMAIN = "algorithmicmarket.us.auth0.com",
   CLIENT_ID = "CgBwpjVSJetDXDlBGJZD37NdKzmc8IWT",

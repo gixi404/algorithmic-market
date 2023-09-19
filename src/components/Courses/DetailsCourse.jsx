@@ -1,16 +1,15 @@
 import { Link, useParams } from "react-router-dom";
+import { useMyContext } from "../Context";
 import AddButton from "../Courses/AddButton.jsx";
-import { useContext } from "react";
-import { ContextProps } from "../Context";
-import styled from "styled-components";
 import { CloseCartSVG } from "../svgs.jsx";
+import styled from "styled-components";
 
 function detailCourses() {
-  const { courseSelected, isMobile } = useContext(ContextProps),
+  const { courseSelected, IS_MOBILE } = useMyContext(),
     { coursedetails } = useParams(),
     { name, cash, description } = courseSelected(coursedetails);
 
-  if (isMobile) {
+  if (IS_MOBILE) {
     return (
       <ContainerMobile>
         <DetailsMobile>
@@ -56,39 +55,21 @@ function detailCourses() {
           <Title>Curso Highlights:</Title>
           <List>
             <ListElement>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="29"
-                height="29"
-                viewBox="0 0 29 29"
-                fill="none"
-              >
+              <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
                 <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
               </svg>
               <p>Primera clase de orientacion.</p>
             </ListElement>
             <Span></Span>
             <ListElement>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="29"
-                height="29"
-                viewBox="0 0 29 29"
-                fill="none"
-              >
+              <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
                 <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
               </svg>
               <p>Segunda clase de orientacion.</p>
             </ListElement>
             <Span></Span>
             <ListElement>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="29"
-                height="29"
-                viewBox="0 0 29 29"
-                fill="none"
-              >
+              <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
                 <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
               </svg>
               <p>Tercera clase de orientacion.</p>

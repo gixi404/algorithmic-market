@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { ContextProps } from "../Context";
+import { useMyContext } from "../Context";
 import styled from "styled-components";
 
 function AddButton({ courseSelected }) {
-  const { setCoursesCart, coursesCart } = useContext(ContextProps),
+  const { setCoursesCart, coursesCart } = useMyContext(),
     title = "¡Comprar Ahora!",
     addCart = () => {
       const indexCart = coursesCart.findIndex(

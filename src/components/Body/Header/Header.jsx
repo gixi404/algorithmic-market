@@ -1,26 +1,22 @@
+import { useState } from "react";
 import { Link as Linkk } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginBtn from "../../Log/LoginBtn.jsx";
-import PopupMyCourses from "./PopupMyCourses.jsx";
-import logo from "../../../img/logo.png";
-import styled from "styled-components";
+import { useMyContext } from "../../Context.jsx";
 import IconCart from "../ShoppingCart/IconCart.jsx";
-import { MenuSVG, UserSVG } from "../../svgs.jsx";
-import { useState } from "react";
 import PopupProfile from "./PopupProfile.jsx";
 import Popup from "./Popup.jsx";
 import Menu from "./Menu.jsx";
-import { useContext } from "react";
-import { ContextProps } from "../../Context.jsx";
+import LoginBtn from "../../Log/LoginBtn";
+import logo from "../../../img/logo.png";
+import { MenuSVG, UserSVG } from "../../svgs.jsx";
+import styled from "styled-components";
 
 function Header() {
   const { isAuthenticated } = useAuth0(),
-    { isMobile } = useContext(ContextProps),
-    [openProfile, setOpenProfile] = useState(false),
-    [openCourse, setOpenCourse] = useState(false),
+    { IS_MOBILE } = useMyContext(),
     [menuActive, setMenuActive] = useState(false);
 
-  if (isMobile) {
+  if (IS_MOBILE) {
     return menuActive ? (
       <Menu menuActive={menuActive} setMenuActive={setMenuActive} />
     ) : (
@@ -33,6 +29,7 @@ function Header() {
               alt="Algorithmic Market Logo"
             />
           </Link>
+
           <MenuSVG menuActive={menuActive} setMenuActive={setMenuActive} />
         </WebContainerMobile>
       </HeaderContainer>
@@ -59,26 +56,18 @@ function Header() {
         <CotainerPopLog>
           {isAuthenticated ? (
             <>
-              <PopupMyCourses
-                openCourse={openCourse}
-                setOpenCourse={setOpenCourse}
-                setOpenProfile={setOpenProfile}
-              />
+              <Popup />
               <IconCart />
-              <UserSVG
-                openProfile={openProfile}
-                setOpenProfile={setOpenProfile}
-                setOpenCourse={setOpenCourse}
-              />
+              <UserSVG />
             </>
           ) : (
-            <LoginBtn />
+            <>
+              <LoginBtn />
+              <IconCart />
+            </>
           )}
         </CotainerPopLog>
       </WebContainer>
-
-      {openCourse && <Popup />}
-      {openProfile && <PopupProfile />}
     </HeaderContainer>
   );
 }
@@ -86,18 +75,18 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.header`
-    background-color: #fff;
+    background-color: #ffffff;
     width: 100vw;
-    min-height: 80px;
+    min-height: 14vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-bottom: 4px solid #ff6700;
 
-    @media (min-width: 1224px) {
+    /* @media (min-width: 1224px) {
       padding-bottom: 1em;
-    }
+    } */
   `,
   WebContainer = styled.div`
     width: 100%;

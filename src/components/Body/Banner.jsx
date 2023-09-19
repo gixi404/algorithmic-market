@@ -6,7 +6,7 @@ function Banner() {
       <BannerContainer>
         <TextContainer>
           <TextSpan>Libere su potencial financiero</TextSpan>
-          con los cursos de trading de <b>Algorithmic Market</b>
+          con los cursos de trading de <b>ALGORITHMIC MARKET</b>
         </TextContainer>
       </BannerContainer>
     </Container>
@@ -41,7 +41,7 @@ const Container = styled.article`
     @media (max-width: 800px) {
       width: 100vw;
       height: 53vh;
-      background-color: rgba(235, 235, 235, 0.9);
+      background-color: rgba(235, 235, 235, 0.7);
       border-radius: 0px;
     }
   `,

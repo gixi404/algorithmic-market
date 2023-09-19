@@ -1,17 +1,19 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import Popup from "./Popup";
 import { CloseCartSVG, UserSVG } from "../../svgs";
 import IconCart from "../ShoppingCart/IconCart";
 import styled from "styled-components";
 
 function Menu(props) {
-  const { menuActive, setMenuActive } = props;
+  const { menuActive, setMenuActive } = props,
+    { isAuthenticated } = useAuth0();
 
   return (
     <Container>
       <Div>
-        <CloseCartSVG menuActive={menuActive} setMenuActive={setMenuActive} />
+        {isAuthenticated && <UserSVG />}
         <IconCart />
-        <UserSVG />
+        <CloseCartSVG menuActive={menuActive} setMenuActive={setMenuActive} />
       </Div>
 
       <NavContainer>
@@ -20,7 +22,7 @@ function Menu(props) {
         <NavLink href="#contact">Contacto</NavLink>
       </NavContainer>
 
-      <Popup isMobile />
+      {isAuthenticated && <Popup IS_MOBILE />}
     </Container>
   );
 }
@@ -28,22 +30,23 @@ function Menu(props) {
 export default Menu;
 
 const Container = styled.div`
-    height: 50vh;
+    /* height: 25vh; */
+    min-height: 28vh;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    background-color: #fff;
+    background-color: #a9a9a9;
   `,
   NavContainer = styled.nav`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 0.5em;
     width: 100%;
-    height: 13vh;
+    height: 5vh;
   `,
   NavLink = styled.a`
     color: #2e2e2e;
@@ -58,4 +61,5 @@ const Container = styled.div`
     justify-content: space-around;
     flex-direction: row;
     width: 100vw;
+    height: 8vh;
   `;

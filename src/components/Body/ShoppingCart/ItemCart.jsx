@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { ContextProps } from "../../Context";
+import { useMyContext } from "../../Context";
 import courseImg from "../../../img/course-img.jpg";
 import styled from "styled-components";
 
 function ItemCart(props) {
   const { data } = props,
-    { removeCart } = useContext(ContextProps);
+    { removeCart } = useMyContext();
 
   const handleClick = () => removeCart(data);
 

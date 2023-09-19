@@ -22,9 +22,7 @@ function AboutUs() {
             Nuestra misión es simple: brindar educación de primer nivel,
             recursos de vanguardia y soporte incomparable a operadores de todos
             los niveles. Desde principiantes que dan sus primeros pasos hasta
-            profesionales experimentados que buscan perfeccionar sus
-            habilidades, ofrecemos una variedad de cursos meticulosamente
-            elaborados que satisfacen diversas necesidades.
+            profesionales experimentados.
           </p>
         </Text>
 

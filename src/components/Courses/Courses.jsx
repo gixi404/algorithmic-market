@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { ContextProps } from "../Context";
+import { useMyContext } from "../Context";
 import Course from "./Course.jsx";
 import styled from "styled-components";
 
 function Courses() {
-  const { allCourses } = useContext(ContextProps);
+  const { allCourses } = useMyContext();
 
   return (
     <CoursesContainer id="allCourses">
