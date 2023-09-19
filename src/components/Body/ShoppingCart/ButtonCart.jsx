@@ -2,14 +2,12 @@ import { Link } from "react-router-dom";
 import { useBuyPetition } from "../../../hooks/useBuyLogic.js";
 import styled from "styled-components";
 
-function ButtonCart({ courses }) {
-  const { buyUrl, handleBuy } = useBuyPetition({ courses }),
-    url = buyUrl;
-  return (
+function ButtonCart({courses}){
+    const {buyUrl} = useBuyPetition({courses})
+    const url = buyUrl
+    return(
     <Container>
-      <Btn to={url} onClick={handleBuy}>
-        ¡Comprar Ahora!
-      </Btn>
+    <Btn to={url}>Buy Now!</Btn>
     </Container>
   );
 }
@@ -50,6 +48,5 @@ const Container = styled.article`
       box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
       outline: none;
       border: none;
-      background-color: #ff6700;
-    }
+      background-color: #ff6700;}
   `;

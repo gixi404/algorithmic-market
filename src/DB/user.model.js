@@ -11,11 +11,12 @@ const userSchema = mongoose.Schema({
     trim: true,
     unique: true,
   },
-  password: {
-    type: String,
-    required: true,
-    trim: true,
+  courses:{
+    type: Object,
   },
+  waitingcourse: {
+    type: Object
+  }
 });
 
 export default mongoose.model("User", userSchema);
