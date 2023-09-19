@@ -30,7 +30,6 @@ function Menu(props) {
 export default Menu;
 
 const Container = styled.div`
-    /* height: 25vh; */
     min-height: 28vh;
     width: 100vw;
     display: flex;

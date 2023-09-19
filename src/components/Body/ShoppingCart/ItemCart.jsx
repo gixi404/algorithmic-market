@@ -13,7 +13,7 @@ function ItemCart(props) {
       <IMG src={courseImg} alt="curso imágen" />
       <Article>
         <div>
-          <h3>{data.name}</h3>6
+          <h3>{data.name}</h3>
           <p>
             <strong>${data.cash}</strong>
           </p>

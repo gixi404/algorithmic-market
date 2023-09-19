@@ -1,4 +1,4 @@
-import Imgg from "../../img/about-us-img.jpg";
+import aboutUsImg from "../../img/about-us-img.jpg";
 import styled from "styled-components";
 
 function AboutUs() {
@@ -27,7 +27,7 @@ function AboutUs() {
         </Text>
 
         <ImgContainer>
-          <Img src={Imgg} />
+          <Img src={aboutUsImg} alt="Imágen de trabajo en equipo" />
         </ImgContainer>
       </AboutUsContainer>
     </Container>
