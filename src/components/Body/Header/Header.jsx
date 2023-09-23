@@ -100,12 +100,12 @@ const HeaderContainer = styled.header`
     border-bottom: 4px solid #ff6700;
   `,
   WebContainer = styled.div`
-    width: 100%;
+    width: 80%;
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
   `,
   Logo = styled.img`
     margin: 5px 0;
