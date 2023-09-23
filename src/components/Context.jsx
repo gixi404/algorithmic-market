@@ -12,6 +12,8 @@ function Context({ children }) {
     [loadContent, setLoadContent] = useState(false),
     [progressValue, setProgressValue] = useState(11.11),
     [courseID, setCourseID] = useState(null),
+    [errorVideo, setErrorVideo] = useState(false),
+    [classData, setClassData] = useState({}),
     [allCourses, setAllCourses] = useState([
       {
         id: 0,
@@ -236,6 +238,10 @@ function Context({ children }) {
     setProgressValue,
     courseID,
     setCourseID,
+    errorVideo,
+    setErrorVideo,
+    classData,
+    setClassData,
     allCourses,
     setAllCourses,
     myCourses,

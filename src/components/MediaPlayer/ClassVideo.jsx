@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useMyContext } from "../Context";
 import ErrorVideo from "./ErrorVideo";
 import styled from "styled-components";
 
 function ClassVideo(props) {
   const { classData } = props,
-    { loadContent, setLoadContent } = useMyContext(),
-    [errorVideo, setErrorVideo] = useState(false);
+    { loadContent, setLoadContent, errorVideo, setErrorVideo } = useMyContext();
+
+  useEffect(() => {
+    //* Detecta si el loadContent carga por 10 segundos consecutivos.
+    let seconds = 0;
+    const interval = setInterval(() => {
+      if (seconds === 10 && loadContent) {
+        setLoadContent(false);
+        setErrorVideo(true);
+      } else seconds++;
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [loadContent]);
 
   return (
     <>
@@ -19,7 +30,7 @@ function ClassVideo(props) {
           allowFullScreen={true}
           style={{ display: loadContent ? "none" : "block" }}
           onLoad={() => setLoadContent(false)}
-          onLoadStart={() => setLoadContent(true)}
+          onLoadStart={() => setLoadContent(false)}
           onError={() => setErrorVideo(true)}
         />
       ) : (

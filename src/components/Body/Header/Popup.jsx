@@ -1,4 +1,4 @@
-import { useMyContext } from "../../Context";
+ import { useMyContext } from "../../Context";
 import { VisitSVG } from "../../svgs";
 import styled from "styled-components";
 
@@ -6,9 +6,10 @@ function PopupProgressBar(props) {
   const { IS_MOBILE = false } = props,
     { idToName, courseID, progressValue } = useMyContext();
 
-  function verifyData(isTrue, isFalse = null) {
-    return courseID !== null ? isTrue : isFalse;
-  }
+  // useEffect(() => {
+  //   const saveClass = localStorage.getItem("class-course");
+  //   return () => saveClass || null;
+  // }, [classData]);
 
   if (IS_MOBILE) {
     return (
@@ -20,9 +21,8 @@ function PopupProgressBar(props) {
             width: "70vw",
             height: "3vh",
           }}
-          value={verifyData(
-            Math.ceil(progressValue === 101 ? progressValue-- : progressValue),
-            0
+          value={Math.ceil(
+            progressValue === 101 ? progressValue-- : progressValue
           )}
           max="100"
           name="progress"
@@ -55,31 +55,18 @@ function PopupProgressBar(props) {
   return (
     <Container>
       <ContainerPop>
-        <Name>{idToName(courseID)}</Name>
-
+        <Div>
+          <Name>{idToName(courseID)}</Name>
+          <VisitSVG />
+        </Div>
         <progress
           style={{ width: "80%", height: "3vh" }}
-          value={verifyData(
-            Math.ceil(progressValue === 101 ? progressValue-- : progressValue),
-            0
+          value={Math.ceil(
+            progressValue === 101 ? progressValue-- : progressValue
           )}
           max="100"
           name="progress"
         />
-
-        <Div>
-          <label htmlFor="progress">
-            Progreso{" "}
-            {verifyData(
-              Math.ceil(
-                progressValue === 101 ? progressValue-- : progressValue
-              ),
-              0
-            )}
-            %
-          </label>
-          {verifyData(<VisitSVG />)}
-        </Div>
       </ContainerPop>
     </Container>
   );
@@ -89,7 +76,7 @@ export default PopupProgressBar;
 
 const Container = styled.section`
     width: 280px;
-    height: 90px;
+    height: 10vh;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -102,20 +89,18 @@ const Container = styled.section`
     border-radius: 0.5em;
     background: rgba(255, 159, 96, 0.3);
     width: 85%;
-    height: 100px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 0.3em 0;
     font-family: "Poppins", monospace;
-    row-gap: 0.2em;
   `,
   Name = styled.p`
     font-size: calc(11px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     color: black;
     font-family: "Poppins", monospace;
-
     width: 80%;
     text-align: center;
     font-weight: 400;
@@ -127,8 +112,6 @@ const Container = styled.section`
     justify-content: space-between;
     align-items: center;
     width: 80%;
-    font-size: calc(10px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    color: #000;
   `;
 
 const ContainerMobile = styled.div`
