@@ -6,7 +6,7 @@ import IconCart from "../ShoppingCart/IconCart.jsx";
 import Popup from "./Popup.jsx";
 import Menu from "./Menu.jsx";
 import LoginBtn from "../../Log/LoginBtn";
-import logo from "../../../img/logo.png";
+import logo from "../../../img/logo1.png";
 import { MenuSVG, UserSVG } from "../../svgs.jsx";
 import styled from "styled-components";
 
@@ -108,8 +108,9 @@ const HeaderContainer = styled.header`
     justify-content: space-around;
   `,
   Logo = styled.img`
-    height: 100%;
-    width: 7vw;
+    margin: 5px 0;
+    height: 70px;
+    width: max-content;
     object-fit: cover;
     object-position: center;
   `,
@@ -140,6 +141,7 @@ const HeaderContainer = styled.header`
     font-family: "Poppins", monospace;
     font-weight: 500;
     height: 80px;
+    text-align: center;
     line-height: 96px;
     text-transform: capitalize;
     transition-duration: 0.1s;
