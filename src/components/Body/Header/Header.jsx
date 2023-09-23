@@ -59,10 +59,10 @@ function Header() {
                 <UserSVG />
               </>
             ) : (
-              <>
-                <LoginBtn />
+              <DivLoginCart>
                 <IconCart />
-              </>
+                <LoginBtn />
+              </DivLoginCart>
             )}
           </CotainerPopLog>
         </WebContainer>
@@ -83,8 +83,8 @@ const WebContainerMobile = styled.div`
     justify-content: space-between;
   `,
   LogoMobile = styled.img`
-    height: 80px;
-    width: 100px;
+    height: 8vh;
+    width: 15vw;
     object-fit: cover;
     object-position: center;
   `;
@@ -92,7 +92,7 @@ const WebContainerMobile = styled.div`
 const HeaderContainer = styled.header`
     background-color: #ffffff;
     width: 100vw;
-    min-height: 14vh;
+    min-height: 12vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,11 +106,10 @@ const HeaderContainer = styled.header`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    row-gap: 0.5rem;
   `,
   Logo = styled.img`
-    height: 90px;
-    width: 120px;
+    height: 100%;
+    width: 7vw;
     object-fit: cover;
     object-position: center;
   `,
@@ -156,4 +155,12 @@ const HeaderContainer = styled.header`
     align-items: center;
     justify-content: center;
     column-gap: 2em;
+  `,
+  DivLoginCart = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    height: 8vh;
+    width: 20vw;
   `;

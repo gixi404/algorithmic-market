@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 
 function Contact() {
-  const [error, setError] = useState(false),
+  const [errorForm, setErrorForm] = useState(false),
     [sendForm, setSendForm] = useState(false),
     Name = useRef(null),
     Mail = useRef(null),
@@ -19,39 +19,39 @@ function Contact() {
       switch (input) {
         case "Name":
           {
-            setError(true);
+            setErrorForm(true);
 
             Name.current.style.borderBottom = "5px solid #f00";
 
             setTimeout(() => {
               Name.current.style.borderBottom = "2.3px solid #ff6700";
-              setError(false);
+              setErrorForm(false);
             }, 2000);
           }
           break;
 
         case "Mail":
           {
-            setError(true);
+            setErrorForm(true);
 
             Mail.current.style.borderBottom = "5px solid #f00";
 
             setTimeout(() => {
               Mail.current.style.borderBottom = "2.3px solid #ff6700";
-              setError(false);
+              setErrorForm(false);
             }, 2000);
           }
           break;
 
         case "Query":
           {
-            setError(true);
+            setErrorForm(true);
 
             Query.current.style.borderBottom = "5px solid #f00";
 
             setTimeout(() => {
               Query.current.style.borderBottom = "2.3px solid #ff6700";
-              setError(false);
+              setErrorForm(false);
             }, 2000);
           }
           break;
@@ -59,7 +59,7 @@ function Contact() {
         default:
           {
             Name.current.style.borderBottom = "2.3px solid #ff6700";
-            setError(false);
+            setErrorForm(false);
           }
           break;
       }
@@ -132,17 +132,15 @@ function Contact() {
         </Text>
 
         <Form onSubmit={handleSubmitForm}>
-          {error && (
+          {sendForm || errorForm ? (
             <MessageValidation>
-              <ErrorValidation>Revisa la información</ErrorValidation>
+              {sendForm ? (
+                <ConfirmValidation>Información enviada</ConfirmValidation>
+              ) : (
+                <ErrorValidation>Revisa la información</ErrorValidation>
+              )}
             </MessageValidation>
-          )}
-
-          {sendForm && (
-            <MessageValidation>
-              <ConfirmValidation>Información enviada</ConfirmValidation>
-            </MessageValidation>
-          )}
+          ) : null}
 
           <InputForm
             type="text"
@@ -170,7 +168,7 @@ function Contact() {
           ></Textarea>
 
           <SubmitContainer>
-            <SubmitBtn type="submit" value="Submit" />
+            <SubmitBtn type="submit" value="Enviar" />
           </SubmitContainer>
         </Form>
       </ContactContainer>
@@ -187,7 +185,6 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Poppins", monospace;
   `,
   ContactContainer = styled.section`
     width: 80vw;
@@ -234,7 +231,7 @@ const Container = styled.div`
     border-radius: 8px;
     padding-left: 2vw;
     font-family: "Poppins", monospace;
-    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    font-size: calc(11px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 48vw;
     height: 8vh;
     background-color: #ebebeb;
@@ -242,6 +239,10 @@ const Container = styled.div`
 
     @media (max-width: 800px) {
       width: 80vw;
+    }
+
+    &::placeholder {
+      color: #858585;
     }
   `,
   Textarea = styled.textarea`
@@ -252,8 +253,7 @@ const Container = styled.div`
     padding-top: 2vh;
     padding-left: 2vw;
     font-family: "Poppins";
-    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-
+    font-size: calc(11px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 48vw;
     height: 17vh;
     background-color: #ebebeb;
@@ -282,8 +282,7 @@ const Container = styled.div`
     color: #ff6700;
     width: 13rem;
     height: 45px;
-    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-
+    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     outline: 2px solid #ff6700;
     border-radius: 8px;
     background-color: transparent;
@@ -303,41 +302,32 @@ const Container = styled.div`
   `,
   MessageValidation = styled.div`
     width: 100%;
-    height: 5vh;
+    background-color: #fff;
+    height: 8vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
+    border-radius: 0.3em;
     @media (max-width: 480px) {
-      height: 2vh;
+      height: 3vh;
     }
   `,
   ErrorValidation = styled.p`
     font-family: "Poppins", monospace;
     font-weight: 400;
     color: red;
-    font-size: 2rem;
-    background-color: #fff;
-    border-radius: 0.3em;
-    padding: 0.3em 1em;
+    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    width: 100%;
+    text-align: center;
     text-transform: uppercase;
-
-    @media (max-width: 480px) {
-      font-size: 1rem;
-    }
   `,
   ConfirmValidation = styled.p`
     font-family: "Poppins", monospace;
     font-weight: 400;
     color: green;
-    background-color: #fff;
-    border-radius: 0.3em;
-    padding: 0.3em 1em;
-    font-size: 2rem;
+    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    width: 100%;
+    text-align: center;
     text-transform: uppercase;
-
-    @media (max-width: 480px) {
-      font-size: 1rem;
-    }
   `;

@@ -26,10 +26,11 @@ const ProgressContainer = styled.div`
     justify-content: center;
     column-gap: 1.3rem;
 
-    @media (max-width: 576px) {
-      flex-direction: column-reverse;
-      align-items: start;
-      row-gap: 0.5rem;
+    @media (max-width: 480px) {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 1.5em;
     }
   `,
   LabelBar = styled.label`
@@ -38,6 +39,6 @@ const ProgressContainer = styled.div`
     font-weight: 300;
   `,
   Progress = styled.progress`
-    width: 18vw;
+    width: 60vw;
     height: 3vh;
   `;

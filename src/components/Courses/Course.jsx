@@ -5,7 +5,7 @@ import courseImg from "../../img/course-img.jpg";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
-  const [purchasedCourse, setPurchasedCourse] = useState(false),
+  const [purchasedCourse, setPurchasedCourse] = useState(true ),
     [completedCourse, setCompletedCourse] = useState(false);
 
   return (
@@ -89,10 +89,10 @@ const CourseContainer = styled.article`
     justify-content: center;
     align-items: center;
     font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    color: #353535;
+    font-weight: 400;
+    color: #000000;
     column-gap: 5px;
-    font-size: calc(10px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    font-size: calc(13px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
   `,
   Span = styled.span`
     font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
