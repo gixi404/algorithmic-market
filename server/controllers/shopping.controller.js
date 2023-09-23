@@ -89,6 +89,6 @@ export  async function redirectShopping (req, res) {
     console.log(coincidencia)
     res.json(
         {
-            url:'http://localhost:3000/',
+            url:'http://localhost:3000/coursepurchased',
         })
 }

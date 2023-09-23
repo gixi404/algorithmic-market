@@ -28,7 +28,7 @@ function CoursePurchased() {
             podrás acceder al contenido del curso.
           </Title>
           <Link to="/" style={{ textDecoration: "none", color: "#ff6700" }}>
-            <OkeyBtn>Okey</OkeyBtn>
+            <OkeyBtn>Okay</OkeyBtn>
           </Link>
         </Letter>
       </Container>

@@ -12,11 +12,32 @@ import LoginBtn from "./components/Log/LoginBtn.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import CoursePurchased from "./components/Courses/PurchasedCourse.jsx";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 function Home() {
-  const { isLoading, isAuthenticated } = useAuth0(),
+  const { isLoading, isAuthenticated, getAccessTokenSilently,loginWithRedirect, loginWithPopup } = useAuth0(),
     { IS_MOBILE } = useMyContext();
+  useEffect(() => {
+      const getToken = async()=>{
+        try{
+          const newToken = await getAccessTokenSilently()
+          localStorage.setItem('access_token',newToken)
+        }
+        catch(e){
+          console.log('error', e.message)
+        }
+      }
+      if(isAuthenticated){getToken()}
+  },[isAuthenticated])
 
+  useEffect(() => {
+    const tokenAccess = localStorage.getItem('access_token')
+    
+    if(!isAuthenticated && tokenAccess){
+      console.log(tokenAccess)
+    }
+  },[])
+//  useEffect(() => {if(!isAuthenticated){loginWithPopup()} },[isAuthenticated])
   if (isLoading) {
     return (
       <LoadContainer>
@@ -36,7 +57,6 @@ function Home() {
         <Route path="/details/:coursedetails" element={<Details />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/coursepurchased" element={<CoursePurchased />} />
-        //! Acá Juan Carlos ^^^^
       </Routes>
       <Header />
       {IS_MOBILE && !isAuthenticated && <LoginBtn />}
