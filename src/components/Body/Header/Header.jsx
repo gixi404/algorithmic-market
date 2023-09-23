@@ -60,7 +60,6 @@ function Header() {
               </>
             ) : (
               <DivLoginCart>
-                <IconCart />
                 <LoginBtn />
               </DivLoginCart>
             )}
@@ -128,7 +127,6 @@ const HeaderContainer = styled.header`
     text-decoration: none;
     font-family: "Poppins", monospace;
     font-size: calc(10px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    margin-top: 16px;
     text-transform: capitalize;
     transition-duration: 0.1s;
     &:hover {
@@ -161,8 +159,8 @@ const HeaderContainer = styled.header`
   DivLoginCart = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: start;
-    height: 8vh;
-    width: 20vw;
+    justify-content: end;
+    align-items: center;
+    height: 80px;
+    width: max-content;
   `;

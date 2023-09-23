@@ -3,10 +3,11 @@ import styled from "styled-components";
 import BuyBtn from "../../Courses/Button";
 import Header from "./Header";
 import Footer from "../Footer";
+import { useEffect } from "react";
 
 function Profile() {
   const { user, logout } = useAuth0();
-
+  useEffect(()=>{console.log(user)},[])
   function logOut() {
     return logout();
   }

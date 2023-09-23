@@ -42,7 +42,6 @@ const ContainerMobile = styled.div`
     border: none;
   `,
   LoginButton = styled.button`
-    margin-top: 16px;
     position: relative;
     font-family: "Poppins", monospace;
     padding: 8px 15px;
