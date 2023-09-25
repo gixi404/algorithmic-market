@@ -1,5 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import Popup from "./Popup";
 import { CloseCartSVG, UserSVG } from "../../svgs";
 import IconCart from "../ShoppingCart/IconCart";
 import styled from "styled-components";
@@ -17,12 +16,10 @@ function Menu(props) {
       </Div>
 
       <NavContainer>
-        <NavLink href="#allCourses">Cursos</NavLink>
-        <NavLink href="#aboutUs">Sobre&nbsp;Nosotros</NavLink>
+        <NavLink href="#allcourses">Cursos</NavLink>
+        <NavLink href="#aboutus">Sobre&nbsp;Nosotros</NavLink>
         <NavLink href="#contact">Contacto</NavLink>
       </NavContainer>
-
-      {isAuthenticated && <Popup IS_MOBILE />}
     </Container>
   );
 }
@@ -30,22 +27,24 @@ function Menu(props) {
 export default Menu;
 
 const Container = styled.div`
-    min-height: 28vh;
+    min-height: 100px;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
     background-color: #a9a9a9;
+    border-bottom: 4px solid #ff6700;
+    padding-bottom: 1em;
   `,
   NavContainer = styled.nav`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     gap: 0.5em;
     width: 100%;
-    height: 5vh;
+    height: 100%;
   `,
   NavLink = styled.a`
     color: #2e2e2e;
@@ -60,5 +59,5 @@ const Container = styled.div`
     justify-content: space-around;
     flex-direction: row;
     width: 100vw;
-    height: 8vh;
+    height: 100%;
   `;

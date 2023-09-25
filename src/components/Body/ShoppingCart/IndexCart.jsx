@@ -8,9 +8,10 @@ import Footer from "../Footer";
 import Btn from "./ButtonCart.jsx";
 import { CloseCartSVG } from "../../svgs";
 import styled from "styled-components";
+import LoginBtn from "../../Log/LoginBtn";
 
 function IndexCart() {
-  const { loginWithPopup, isAuthenticated } = useAuth0(),
+  const { isAuthenticated } = useAuth0(),
     { coursesCart } = useMyContext(),
     [value, setValue] = useState(0);
 
@@ -42,7 +43,7 @@ function IndexCart() {
               <ItemCart key={course.id} data={course} />
             ))
           ) : (
-            <P title="No hay cursos">Sin cursos</P>
+            <P>Sin cursos</P>
           )}
         </ItemContainer>
 
@@ -53,12 +54,17 @@ function IndexCart() {
           </Article>
         </FooterCart>
 
-        {isAuthenticated ? (
-          <Btn courses={coursesCart} />
-        ) : (
+        {isAuthenticated && coursesCart.length > 0 ? (
           <SubmitContainer>
-            <SubmitBtn onClick={loginWithPopup}>¡Comprar Ahora!</SubmitBtn>
+            <Btn courses={coursesCart} />
           </SubmitContainer>
+        ) : !isAuthenticated && coursesCart.length > 0 ? (
+          <>
+            <P>Inicia Sesión para realizar una compra</P>
+            <LoginBtn />
+          </>
+        ) : (
+          ""
         )}
       </CartContainer>
 
@@ -110,26 +116,6 @@ const Container = styled.div`
       font-size: calc(26px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
       color: #ff6700;
     }
-    /* a {
-      font-family: "Poppins", monospace;
-      width: 5vw;
-      background-color: transparent;
-      color: #2e2e2e;
-      width: max-content;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.5s ease;
-      margin-top: 1vh;
-    }
-    p {
-      transition: all 0.5s ease;
-      cursor: pointer;
-      &:hover {
-        color: #222;
-        padding: 0 2vw;
-        background-color: #ff6700;
-      } 
-    }*/
   `,
   ItemContainer = styled.main`
     min-height: 40vh;
@@ -143,7 +129,6 @@ const Container = styled.div`
   P = styled.p`
     font-family: "Poppins", monospace;
     font-weight: 500;
-    cursor: pointer;
   `,
   FooterCart = styled.footer`
     width: 90%;
@@ -165,33 +150,11 @@ const Container = styled.div`
     }
   `,
   SubmitContainer = styled.article`
-    width: 75%;
+    width: 100%;
     height: 10vh;
-    text-align: center;
-  `,
-  SubmitBtn = styled.button`
-    margin: auto 0;
-    font-family: "Poppins", monospace;
-    font-weight: 500;
-    color: #ff6700;
-    outline: 2px solid #ff6700;
-    font-weight: 700;
-    border-radius: 8px;
-    width: 70%;
-    height: 5vh;
-    padding: 0 2vw;
-    text-align: center;
-    border: 0;
-    background-color: transparent;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
-    &:hover {
-      cursor: pointer;
-      color: #fff;
-      scale: 1.1;
-      box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
-      outline: none;
-      border: none;
-      background-color: #ff6700;
-    }
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `;

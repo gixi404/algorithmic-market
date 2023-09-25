@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function ControlsVideo(props) {
@@ -12,34 +13,25 @@ function ControlsVideo(props) {
     isFirstClass = Number(numberClass) === 0,
     isLastClass = Number(numberClass + 1) === Number(lastClass);
 
-  if (isFirstClass) {
-    return (
-      <Controls>
-        <PreviousZero onClick={previousClass}>Clase&nbsp;Anterior</PreviousZero>
-        <ControlBtn onClick={nextClass}>Clase&nbsp;Siguiente</ControlBtn>
-      </Controls>
-    );
-  } else if (isLastClass) {
-    return (
-      <Controls>
+  return (
+    <Controls>
+      {isFirstClass ? (
+        <PreviousZero>Clase&nbsp;Anterior</PreviousZero>
+      ) : (
         <ControlBtn onClick={previousClass}>Clase&nbsp;Anterior</ControlBtn>
-        {courseInProgress ? (
-          <FinishBtn onClick={() => setCourseInProgress(false)}>
-            Finalizar&nbsp;Curso
-          </FinishBtn>
-        ) : (
-          <InivisbleBtn>&nbsp;</InivisbleBtn>
-        )}
-      </Controls>
-    );
-  } else {
-    return (
-      <Controls>
-        <ControlBtn onClick={previousClass}>Clase&nbsp;Anterior</ControlBtn>
+      )}
+
+      {isLastClass && courseInProgress ? (
+        <FinishBtn onClick={() => setCourseInProgress(false)}>
+          Finalizar&nbsp;Curso
+        </FinishBtn>
+      ) : courseInProgress ? (
         <ControlBtn onClick={nextClass}>Clase&nbsp;Siguiente</ControlBtn>
-      </Controls>
-    );
-  }
+      ) : (
+        <PreviousZero>Clase&nbsp;Siguiente</PreviousZero>
+      )}
+    </Controls>
+  );
 }
 
 export default ControlsVideo;
@@ -51,15 +43,16 @@ const Controls = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    @media (max-width: 576px) {
-      width: 95vw;
-      flex-direction: row;
-      column-gap: 1rem;
+    @media (max-width: 1024px) {
+      flex-direction: column-reverse;
+      row-gap: 0.8em;
     }
   `,
-  ControlBtn = styled.button`
+  ControlBtn = styled(Link)`
+    text-decoration: none;
     display: flex;
-    min-width: 27.1875vw;
+    width: 60vw;
+    max-width: 350px;
     padding: 10px 18px;
     justify-content: center;
     align-items: center;
@@ -71,22 +64,18 @@ const Controls = styled.div`
     color: #ff6700;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     transition-duration: 0.2s;
 
     &:hover {
       transform: scale(0.955);
       cursor: pointer;
-    }
-
-    @media (max-width: 576px) {
-      width: 45vw;
-      font-size: 1rem;
     }
   `,
   PreviousZero = styled.button`
     display: flex;
-    min-width: 27.1875vw;
+    width: 65vw;
+    max-width: 400px;
     padding: 10px 18px;
     justify-content: center;
     align-items: center;
@@ -98,54 +87,44 @@ const Controls = styled.div`
     color: #ff6700;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     opacity: 0.5;
-
-    @media (max-width: 576px) {
-      width: 45vw;
-      font-size: 1rem;
-    }
   `,
   FinishBtn = styled.button`
+    background-color: #ff6700;
+    color: #ffffff;
+    border: 2px solid #fff;
+    text-decoration: none;
     display: flex;
-    min-width: 27.1875vw;
+    width: 65vw;
+    max-width: 400px;
     padding: 10px 18px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     border-radius: 12px;
-    border: 2px solid #fff;
-    background-color: #ff6700;
     outline: none;
-    color: #ffffff;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     transition-duration: 0.2s;
-
     &:hover {
       transform: scale(0.955);
       cursor: pointer;
     }
-
-    @media (max-width: 576px) {
-      width: 45vw;
-      font-size: 1rem;
-    }
   `,
   InivisbleBtn = styled.button`
     display: flex;
-    min-width: 27.1875vw;
+    width: 65vw;
+    max-width: 400px;
     padding: 10px 18px;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border-radius: 12px;
     border: 2px solid transparent;
     background-color: transparent;
     outline: none;
     color: transparent;
-    font-size: 1.3rem;
 
     @media (max-width: 576px) {
       width: 45vw;

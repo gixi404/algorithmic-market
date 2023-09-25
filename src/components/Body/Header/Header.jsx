@@ -3,10 +3,9 @@ import { Link as Linkk } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMyContext } from "../../Context.jsx";
 import IconCart from "../ShoppingCart/IconCart.jsx";
-import Popup from "./Popup.jsx";
 import Menu from "./Menu.jsx";
 import LoginBtn from "../../Log/LoginBtn";
-import logo from "../../../img/logo.png";
+import logo from "../../../img/logo.webp";
 import { MenuSVG, UserSVG } from "../../svgs.jsx";
 import styled from "styled-components";
 
@@ -45,25 +44,23 @@ function Header() {
             />
           </Link>
 
-          <NavContainer>
-            <NavLink href="#allCourses">Cursos</NavLink>
-            <NavLink href="#aboutUs">Sobre&nbsp;Nosotros</NavLink>
-            <NavLink href="#contact">Contacto</NavLink>
-          </NavContainer>
+          {window.location.pathname === "/" ? (
+            <NavContainer>
+              <NavLink href="#allcourses">Cursos</NavLink>
+              <NavLink href="#aboutus">Sobre&nbsp;Nosotros</NavLink>
+              <NavLink href="#contact">Contacto</NavLink>
+            </NavContainer>
+          ) : (
+            <NavContainer>
+              <NavLink>&nbsp;</NavLink>
+              <NavLink>&nbsp;</NavLink>
+              <NavLink>&nbsp;</NavLink>
+            </NavContainer>
+          )}
 
           <CotainerPopLog>
-            {isAuthenticated ? (
-              <>
-                <Popup />
-                <IconCart />
-                <UserSVG />
-              </>
-            ) : (
-              <DivLoginCart>
-                <IconCart />
-                <LoginBtn />
-              </DivLoginCart>
-            )}
+            <IconCart />
+            {isAuthenticated ? <UserSVG /> : <LoginBtn />}
           </CotainerPopLog>
         </WebContainer>
       </HeaderContainer>
@@ -83,8 +80,8 @@ const WebContainerMobile = styled.div`
     justify-content: space-between;
   `,
   LogoMobile = styled.img`
-    height: 8vh;
-    width: 15vw;
+    width: 60px;
+    height: 70px;
     object-fit: cover;
     object-position: center;
   `;
@@ -108,8 +105,8 @@ const HeaderContainer = styled.header`
     justify-content: space-around;
   `,
   Logo = styled.img`
-    height: 100%;
-    width: 7vw;
+    width: 75px;
+    height: 80px;
     object-fit: cover;
     object-position: center;
   `,
@@ -126,7 +123,7 @@ const HeaderContainer = styled.header`
     color: #2e2e2e;
     text-decoration: none;
     font-family: "Poppins", monospace;
-    font-size: calc(10px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    font-size: calc(12px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     margin-top: 16px;
     text-transform: capitalize;
     transition-duration: 0.1s;

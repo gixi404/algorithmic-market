@@ -41,11 +41,8 @@ const Container = styled.div`
   width: 80vw;
   text-align: start;
 
-  @media (max-width: 992px) {
-    width: 90vw;
-  }
-
-  @media (max-width: 576px) {
+  @media (max-width: 1024px) {
     width: 100vw;
+    text-align: center;
   }
 `;

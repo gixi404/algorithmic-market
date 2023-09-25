@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 function AddButton({ courseSelected }) {
   const { setCoursesCart, coursesCart } = useMyContext(),
-    title = "¡Comprar Ahora!",
+    title = "¡Comprar!",
     addCart = () => {
       const indexCart = coursesCart.findIndex(
         item => item.id == courseSelected.id
