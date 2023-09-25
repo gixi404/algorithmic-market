@@ -15,7 +15,7 @@ import styled from "styled-components";
 import { useEffect } from "react";
 
 function Home() {
-  const { isLoading, isAuthenticated, getAccessTokenSilently,loginWithRedirect, loginWithPopup } = useAuth0(),
+  const { isLoading, isAuthenticated, getAccessTokenSilently, loginWithPopup } = useAuth0(),
     { IS_MOBILE } = useMyContext();
   useEffect(() => {
       const getToken = async()=>{

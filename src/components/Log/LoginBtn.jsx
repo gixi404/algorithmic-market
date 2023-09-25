@@ -1,12 +1,24 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
 import { useMyContext } from "../Context";
 import styled from "styled-components";
+import { useEffect } from "react";
 
-function LoginBtn() {
+function LoginBtn() {  
   const { loginWithPopup } = useAuth0(),
     { IS_MOBILE } = useMyContext();
-
+  const bodyCore = {username: 'bakflip',email:'backflip@gmail.com',courses:{name:'curso inicial', id: 1}}
+  const infoFetch = {method:'post',headers:{"Content-Type": "application/json"}, body: JSON.stringify(bodyCore)}
+  const logUser = async() => {
+    try{/* 
+      const data = await fetch('http://localhost:3001/users',infoFetch),
+      json = await data.json()
+      console.log(json) */
+      loginWithPopup()
+    }
+    catch(e){
+      console.log(e.message)
+    }
+  }
   if (IS_MOBILE) {
     return (
       <ContainerMobile>
@@ -16,7 +28,7 @@ function LoginBtn() {
       </ContainerMobile>
     );
   } else {
-    return <LoginButton onClick={loginWithPopup}>Iniciar Sesión</LoginButton>;
+    return <LoginButton onClick={logUser}>Iniciar Sesión</LoginButton>;
   }
 }
 
