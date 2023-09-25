@@ -201,7 +201,8 @@ function MediaPlayer() {
   );
 }
 
-export default withAuthenticationRequired(MediaPlayer);
+// export default withAuthenticationRequired(MediaPlayer);
+export default MediaPlayer;
 
 const Container = styled.div`
     width: 100vw;
