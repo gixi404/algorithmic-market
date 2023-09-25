@@ -1,5 +1,5 @@
 import { useMyContext } from "../../Context";
-import courseImg from "../../../img/course-img.jpg";
+import courseImg from "../../../img/course-img.webp";
 import styled from "styled-components";
 
 function ItemCart(props) {

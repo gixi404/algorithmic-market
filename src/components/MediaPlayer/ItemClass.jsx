@@ -1,17 +1,14 @@
 import styled from "styled-components";
 
 function ItemClass(props) {
-  const { item, selectClassManually, numberClass } = props;
+  const { item, selectClassManually, numberClass } = props,
+    itemId = Number(item.id) - 1;
 
-  if (item.id === numberClass) {
-    return (
-      <SameClass onClick={() => selectClassManually(item.id, false)}>
-        {item.name}
-      </SameClass>
-    );
+  if (itemId === numberClass) {
+    return <SameClass>{item.name}</SameClass>;
   } else {
     return (
-      <NameClass onClick={() => selectClassManually(item.id, true)}>
+      <NameClass onClick={() => selectClassManually(itemId)}>
         {item.name}
       </NameClass>
     );
@@ -21,6 +18,7 @@ function ItemClass(props) {
 export default ItemClass;
 
 const NameClass = styled.p`
+    text-decoration: none;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 1.1em;
@@ -40,6 +38,6 @@ const NameClass = styled.p`
     transition-duration: 0.1s;
 
     &:hover {
-      cursor: pointer;
+      cursor: default;
     }
   `;

@@ -1,12 +1,10 @@
-import { useState } from "react";
 import ViewCourse from "../Log/ViewCourse";
 import BuyBtn from "./Button";
-import courseImg from "../../img/course-img.jpg";
+import courseImg from "../../img/course-img.webp";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
-  const [purchasedCourse, setPurchasedCourse] = useState(true ),
-    [completedCourse, setCompletedCourse] = useState(false);
+  const getDataCourse = localStorage.getItem("your-class") !== undefined;
 
   return (
     <CourseContainer>
@@ -22,10 +20,11 @@ function Course({ dataCourse }) {
       </TimeCard>
 
       <ButtonContainer>
-        {purchasedCourse && completedCourse ? (
-          <button>terminado</button>
-        ) : purchasedCourse ? (
-          <ViewCourse url={`/mycourses/${dataCourse.id}`} />
+        {dataCourse.isBought ? (
+          <ViewCourse
+            title={getDataCourse ? "Continuar" : "Empezar"}
+            url={`/mycourses/${dataCourse.id}`}
+          />
         ) : (
           <BuyBtn title="Más Información" url={`/details/${dataCourse.id}`} />
         )}

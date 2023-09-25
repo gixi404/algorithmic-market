@@ -11,7 +11,8 @@ function ProgressBar(props) {
         max="100"
       />
       <LabelBar htmlFor="progress-course">
-        Progreso {Math.ceil(progressValue)}%
+        Progreso{" "}
+        {Math.ceil(progressValue) === 101 ? 100 : Math.ceil(progressValue)}%
       </LabelBar>
     </ProgressContainer>
   );
@@ -20,25 +21,23 @@ function ProgressBar(props) {
 export default ProgressBar;
 
 const ProgressContainer = styled.div`
+    margin-top: 0.5em;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    column-gap: 1.3rem;
+    flex-direction: column-reverse;
+    align-items: end;
+    justify-content: flex-start;
 
-    @media (max-width: 480px) {
-      width: 100%;
-      flex-direction: column;
+    @media (max-width: 1024px) {
       align-items: center;
-      row-gap: 1.5em;
     }
   `,
   LabelBar = styled.label`
     font-family: "Poppins", sans-serif;
-    font-size: 1.3rem;
+    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     font-weight: 300;
   `,
   Progress = styled.progress`
-    width: 60vw;
-    height: 3vh;
+    width: 50vw;
+    max-width: 300px;
+    height: 3.3vh;
   `;

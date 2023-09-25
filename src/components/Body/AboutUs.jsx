@@ -1,9 +1,9 @@
-import aboutUsImg from "../../img/about-us-img.jpg";
+import aboutUsImg from "../../img/about-us-img.webp";
 import styled from "styled-components";
 
 function AboutUs() {
   return (
-    <Container id="aboutUs">
+    <Container id="aboutus">
       <AboutUsContainer>
         <Text>
           <Title>Sobre Nosotros</Title>

@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Footer() {
+  const urlWhatsApp =
+    "https://wa.me/2615731250?text=Hola, me gustaría adquirir sus servicios";
+
   return (
     <FooterContainer>
       <TextContainer>
-        <Text to="/stafflym">Creado por Staff Lym</Text>
-
+        <Text to={urlWhatsApp} target="_blank">
+          Creado por Staff Lym
+        </Text>
         <Text to="/privacy">Política de Privacidad</Text>
         <Text style={{ cursor: "default" }}>
           &copy; Todos los derechos reservados
@@ -22,6 +26,7 @@ const FooterContainer = styled.div`
     background-color: #1e1e1e;
     width: 100vw;
     height: 15vh;
+    max-height: 100px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,7 +37,7 @@ const FooterContainer = styled.div`
   TextContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: start;
+    text-align: center;
     row-gap: 0.6em;
     justify-content: center;
     font-family: "Poppins", monospace;

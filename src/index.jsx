@@ -7,7 +7,6 @@ import Context from "./components/Context.jsx";
 import Success from "./components/Courses/Success.jsx";
 import MediaPlayer from "./components/MediaPlayer/MediaPlayer.jsx";
 import Privacy from "./components/Body/Privacy.jsx";
-import StaffLym from "./components/Body/StaffLym.jsx";
 import IndexCart from "./components/Body/ShoppingCart/IndexCart.jsx";
 import Profile from "./components/Body/Header/Profile.jsx";
 import "./index.css";
@@ -29,7 +28,6 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
               <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
               <Route path="/success/:coursedetails" element={<Success />} />
               <Route path="/privacy" element={<Privacy />} />
-              <Route path="/stafflym" element={<StaffLym />} />
               <Route path="/shoppingcart" element={<IndexCart />} />
               <Route path="/profile" element={<Profile />} />
             </Routes>

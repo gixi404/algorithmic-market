@@ -1,11 +1,15 @@
 import { useState, createContext, useContext } from "react";
-import exampleImg from "../img/course-img.jpg";
+import exampleImg from "../img/course-img.webp";
 
 const ContextProps = createContext(),
   IS_MOBILE =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
+// getProgress =
+//   localStorage.getItem("progress") !== undefined
+//     ? Number(localStorage.getItem("progress"))
+//     : 11.11;
 
 function Context({ children }) {
   const [coursesCart, setCoursesCart] = useState([]),
@@ -13,9 +17,9 @@ function Context({ children }) {
     [progressValue, setProgressValue] = useState(11.11),
     [courseID, setCourseID] = useState(null),
     [errorVideo, setErrorVideo] = useState(false),
-    [classData, setClassData] = useState({}),
     [allCourses, setAllCourses] = useState([
       {
+        isBought: true,
         id: 0,
         description:
           "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
@@ -24,6 +28,7 @@ function Context({ children }) {
         img: exampleImg,
       },
       {
+        isBought: false,
         id: 1,
         description:
           "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
@@ -32,6 +37,7 @@ function Context({ children }) {
         img: exampleImg,
       },
       {
+        isBought: false,
         id: 2,
         description:
           "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
@@ -42,6 +48,7 @@ function Context({ children }) {
     ]),
     [myCourses, setMyCourses] = useState([
       {
+        //! aquiq - isCompleted: false,
         name: "Curso Inicial",
         price: 200,
         img: exampleImg,
@@ -49,48 +56,48 @@ function Context({ children }) {
         classes: [
           {
             name: "1 - Introducción a mercados",
-            id: 0,
-            URL: "https://youtube.com/embed/d6P7kWUiDMY?si=bvSeghwBu2yYX06E",
+            id: 1,
+            URL: "https://iframe.mediadelivery.net/embed/158989/619b4b43-12fe-4b2e-8789-0b3cd493f0b3?autoplay=true&loop=false&muted=false&preload=true",
           },
           {
             name: "2 - PIP, Lot Size, Trading View",
-            id: 1,
-            URL: "https://youtube.com/embed/vzSQ8b7cRMQ?si=d0-pyyHSzrDANT8W",
+            id: 2,
+            URL: "https://youtube.com/embed/vzSQ8b7cRMQ?si=jxjci9-5sBxZkQi_",
           },
           {
             name: "3 - Price Delivery",
-            id: 2,
-            URL: "https://youtube.com/embed/lgsITUruYFw?si=nG8Dj0qUWqQEekJL",
+            id: 3,
+            URL: "https://youtube.com/embed/lgsITUruYFw?si=mNND0nu0Flh4wwWR",
           },
           {
             name: "4 - Book of Price",
-            id: 3,
-            URL: "https://youtube.com/embed/re_dUQh2Vtg?si=8CRB0u2w5i1HPofk",
+            id: 4,
+            URL: "https://youtube.com/embed/re_dUQh2Vtg?si=ht_7yGbWKeWw6coo",
           },
           {
             name: "5 - Risk to Reward",
-            id: 4,
-            URL: "https://youtube.com/embed/Vq2evS44q7s?si=ZylOoebXm4k4SY_X",
+            id: 5,
+            URL: "https://youtube.com/embed/Vq2evS44q7s?si=B2q4SGk55wdYMHUv",
           },
           {
             name: "6 - Liquidity",
-            id: 5,
-            URL: "https://youtube.com/embed/gkVzfv84lU0?si=BepibTJI85jkssd7",
+            id: 6,
+            URL: "https://youtube.com/embed/gkVzfv84lU0?si=a7bzzVTY9tOpFBHQ",
           },
           {
             name: "7 - Premium Discount",
-            id: 6,
-            URL: "https://youtube.com/embed/xb9cSfPOb1c?si=Tm8jaIK1ao_riATK",
+            id: 7,
+            URL: "https://youtube.com/embed/xb9cSfPOb1c?si=dwOSnNsDYTxHNorc",
           },
           {
             name: "8 - High Impact News",
-            id: 7,
-            URL: "https://youtube.com/embed/iaJKy1Ic3_I?si=ev8pRfnk3q7pGaRl",
+            id: 8,
+            URL: "https://youtube.com/embed/iaJKy1Ic3_I?si=T45V5FN81Zd_WALr",
           },
           {
             name: "9 - Higher Timeframes to Lower",
-            id: 8,
-            URL: "https://youtube.com/embed/h3DY-SAYhvY?si=LklVlWi4jHzW-p1g",
+            id: 9,
+            URL: "https://youtube.com/embed/h3DY-SAYhvY?si=6AuIVHkmzbXm9bOe",
           },
         ],
       },
@@ -214,20 +221,6 @@ function Context({ children }) {
     );
   }
 
-  function idToName(id) {
-    id = Number(id);
-    switch (id) {
-      case 0:
-        return "Curso Inicial";
-      case 1:
-        return "Curso Medio";
-      case 2:
-        return "Curso Avanzado";
-      default:
-        return "Inicia tu curso...";
-    }
-  }
-
   const contextValues = {
     IS_MOBILE,
     coursesCart,
@@ -240,15 +233,12 @@ function Context({ children }) {
     setCourseID,
     errorVideo,
     setErrorVideo,
-    classData,
-    setClassData,
     allCourses,
     setAllCourses,
     myCourses,
     setMyCourses,
     removeCart,
     courseSelected,
-    idToName,
   };
 
   return (

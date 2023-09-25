@@ -126,7 +126,7 @@ function Contact() {
           <Title>
             Contacto
             <TitleSpan>
-              Estamos para escuchar y ayudate. ¡Envía tus dudas o consultas!
+              Estamos para escuchar y ayudarte. ¡Envía tus dudas o consultas!
             </TitleSpan>
           </Title>
         </Text>

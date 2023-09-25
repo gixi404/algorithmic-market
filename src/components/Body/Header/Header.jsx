@@ -3,7 +3,6 @@ import { Link as Linkk } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMyContext } from "../../Context.jsx";
 import IconCart from "../ShoppingCart/IconCart.jsx";
-import Popup from "./Popup.jsx";
 import Menu from "./Menu.jsx";
 import LoginBtn from "../../Log/LoginBtn";
 import logo from "../../../img/logo1.png";
@@ -45,11 +44,19 @@ function Header() {
             />
           </Link>
 
-          <NavContainer>
-            <NavLink href="#allCourses">Cursos</NavLink>
-            <NavLink href="#aboutUs">Sobre&nbsp;Nosotros</NavLink>
-            <NavLink href="#contact">Contacto</NavLink>
-          </NavContainer>
+          {window.location.pathname === "/" ? (
+            <NavContainer>
+              <NavLink href="#allcourses">Cursos</NavLink>
+              <NavLink href="#aboutus">Sobre&nbsp;Nosotros</NavLink>
+              <NavLink href="#contact">Contacto</NavLink>
+            </NavContainer>
+          ) : (
+            <NavContainer>
+              <NavLink>&nbsp;</NavLink>
+              <NavLink>&nbsp;</NavLink>
+              <NavLink>&nbsp;</NavLink>
+            </NavContainer>
+          )}
 
           <CotainerPopLog>
             {isAuthenticated ? (
@@ -82,8 +89,8 @@ const WebContainerMobile = styled.div`
     justify-content: space-between;
   `,
   LogoMobile = styled.img`
-    height: 8vh;
-    width: 15vw;
+    width: 60px;
+    height: 70px;
     object-fit: cover;
     object-position: center;
   `;

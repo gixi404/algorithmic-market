@@ -8,7 +8,7 @@ function ClassVideo(props) {
     { loadContent, setLoadContent, errorVideo, setErrorVideo } = useMyContext();
 
   useEffect(() => {
-    //* Detecta si el loadContent carga por 10 segundos consecutivos.
+    //* Detecta si el loadContent permanece por 10 segundos consecutivos para retornar un error de carga.
     let seconds = 0;
     const interval = setInterval(() => {
       if (seconds === 10 && loadContent) {
@@ -26,12 +26,14 @@ function ClassVideo(props) {
       {!errorVideo ? (
         <Video
           src={classData.classURL}
-          frameBorder="0"
-          allowFullScreen={true}
           style={{ display: loadContent ? "none" : "block" }}
           onLoad={() => setLoadContent(false)}
           onLoadStart={() => setLoadContent(false)}
           onError={() => setErrorVideo(true)}
+          // allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+          // allowFullScreen={true}
+          frameBorder="0"
+          // loading="lazy"
         />
       ) : (
         <ErrorVideo />

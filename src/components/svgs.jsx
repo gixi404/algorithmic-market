@@ -1,90 +1,5 @@
 import { Link } from "react-router-dom";
-import { useMyContext } from "./Context";
 import styled from "styled-components";
-import { useEffect } from "react";
-
-function TelegramSVG() {
-  return (
-    <svg
-      width="100px"
-      height="100px"
-      viewBox="0 0 256 256"
-      version="1.1"
-      preserveAspectRatio="xMidYMid"
-    >
-      <g>
-        <path
-          d="M128,0 C57.307,0 0,57.307 0,128 L0,128 C0,198.693 57.307,256 128,256 L128,256 C198.693,256 256,198.693 256,128 L256,128 C256,57.307 198.693,0 128,0 L128,0 Z"
-          fill="#40B3E0"
-        ></path>
-        <path
-          d="M190.2826,73.6308 L167.4206,188.8978 C167.4206,188.8978 164.2236,196.8918 155.4306,193.0548 L102.6726,152.6068 L83.4886,143.3348 L51.1946,132.4628 C51.1946,132.4628 46.2386,130.7048 45.7586,126.8678 C45.2796,123.0308 51.3546,120.9528 51.3546,120.9528 L179.7306,70.5928 C179.7306,70.5928 190.2826,65.9568 190.2826,73.6308"
-          fill="#FFFFFF"
-        ></path>
-        <path
-          d="M98.6178,187.6035 C98.6178,187.6035 97.0778,187.4595 95.1588,181.3835 C93.2408,175.3085 83.4888,143.3345 83.4888,143.3345 L161.0258,94.0945 C161.0258,94.0945 165.5028,91.3765 165.3428,94.0945 C165.3428,94.0945 166.1418,94.5735 163.7438,96.8115 C161.3458,99.0505 102.8328,151.6475 102.8328,151.6475"
-          fill="#D2E5F1"
-        ></path>
-        <path
-          d="M122.9015,168.1154 L102.0335,187.1414 C102.0335,187.1414 100.4025,188.3794 98.6175,187.6034 L102.6135,152.2624"
-          fill="#B5CFE4"
-        ></path>
-      </g>
-    </svg>
-  );
-}
-
-function WhatsAppSVG() {
-  return (
-    <svg width="115px" height="115px" viewBox="0 0 32 32" fill="none">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M16 31C23.732 31 30 24.732 30 17C30 9.26801 23.732 3 16 3C8.26801 3 2 9.26801 2 17C2 19.5109 2.661 21.8674 3.81847 23.905L2 31L9.31486 29.3038C11.3014 30.3854 13.5789 31 16 31ZM16 28.8462C22.5425 28.8462 27.8462 23.5425 27.8462 17C27.8462 10.4576 22.5425 5.15385 16 5.15385C9.45755 5.15385 4.15385 10.4576 4.15385 17C4.15385 19.5261 4.9445 21.8675 6.29184 23.7902L5.23077 27.7692L9.27993 26.7569C11.1894 28.0746 13.5046 28.8462 16 28.8462Z"
-        fill="#BFC8D0"
-      />
-      <path
-        d="M28 16C28 22.6274 22.6274 28 16 28C13.4722 28 11.1269 27.2184 9.19266 25.8837L5.09091 26.9091L6.16576 22.8784C4.80092 20.9307 4 18.5589 4 16C4 9.37258 9.37258 4 16 4C22.6274 4 28 9.37258 28 16Z"
-        fill="url(#paint0_linear_87_7264)"
-      />
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M16 30C23.732 30 30 23.732 30 16C30 8.26801 23.732 2 16 2C8.26801 2 2 8.26801 2 16C2 18.5109 2.661 20.8674 3.81847 22.905L2 30L9.31486 28.3038C11.3014 29.3854 13.5789 30 16 30ZM16 27.8462C22.5425 27.8462 27.8462 22.5425 27.8462 16C27.8462 9.45755 22.5425 4.15385 16 4.15385C9.45755 4.15385 4.15385 9.45755 4.15385 16C4.15385 18.5261 4.9445 20.8675 6.29184 22.7902L5.23077 26.7692L9.27993 25.7569C11.1894 27.0746 13.5046 27.8462 16 27.8462Z"
-        fill="white"
-      />
-      <path
-        d="M12.5 9.49989C12.1672 8.83131 11.6565 8.8905 11.1407 8.8905C10.2188 8.8905 8.78125 9.99478 8.78125 12.05C8.78125 13.7343 9.52345 15.578 12.0244 18.3361C14.438 20.9979 17.6094 22.3748 20.2422 22.3279C22.875 22.2811 23.4167 20.0154 23.4167 19.2503C23.4167 18.9112 23.2062 18.742 23.0613 18.696C22.1641 18.2654 20.5093 17.4631 20.1328 17.3124C19.7563 17.1617 19.5597 17.3656 19.4375 17.4765C19.0961 17.8018 18.4193 18.7608 18.1875 18.9765C17.9558 19.1922 17.6103 19.083 17.4665 19.0015C16.9374 18.7892 15.5029 18.1511 14.3595 17.0426C12.9453 15.6718 12.8623 15.2001 12.5959 14.7803C12.3828 14.4444 12.5392 14.2384 12.6172 14.1483C12.9219 13.7968 13.3426 13.254 13.5313 12.9843C13.7199 12.7145 13.5702 12.305 13.4803 12.05C13.0938 10.953 12.7663 10.0347 12.5 9.49989Z"
-        fill="white"
-      />
-      <defs>
-        <linearGradient
-          id="paint0_linear_87_7264"
-          x1="26.5"
-          y1="7"
-          x2="4"
-          y2="28"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#5BD066" />
-          <stop offset="1" stopColor="#27B43E" />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-}
-
-function GmailSVG() {
-  return (
-    <svg width="140px" height="140px" role="img" viewBox="0 0 512 512">
-      <path d="M158 391v-142l-82-63V361q0 30 30 30" fill="#4285f4" />
-      <path d="M 154 248l102 77l102-77v-98l-102 77l-102-77" fill="#ea4335" />
-      <path d="M354 391v-142l82-63V361q0 30-30 30" fill="#34a853" />
-      <path d="M76 188l82 63v-98l-30-23c-27-21-52 0-52 26" fill="#c5221f" />
-      <path d="M436 188l-82 63v-98l30-23c27-21 52 0 52 26" fill="#fbbc04" />
-    </svg>
-  );
-}
 
 function CloseCartSVG(props) {
   const { menuActive, setMenuActive } = props;
@@ -172,63 +87,25 @@ function ArrowSVG(props) {
   );
 }
 
-function VisitSVG() {
-  const { courseID, classData, setClassData } = useMyContext();
-
-  // function handleGetClass() {
-  //   const getClass = localStorage.getItem("class-course");
-
-  //   if (getClass !== null) {
-  //     console.log(getClass);
-  //     setClassData(prevState => prevState);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   const getClass = localStorage.getItem("class-course");
-  //   console.log(getClass);
-
-  //   return () => setClassData(getClass);
-  // }, [classData]);
-
-  const pene = () => setClassData(classData);
-
-  return (
-    <Link to={`/mycourses/${courseID}`} onClick={pene}>
-      <Visit width="38px" height="38px" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M13 15L16 12M16 12L13 9M16 12H8M7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V7.2C20 6.0799 20 5.51984 19.782 5.09202C19.5903 4.71569 19.2843 4.40973 18.908 4.21799C18.4802 4 17.9201 4 16.8 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.07989 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20Z"
-          stroke="#ff6700"
-          strokeWidth="1"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </Visit>
-    </Link>
-  );
-}
-
 function UserSVG() {
   return (
-    <User>
-      <Link to="/profile">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 27"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 13C15.866 13 19 10.0898 19 6.5C19 2.91015 15.866 0 12 0C8.13401 0 5 2.91015 5 6.5C5 10.0898 8.13401 13 12 13Z"
-            fill="#FF6700"
-          />
-          <path
-            d="M12 16C5.38613 16 0 20.62 0 26.3125C0 26.6975 0.290428 27 0.660065 27H23.3399C23.7096 27 24 26.6975 24 26.3125C24 20.62 18.6139 16 12 16Z"
-            fill="#FF6700"
-          />
-        </svg>
-      </Link>
+    <User to="/profile">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 27"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 13C15.866 13 19 10.0898 19 6.5C19 2.91015 15.866 0 12 0C8.13401 0 5 2.91015 5 6.5C5 10.0898 8.13401 13 12 13Z"
+          fill="#FF6700"
+        />
+        <path
+          d="M12 16C5.38613 16 0 20.62 0 26.3125C0 26.6975 0.290428 27 0.660065 27H23.3399C23.7096 27 24 26.6975 24 26.3125C24 20.62 18.6139 16 12 16Z"
+          fill="#FF6700"
+        />
+      </svg>
     </User>
   );
 }
@@ -331,31 +208,16 @@ function CircleSVG() {
 }
 
 export {
-  TelegramSVG,
-  WhatsAppSVG,
-  GmailSVG,
   CloseCartSVG,
   TrashSVG,
   MenuSVG,
   ArrowSVG,
-  VisitSVG,
   UserSVG,
   IconSVG,
   CircleSVG,
 };
 
-const Visit = styled.svg`
-    transition-duration: 0.3s;
-    &:hover {
-      cursor: pointer;
-      fill: #ff6700;
-      transform: scale(1.1);
-      path {
-        stroke: #fff;
-      }
-    }
-  `,
-  User = styled.div`
+const User = styled(Link)`
     cursor: pointer;
     border: 2px solid #ff6700;
     border-radius: 10px;

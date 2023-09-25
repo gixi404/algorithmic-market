@@ -7,7 +7,7 @@ function Courses() {
   const { allCourses } = useMyContext();
 
   return (
-    <CoursesContainer id="allCourses">
+    <CoursesContainer id="allcourses">
       <Text>
         <Title>
           Cursos

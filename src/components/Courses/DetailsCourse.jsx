@@ -17,11 +17,11 @@ function detailCourses() {
             <CloseCartSVG />
           </Link>
 
-          <H2Mobile>{name} | Fundamentales</H2Mobile>
-          <PMobile>Explora los fundamentales de este curso re fachero</PMobile>
+          <H2Mobile>{name}</H2Mobile>
+
           <PMobile>
-            "Aprenderas cosas increíble como a lavar la ropa, bailar con un
-            pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+            Aquí debe ir la info del curos que se esta por comprar relleno y más
+            relleno relleno y más relleno relleno y más rellenorelleno
           </PMobile>
 
           <ArticleMobile>
@@ -30,64 +30,69 @@ function detailCourses() {
           </ArticleMobile>
 
           <CompraMobile>
-            <AddButton courseSelected={courseSelected(coursedetails)} />
             <p>${cash} USD</p>
+            <AddButton courseSelected={courseSelected(coursedetails)} />
           </CompraMobile>
         </DetailsMobile>
       </ContainerMobile>
     );
-  }
+  } else {
+    return (
+      <Container to="Home">
+        <Details>
+          <H2>{name}</H2>
 
-  return (
-    <Container to="Home">
-      <Details>
-        <H2>{name} | Fundamentales</H2>
-        <P>Explora los fundamentales de este curso re fachero</P>
-        <P>
-          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho
-          de manera sencilla y poderosamente evolutiva, vamos milei.",
-        </P>
-        <Article>
-          <Title>Overview:</Title>
-          <Description>{description}</Description>
-        </Article>
-        <CourseMetas>
-          <Title>Curso Highlights:</Title>
-          <List>
-            <ListElement>
-              <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
-                <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
-              </svg>
-              <p>Primera clase de orientacion.</p>
-            </ListElement>
-            <Span></Span>
-            <ListElement>
-              <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
-                <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
-              </svg>
-              <p>Segunda clase de orientacion.</p>
-            </ListElement>
-            <Span></Span>
-            <ListElement>
-              <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
-                <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
-              </svg>
-              <p>Tercera clase de orientacion.</p>
-            </ListElement>
-            <Span></Span>
-          </List>
-          <Hours>
-            <span>🕛</span>Estimated Time: 30hrs
-          </Hours>
-        </CourseMetas>
-        <Compra>
-          <span></span>
-          <AddButton courseSelected={courseSelected(coursedetails)} />
-          <p>${cash} USD</p>
-        </Compra>
-      </Details>
-    </Container>
-  );
+          <P>
+            "Aprenderas cosas increíble como a lavar la ropa, bailar con un
+            pancho de manera sencilla y poderosamente evolutiva, vamosincreíble
+            como a lavar la ropa, bailar con un pancho de manera sencilla y
+            poderosamente evolutiva, vamos milei." milei.",
+          </P>
+
+          <Article>
+            <Title>Overview:</Title>
+            <Description>{description}</Description>
+          </Article>
+
+          <CourseMetas>
+            <Title>Curso Highlights:</Title>
+            <List>
+              <ListElement>
+                <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
+                  <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
+                </svg>
+                <p>Primera clase de orientacion.</p>
+              </ListElement>
+              <Span></Span>
+              <ListElement>
+                <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
+                  <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
+                </svg>
+                <p>Segunda clase de orientacion.</p>
+              </ListElement>
+              <Span></Span>
+              <ListElement>
+                <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
+                  <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
+                </svg>
+                <p>Tercera clase de orientacion.</p>
+              </ListElement>
+              <Span></Span>
+            </List>
+            <Hours>
+              <span>🕛</span>Estimated Time: 30hrs
+            </Hours>
+          </CourseMetas>
+
+          <Compra>
+            <span></span>
+            <AddButton courseSelected={courseSelected(coursedetails)} />
+            <p>${cash} USD</p>
+          </Compra>
+        </Details>
+      </Container>
+    );
+  }
 }
 
 export default detailCourses;
@@ -107,6 +112,7 @@ const ContainerMobile = styled.div`
     width: 100%;
     min-height: 100vh;
     display: flex;
+    row-gap: 2em;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -146,15 +152,16 @@ const ContainerMobile = styled.div`
     text-align: center;
   `,
   CompraMobile = styled.div`
-    height: 15vh;
+    height: 13vh;
     width: 100%;
     border: 0;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     p {
-      width: 20vw;
-      text-align: start;
+      width: 100%;
+      text-align: center;
       font-size: 1em;
       font-weight: bold;
     }
@@ -178,10 +185,9 @@ const Container = styled(Link)`
     top: 5vh;
     width: 65vw;
     height: 90vh;
-    border: 0;
     border-radius: 8px;
-    border-bottom: 0.9vh solid #ff6700;
-    border-right: 0.9vh solid #ff6700;
+    border-bottom: 5px solid #ff6700;
+    border-right: 5px solid #ff6700;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -198,6 +204,10 @@ const Container = styled(Link)`
   Article = styled.article`
     height: 20vh;
     width: 52vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
   `,
   P = styled.p`
     width: 52vw;
@@ -220,12 +230,12 @@ const Container = styled(Link)`
     font-family: "Poppins", monospace;
     margin-top: 1vh;
     width: max-content;
-    border-bottom: 0.5vh solid #ff6700;
+    border-bottom: 3px solid #ff6700;
   `,
   CourseMetas = styled.article`
     height: 35vh;
     width: 52vw;
-    margin-bottom: 2vh;
+
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -280,7 +290,7 @@ const Container = styled(Link)`
     height: 15vh;
     width: 65vw;
     border: 0;
-    border-top: 0.9vh solid #ff6700;
+    border-top: 5px solid #ff6700;
     display: flex;
     justify-content: center;
     align-items: center;

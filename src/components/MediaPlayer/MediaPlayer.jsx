@@ -14,76 +14,71 @@ import ItemClass from "./ItemClass";
 import styled from "styled-components";
 
 function MediaPlayer() {
-  const { courseid } = useParams(),
+  const { courseid: courseid_params } = useParams(),
     {
-      classData,
-      setClassData,
       myCourses,
       loadContent,
       setLoadContent,
       progressValue,
       setProgressValue,
       setCourseID,
-      idToName,
-      setErrorVideo,
     } = useMyContext(),
+    [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
     [courseInProgress, setCourseInProgress] = useState(true),
     [lastClass, setLastClass] = useState(0);
 
   useEffect(() => {
+    // const getYourClass =
+    //   localStorage.getItem("your-class") !== undefined
+    //     ? Number(localStorage.getItem("your-class")) - 1
+    //     : 0;
+
     function selectCourse() {
       setClassData({
-        classId: direction(courseid).id,
-        className: direction(courseid).name,
-        classURL: direction(courseid).URL,
+        classId: direction(courseid_params, numberClass).id,
+        className: direction(courseid_params, numberClass).name,
+        classURL: direction(courseid_params, numberClass).URL,
       });
-      setLastClass(myCourses[courseid].classes.length);
-      setCourseID(courseid);
+      // setNumberClass(numberClass);
+      setLastClass(myCourses[courseid_params]?.classes.length);
+      setCourseID(courseid_params);
     }
 
     return () => selectCourse();
-  }, [courseid]);
+  }, [courseid_params]);
 
   // useEffect(() => {
-  //   const lol = localStorage.getItem("class-coursse");
+  //   const classId = classData.classId;
 
-  //   return () => setClassData(lol);
-  // }, []);
-
-  // useEffect(() => {
-  //   const setClass = localStorage.setItem(
-  //     "class-course",
-  //     JSON.stringify(classData)
-  //   );
-
-  //   return () => setClass;
-  // }, [numberClass, classData]);
-
-  const guardarEnLS = thisClass =>
-    localStorage.setItem("class-course", JSON.stringify(thisClass));
-
-  // useEffect(() => {
-  //   const getClass = localStorage.getItem("class-course");
-
-  //   return () => console.log(getClass);
-  // }, [numberClass, classData]);
+  //   if (classId !== undefined) {
+  //     const setYourClass = localStorage.setItem(
+  //         "your-class",
+  //         JSON.stringify(classId)
+  //       ),
+  //       setProgress = localStorage.setItem(
+  //         "progress",
+  //         JSON.stringify(progressValue)
+  //       );
+  //     return () => {
+  //       setYourClass;
+  //       setProgress;
+  //     };
+  //   }
+  // }, [classData]);
 
   function direction(numberCourse, numberClass = 0) {
-    return myCourses[numberCourse].classes[numberClass];
+    return myCourses[numberCourse]?.classes[numberClass];
   }
 
   function previousClass() {
     if (numberClass > 0) {
       setLoadContent(true);
       let previousClassData = {
-        classId: direction(courseid, numberClass - 1).id,
-        className: direction(courseid, numberClass - 1).name,
-        classURL: direction(courseid, numberClass - 1).URL,
+        classId: direction(courseid_params, numberClass - 1).id,
+        className: direction(courseid_params, numberClass - 1).name,
+        classURL: direction(courseid_params, numberClass - 1).URL,
       };
-
-      guardarEnLS(classData);
-      setErrorVideo(false);
       setCourseInProgress(true);
       setNumberClass(numberClass - 1);
       setClassData(previousClassData);
@@ -94,33 +89,30 @@ function MediaPlayer() {
   function nextClass() {
     if (numberClass < lastClass - 1) {
       setLoadContent(true);
-      let nextClassData = {
-        classId: direction(courseid, numberClass + 1).id,
-        className: direction(courseid, numberClass + 1).name,
-        classURL: direction(courseid, numberClass + 1).URL,
+      let nxetClassData = {
+        classId: direction(courseid_params, numberClass + 1).id,
+        className: direction(courseid_params, numberClass + 1).name,
+        classURL: direction(courseid_params, numberClass + 1).URL,
       };
-
-      setErrorVideo(false);
       setCourseInProgress(true);
       setNumberClass(numberClass + 1);
-      setClassData(nextClassData);
+      setClassData(nxetClassData);
       setProgressValue(progressValue + 11.11);
     }
   }
 
-  function selectClassManually(classId, loadBoolean) {
+  function selectClassManually(classId) {
     function updateClass() {
       if (numberClass !== classId) {
-        const classSelected = myCourses[courseid].classes.find(
-          _class => _class.id === classId
-        );
-
-        const { id: idClass } = classSelected;
+        const classSelected = myCourses[courseid_params]?.classes.find(
+            _class => _class.id === classId
+          ),
+          { id: idClass } = classSelected;
 
         setClassData({
-          classId: direction(courseid, idClass).id,
-          className: direction(courseid, idClass).name,
-          classURL: direction(courseid, idClass).URL,
+          classId: direction(courseid_params, idClass).id,
+          className: direction(courseid_params, idClass).name,
+          classURL: direction(courseid_params, idClass).URL,
         });
         setNumberClass(idClass);
       }
@@ -133,30 +125,31 @@ function MediaPlayer() {
       setProgressValue(newProgress);
     }
 
-    function scrollToVideo() {
-      setLoadContent(loadBoolean);
-      const container = document.querySelector("#elScrollVaInThisSite"),
-        position = container.getBoundingClientRect();
-      document.documentElement.style.scrollBehavior = "smooth";
-      window.scrollTo(position.x, position.y);
-    }
+    // function scrollToVideo() {
+    //   setLoadContent(loadBoolean);
+    //   const container = document.querySelector("#elScrollVaInThisSite"),
+    //     position = container.getBoundingClientRect();
+    //   document.documentElement.style.scrollBehavior = "smooth";
+    //   window.scrollTo(position.x, position.y);
+    // }
 
-    setErrorVideo(false);
     setCourseInProgress(true);
     updateClass();
     updateProgressBar();
-    scrollToVideo();
+    // scrollToVideo();
   }
 
   return (
     <Container>
       <Header />
-
       <ArrowBack route="/" />
 
       <MediaContainer>
         <HeaderMedia>
-          <TitleCourse coursename={idToName(courseid)} classData={classData} />
+          <TitleCourse
+            coursename={myCourses[courseid_params]?.name}
+            classData={classData}
+          />
           <ProgressBar progressValue={progressValue} />
         </HeaderMedia>
 
@@ -183,16 +176,16 @@ function MediaPlayer() {
         />
       </MediaContainer>
 
-      <ContentContainer id="elScrollVaInThisSite">
+      <ContentContainer>
         <TitleContent>
           Contenido
           <span>Aquí se mostrará el proceso de este curso.</span>
         </TitleContent>
 
-        <NameCourse>{idToName(courseid)}</NameCourse>
+        <NameCourse>{myCourses[courseid_params]?.name}</NameCourse>
 
         <ListFollowingClasses>
-          {myCourses[courseid]?.classes.map(item => (
+          {myCourses[courseid_params]?.classes.map(item => (
             <ItemClass
               key={item.id}
               item={item}
@@ -208,7 +201,8 @@ function MediaPlayer() {
   );
 }
 
-export default withAuthenticationRequired(MediaPlayer);
+// export default withAuthenticationRequired(MediaPlayer);
+export default MediaPlayer;
 
 const Container = styled.div`
     width: 100vw;
@@ -218,7 +212,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     color: #f5f5f5;
-    row-gap: 5em;
+    row-gap: 3em;
   `,
   MediaContainer = styled.div`
     width: 80vw;
@@ -239,15 +233,14 @@ const Container = styled.div`
   HeaderMedia = styled.header`
     display: flex;
     flex-direction: row;
-    align-items: end;
-    justify-content: space-between;
     width: 100%;
-    height: 18vh;
+    justify-content: space-between;
+    align-items: center;
 
-    @media (max-width: 480px) {
+    @media (max-width: 1024px) {
       flex-direction: column;
+      row-gap: 1.3em;
       align-items: center;
-      row-gap: 1.5em;
     }
   `,
   ContentContainer = styled.section`
@@ -312,129 +305,3 @@ const Container = styled.div`
       width: 90vw;
     }
   `;
-
-/* Lo guardo por si las moscas
-
-function selectCourse() {
-      switch (courseid) {
-        case 0:
-          {
-            setClassData({
-              classId: direction(0).id,
-              className: direction(0).name,
-              classURL: direction(0).URL,
-            });
-            // setCourseId(myCourses[0].id);
-            setLastClass(myCourses[0].classes.length);
-            setCourseID(courseid);
-          }
-          break;
-
-        case 1:
-          {
-            setClassData({
-              classId: direction(1).id,
-              className: direction(1).name,
-              classURL: direction(1).URL,
-            });
-            // setCourseId(myCourses[1].id);
-            setLastClass(myCourses[1].classes.length);
-            setCourseID(courseid);
-          }
-          break;
-
-        case 2:
-          {
-            setClassData({
-              classId: direction(2).id,
-              className: direction(2).name,
-              classURL: direction(2).URL,
-            });
-            //  setCourseId(myCourses[2].id);
-            setLastClass(myCourses[2].classes.length);
-            setCourseID(courseid);
-          }
-          break;
-
-        default:
-          {
-            setClassData({
-              classId: direction(0).id,
-              className: direction(0).name,
-              classURL: direction(0).URL,
-            });
-            //  setCourseId(myCourses[0].id);
-            setLastClass(myCourses[0].classes.length);
-            setCourseID(courseid);
-          }
-          break;
-      }
-    }
-
-
-<Themes>
-          <Article>
-            <div
-              style={{
-                display: "flex",
-                columnGap: "1.3em",
-                alignItems: "center",
-                justifyContent: "start",
-                width: "100%",
-              }}
-            >
-              <CircleSVG />
-              <ClassesText>Clases</ClassesText>
-            </div>
-
-            <ListFollowingClasses>
-              {myCourses[courseId]?.classes.map(item => (
-                <ItemClass
-                  key={item.id}
-                  item={item}
-                  numberClass={numberClass}
-                  selectClassManually={selectClassManually}
-                />
-              ))}
-            </ListFollowingClasses>
-          </Article>
-        </Themes>
-
-
-        Themes = styled.section`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    column-gap: 1.5em;
-    row-gap: 3em;
-
-    @media (max-width: 576px) {
-      row-gap: 1em;
-    }
-  `,
-  Article = styled.article`
-    width: 50vw;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: center;
-
-    @media (max-width: 576px) {
-      width: 100vw;
-      align-items: center;
-    }
-  `,
-  ClassesText = styled.p`
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 1.2em;
-    color: #000000;
-
-    @media (max-width: 576px) {
-      font-size: 1em;
-    }
-  `,
-
-*/
