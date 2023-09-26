@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function FinishCourse(props) {
@@ -10,16 +9,9 @@ function FinishCourse(props) {
   return (
     <FinishLetter>
       <Title>
-        <span>¡Felicidades por completar con éxito el curso! </span>
-        Te invitamos a continuar avanzando en tu camino hacia la excelencia
-        financiera con nuestro próximo curso.
+        <span>¡Felicidades por completar el curso! </span>
+        Te invitamos a continuar avanzando con nuestro próximo curso.
       </Title>
-      <Link
-        to="/mycourses"
-        style={{ textDecoration: "none", color: "#ff6700" }}
-      >
-        <MyCoursesBtn>Ir a mis cursos</MyCoursesBtn>
-      </Link>
     </FinishLetter>
   );
 }
@@ -31,14 +23,16 @@ const FinishLetter = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 3rem;
+    row-gap: 3em;
     background-color: #fff;
     width: 80vw;
     height: calc((9 / 16) * 80vw);
+    border-radius: 12px;
 
     @media (max-width: 992px) {
       width: 90vw;
       height: calc((9 / 16) * 90vw);
+      row-gap: 0.3em;
     }
 
     @media (max-width: 576px) {
@@ -48,45 +42,28 @@ const FinishLetter = styled.div`
   `,
   Title = styled.p`
     display: flex;
-    padding: 0 2rem;
+    padding: 0 2em;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 2rem;
+    row-gap: 2em;
     text-align: center;
     color: #000;
     font-family: "Poppins", sans-serif;
-    font-size: 1.5rem;
+    font-size: calc(15px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
 
     span {
       color: #ff6700;
       font-family: "Poppins", sans-serif;
-      font-size: 2.5rem;
+      font-size: calc(30px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
       font-style: normal;
       font-weight: 600;
-      line-height: normal;
     }
-  `,
-  MyCoursesBtn = styled.button`
-    display: flex;
-    width: 30vw;
-    padding: 10px 18px;
-    border-radius: 12px;
-    border: 2px solid #ff6700;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    color: #ff6700;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 1.3rem;
-    transition-duration: 0.2s;
 
-    &:hover {
-      transform: scale(0.955);
-      cursor: pointer;
+    @media (max-width: 992px) {
+      padding: 0em;
+      row-gap: 0.3em;
     }
   `;

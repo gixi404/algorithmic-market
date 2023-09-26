@@ -4,7 +4,7 @@ import ErrorVideo from "./ErrorVideo";
 import styled from "styled-components";
 
 function ClassVideo(props) {
-  const { classData } = props,
+  const { classURL } = props,
     { loadContent, setLoadContent, errorVideo, setErrorVideo } = useMyContext();
 
   useEffect(() => {
@@ -25,14 +25,16 @@ function ClassVideo(props) {
 
       {!errorVideo ? (
         <Video
-          src={classData.classURL}
+          src={classURL}
           style={{ display: loadContent ? "none" : "block" }}
           onLoad={() => setLoadContent(false)}
           onLoadStart={() => setLoadContent(false)}
           onError={() => setErrorVideo(true)}
-          // allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
-          // allowFullScreen={true}
           frameBorder="0"
+          allowFullScreen={true}
+          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+          // style="border:0;position:absolute;top:0;height:100%;width:100%;"
+          // allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
           // loading="lazy"
         />
       ) : (
@@ -50,6 +52,7 @@ const Video = styled.iframe`
     height: calc((9 / 16) * 80vw);
     border: none;
     outline: none;
+    border: 0;
 
     @media (max-width: 992px) {
       width: 90vw;
@@ -77,7 +80,7 @@ const Video = styled.iframe`
         background-color: rgb(24, 24, 84);
       }
       50% {
-        background-color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 0.663);
       }
       100% {
         background-color: rgb(24, 24, 84);
@@ -86,17 +89,12 @@ const Video = styled.iframe`
 
     @media (max-width: 992px) {
       width: 90vw;
-    }
-
-    @media (max-width: 576px) {
-      width: 100vw;
-    }
-
-    @media (max-width: 992px) {
       height: calc((9 / 16) * 90vw);
     }
 
     @media (max-width: 576px) {
+      width: 100vw;
       height: calc((9 / 16) * 100vw);
+      border-radius: 0;
     }
   `;

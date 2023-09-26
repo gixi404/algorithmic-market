@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 function ItemClass(props) {
   const { item, selectClassManually, numberClass } = props,
-    itemId = Number(item.id) - 1;
+    itemId = Number(item.id);
 
   if (itemId === numberClass) {
     return <SameClass>{item.name}</SameClass>;
