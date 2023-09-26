@@ -12,7 +12,7 @@ import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
 import ItemClass from "./ItemClass";
 import styled from "styled-components";
-//! Strict Mode comentado.
+// Strict Mode comentado.
 
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
@@ -29,25 +29,27 @@ function MediaPlayer() {
 
   let lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
 
+  //! Hacer que isBought funcione localmente.
+
+  function selectCourse() {
+    setClassData({
+      classId: direction(courseid_params, numberClass).id,
+      className: direction(courseid_params, numberClass).name,
+      classURL: direction(courseid_params, numberClass).URL,
+    });
+  }
+
   useEffect(() => {
     setClassData({
-      classId: direction(0, 0).id,
-      className: direction(0, 0).name,
-      classURL: direction(0, 0).URL,
+      classId: direction(0).id,
+      className: direction(0).name,
+      classURL: direction(0).URL,
     });
   }, []);
 
-  // useEffect(() => {
-  //   function selectCourse() {
-  //     setClassData({
-  //       classId: direction(courseid_params, numberClass).id,
-  //       className: direction(courseid_params, numberClass).name,
-  //       classURL: direction(courseid_params, numberClass).URL,
-  //     });
-  //   }
-
-  //   return () => selectCourse();
-  // }, [courseid_params]);
+  useEffect(() => {
+    return () => selectCourse();
+  }, [courseid_params]);
 
   function direction(numberCourse, numberClass = 0) {
     return myCourses[numberCourse]?.classes[numberClass];
@@ -140,6 +142,7 @@ function MediaPlayer() {
         )}
 
         <ControlsVideo
+          courseid_params={courseid_params}
           numberClass={numberClass}
           lastClass={lastClass}
           nextClass={nextClass}

@@ -1,5 +1,4 @@
 import { useState, createContext, useContext } from "react";
-import exampleImg from "../img/course-img.webp";
 
 const ContextProps = createContext(),
   IS_MOBILE =
@@ -20,39 +19,38 @@ function Context({ children }) {
     [errorVideo, setErrorVideo] = useState(false),
     [allCourses, setAllCourses] = useState([
       {
-        isBought: true,
         id: 0,
-        description:
-          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        isBought: true,
+        isCompleted: false,
         name: "Curso Inicial",
         cash: 200,
-        img: exampleImg,
+        description:
+          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla, vamos milei.",
       },
       {
-        isBought: false,
         id: 1,
-        description:
-          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        isBought: false,
+        isCompleted: false,
         name: "Curso Medio",
         cash: 250,
-        img: exampleImg,
+        description:
+          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla, vamos milei.",
       },
       {
-        isBought: false,
         id: 2,
-        description:
-          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        isBought: false,
+        isCompleted: false,
         name: "Curso Avanzado",
         cash: 350,
-        img: exampleImg,
+        description:
+          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla, vamos milei.",
       },
     ]),
     [myCourses, setMyCourses] = useState([
       {
-        //! aquiq - isCompleted: false,
         name: "Curso Inicial",
         price: 200,
-        img: exampleImg,
+
         id: 0,
         classes: [
           {
@@ -105,7 +103,7 @@ function Context({ children }) {
       {
         name: "Curso Medio",
         price: 200,
-        img: exampleImg,
+
         id: 1,
         classes: [
           {
@@ -158,7 +156,7 @@ function Context({ children }) {
       {
         name: "Curso Avanzado",
         price: 500,
-        img: exampleImg,
+
         id: 2,
         classes: [
           {

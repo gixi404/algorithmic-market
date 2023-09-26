@@ -3,16 +3,22 @@ import BuyBtn from "./Button";
 import courseImg from "../../img/course-img.webp";
 import styled from "styled-components";
 
-function Course({ dataCourse }) {
-  // const getDataCourse = localStorage.getItem("your-class") !== undefined;
+function Course(props) {
+  const { course } = props,
+    { name, description, isCompleted, isBought, id } = course;
 
   return (
     <CourseContainer>
+      {isCompleted && isBought && (
+        <CourseCompleted>
+          <p>Completado</p>
+        </CourseCompleted>
+      )}
       <Img src={courseImg} alt="img course" />
 
-      <NameCourse>{dataCourse.name}</NameCourse>
+      <NameCourse>{name}</NameCourse>
 
-      <DescriptionCard>{dataCourse.description}</DescriptionCard>
+      <DescriptionCard>{description}</DescriptionCard>
 
       <TimeCard>
         <Span>🕓</Span>
@@ -20,14 +26,10 @@ function Course({ dataCourse }) {
       </TimeCard>
 
       <ButtonContainer>
-        {dataCourse.isBought ? (
-          <ViewCourse
-            // title={getDataCourse ? "Continuar" : "Empezar"}
-            title="Continuar"
-            url={`/mycourses/${dataCourse.id}`}
-          />
+        {isBought ? (
+          <ViewCourse url={`/mycourses/${id}`} />
         ) : (
-          <BuyBtn title="Más Información" url={`/details/${dataCourse.id}`} />
+          <BuyBtn title="Más Información" url={`/details/${id}`} />
         )}
       </ButtonContainer>
     </CourseContainer>
@@ -50,6 +52,7 @@ const CourseContainer = styled.article`
     border-radius: 8px;
     border-right: 3px solid #ff6700;
     border-bottom: 3px solid #ff6700;
+    position: relative;
 
     @media (min-width: 1224px) {
       height: 420px;
@@ -104,4 +107,21 @@ const CourseContainer = styled.article`
     align-items: center;
     justify-content: center;
     padding: 0.5rem 0 1rem 0;
+  `,
+  CourseCompleted = styled.div`
+    position: absolute;
+    height: 2.2vh;
+    width: max-content;
+    background-color: #23b523;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 8px;
+
+    p {
+      font-family: "Poppins", monospace;
+      font-size: calc(10px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+      letter-spacing: 1px;
+      color: #000000;
+      padding: 0 1em;
+      text-align: center;
+    }
   `;

@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { useMyContext } from "../Context";
 import Course from "./Course.jsx";
 import styled from "styled-components";
@@ -18,7 +17,7 @@ function Courses() {
       </Text>
       <ListCourses>
         {allCourses.map(course => (
-          <Course key={course.id} dataCourse={course} />
+          <Course key={course.id} course={course} />
         ))}
       </ListCourses>
     </CoursesContainer>

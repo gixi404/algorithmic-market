@@ -1,5 +1,6 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import Header from "./components/Body/Header/Header.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
@@ -11,32 +12,35 @@ import LoginBtn from "./components/Log/LoginBtn.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import CoursePurchased from "./components/Courses/PurchasedCourse.jsx";
 import styled from "styled-components";
-import { useEffect } from "react";
 
 function Home() {
-  const { isLoading, isAuthenticated, getAccessTokenSilently, loginWithPopup } = useAuth0(),
+  const { isLoading, isAuthenticated, getAccessTokenSilently, loginWithPopup } =
+      useAuth0(),
     { IS_MOBILE } = useMyContext();
-  useEffect(() => {
-      const getToken = async()=>{
-        try{
-          const newToken = await getAccessTokenSilently()
-          localStorage.setItem('access_token',newToken)
-        }
-        catch(e){
-          console.log('error', e.message)
-        }
-      }
-      if(isAuthenticated){getToken()}
-  },[isAuthenticated])
 
   useEffect(() => {
-    const tokenAccess = localStorage.getItem('access_token')
-    
-    if(!isAuthenticated && tokenAccess){
-      console.log(tokenAccess)
+    const getToken = async () => {
+      try {
+        const newToken = await getAccessTokenSilently();
+        localStorage.setItem("access_token", newToken);
+      } catch (e) {
+        console.log("error", e.message);
+      }
+    };
+    if (isAuthenticated) {
+      getToken();
     }
-  },[])
-//  useEffect(() => {if(!isAuthenticated){loginWithPopup()} },[isAuthenticated])
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    const tokenAccess = localStorage.getItem("access_token");
+
+    if (!isAuthenticated && tokenAccess) {
+      console.log(tokenAccess);
+    }
+  }, []);
+
+  //  useEffect(() => {if(!isAuthenticated){loginWithPopup()} },[isAuthenticated])
   if (isLoading) {
     return (
       <LoadContainer>

@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function ViewCourse(props) {
-  const { title, url } = props;
+  const { url } = props;
 
   return (
     <Button>
-      <Link to={url}>{title}</Link>
+      <Link to={url}>Ver</Link>
     </Button>
   );
 }

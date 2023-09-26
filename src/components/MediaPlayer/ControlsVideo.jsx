@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useMyContext } from "../Context";
 import styled from "styled-components";
 
 function ControlsVideo(props) {
   const {
+      courseid_params,
       numberClass,
       previousClass,
       nextClass,
@@ -10,8 +12,14 @@ function ControlsVideo(props) {
       courseInProgress,
       setCourseInProgress,
     } = props,
+    { allCourses } = useMyContext(),
     isFirstClass = Number(numberClass) === 0,
     isLastClass = Number(numberClass) === Number(lastClass);
+
+  function handleFinishCourse() {
+    setCourseInProgress(false);
+    allCourses[courseid_params].isCompleted = true;
+  }
 
   return (
     <Controls>
@@ -22,9 +30,7 @@ function ControlsVideo(props) {
       ) : null}
 
       {isLastClass && courseInProgress ? (
-        <FinishBtn onClick={() => setCourseInProgress(false)}>
-          Finalizar&nbsp;Curso
-        </FinishBtn>
+        <FinishBtn onClick={handleFinishCourse}>Finalizar&nbsp;Curso</FinishBtn>
       ) : courseInProgress ? (
         <ControlBtn onClick={nextClass}>Clase&nbsp;Siguiente</ControlBtn>
       ) : (
