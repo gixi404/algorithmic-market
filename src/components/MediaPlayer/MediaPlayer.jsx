@@ -12,6 +12,7 @@ import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
 import ItemClass from "./ItemClass";
 import styled from "styled-components";
+//! Strict Mode comentado.
 
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
@@ -21,51 +22,32 @@ function MediaPlayer() {
       setLoadContent,
       progressValue,
       setProgressValue,
-      setCourseID,
     } = useMyContext(),
     [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
-    [courseInProgress, setCourseInProgress] = useState(true),
-    [lastClass, setLastClass] = useState(0);
+    [courseInProgress, setCourseInProgress] = useState(true);
+
+  let lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
 
   useEffect(() => {
-    // const getYourClass =
-    //   localStorage.getItem("your-class") !== undefined
-    //     ? Number(localStorage.getItem("your-class")) - 1
-    //     : 0;
-
-    function selectCourse() {
-      setClassData({
-        classId: direction(courseid_params, numberClass).id,
-        className: direction(courseid_params, numberClass).name,
-        classURL: direction(courseid_params, numberClass).URL,
-      });
-      // setNumberClass(numberClass);
-      setLastClass(myCourses[courseid_params]?.classes.length);
-      setCourseID(courseid_params);
-    }
-
-    return () => selectCourse();
-  }, [courseid_params]);
+    setClassData({
+      classId: direction(0, 0).id,
+      className: direction(0, 0).name,
+      classURL: direction(0, 0).URL,
+    });
+  }, []);
 
   // useEffect(() => {
-  //   const classId = classData.classId;
-
-  //   if (classId !== undefined) {
-  //     const setYourClass = localStorage.setItem(
-  //         "your-class",
-  //         JSON.stringify(classId)
-  //       ),
-  //       setProgress = localStorage.setItem(
-  //         "progress",
-  //         JSON.stringify(progressValue)
-  //       );
-  //     return () => {
-  //       setYourClass;
-  //       setProgress;
-  //     };
+  //   function selectCourse() {
+  //     setClassData({
+  //       classId: direction(courseid_params, numberClass).id,
+  //       className: direction(courseid_params, numberClass).name,
+  //       classURL: direction(courseid_params, numberClass).URL,
+  //     });
   //   }
-  // }, [classData]);
+
+  //   return () => selectCourse();
+  // }, [courseid_params]);
 
   function direction(numberCourse, numberClass = 0) {
     return myCourses[numberCourse]?.classes[numberClass];
@@ -73,42 +55,45 @@ function MediaPlayer() {
 
   function previousClass() {
     if (numberClass > 0) {
+      const newNumberClass = numberClass - 1,
+        previousClassData = {
+          classId: direction(courseid_params, newNumberClass).id,
+          className: direction(courseid_params, newNumberClass).name,
+          classURL: direction(courseid_params, newNumberClass).URL,
+        };
       setLoadContent(true);
-      let previousClassData = {
-        classId: direction(courseid_params, numberClass - 1).id,
-        className: direction(courseid_params, numberClass - 1).name,
-        classURL: direction(courseid_params, numberClass - 1).URL,
-      };
       setCourseInProgress(true);
-      setNumberClass(numberClass - 1);
+      setNumberClass(newNumberClass);
       setClassData(previousClassData);
       setProgressValue(progressValue - 11.11);
     }
   }
 
   function nextClass() {
-    if (numberClass < lastClass - 1) {
+    if (numberClass < lastClass) {
+      const newNumberClass = numberClass + 1,
+        nextClassData = {
+          classId: direction(courseid_params, newNumberClass).id,
+          className: direction(courseid_params, newNumberClass).name,
+          classURL: direction(courseid_params, newNumberClass).URL,
+        };
       setLoadContent(true);
-      let nxetClassData = {
-        classId: direction(courseid_params, numberClass + 1).id,
-        className: direction(courseid_params, numberClass + 1).name,
-        classURL: direction(courseid_params, numberClass + 1).URL,
-      };
       setCourseInProgress(true);
-      setNumberClass(numberClass + 1);
-      setClassData(nxetClassData);
+      setNumberClass(newNumberClass);
+      setClassData(nextClassData);
       setProgressValue(progressValue + 11.11);
     }
   }
 
   function selectClassManually(classId) {
+    classId = Number(classId);
+
     function updateClass() {
       if (numberClass !== classId) {
         const classSelected = myCourses[courseid_params]?.classes.find(
             _class => _class.id === classId
           ),
           { id: idClass } = classSelected;
-
         setClassData({
           classId: direction(courseid_params, idClass).id,
           className: direction(courseid_params, idClass).name,
@@ -125,18 +110,9 @@ function MediaPlayer() {
       setProgressValue(newProgress);
     }
 
-    // function scrollToVideo() {
-    //   setLoadContent(loadBoolean);
-    //   const container = document.querySelector("#elScrollVaInThisSite"),
-    //     position = container.getBoundingClientRect();
-    //   document.documentElement.style.scrollBehavior = "smooth";
-    //   window.scrollTo(position.x, position.y);
-    // }
-
     setCourseInProgress(true);
     updateClass();
     updateProgressBar();
-    // scrollToVideo();
   }
 
   return (
@@ -148,29 +124,26 @@ function MediaPlayer() {
         <HeaderMedia>
           <TitleCourse
             coursename={myCourses[courseid_params]?.name}
-            classData={classData}
+            className={classData.className}
           />
           <ProgressBar progressValue={progressValue} />
         </HeaderMedia>
 
         {courseInProgress ? (
           <ClassVideo
-            classData={classData}
+            classURL={classData.classURL}
             loadContent={loadContent}
             setLoadContent={setLoadContent}
           />
         ) : (
-          <FinishCourse
-            setCourseInProgress={setCourseInProgress}
-            setLoadContent={setLoadContent}
-          />
+          <FinishCourse setLoadContent={setLoadContent} />
         )}
 
         <ControlsVideo
           numberClass={numberClass}
-          previousClass={previousClass}
-          nextClass={nextClass}
           lastClass={lastClass}
+          nextClass={nextClass}
+          previousClass={previousClass}
           courseInProgress={courseInProgress}
           setCourseInProgress={setCourseInProgress}
         />
@@ -201,8 +174,8 @@ function MediaPlayer() {
   );
 }
 
-// export default withAuthenticationRequired(MediaPlayer);
 export default MediaPlayer;
+//! acordate vigilante -  export default withAuthenticationRequired(MediaPlayer);
 
 const Container = styled.div`
     width: 100vw;
@@ -305,3 +278,27 @@ const Container = styled.div`
       width: 90vw;
     }
   `;
+
+// const getYourClass =
+//   localStorage.getItem("your-class") !== undefined
+//     ? Number(localStorage.getItem("your-class")) - 1
+//     : 0;
+
+// useEffect(() => {
+//const classId = classData.classId;
+
+//   if (classId !== undefined) {
+//     const setYourClass = localStorage.setItem(
+//         "your-class",
+//         JSON.stringify(classId)
+//       ),
+//       setProgress = localStorage.setItem(
+//         "progress",
+//         JSON.stringify(progressValue)
+//       );
+//     return () => {
+//       setYourClass;
+//       setProgress;
+//     };
+//   }
+// }, [classData]);

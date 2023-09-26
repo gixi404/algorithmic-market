@@ -61,7 +61,6 @@ function Header() {
           <CotainerPopLog>
             {isAuthenticated ? (
               <>
-                <Popup />
                 <IconCart />
                 <UserSVG />
               </>

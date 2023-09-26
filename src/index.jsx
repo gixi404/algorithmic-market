@@ -15,26 +15,24 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
   CLIENT_ID = "CgBwpjVSJetDXDlBGJZD37NdKzmc8IWT",
   root = ReactDOM.createRoot(document.getElementById("root")),
   App = () => (
-    <React.StrictMode>
-      <Auth0Provider
-        domain={DOMAIN}
-        clientId={CLIENT_ID}
-        authorizationParams={{ redirect_uri: window.location.origin }}
-      >
-        <BrowserRouter>
-          <Context>
-            <Routes>
-              <Route path="*" element={<Home />} />
-              <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
-              <Route path="/success/:coursedetails" element={<Success />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/shoppingcart" element={<IndexCart />} />
-              <Route path="/profile" element={<Profile />} />
-            </Routes>
-          </Context>
-        </BrowserRouter>
-      </Auth0Provider>
-    </React.StrictMode>
+    <Auth0Provider
+      domain={DOMAIN}
+      clientId={CLIENT_ID}
+      authorizationParams={{ redirect_uri: window.location.origin }}
+    >
+      <BrowserRouter>
+        <Context>
+          <Routes>
+            <Route path="*" element={<Home />} />
+            <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
+            <Route path="/success/:coursedetails" element={<Success />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/shoppingcart" element={<IndexCart />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </Context>
+      </BrowserRouter>
+    </Auth0Provider>
   );
 
 root.render(<App />);

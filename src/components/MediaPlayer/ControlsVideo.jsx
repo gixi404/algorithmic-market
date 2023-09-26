@@ -11,15 +11,15 @@ function ControlsVideo(props) {
       setCourseInProgress,
     } = props,
     isFirstClass = Number(numberClass) === 0,
-    isLastClass = Number(numberClass + 1) === Number(lastClass);
+    isLastClass = Number(numberClass) === Number(lastClass);
 
   return (
     <Controls>
-      {isFirstClass ? (
+      {isFirstClass && courseInProgress ? (
         <PreviousZero>Clase&nbsp;Anterior</PreviousZero>
-      ) : (
+      ) : courseInProgress ? (
         <ControlBtn onClick={previousClass}>Clase&nbsp;Anterior</ControlBtn>
-      )}
+      ) : null}
 
       {isLastClass && courseInProgress ? (
         <FinishBtn onClick={() => setCourseInProgress(false)}>
@@ -28,7 +28,18 @@ function ControlsVideo(props) {
       ) : courseInProgress ? (
         <ControlBtn onClick={nextClass}>Clase&nbsp;Siguiente</ControlBtn>
       ) : (
-        <PreviousZero>Clase&nbsp;Siguiente</PreviousZero>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100vw",
+          }}
+        >
+          <GoToMyCourses to="/mycourses" style={{ textDecoration: "none" }}>
+            Mis&nbsp;Cursos
+          </GoToMyCourses>
+        </div>
       )}
     </Controls>
   );
@@ -49,6 +60,9 @@ const Controls = styled.div`
     }
   `,
   ControlBtn = styled(Link)`
+    border: 2px solid #ff6700;
+    background-color: transparent;
+    color: #ff6700;
     text-decoration: none;
     display: flex;
     width: 60vw;
@@ -58,10 +72,7 @@ const Controls = styled.div`
     align-items: center;
     gap: 10px;
     border-radius: 12px;
-    border: 2px solid #ff6700;
-    background-color: transparent;
     outline: none;
-    color: #ff6700;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
@@ -73,31 +84,14 @@ const Controls = styled.div`
     }
   `,
   PreviousZero = styled.button`
-    display: flex;
-    width: 65vw;
-    max-width: 400px;
-    padding: 10px 18px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
+    opacity: 0.5;
     border: 2px solid #ff6700;
     background-color: transparent;
-    outline: none;
     color: #ff6700;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    opacity: 0.5;
-  `,
-  FinishBtn = styled.button`
-    background-color: #ff6700;
-    color: #ffffff;
-    border: 2px solid #fff;
     text-decoration: none;
     display: flex;
-    width: 65vw;
-    max-width: 400px;
+    width: 70vw;
+    max-width: 350px;
     padding: 10px 18px;
     justify-content: center;
     align-items: center;
@@ -108,26 +102,56 @@ const Controls = styled.div`
     font-weight: 400;
     font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     transition-duration: 0.2s;
+
     &:hover {
       transform: scale(0.955);
       cursor: pointer;
     }
   `,
-  InivisbleBtn = styled.button`
+  FinishBtn = styled.button`
+    background-color: #ff6700;
+    color: #ffffff;
+    border: 2px solid #fff;
+    text-decoration: none;
     display: flex;
-    width: 65vw;
-    max-width: 400px;
+    width: 70vw;
+    max-width: 350px;
     padding: 10px 18px;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border: 2px solid transparent;
-    background-color: transparent;
+    border-radius: 12px;
     outline: none;
-    color: transparent;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    transition-duration: 0.2s;
 
-    @media (max-width: 576px) {
-      width: 45vw;
-      font-size: 1rem;
+    &:hover {
+      transform: scale(0.955);
+      cursor: pointer;
+    }
+  `,
+  GoToMyCourses = styled(Link)`
+    background-color: #ffffff;
+    color: #ff6700;
+    border: 2px solid #ff6700;
+    display: flex;
+    width: 60vw;
+    max-width: 350px;
+    padding: 10px 18px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    transition-duration: 0.2s;
+
+    &:hover {
+      transform: scale(0.955);
+      cursor: pointer;
     }
   `;

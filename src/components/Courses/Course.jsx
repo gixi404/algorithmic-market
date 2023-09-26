@@ -4,7 +4,7 @@ import courseImg from "../../img/course-img.webp";
 import styled from "styled-components";
 
 function Course({ dataCourse }) {
-  const getDataCourse = localStorage.getItem("your-class") !== undefined;
+  // const getDataCourse = localStorage.getItem("your-class") !== undefined;
 
   return (
     <CourseContainer>
@@ -22,7 +22,8 @@ function Course({ dataCourse }) {
       <ButtonContainer>
         {dataCourse.isBought ? (
           <ViewCourse
-            title={getDataCourse ? "Continuar" : "Empezar"}
+            // title={getDataCourse ? "Continuar" : "Empezar"}
+            title="Continuar"
             url={`/mycourses/${dataCourse.id}`}
           />
         ) : (

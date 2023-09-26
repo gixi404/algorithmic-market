@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 function TitleCourse(props) {
-  const { coursename, classData } = props;
+  const { coursename, className } = props;
 
   return (
     <TitleContainer>
       {coursename}
-      <span>{classData.className}</span>
+      <span>{className}</span>
     </TitleContainer>
   );
 }
