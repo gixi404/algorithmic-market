@@ -3,19 +3,19 @@ import styled from "styled-components";
 function Banner() {
   return (
     <Container id="banner">
-      <BannerContainer>
+      <Content>
         <TextContainer>
           <TextSpan>Libere su potencial financiero</TextSpan>
-          con los cursos de trading de <b>ALGORITHMIC MARKET</b>
+          con los cursos de trading de <strong>ALGORITHMIC MARKET</strong>
         </TextContainer>
-      </BannerContainer>
+      </Content>
     </Container>
   );
 }
 
 export default Banner;
 
-const Container = styled.article`
+const Container = styled.section`
     width: 100vw;
     height: 70vh;
     display: flex;
@@ -28,7 +28,7 @@ const Container = styled.article`
       height: 53vh;
     }
   `,
-  BannerContainer = styled.div`
+  Content = styled.div`
     width: 80vw;
     height: 53vh;
     display: flex;
@@ -37,7 +37,6 @@ const Container = styled.article`
     justify-content: center;
     background-color: rgba(235, 235, 235, 0.7);
     border-radius: 8px;
-
     @media (max-width: 800px) {
       width: 100vw;
       height: 53vh;

@@ -6,11 +6,9 @@ function ItemCart(props) {
   const { data } = props,
     { removeCart } = useMyContext();
 
-  const handleClick = () => removeCart(data);
-
   return (
     <Item>
-      <IMG src={courseImg} alt="curso imágen" />
+      <IMG src={courseImg} alt="imágen del curso" />
       <Article>
         <div>
           <h3>{data.name}</h3>
@@ -18,7 +16,7 @@ function ItemCart(props) {
             <strong>${data.cash}</strong>
           </p>
         </div>
-        <p onClick={handleClick}>Borrar</p>
+        <p onClick={() => removeCart(data)}>Borrar</p>
       </Article>
     </Item>
   );
@@ -46,7 +44,7 @@ const Item = styled.article`
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
   `,
-  Article = styled.article`
+  Article = styled.div`
     height: 14vh;
     display: flex;
     flex-direction: column;

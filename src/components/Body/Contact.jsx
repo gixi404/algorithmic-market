@@ -121,13 +121,13 @@ function Contact() {
 
   return (
     <Container id="contact">
-      <ContactContainer>
+      <Content>
         <Text>
           <Title>
             Contacto
-            <TitleSpan>
+            <span>
               Estamos para escuchar y ayudarte. ¡Envía tus dudas o consultas!
-            </TitleSpan>
+            </span>
           </Title>
         </Text>
 
@@ -135,9 +135,13 @@ function Contact() {
           {sendForm || errorForm ? (
             <MessageValidation>
               {sendForm ? (
-                <ConfirmValidation>Información enviada</ConfirmValidation>
+                <TextValidation style={{ color: "green" }}>
+                  Información enviada
+                </TextValidation>
               ) : (
-                <ErrorValidation>Revisa la información</ErrorValidation>
+                <TextValidation style={{ color: "red" }}>
+                  Revisa la información
+                </TextValidation>
               )}
             </MessageValidation>
           ) : null}
@@ -171,14 +175,14 @@ function Contact() {
             <SubmitBtn type="submit" value="Enviar" />
           </SubmitContainer>
         </Form>
-      </ContactContainer>
+      </Content>
     </Container>
   );
 }
 
 export default Contact;
 
-const Container = styled.div`
+const Container = styled.section`
     width: 100vw;
     height: 80vh;
     margin: 3rem auto 0 auto;
@@ -186,7 +190,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
   `,
-  ContactContainer = styled.section`
+  Content = styled.div`
     width: 80vw;
     height: 100%;
     display: flex;
@@ -197,10 +201,6 @@ const Container = styled.div`
   Text = styled.article`
     color: #ffffff;
     height: 10vh;
-
-    /* @media (max-width: 480px) {
-      margin-bottom: 4rem;
-    } */
   `,
   Title = styled.p`
     font-size: calc(30px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
@@ -209,10 +209,9 @@ const Container = styled.div`
     align-items: start;
     font-family: "Poppins", monospace;
     justify-content: center;
-  `,
-  TitleSpan = styled.span`
-    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    font-family: "Poppins", monospace;
+    span {
+      font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    }
   `,
   Form = styled.form`
     width: 50vw;
@@ -313,19 +312,10 @@ const Container = styled.div`
       height: 3vh;
     }
   `,
-  ErrorValidation = styled.p`
+  TextValidation = styled.p`
     font-family: "Poppins", monospace;
     font-weight: 400;
     color: red;
-    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    width: 100%;
-    text-align: center;
-    text-transform: uppercase;
-  `,
-  ConfirmValidation = styled.p`
-    font-family: "Poppins", monospace;
-    font-weight: 400;
-    color: green;
     font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 100%;
     text-align: center;

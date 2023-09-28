@@ -1,7 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { CloseCartSVG, UserSVG } from "../../svgs";
-import IconCart from "../ShoppingCart/IconCart";
+import { Link } from "react-router-dom";
+import { CloseCartSVG, UserSVG, CartSVG } from "../../svgs";
 import styled from "styled-components";
+import NavHeader from "./NavHeader";
 
 function Menu(props) {
   const { menuActive, setMenuActive } = props,
@@ -9,24 +10,22 @@ function Menu(props) {
 
   return (
     <Container>
-      <Div>
+      <Content>
         {isAuthenticated && <UserSVG />}
-        <IconCart />
+        <Link to="/shoppingcart">
+          <CartSVG width="1.8em" height="1.8em" />
+        </Link>
         <CloseCartSVG menuActive={menuActive} setMenuActive={setMenuActive} />
-      </Div>
+      </Content>
 
-      <NavContainer>
-        <NavLink href="#allcourses">Cursos</NavLink>
-        <NavLink href="#aboutus">Sobre&nbsp;Nosotros</NavLink>
-        <NavLink href="#contact">Contacto</NavLink>
-      </NavContainer>
+      <NavHeader isMobile />
     </Container>
   );
 }
 
 export default Menu;
 
-const Container = styled.div`
+const Container = styled.header`
     min-height: 100px;
     width: 100vw;
     display: flex;
@@ -37,23 +36,7 @@ const Container = styled.div`
     border-bottom: 4px solid #ff6700;
     padding-bottom: 1em;
   `,
-  NavContainer = styled.nav`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    gap: 0.5em;
-    width: 100%;
-    height: 100%;
-  `,
-  NavLink = styled.a`
-    color: #2e2e2e;
-    text-decoration: none;
-    font-family: "Poppins", monospace;
-    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    text-transform: capitalize;
-  `,
-  Div = styled.div`
+  Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;

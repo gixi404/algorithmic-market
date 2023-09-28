@@ -9,24 +9,23 @@ import Footer from "./components/Body/Footer.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import Details from "./components/Courses/DetailsCourse.jsx";
 import LoginBtn from "./components/Log/LoginBtn.jsx";
+import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import { useMyContext } from "./components/Context.jsx";
-import CoursePurchased from "./components/Courses/PurchasedCourse.jsx";
 import styled from "styled-components";
 
 function Home() {
-  const { isLoading, isAuthenticated, getAccessTokenSilently, loginWithPopup } =
-      useAuth0(),
+  const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0(),
     { IS_MOBILE } = useMyContext();
 
   useEffect(() => {
-    const getToken = async () => {
+    async function getToken() {
       try {
         const newToken = await getAccessTokenSilently();
         localStorage.setItem("access_token", newToken);
-      } catch (e) {
-        console.log("error", e.message);
+      } catch (error) {
+        console.log("error: " + error.message);
       }
-    };
+    }
     if (isAuthenticated) {
       getToken();
     }
@@ -34,13 +33,11 @@ function Home() {
 
   useEffect(() => {
     const tokenAccess = localStorage.getItem("access_token");
-
     if (!isAuthenticated && tokenAccess) {
       console.log(tokenAccess);
     }
   }, []);
 
-  //  useEffect(() => {if(!isAuthenticated){loginWithPopup()} },[isAuthenticated])
   if (isLoading) {
     return (
       <LoadContainer>
@@ -79,7 +76,7 @@ const LoadContainer = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   `,
-  Load = styled.div`
+  Load = styled.span`
     width: 30vw;
     max-width: 250px;
     aspect-ratio: 4;
@@ -106,7 +103,7 @@ const LoadContainer = styled.div`
       }
     }
   `,
-  HomeContainer = styled.div`
+  HomeContainer = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
