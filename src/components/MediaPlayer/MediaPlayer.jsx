@@ -60,7 +60,6 @@ function MediaPlayer() {
         };
 
       setErrorVideo(false);
-      // setLoadContent(true);
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
       setClassData(previousClassData);
@@ -78,7 +77,6 @@ function MediaPlayer() {
         };
 
       setErrorVideo(false);
-      // setLoadContent(true);
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
       setClassData(nextClassData);
