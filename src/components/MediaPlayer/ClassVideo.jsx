@@ -26,11 +26,8 @@ function ClassVideo(props) {
       fetch(classURL)
         .then(response => response.url)
         .then(url => setVideoData(url))
-        .catch(error => {
-          console.error("Error en la carga del video: " + error.message);
-          setLoadContent(false);
-          setErrorVideo(true);
-        });
+        .catch(() => setErrorVideo(true))
+        .finally(() => setLoadContent(false));
     }
   }, [classURL]);
 
@@ -42,7 +39,6 @@ function ClassVideo(props) {
         <Video
           src={videoData}
           style={{ display: loadContent ? "none" : "block" }}
-          onLoadStart={() => setLoadContent(false)}
           frameBorder="0"
           allowFullScreen={true}
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
