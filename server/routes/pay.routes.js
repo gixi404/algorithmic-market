@@ -31,10 +31,8 @@ router.get("/cleanlist", deleteShoppingCart);
 
 router.get("/buy/:idcourse1/:idcourse2/:idcourse3", confirmShopping);
 
-//* FORM
 router.post("/form", async (req, res) => {
   const { name_form, mail_form, query_form } = req.body;
-
   formData(name_form, mail_form, query_form);
 });
 

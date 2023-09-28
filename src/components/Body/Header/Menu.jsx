@@ -32,14 +32,14 @@ const Container = styled.header`
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    background-color: #a9a9a9;
+    background-color: #ffffff;
     border-bottom: 4px solid #ff6700;
     padding-bottom: 1em;
   `,
   Content = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-direction: row;
     width: 100vw;
     height: 100%;
