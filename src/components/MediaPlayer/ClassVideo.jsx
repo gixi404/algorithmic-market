@@ -34,7 +34,6 @@ function ClassVideo(props) {
           allowFullScreen={true}
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
           loading="lazy"
-          //? Testear lazy.
         />
       ) : (
         <ErrorVideo />
@@ -66,14 +65,13 @@ const Video = styled.iframe`
   SkeletonContainer = styled.div`
     border: none;
     outline: none;
-    border-radius: 0.8rem;
+    border-radius: 0;
     background-color: #444;
     width: 80vw;
     height: calc((9 / 16) * 80vw);
     animation-name: skeleton;
     animation-duration: 0.8s;
     animation-iteration-count: infinite;
-
     @keyframes skeleton {
       0% {
         background-color: rgb(24, 24, 84);
@@ -94,6 +92,5 @@ const Video = styled.iframe`
     @media (max-width: 576px) {
       width: 100vw;
       height: calc((9 / 16) * 100vw);
-      border-radius: 0;
     }
   `;
