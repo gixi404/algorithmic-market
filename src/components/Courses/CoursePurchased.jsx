@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
-import { useMyContext } from "../Context";
 import styled from "styled-components";
 
 function CoursePurchased() {
-  const { IS_MOBILE } = useMyContext();
-
-  if (IS_MOBILE) {
-    return (
-      <LetterMobile>
+  return (
+    <Container to="Home">
+      <Letter>
         <Title>
           <span>Compra realizada correctamente</span>
           En la sección Cursos verás que ahora hay un botón "Ver", en él podrás
@@ -16,24 +13,9 @@ function CoursePurchased() {
         <Link to="/" style={{ textDecoration: "none", color: "#ff6700" }}>
           <OkeyBtn>Okey</OkeyBtn>
         </Link>
-      </LetterMobile>
-    );
-  } else {
-    return (
-      <Container to="Home">
-        <Letter>
-          <Title>
-            <span>Compra realizada correctamente</span>
-            En la sección Cursos verás que ahora hay un botón "Ver", en él
-            podrás acceder al contenido del curso.
-          </Title>
-          <Link to="/" style={{ textDecoration: "none", color: "#ff6700" }}>
-            <OkeyBtn>Okay</OkeyBtn>
-          </Link>
-        </Letter>
-      </Container>
-    );
-  }
+      </Letter>
+    </Container>
+  );
 }
 
 export default CoursePurchased;
@@ -53,7 +35,7 @@ const Container = styled(Link)`
     cursor: default;
     color: inherit;
   `,
-  Letter = styled.div`
+  Letter = styled.section`
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -63,6 +45,11 @@ const Container = styled(Link)`
     background-color: #fff;
     width: 80vw;
     height: calc((9 / 16) * 80vw);
+    @media (max-width: 576px) {
+      border-radius: 0;
+      width: 100vw;
+      min-height: 100vh;
+    }
   `,
   Title = styled.p`
     display: flex;
@@ -113,16 +100,3 @@ const Container = styled(Link)`
       color: #fff;
     }
   `;
-
-const LetterMobile = styled.div`
-  border-radius: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 3rem;
-  background-color: #fff;
-  width: 100vw;
-  min-height: 100vh;
-  height: calc((9 / 16) * 80vw);
-`;

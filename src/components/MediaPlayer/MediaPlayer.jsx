@@ -6,13 +6,12 @@ import Header from "../Body/Header/Header";
 import Footer from "../Body/Footer";
 import ProgressBar from "./ProgressBar";
 import TitleCourse from "./TitleCourse";
-import ArrowBack from "../Body/ArrowBack";
 import ClassVideo from "./ClassVideo";
 import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
 import ItemClass from "./ItemClass";
+import { ArrowBack } from "../svgs";
 import styled from "styled-components";
-// Strict Mode comentado.
 
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
@@ -29,16 +28,6 @@ function MediaPlayer() {
 
   let lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
 
-  //! Hacer que isBought funcione localmente.
-
-  function selectCourse() {
-    setClassData({
-      classId: direction(courseid_params, numberClass).id,
-      className: direction(courseid_params, numberClass).name,
-      classURL: direction(courseid_params, numberClass).URL,
-    });
-  }
-
   useEffect(() => {
     setClassData({
       classId: direction(0).id,
@@ -50,6 +39,14 @@ function MediaPlayer() {
   useEffect(() => {
     return () => selectCourse();
   }, [courseid_params]);
+
+  function selectCourse() {
+    setClassData({
+      classId: direction(courseid_params, numberClass).id,
+      className: direction(courseid_params, numberClass).name,
+      classURL: direction(courseid_params, numberClass).URL,
+    });
+  }
 
   function direction(numberCourse, numberClass = 0) {
     return myCourses[numberCourse]?.classes[numberClass];
@@ -177,10 +174,9 @@ function MediaPlayer() {
   );
 }
 
-export default MediaPlayer;
-//! acordate vigilante -  export default withAuthenticationRequired(MediaPlayer);
+export default withAuthenticationRequired(MediaPlayer);
 
-const Container = styled.div`
+const Container = styled.main`
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -190,7 +186,7 @@ const Container = styled.div`
     color: #f5f5f5;
     row-gap: 3em;
   `,
-  MediaContainer = styled.div`
+  MediaContainer = styled.section`
     width: 80vw;
     display: flex;
     align-items: center;
@@ -266,7 +262,7 @@ const Container = styled.div`
       text-align: center;
     }
   `,
-  ListFollowingClasses = styled.ul`
+  ListFollowingClasses = styled.ol`
     font-family: "Poppins", sans-serif;
     color: #000000;
     display: flex;

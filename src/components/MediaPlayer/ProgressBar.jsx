@@ -4,11 +4,11 @@ function ProgressBar(props) {
   const { progressValue } = props;
 
   return (
-    <ProgressContainer id="progress">
+    <ProgressContainer>
       <Progress
         name="progress-course"
         value={Math.ceil(progressValue)}
-        max="100"
+        max={100}
       />
       <LabelBar htmlFor="progress-course">
         Progreso{" "}

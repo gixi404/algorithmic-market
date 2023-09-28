@@ -67,7 +67,7 @@ const Container = styled.div`
     justify-content: space-between;
     font-family: "Poppins", monospace;
   `,
-  PrivacyContainer = styled.div`
+  PrivacyContainer = styled.main`
     background-color: #ebebeb;
     width: 80vw;
     height: max-content;

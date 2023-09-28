@@ -4,7 +4,7 @@ import styled from "styled-components";
 function AboutUs() {
   return (
     <Container id="aboutus">
-      <AboutUsContainer>
+      <Content>
         <Text>
           <Title>Sobre Nosotros</Title>
           <p>
@@ -12,15 +12,15 @@ function AboutUs() {
             <span style={{ fontStyle: "italic", color: "#ff6700" }}>
               Algorithmic Market
             </span>
-            , no somos solo una empresa, somos una comunidad de traders
-            apasionados dedicados a transformar las aspiraciones financieras en
-            realidad. Establecido con la visión de brindar a las personas el
-            conocimiento y las herramientas para conquistar el mundo del
-            trading, Algorithmic Market se ha convertido en un modelo de
-            excelencia en la industria.
+            , no somos solo una empresa, somos personas dispuestas y dedicados a
+            transformar las aspiraciones financieras en realidad de nuestros
+            alumnos. Establecido con la visión de brindar a las personas el
+            conocimiento y las herramientas para conquistar la excelencia en los
+            graficos y el mercado. Algorithmic Market esta exclusivamente al
+            servicio de sus estudiantes para que alcancen todas sus metas.
             <br /> <br />
             Nuestra misión es simple: brindar educación de primer nivel,
-            recursos de vanguardia y soporte incomparable a operadores de todos
+            recursos de unicos y ayuda incomparable a nuestros traders de todos
             los niveles. Desde principiantes que dan sus primeros pasos hasta
             profesionales experimentados.
           </p>
@@ -29,7 +29,7 @@ function AboutUs() {
         <ImgContainer>
           <Img src={aboutUsImg} alt="Imágen de trabajo en equipo" />
         </ImgContainer>
-      </AboutUsContainer>
+      </Content>
     </Container>
   );
 }
@@ -49,7 +49,7 @@ const Container = styled.section`
     background-color: #ebebeb;
     font-family: "Poppins", monospace;
   `,
-  AboutUsContainer = styled.div`
+  Content = styled.div`
     height: max-content;
     width: 100vw;
     text-align: center;
@@ -102,9 +102,8 @@ const Container = styled.section`
     justify-content: center;
     align-items: center;
     width: 350px;
-    height: 400px;
-
-    @media (max-width: 1024px) {
+    height: 530px;
+    @media (max-width: 992px) {
       display: none;
     }
   `,

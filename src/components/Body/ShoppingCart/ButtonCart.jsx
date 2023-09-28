@@ -2,19 +2,20 @@ import { Link } from "react-router-dom";
 import { useBuyPetition } from "../../../hooks/useBuyLogic.js";
 import styled from "styled-components";
 
-function ButtonCart({ courses }) {
-  const { buyUrl } = useBuyPetition({ courses });
-  const url = buyUrl;
+function ButtonCart(props) {
+  const { courses } = props,
+    { buyUrl } = useBuyPetition({ courses });
+
   return (
     <Container>
-      <Btn to={url}>Comprar</Btn>
+      <Btn to={buyUrl}>Comprar</Btn>
     </Container>
   );
 }
 
 export default ButtonCart;
 
-const Container = styled.article`
+const Container = styled.div`
     min-width: 200px;
     width: 20vw;
     height: 6vh;
@@ -39,7 +40,6 @@ const Container = styled.article`
     border: 0;
     background-color: transparent;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-
     &:hover {
       cursor: pointer;
       color: #fff;

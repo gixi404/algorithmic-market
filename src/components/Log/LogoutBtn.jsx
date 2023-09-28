@@ -2,9 +2,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 
 function LogoutBtn() {
-  const { logout } = useAuth0(),
-    handleLogout = () =>
-      logout({ logoutParams: { returnTo: window.location.origin } });
+  const { logout } = useAuth0();
+
+  function handleLogout() {
+    logout({ logoutParams: { returnTo: window.location.origin } });
+  }
 
   return <LogoutButton onClick={handleLogout}>Cerrar Sesión</LogoutButton>;
 }

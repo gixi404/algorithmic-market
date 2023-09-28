@@ -33,9 +33,8 @@ function ClassVideo(props) {
           frameBorder="0"
           allowFullScreen={true}
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
-          // style="border:0;position:absolute;top:0;height:100%;width:100%;"
-          // allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
-          // loading="lazy"
+          loading="lazy"
+          //? Testear lazy.
         />
       ) : (
         <ErrorVideo />
