@@ -42,7 +42,7 @@ function ClassVideo(props) {
         <Video
           src={videoData}
           style={{ display: loadContent ? "none" : "block" }}
-          onLoad={() => setLoadContent(false)}
+          onLoadStart={() => setLoadContent(false)}
           frameBorder="0"
           allowFullScreen={true}
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
