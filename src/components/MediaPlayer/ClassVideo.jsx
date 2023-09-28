@@ -6,9 +6,8 @@ import styled from "styled-components";
 function ClassVideo(props) {
   const { classURL } = props;
   const { loadContent, setLoadContent, errorVideo, setErrorVideo } =
-    useMyContext();
-
-  const [videoData, setVideoData] = useState(null);
+      useMyContext(),
+    [videoData, setVideoData] = useState(null);
 
   useEffect(() => {
     let seconds = 0;
@@ -26,14 +25,11 @@ function ClassVideo(props) {
       setLoadContent(true);
       fetch(classURL)
         .then(response => response.url)
-        .then(data => {
-          setVideoData(data);
-          setLoadContent(false);
-        })
+        .then(url => setVideoData(url))
         .catch(error => {
           console.error("Error en la carga del video: " + error.message);
-          setErrorVideo(true);
           setLoadContent(false);
+          setErrorVideo(true);
         });
     }
   }, [classURL]);
@@ -46,6 +42,7 @@ function ClassVideo(props) {
         <Video
           src={videoData}
           style={{ display: loadContent ? "none" : "block" }}
+          onLoad={() => setLoadContent(false)}
           frameBorder="0"
           allowFullScreen={true}
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
