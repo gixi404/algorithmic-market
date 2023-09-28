@@ -15,36 +15,42 @@ import styled from "styled-components";
 
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
-    {
-      myCourses,
-      loadContent,
-      setLoadContent,
-      progressValue,
-      setProgressValue,
-      setErrorVideo,
-    } = useMyContext(),
+    initialProgressValue = [11.11, 11.11, 11.11];
+
+  (function getStoredProgress() {
+    const storedProgress = localStorage.getItem(`progress:${courseid_params}`);
+    if (storedProgress !== null) {
+      initialProgressValue[courseid_params] = Number(storedProgress);
+    }
+  })();
+
+  const { myCourses, loadContent, setLoadContent, setErrorVideo } =
+      useMyContext(),
     [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
-    [courseInProgress, setCourseInProgress] = useState(true);
-
-  let lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
+    [courseInProgress, setCourseInProgress] = useState(true),
+    [progressValue, setProgressValue] = useState(initialProgressValue),
+    lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
 
   useEffect(() => {
-    setClassData({
-      classId: direction(0).id,
-      className: direction(0).name,
-      classURL: direction(0).URL,
-    });
+    function selectCourse() {
+      setClassData({
+        classId: direction(courseid_params, numberClass).id,
+        className: direction(courseid_params, numberClass).name,
+        classURL: direction(courseid_params, numberClass).URL,
+      });
+    }
+
     return () => selectCourse();
   }, [courseid_params]);
 
-  function selectCourse() {
-    setClassData({
-      classId: direction(courseid_params, numberClass).id,
-      className: direction(courseid_params, numberClass).name,
-      classURL: direction(courseid_params, numberClass).URL,
-    });
-  }
+  useEffect(() => {
+    return () =>
+      localStorage.setItem(
+        `progress:${courseid_params}`,
+        progressValue[courseid_params]
+      );
+  }, [progressValue]);
 
   function direction(numberCourse, numberClass = 0) {
     return myCourses[numberCourse]?.classes[numberClass];
@@ -63,7 +69,11 @@ function MediaPlayer() {
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
       setClassData(previousClassData);
-      setProgressValue(progressValue - 11.11);
+      // updateItemProgress(false);
+      const updatedProgressValue = [...progressValue];
+
+      updatedProgressValue[courseid_params] -= 11.11;
+      setProgressValue(updatedProgressValue);
     }
   }
 
@@ -80,7 +90,12 @@ function MediaPlayer() {
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
       setClassData(nextClassData);
-      setProgressValue(progressValue + 11.11);
+      // updateItemProgress(false);
+      // updateItemProgress(true);
+      const updatedProgressValue = [...progressValue];
+
+      updatedProgressValue[courseid_params] += 11.11;
+      setProgressValue(updatedProgressValue);
     }
   }
 
@@ -106,7 +121,10 @@ function MediaPlayer() {
       classId++;
       let newProgress = Math.ceil(11.11 * classId);
       newProgress = newProgress === 101 ? newProgress-- : newProgress;
-      setProgressValue(newProgress);
+
+      const updatedProgressValue = [...progressValue];
+      updatedProgressValue[courseid_params] = newProgress;
+      setProgressValue(updatedProgressValue);
     }
 
     setErrorVideo(false);
@@ -126,7 +144,7 @@ function MediaPlayer() {
             coursename={myCourses[courseid_params]?.name}
             className={classData.className}
           />
-          <ProgressBar progressValue={progressValue} />
+          <ProgressBar progressValue={progressValue[courseid_params]} />
         </HeaderMedia>
 
         {courseInProgress ? (
@@ -278,27 +296,3 @@ const Container = styled.main`
       width: 90vw;
     }
   `;
-
-// const getYourClass =
-//   localStorage.getItem("your-class") !== undefined
-//     ? Number(localStorage.getItem("your-class")) - 1
-//     : 0;
-
-// useEffect(() => {
-//const classId = classData.classId;
-
-//   if (classId !== undefined) {
-//     const setYourClass = localStorage.setItem(
-//         "your-class",
-//         JSON.stringify(classId)
-//       ),
-//       setProgress = localStorage.setItem(
-//         "progress",
-//         JSON.stringify(progressValue)
-//       );
-//     return () => {
-//       setYourClass;
-//       setProgress;
-//     };
-//   }
-// }, [classData]);

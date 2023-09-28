@@ -7,10 +7,12 @@ export const ContextProps = createContext(),
     ),
   useMyContext = () => useContext(ContextProps);
 
+// const getProgress =
+//       Number(localStorage.getItem(`progress:${courseid_params}`)) ?? 11.11
+
 function Context({ children }) {
   const [coursesCart, setCoursesCart] = useState([]),
     [loadContent, setLoadContent] = useState(false),
-    [progressValue, setProgressValue] = useState(11.11),
     [errorVideo, setErrorVideo] = useState(false),
     [allCourses, setAllCourses] = useState([
       {
@@ -23,7 +25,7 @@ function Context({ children }) {
       },
       {
         id: 1,
-        isBought: false,
+        isBought: true,
         name: "Curso Medio",
         cash: 700,
         description:
@@ -31,7 +33,7 @@ function Context({ children }) {
       },
       {
         id: 2,
-        isBought: false,
+        isBought: true,
         name: "Curso Avanzado",
         cash: 1000,
         description:
@@ -215,8 +217,6 @@ function Context({ children }) {
     setCoursesCart,
     loadContent,
     setLoadContent,
-    progressValue,
-    setProgressValue,
     errorVideo,
     setErrorVideo,
     allCourses,

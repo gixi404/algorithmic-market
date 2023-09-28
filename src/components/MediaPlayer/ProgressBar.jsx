@@ -1,19 +1,14 @@
 import styled from "styled-components";
 
 function ProgressBar(props) {
-  const { progressValue } = props;
+  const { progressValue } = props,
+    progress = Math.ceil(progressValue),
+    formatProgress = progress === 101 ? 100 : progress;
 
   return (
     <ProgressContainer>
-      <Progress
-        name="progress-course"
-        value={Math.ceil(progressValue)}
-        max={100}
-      />
-      <LabelBar htmlFor="progress-course">
-        Progreso{" "}
-        {Math.ceil(progressValue) === 101 ? 100 : Math.ceil(progressValue)}%
-      </LabelBar>
+      <Progress name="progress-course" value={progress} max={100} />
+      <LabelBar htmlFor="progress-course">Progreso {formatProgress}%</LabelBar>
     </ProgressContainer>
   );
 }
@@ -26,7 +21,6 @@ const ProgressContainer = styled.div`
     flex-direction: column-reverse;
     align-items: end;
     justify-content: flex-start;
-
     @media (max-width: 1024px) {
       align-items: center;
     }
