@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMyContext } from "../Context";
 import ErrorVideo from "./ErrorVideo";
 import styled from "styled-components";
 
 function ClassVideo(props) {
-  const { classURL } = props,
-    { loadContent, setLoadContent, errorVideo, setErrorVideo } = useMyContext();
+  const { classURL } = props;
+  const { loadContent, setLoadContent, errorVideo, setErrorVideo } =
+    useMyContext();
+
+  const [videoData, setVideoData] = useState(null);
 
   useEffect(() => {
-    //* Detecta si el loadContent permanece por 10 segundos consecutivos para retornar un error de carga.
     let seconds = 0;
     const interval = setInterval(() => {
       if (seconds === 10 && loadContent) {
@@ -19,22 +21,35 @@ function ClassVideo(props) {
     return () => clearInterval(interval);
   }, [loadContent]);
 
+  useEffect(() => {
+    if (classURL) {
+      setLoadContent(true);
+      fetch(classURL)
+        .then(response => response.url)
+        .then(data => {
+          setVideoData(data);
+          setLoadContent(false);
+        })
+        .catch(error => {
+          console.error("Error en la carga del video: " + error.message);
+          setErrorVideo(true);
+          setLoadContent(false);
+        });
+    }
+  }, [classURL]);
+
   return (
     <>
       {loadContent && <SkeletonContainer />}
 
       {!errorVideo ? (
         <Video
-          src={classURL}
+          src={videoData}
           style={{ display: loadContent ? "none" : "block" }}
-          onLoad={() => setLoadContent(false)}
-          onLoadStart={() => setLoadContent(false)}
-          onError={() => setErrorVideo(true)}
           frameBorder="0"
           allowFullScreen={true}
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
           loading="lazy"
-          //? Testear lazy.
         />
       ) : (
         <ErrorVideo />

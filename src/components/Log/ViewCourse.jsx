@@ -4,8 +4,16 @@ import styled from "styled-components";
 function ViewCourse(props) {
   const { url } = props;
 
+  function handleClick() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }
+
   return (
-    <Button>
+    <Button onClick={handleClick}>
       <Link to={url}>Ver</Link>
     </Button>
   );

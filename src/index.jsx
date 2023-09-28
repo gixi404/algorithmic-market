@@ -21,7 +21,7 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
         clientId={CLIENT_ID}
         authorizationParams={{ redirect_uri: window.location.origin }}
       >
-        <BrowserRouter>
+        <BrowserRouter basename="/">
           <Context>
             <Routes>
               <Route path="*" element={<Home />} />

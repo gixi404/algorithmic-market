@@ -10,9 +10,7 @@ function ErrorVideo() {
           Intenta recargando la página, si el error persiste, por favor contacta
           a este mail:
           <br />
-          <a href="mailto:gioliotta.io@gmail.com" target="_blank">
-            gioliotta.io@gmail.com
-          </a>
+          <code style={{ fontWeight: 500 }}>gioliotta.io@gmail.com</code>
         </span>
       </Title>
 

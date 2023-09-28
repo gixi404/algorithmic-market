@@ -21,6 +21,7 @@ function MediaPlayer() {
       setLoadContent,
       progressValue,
       setProgressValue,
+      setErrorVideo,
     } = useMyContext(),
     [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
@@ -34,9 +35,6 @@ function MediaPlayer() {
       className: direction(0).name,
       classURL: direction(0).URL,
     });
-  }, []);
-
-  useEffect(() => {
     return () => selectCourse();
   }, [courseid_params]);
 
@@ -60,7 +58,9 @@ function MediaPlayer() {
           className: direction(courseid_params, newNumberClass).name,
           classURL: direction(courseid_params, newNumberClass).URL,
         };
-      setLoadContent(true);
+
+      setErrorVideo(false);
+      // setLoadContent(true);
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
       setClassData(previousClassData);
@@ -76,7 +76,9 @@ function MediaPlayer() {
           className: direction(courseid_params, newNumberClass).name,
           classURL: direction(courseid_params, newNumberClass).URL,
         };
-      setLoadContent(true);
+
+      setErrorVideo(false);
+      // setLoadContent(true);
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
       setClassData(nextClassData);
@@ -109,6 +111,7 @@ function MediaPlayer() {
       setProgressValue(newProgress);
     }
 
+    setErrorVideo(false);
     setCourseInProgress(true);
     updateClass();
     updateProgressBar();
