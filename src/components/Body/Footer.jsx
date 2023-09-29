@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link as Linkk } from "react-router-dom";
 import styled from "styled-components";
 
 function Footer() {
@@ -6,23 +6,21 @@ function Footer() {
     "https://wa.me/2615731250?text=Hola, me gustaría adquirir sus servicios";
 
   return (
-    <FooterContainer>
-      <TextContainer>
-        <Text to={urlWhatsApp} target="_blank">
+    <Container>
+      <Content>
+        <a href={urlWhatsApp} rel="noopener noreferrer" target="_blank">
           Creado por Staff Lym
-        </Text>
-        <Text to="/privacy">Política de Privacidad</Text>
-        <Text style={{ cursor: "default" }}>
-          &copy; Todos los derechos reservados
-        </Text>
-      </TextContainer>
-    </FooterContainer>
+        </a>
+        <Link to="/privacy">Política de Privacidad</Link>
+        <p>&copy; Todos los derechos reservados</p>
+      </Content>
+    </Container>
   );
 }
 
 export default Footer;
 
-const FooterContainer = styled.div`
+const Container = styled.footer`
     background-color: #1e1e1e;
     width: 100vw;
     height: 15vh;
@@ -34,14 +32,13 @@ const FooterContainer = styled.div`
     row-gap: 5px;
     border-top: 4px solid #ff6700;
   `,
-  TextContainer = styled.div`
+  Content = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
     row-gap: 0.6em;
     justify-content: center;
     font-family: "Poppins", monospace;
-
     @media (min-width: 1024px) {
       width: 80vw;
       flex-direction: row;
@@ -51,8 +48,25 @@ const FooterContainer = styled.div`
     @media (max-width: 480px) {
       align-items: center;
     }
+    p {
+      color: #fff;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      font-size: calc(12px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    }
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      font-size: calc(12px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+      transition-duration: 0.1s;
+      &:hover {
+        color: #797979;
+      }
+    }
   `,
-  Text = styled(Link)`
+  Link = styled(Linkk)`
     color: #fff;
     font-size: 1em;
     text-decoration: none;

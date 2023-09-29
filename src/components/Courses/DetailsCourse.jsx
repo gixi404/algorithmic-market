@@ -5,307 +5,120 @@ import { CloseCartSVG } from "../svgs.jsx";
 import styled from "styled-components";
 
 function detailCourses() {
-  const { courseSelected, IS_MOBILE } = useMyContext(),
+  const { courseSelected, myCourses } = useMyContext(),
     { coursedetails } = useParams(),
-    { name, cash, description } = courseSelected(coursedetails);
+    { name, description } = courseSelected(coursedetails);
 
-  if (IS_MOBILE) {
-    return (
-      <ContainerMobile>
-        <DetailsMobile>
-          <Link to="/" style={{ marginBottom: "1em" }}>
-            <CloseCartSVG />
-          </Link>
+  return (
+    <Container>
+      <Details>
+        <Link to="/">
+          <CloseCartSVG />
+        </Link>
 
-          <H2Mobile>{name}</H2Mobile>
+        <Title>{name}</Title>
 
-          <PMobile>
-            Aquí debe ir la info del curos que se esta por comprar relleno y más
-            relleno relleno y más relleno relleno y más rellenorelleno
-          </PMobile>
+        <Article>
+          <NameSection>Descripción</NameSection>
+          <Description>{description}</Description>
+        </Article>
 
-          <ArticleMobile>
-            <Title>Overview:</Title>
-            <DescriptionMobile>{description}</DescriptionMobile>
-          </ArticleMobile>
+        <List>
+          <NameSection>Clases</NameSection>
+          {myCourses[coursedetails].classes.map(_class => (
+            <li key={_class.id}>{_class.name}</li>
+          ))}
+        </List>
 
-          <CompraMobile>
-            <p>${cash} USD</p>
-            <AddButton courseSelected={courseSelected(coursedetails)} />
-          </CompraMobile>
-        </DetailsMobile>
-      </ContainerMobile>
-    );
-  } else {
-    return (
-      <Container to="Home">
-        <Details>
-          <H2>{name}</H2>
-
-          <P>
-            "Aprenderas cosas increíble como a lavar la ropa, bailar con un
-            pancho de manera sencilla y poderosamente evolutiva, vamosincreíble
-            como a lavar la ropa, bailar con un pancho de manera sencilla y
-            poderosamente evolutiva, vamos milei." milei.",
-          </P>
-
-          <Article>
-            <Title>Overview:</Title>
-            <Description>{description}</Description>
-          </Article>
-
-          <CourseMetas>
-            <Title>Curso Highlights:</Title>
-            <List>
-              <ListElement>
-                <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
-                  <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
-                </svg>
-                <p>Primera clase de orientacion.</p>
-              </ListElement>
-              <Span></Span>
-              <ListElement>
-                <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
-                  <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
-                </svg>
-                <p>Segunda clase de orientacion.</p>
-              </ListElement>
-              <Span></Span>
-              <ListElement>
-                <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
-                  <circle cx="14.5" cy="14.5" r="14.5" fill="#FF6700" />
-                </svg>
-                <p>Tercera clase de orientacion.</p>
-              </ListElement>
-              <Span></Span>
-            </List>
-            <Hours>
-              <span>🕛</span>Estimated Time: 30hrs
-            </Hours>
-          </CourseMetas>
-
-          <Compra>
-            <span></span>
-            <AddButton courseSelected={courseSelected(coursedetails)} />
-            <p>${cash} USD</p>
-          </Compra>
-        </Details>
-      </Container>
-    );
-  }
+        <AddButton courseSelected={courseSelected(coursedetails)} />
+      </Details>
+    </Container>
+  );
 }
 
 export default detailCourses;
 
-const ContainerMobile = styled.div`
-    height: 100vh;
+const Container = styled.main`
     width: 100vw;
-    position: fixed;
-    background-color: #ebebeb;
-    backdrop-filter: blur(5px);
-    z-index: 1000000000;
-    padding-top: 1em;
-  `,
-  DetailsMobile = styled.section`
-    background-color: #ebebeb;
-    position: fixed;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    row-gap: 2em;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: "Poppins", monospace;
-    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-  `,
-  H2Mobile = styled.h2`
-    width: 100%;
-    height: 7vh;
-    color: #ff6700;
-    text-align: center;
-  `,
-  ArticleMobile = styled.article`
-    height: 20vh;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  `,
-  PMobile = styled.p`
-    width: 90%;
-    font-family: "Poppins", monospace;
-    font-size: 0.85rem;
-    text-transform: capitalize;
-    height: max-content;
-    font-weight: bold;
-    text-align: center;
-  `,
-  DescriptionMobile = styled.p`
-    margin-top: 1vh;
-    width: 90%;
-    font-family: "Poppins", monospace;
-    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    text-transform: capitalize;
-    height: max-content;
-    text-align: center;
-  `,
-  CompraMobile = styled.div`
-    height: 13vh;
-    width: 100%;
-    border: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    p {
-      width: 100%;
-      text-align: center;
-      font-size: 1em;
-      font-weight: bold;
-    }
-  `;
-
-const Container = styled(Link)`
     height: 100vh;
-    width: 100vw;
     position: fixed;
+    z-index: 999;
     background-color: transparent;
-    backdrop-filter: blur(5px);
-    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: default;
     text-decoration: none;
     color: inherit;
+    backdrop-filter: blur(5px);
+    @media (max-width: 576px) {
+      backdrop-filter: none;
+      background-color: #ebebeb;
+    }
   `,
   Details = styled.section`
     background-color: #ebebeb;
     position: fixed;
-    left: 17.5vw;
-    top: 5vh;
-    width: 65vw;
-    height: 90vh;
+    padding-top: 2em;
+    width: 80vw;
+    height: 80vh;
+    max-width: 700px;
     border-radius: 8px;
     border-bottom: 5px solid #ff6700;
     border-right: 5px solid #ff6700;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-  `,
-  H2 = styled.h2`
-    width: 52vw;
-    height: 7vh;
-    word-wrap: break-word;
-    line-height: 7vh;
-    color: #ff6700;
-    text-align: start;
-  `,
-  Article = styled.article`
-    height: 20vh;
-    width: 52vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-  `,
-  P = styled.p`
-    width: 52vw;
-    font-family: "Poppins", monospace;
-    font-size: 0.85rem;
-    text-transform: capitalize;
-    height: max-content;
-    font-weight: bold;
-  `,
-  Description = styled.p`
-    margin-top: 1vh;
-    width: 52vw;
-    font-family: "Poppins", monospace;
-    font-size: 0.8rem;
-    text-transform: capitalize;
-    height: max-content;
+    justify-content: flex-start;
+    row-gap: 2em;
+    @media (max-width: 576px) {
+      padding-top: 5em;
+      border-radius: 0;
+      border: 0;
+      background-color: transparent;
+      width: 90%;
+      min-height: 100vh;
+      /* font-family: "Poppins", monospace;
+      font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320))); */
+    }
   `,
   Title = styled.h3`
-    border: 0;
-    font-family: "Poppins", monospace;
-    margin-top: 1vh;
-    width: max-content;
-    border-bottom: 3px solid #ff6700;
+    width: 100%;
+    text-align: center;
+    color: #ff6700;
+    text-transform: uppercase;
+    font-size: calc(28px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
   `,
-  CourseMetas = styled.article`
-    height: 35vh;
-    width: 52vw;
-
+  Article = styled.article`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 0.5em;
+    width: 85%;
+  `,
+  NameSection = styled.h4`
+    font-family: "Poppins", monospace;
+    font-size: calc(20px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    color: #ff6700;
+    text-align: center;
+    width: 100%;
+  `,
+  Description = styled.p`
+    text-align: center;
+    width: 100%;
+    font-family: "Poppins", monospace;
+    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+  `,
+  List = styled.ol`
+    width: 50%;
+    list-style: none;
     display: flex;
     flex-direction: column;
     align-items: start;
-    justify-content: space-between;
-  `,
-  List = styled.div`
-    width: 40vw;
-    height: 20vh;
-    margin-left: 11vw;
-    display: flex;
     justify-content: center;
-    flex-direction: column;
-  `,
-  ListElement = styled.article`
-    width: 35vw;
-    height: 3vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    p {
-      font-family: "Poppins", monospace;
-      height: 3vh;
-      line-height: 3vh;
-      width: 32vw;
-      font-weight: bold;
-      font-size: 0.7rem;
-    }
-    svg {
-      margin-top: 0.5vh;
-      width: 2vw;
-      height: 3vh;
-      line-height: 3vh;
-    }
-  `,
-  Span = styled.span`
-    width: 0.5vw;
-    margin-top: 0.2rem;
-    margin-left: 0.65rem;
-    height: 1rem;
-    background: #ff6700;
-  `,
-  Hours = styled.p`
-    color: #797676;
-    font-size: 0.8rem;
-    font-family: "Poppins", monospace;
-    span {
-      margin: 0 0.5vw;
-    }
-  `,
-  Compra = styled.div`
-    height: 15vh;
-    width: 65vw;
-    border: 0;
-    border-top: 5px solid #ff6700;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    :first-child {
-      height: 5vh;
-      width: 20vw;
-      line-height: 5vh;
-    }
-    p {
-      width: 20vw;
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-    span {
-      width: 20vw;
+    row-gap: 0.2em;
+    @media (max-width: 576px) {
+      width: 70%;
     }
   `;

@@ -3,31 +3,30 @@ import BuyBtn from "./Button";
 import courseImg from "../../img/course-img.webp";
 import styled from "styled-components";
 
-function Course({ dataCourse }) {
-  // const getDataCourse = localStorage.getItem("your-class") !== undefined;
+function Course(props) {
+  const { course } = props,
+    { name, description, isBought, id } = course,
+    getIsCompleted = localStorage.getItem(`isCompleted:${name}`);
 
   return (
     <CourseContainer>
-      <Img src={courseImg} alt="img course" />
+      {getIsCompleted && (
+        <CourseCompleted>
+          <p>Completado</p>
+        </CourseCompleted>
+      )}
+      <Img src={courseImg} alt="Imágen del curso" />
 
-      <NameCourse>{dataCourse.name}</NameCourse>
-
-      <DescriptionCard>{dataCourse.description}</DescriptionCard>
-
-      <TimeCard>
-        <Span>🕓</Span>
-        Tiempo estimado: 90hr
-      </TimeCard>
+      <ContainerTexts>
+        <NameCourse>{name}</NameCourse>
+        <DescriptionCard>{description}</DescriptionCard>
+      </ContainerTexts>
 
       <ButtonContainer>
-        {dataCourse.isBought ? (
-          <ViewCourse
-            // title={getDataCourse ? "Continuar" : "Empezar"}
-            title="Continuar"
-            url={`/mycourses/${dataCourse.id}`}
-          />
+        {isBought ? (
+          <ViewCourse url={`/mycourses/${id}`} />
         ) : (
-          <BuyBtn title="Más Información" url={`/details/${dataCourse.id}`} />
+          <BuyBtn title="Más Información" url={`/details/${id}`} />
         )}
       </ButtonContainer>
     </CourseContainer>
@@ -37,71 +36,87 @@ function Course({ dataCourse }) {
 export default Course;
 
 const CourseContainer = styled.article`
+    width: 70vw;
+    height: 43vh;
+    max-width: 290px;
     background-color: #ebebeb;
-    width: 80vw;
-    max-width: 310px;
-    height: 440px;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: space-between;
     padding: 0;
-    z-index: 100;
     border-radius: 8px;
     border-right: 3px solid #ff6700;
     border-bottom: 3px solid #ff6700;
-
-    @media (min-width: 1224px) {
-      height: 420px;
-    }
-
-    @media (max-width: 480px) {
-      height: 380px;
+    position: relative;
+    @media (max-width: 576px) {
+      height: 350px;
     }
   `,
-  NameCourse = styled.p`
-    font-size: calc(20px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    color: black;
+  ContainerTexts = styled.aside`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
+    row-gap: 0.5em;
+    height: 170px;
+    margin-top: 0.1em;
+    margin-bottom: 1em;
+  `,
+  NameCourse = styled.h3`
+    color: black;
+    width: 90%;
     text-align: start;
     font-family: "Poppins", monospace;
+    font-size: calc(20px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     font-weight: 500;
-    padding-left: 1.6rem;
+  `,
+  DescriptionCard = styled.p`
+    width: 90%;
+    text-align: start;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9em;
+    font-weight: 400;
+    @media (max-width: 576px) {
+      font-size: 0.8em;
+    }
   `,
   Img = styled.img`
     width: 100%;
-    height: 20vh;
-    max-height: 150px;
+    height: 16vh;
+    max-height: 120px;
     object-fit: cover;
     object-position: center;
     border-radius: 5px 5px 0 0;
   `,
-  DescriptionCard = styled.p`
-    padding-left: 1.6rem;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: calc(12px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    text-align: start;
-  `,
-  TimeCard = styled.p`
-    padding-left: 1.6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    color: #000000;
-    column-gap: 5px;
-    font-size: calc(13px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-  `,
-  Span = styled.span`
-    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-  `,
   ButtonContainer = styled.div`
-    height: 7vh;
+    height: 6vh;
+    min-height: 60px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 0 1rem 0;
+    padding-bottom: 0.5em;
+  `,
+  CourseCompleted = styled.span`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    height: 2.2vh;
+    width: max-content;
+    background-color: #23b523;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+      font-family: "Poppins", monospace;
+      font-size: calc(11px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+      letter-spacing: 1px;
+      color: #000000;
+      padding: 0 1em;
+    }
   `;

@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { useMyContext } from "../Context";
 import Course from "./Course.jsx";
 import styled from "styled-components";
@@ -8,17 +7,14 @@ function Courses() {
 
   return (
     <CoursesContainer id="allcourses">
-      <Text>
-        <Title>
-          Cursos
-          <TitleSpan>
-            Eleva tus habilidades de un nivel inicial a avanzado.
-          </TitleSpan>
-        </Title>
-      </Text>
+      <Title>
+        Cursos
+        <span>Eleva tus habilidades de un nivel inicial a avanzado.</span>
+      </Title>
+
       <ListCourses>
         {allCourses.map(course => (
-          <Course key={course.id} dataCourse={course} />
+          <Course key={course.id} course={course} />
         ))}
       </ListCourses>
     </CoursesContainer>
@@ -27,7 +23,7 @@ function Courses() {
 
 export default Courses;
 
-const CoursesContainer = styled.main`
+const CoursesContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,38 +31,39 @@ const CoursesContainer = styled.main`
     border-radius: 8px;
     width: 100vw;
     height: max-content;
-    margin: 3rem auto;
+    margin: 3em auto;
   `,
-  Text = styled.article`
+  Title = styled.h2`
+    font-family: "Poppins", monospace;
+    font-size: calc(32px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     color: #fff;
     height: 12vh;
     width: 80vw;
-    margin-bottom: 3rem;
-    @media (min-width: 1224px) {
-      margin-bottom: 0;
-    }
-  `,
-  Title = styled.p`
-    font-family: "Poppins", monospace;
-    font-size: calc(32px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    row-gap: 0.5rem;
+    row-gap: 0.5em;
+    letter-spacing: 1px;
+    margin-bottom: 3em;
+    span {
+      font-weight: 300;
+      letter-spacing: 0;
+      font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    }
+    @media (min-width: 1224px) {
+      margin-bottom: 0;
+    }
   `,
-  TitleSpan = styled.span`
-    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-  `,
-  ListCourses = styled.section`
+  ListCourses = styled.ol`
+    list-style: none;
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 2em;
     align-items: center;
     justify-content: space-between;
     width: 80vw;
-    padding: 2rem 0;
-
+    padding: 2em 0;
     @media (min-width: 1224px) {
       flex-direction: row;
       row-gap: 0;

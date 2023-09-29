@@ -1,12 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import styled from "styled-components";
 import BuyBtn from "../../Courses/Button";
 import Header from "./Header";
 import Footer from "../Footer";
-import { useEffect } from "react";
+import styled from "styled-components";
 
 function Profile() {
   const { user, logout } = useAuth0();
+
   function logOut() {
     return logout();
   }
@@ -28,7 +28,7 @@ function Profile() {
 
 export default Profile;
 
-const Container = styled.article`
+const Container = styled.section`
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -37,7 +37,7 @@ const Container = styled.article`
     justify-content: space-between;
     font-family: "Poppins", monospace;
   `,
-  UserContainer = styled.div`
+  UserContainer = styled.article`
     background-color: #ebebeb;
     width: 80vw;
     max-width: 400px;
@@ -54,15 +54,6 @@ const Container = styled.article`
     text-align: start;
     color: black;
     font-weight: 400;
-  `,
-  Div = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
-    font-size: 0.9em;
-    color: #000;
   `,
   Img = styled.img`
     width: 70px;

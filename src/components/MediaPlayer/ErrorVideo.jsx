@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function ErorrVideo() {
+function ErrorVideo() {
   return (
     <Container>
       <Title>
@@ -10,18 +10,18 @@ function ErorrVideo() {
           Intenta recargando la página, si el error persiste, por favor contacta
           a este mail:
           <br />
-          <code style={{ userSelect: "text", fontWeight: "bold" }}>
-            gioliotta.io@gmail.com
-          </code>
+          <code style={{ fontWeight: 500 }}>gioliotta.io@gmail.com</code>
         </span>
       </Title>
 
-      <ReloadBtn onClick={() => location.reload()}>Recargar Página</ReloadBtn>
+      <ReloadBtn onClick={() => location.reload()} aria-label="recargar página">
+        Recargar Página
+      </ReloadBtn>
     </Container>
   );
 }
 
-export default ErorrVideo;
+export default ErrorVideo;
 
 const Container = styled.div`
     display: flex;
@@ -56,20 +56,17 @@ const Container = styled.div`
     color: #ff0000;
     font-family: "Poppins", sans-serif;
     font-size: calc(30px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    font-style: normal;
     font-weight: 500;
-    line-height: normal;
-
     span {
       color: #000000;
       font-family: "Poppins", sans-serif;
       font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-      font-style: normal;
       font-weight: 300;
-      line-height: normal;
       text-transform: lowercase;
     }
-
+    a {
+      text-decoration: none;
+    }
     @media (max-width: 992px) {
       padding: 0;
       row-gap: 0;

@@ -1,62 +1,53 @@
 import { useState, createContext, useContext } from "react";
-import exampleImg from "../img/course-img.webp";
 
-const ContextProps = createContext(),
+export const ContextProps = createContext(),
   IS_MOBILE =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
-    );
+    ),
+  useMyContext = () => useContext(ContextProps);
 
-//const getProgress =
-//   localStorage.getItem("progress") !== undefined
-//     ? Number(localStorage.getItem("progress"))
-//     : 11.11;
+// const getProgress =
+//       Number(localStorage.getItem(`progress:${courseid_params}`)) ?? 11.11
 
 function Context({ children }) {
   const [coursesCart, setCoursesCart] = useState([]),
     [loadContent, setLoadContent] = useState(false),
-    [progressValue, setProgressValue] = useState(11.11),
-    [courseID, setCourseID] = useState(null),
     [errorVideo, setErrorVideo] = useState(false),
     [allCourses, setAllCourses] = useState([
       {
-        isBought: true,
         id: 0,
-        description:
-          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        isBought: true,
         name: "Curso Inicial",
-        cash: 200,
-        img: exampleImg,
+        cash: 300,
+        description:
+          "Comenzarás aprendiendo a leer el mercado de manera precisa y fortalecerás las bases para poder comenzar tu entendimiento de cómo el mercado entrega y maneja el precio.",
       },
       {
-        isBought: false,
         id: 1,
-        description:
-          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        isBought: true,
         name: "Curso Medio",
-        cash: 250,
-        img: exampleImg,
+        cash: 700,
+        description:
+          "Tendrás la capacitación para analizar un gráfico y predecir el próximo movimiento de precio con certeza. Conseguirás un mayor entendimiento, sumando experiencia y ejemplos detallados.",
       },
       {
-        isBought: false,
         id: 2,
-        description:
-          "Aprenderas cosas increíble como a lavar la ropa, bailar con un pancho de manera sencilla y poderosamente evolutiva, vamos milei.",
+        isBought: true,
         name: "Curso Avanzado",
-        cash: 350,
-        img: exampleImg,
+        cash: 1000,
+        description:
+          "Obtendrás herramientas y muy bases sólidas. Nos centraremos en la importancia de ciertos factores que hacen que tu trading sea estable y sostenible con el tiempo.",
       },
     ]),
     [myCourses, setMyCourses] = useState([
       {
-        //! aquiq - isCompleted: false,
         name: "Curso Inicial",
         price: 200,
-        img: exampleImg,
         id: 0,
         classes: [
           {
-            name: "1 - Introducción a mercados",
+            name: "1 - Introducción a Mercados",
             id: 0,
             URL: "https://iframe.mediadelivery.net/embed/158989/619b4b43-12fe-4b2e-8789-0b3cd493f0b3?autoplay=false&loop=false&muted=false&preload=false",
           },
@@ -105,51 +96,50 @@ function Context({ children }) {
       {
         name: "Curso Medio",
         price: 200,
-        img: exampleImg,
         id: 1,
         classes: [
           {
-            name: "1 - Mirtha Legrand desnuda",
+            name: "1 - Clase prueba 1",
             id: 0,
             URL: "https://youtube.com/embed/d6P7kWUiDMY?si=NU2c4YIPYqX53FOz",
           },
           {
-            name: "2 - Pene sanguíneo",
+            name: "2 - Clase prueba 2",
             id: 1,
             URL: "https://youtube.com/embed/vzSQ8b7cRMQ?si=XQW-ojJtlZPh2yaJ",
           },
           {
-            name: "3 - Vibora",
+            name: "3 - Clase prueba 3",
             id: 2,
             URL: "https://youtube.com/embed/lgsITUruYFw?si=1HUzl4ICP29HcVNE",
           },
           {
-            name: "4 - El cuarteto de nos",
+            name: "4 - Clase prueba 4",
             id: 3,
-            URL: "https://youtube.com/embed/re_dUQh2Vtg?si=7kox1UDxwgUDinJ7",
+            URL: "https://www.youtube.com/embed/RcLPtGK8_Zo",
           },
           {
-            name: "5 - Ratata",
+            name: "5 - Clase prueba 5",
             id: 4,
             URL: "https://youtube.com/embed/Vq2evS44q7s?si=XODMUFUdHqxp4NKP",
           },
           {
-            name: "6 - Laureles",
+            name: "6 - Clase prueba 6",
             id: 5,
             URL: "https://youtube.com/embed/xb9cSfPOb1c?si=SXXjHnbOAnJLheZP",
           },
           {
-            name: "7 - Disconformidad",
+            name: "7 - Clase prueba 7",
             id: 6,
             URL: "https://youtube.com/embed/iaJKy1Ic3_I?si=EB4aiRWmpdsaygmq",
           },
           {
-            name: "8 - Nazaret",
+            name: "8 - Clase prueba 8",
             id: 7,
             URL: "https://youtube.com/embed/h3DY-SAYhvY?si=7BJqx284lSFkh3ec",
           },
           {
-            name: "9 - Hiligths",
+            name: "9 - Clase prueba 9",
             id: 8,
             URL: "https://youtube.com/embed/h3DY-SAYhvY?si=7BJqx284lSFkh3ec",
           },
@@ -158,51 +148,50 @@ function Context({ children }) {
       {
         name: "Curso Avanzado",
         price: 500,
-        img: exampleImg,
         id: 2,
         classes: [
           {
-            name: "1 - Y yo debí pasar",
+            name: "1 - Clase prueba 1",
             id: 0,
             URL: "https://youtube.com/embed/d6P7kWUiDMY?si=NU2c4YIPYqX53FOz",
           },
           {
-            name: "2 - A buscarte",
+            name: "2 - Clase prueba 2",
             id: 1,
             URL: "https://youtube.com/embed/vzSQ8b7cRMQ?si=XQW-ojJtlZPh2yaJ",
           },
           {
-            name: "3 - La verdad que me gustaste",
+            name: "3 - Clase prueba 3",
             id: 2,
             URL: "https://youtube.com/embed/lgsITUruYFw?si=1HUzl4ICP29HcVNE",
           },
           {
-            name: "4 - No quiero molestar",
+            name: "4 - Clase prueba 4",
             id: 3,
             URL: "https://youtube.com/embed/re_dUQh2Vtg?si=7kox1UDxwgUDinJ7",
           },
           {
-            name: "5 - turututu",
+            name: "5 - Clase prueba 5",
             id: 4,
             URL: "https://youtube.com/embed/Vq2evS44q7s?si=XODMUFUdHqxp4NKP",
           },
           {
-            name: "6 - Y es que la verdad",
+            name: "6 - Clase prueba 6",
             id: 5,
             URL: "https://youtube.com/embed/xb9cSfPOb1c?si=SXXjHnbOAnJLheZP",
           },
           {
-            name: "7 - no sé",
+            name: "7 - Clase prueba 7",
             id: 6,
             URL: "https://youtube.com/embed/iaJKy1Ic3_I?si=EB4aiRWmpdsaygmq",
           },
           {
-            name: "8 - Lo que va pasar",
+            name: "8 - Clase prueba 8",
             id: 7,
             URL: "https://youtube.com/embed/h3DY-SAYhvY?si=7BJqx284lSFkh3ec",
           },
           {
-            name: "9 - beibe",
+            name: "9 - Clase prueba 9",
             id: 8,
             URL: "https://youtube.com/embed/h3DY-SAYhvY?si=7BJqx284lSFkh3ec",
           },
@@ -228,10 +217,6 @@ function Context({ children }) {
     setCoursesCart,
     loadContent,
     setLoadContent,
-    progressValue,
-    setProgressValue,
-    courseID,
-    setCourseID,
     errorVideo,
     setErrorVideo,
     allCourses,
@@ -250,5 +235,3 @@ function Context({ children }) {
 }
 
 export default Context;
-
-export const useMyContext = () => useContext(ContextProps);

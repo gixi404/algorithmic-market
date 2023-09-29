@@ -110,7 +110,7 @@ function UserSVG() {
   );
 }
 
-function IconSVG() {
+function CartSVG() {
   return (
     <IconContainer>
       <svg
@@ -169,10 +169,8 @@ function MenuSVG(props) {
   const { menuActive, setMenuActive } = props;
 
   return (
-    <svg
+    <ContainerMenu
       onClick={() => setMenuActive(!menuActive)}
-      width="50px"
-      height="50px"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +187,7 @@ function MenuSVG(props) {
         d="M1 20C1 19.4477 1.44772 19 2 19H22C22.5523 19 23 19.4477 23 20C23 20.5523 22.5523 21 22 21H2C1.44772 21 1 20.5523 1 20Z"
         fill="#ff6700"
       />
-    </svg>
+    </ContainerMenu>
   );
 }
 
@@ -207,14 +205,47 @@ function CircleSVG() {
   );
 }
 
+function ArrowBack(props) {
+  const { route } = props;
+  return (
+    <ArrowBackLink to={route}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="50"
+        height="40"
+        viewBox="0 0 60 44"
+        fill="none"
+      >
+        <path
+          d="M22 2L2 21.9999L22 42"
+          stroke="white"
+          strokeWidth="3"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M58.0129 22.0002H2.55981"
+          stroke="white"
+          strokeWidth="3"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </ArrowBackLink>
+  );
+}
+
 export {
   CloseCartSVG,
   TrashSVG,
   MenuSVG,
   ArrowSVG,
   UserSVG,
-  IconSVG,
+  CartSVG,
   CircleSVG,
+  ArrowBack,
 };
 
 const User = styled(Link)`
@@ -237,5 +268,22 @@ const User = styled(Link)`
     transition: all ease 0.3s;
     &:hover {
       scale: 1.1;
+    }
+  `,
+  ContainerMenu = styled.svg`
+    width: 50px;
+    height: 50px;
+    @media (min-width: 577px) {
+      display: none;
+    }
+  `,
+  ArrowBackLink = styled(Link)`
+    width: 80vw;
+    text-align: start;
+    text-decoration: none;
+    color: inherit;
+    @media (max-width: 1024px) {
+      width: 100vw;
+      text-align: center;
     }
   `;

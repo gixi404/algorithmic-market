@@ -1,57 +1,50 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMyContext } from "../Context";
 import styled from "styled-components";
-import { useEffect } from "react";
 
-function LoginBtn() {  
+function LoginBtn() {
   const { loginWithPopup } = useAuth0(),
     { IS_MOBILE } = useMyContext();
-  const bodyCore = {username: 'bakflip',email:'backflip@gmail.com',courses:{name:'curso inicial', id: 1}}
-  const infoFetch = {method:'post',headers:{"Content-Type": "application/json"}, body: JSON.stringify(bodyCore)}
-  const logUser = async() => {
-    try{/* 
-      const data = await fetch('http://localhost:3001/users',infoFetch),
+
+  const bodyCore = {
+      username: "bakflip",
+      email: "backflip@gmail.com",
+      courses: { name: "curso inicial", id: 1 },
+    },
+    infoFetch = {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(bodyCore),
+    };
+
+  async function logUser() {
+    try {
+      /* const data = await fetch('http://localhost:3001/users',infoFetch),
       json = await data.json()
       console.log(json) */
-      loginWithPopup()
-    }
-    catch(e){
-      console.log(e.message)
+      loginWithPopup();
+    } catch (error) {
+      console.log(error.message);
     }
   }
-  if (IS_MOBILE) {
-    return (
-      <ContainerMobile>
-        <LoginButtonMobile onClick={loginWithPopup}>
-          Iniciar Sesión
-        </LoginButtonMobile>
-      </ContainerMobile>
-    );
-  } else {
-    return <LoginButton onClick={logUser}>Iniciar Sesión</LoginButton>;
-  }
+
+  return IS_MOBILE ? (
+    <Container>
+      <LoginButton onClick={logUser}>Iniciar Sesión</LoginButton>
+    </Container>
+  ) : (
+    <LoginButton onClick={logUser}>Iniciar Sesión</LoginButton>
+  );
 }
 
 export default LoginBtn;
 
-const ContainerMobile = styled.div`
+const Container = styled.div`
     width: 100vw;
-    height: 10vh;
+    height: 8vh;
     display: flex;
     align-items: center;
     justify-content: center;
-  `,
-  LoginButtonMobile = styled.button`
-    font-family: "Poppins", monospace;
-    padding: 10px 18px;
-    text-align: center;
-    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    color: #ff6700;
-    outline: 2px solid #ff6700;
-    border-radius: 5px;
-    background-color: transparent;
-    overflow: hidden;
-    border: none;
   `,
   LoginButton = styled.button`
     position: relative;

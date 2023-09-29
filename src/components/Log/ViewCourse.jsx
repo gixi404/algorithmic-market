@@ -2,11 +2,19 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function ViewCourse(props) {
-  const { title, url } = props;
+  const { url } = props;
+
+  function handleClick() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }
 
   return (
-    <Button>
-      <Link to={url}>{title}</Link>
+    <Button onClick={handleClick}>
+      <Link to={url}>Ver</Link>
     </Button>
   );
 }

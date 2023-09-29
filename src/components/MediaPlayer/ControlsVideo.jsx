@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useMyContext } from "../Context";
 import styled from "styled-components";
 
 function ControlsVideo(props) {
   const {
+      courseid_params,
       numberClass,
       previousClass,
       nextClass,
@@ -10,36 +12,47 @@ function ControlsVideo(props) {
       courseInProgress,
       setCourseInProgress,
     } = props,
+    { allCourses } = useMyContext(),
     isFirstClass = Number(numberClass) === 0,
     isLastClass = Number(numberClass) === Number(lastClass);
+
+  function handleFinishCourse() {
+    allCourses[courseid_params].isCompleted = true;
+    setCourseInProgress(false);
+    localStorage.setItem(
+      `isCompleted:${allCourses[courseid_params].name}`,
+      true
+    );
+  }
 
   return (
     <Controls>
       {isFirstClass && courseInProgress ? (
         <PreviousZero>Clase&nbsp;Anterior</PreviousZero>
       ) : courseInProgress ? (
-        <ControlBtn onClick={previousClass}>Clase&nbsp;Anterior</ControlBtn>
+        <ControlBtn onClick={previousClass} aria-label="clase anterior">
+          Clase&nbsp;Anterior
+        </ControlBtn>
       ) : null}
 
       {isLastClass && courseInProgress ? (
-        <FinishBtn onClick={() => setCourseInProgress(false)}>
+        <FinishBtn onClick={handleFinishCourse} aria-label="finalizar curso">
           Finalizar&nbsp;Curso
         </FinishBtn>
       ) : courseInProgress ? (
-        <ControlBtn onClick={nextClass}>Clase&nbsp;Siguiente</ControlBtn>
+        <ControlBtn onClick={nextClass} aria-label="clase siguiente">
+          Clase&nbsp;Siguiente
+        </ControlBtn>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100vw",
-          }}
-        >
-          <GoToMyCourses to="/mycourses" style={{ textDecoration: "none" }}>
+        <ContainerBack>
+          <BackBtn
+            to="/mycourses"
+            style={{ textDecoration: "none" }}
+            aria-label="ir a mis cursos"
+          >
             Mis&nbsp;Cursos
-          </GoToMyCourses>
-        </div>
+          </BackBtn>
+        </ContainerBack>
       )}
     </Controls>
   );
@@ -47,7 +60,30 @@ function ControlsVideo(props) {
 
 export default ControlsVideo;
 
-const Controls = styled.div`
+const controlBtnStyles = `
+    border: 2px solid #ff6700;
+    background-color: transparent;
+    color: #ff6700;
+    text-decoration: none;
+    display: flex;
+    width: 60vw;
+    max-width: 350px;
+    padding: 10px 18px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    transition-duration: 0.2s;
+    &:hover {
+      transform: scale(0.955);
+      cursor: pointer;
+    }
+`,
+  Controls = styled.nav`
     display: flex;
     flex-direction: row;
     width: 99.2%;
@@ -59,99 +95,28 @@ const Controls = styled.div`
       row-gap: 0.8em;
     }
   `,
-  ControlBtn = styled(Link)`
-    border: 2px solid #ff6700;
-    background-color: transparent;
-    color: #ff6700;
-    text-decoration: none;
-    display: flex;
-    width: 60vw;
-    max-width: 350px;
-    padding: 10px 18px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
-    outline: none;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    transition-duration: 0.2s;
-
-    &:hover {
-      transform: scale(0.955);
-      cursor: pointer;
-    }
+  ControlBtn = styled.button`
+    ${controlBtnStyles}
   `,
   PreviousZero = styled.button`
+    ${controlBtnStyles}
     opacity: 0.5;
-    border: 2px solid #ff6700;
-    background-color: transparent;
-    color: #ff6700;
-    text-decoration: none;
-    display: flex;
-    width: 70vw;
-    max-width: 350px;
-    padding: 10px 18px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
-    outline: none;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    transition-duration: 0.2s;
-
-    &:hover {
-      transform: scale(0.955);
-      cursor: pointer;
-    }
   `,
   FinishBtn = styled.button`
+    ${controlBtnStyles}
     background-color: #ff6700;
     color: #ffffff;
     border: 2px solid #fff;
-    text-decoration: none;
-    display: flex;
-    width: 70vw;
-    max-width: 350px;
-    padding: 10px 18px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
-    outline: none;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    transition-duration: 0.2s;
-
-    &:hover {
-      transform: scale(0.955);
-      cursor: pointer;
-    }
   `,
-  GoToMyCourses = styled(Link)`
+  ContainerBack = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+  `,
+  BackBtn = styled(Link)`
+    ${controlBtnStyles}
     background-color: #ffffff;
     color: #ff6700;
     border: 2px solid #ff6700;
-    display: flex;
-    width: 60vw;
-    max-width: 350px;
-    padding: 10px 18px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
-    outline: none;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: calc(18px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    transition-duration: 0.2s;
-
-    &:hover {
-      transform: scale(0.955);
-      cursor: pointer;
-    }
   `;

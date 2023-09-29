@@ -29,7 +29,7 @@ function IndexCart() {
     <Container>
       <Header />
 
-      <CartContainer>
+      <Content>
         <HeaderCart>
           <h3 style={{ color: "black" }}>Carrito</h3>
           <Link to="/">
@@ -63,10 +63,8 @@ function IndexCart() {
             <P>Inicia Sesión para realizar una compra</P>
             <LoginBtn />
           </>
-        ) : (
-          ""
-        )}
-      </CartContainer>
+        ) : null}
+      </Content>
 
       <Footer />
     </Container>
@@ -82,7 +80,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
   `,
-  CartContainer = styled.div`
+  Content = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -149,7 +147,7 @@ const Container = styled.div`
       font-family: "Poppins", monospace;
     }
   `,
-  SubmitContainer = styled.article`
+  SubmitContainer = styled.section`
     width: 100%;
     height: 10vh;
 

@@ -1,100 +1,56 @@
 import { useState } from "react";
 import { Link as Linkk } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useMyContext } from "../../Context.jsx";
-import IconCart from "../ShoppingCart/IconCart.jsx";
 import Menu from "./Menu.jsx";
 import LoginBtn from "../../Log/LoginBtn";
-import logo from "../../../img/logo1.png";
-import { MenuSVG, UserSVG } from "../../svgs.jsx";
+import NavHeader from "./NavHeader.jsx";
+import favicon from "../../../img/favicon.ico";
+import { MenuSVG, UserSVG, CartSVG } from "../../svgs.jsx";
 import styled from "styled-components";
 
 function Header() {
   const { isAuthenticated } = useAuth0(),
-    { IS_MOBILE } = useMyContext(),
     [menuActive, setMenuActive] = useState(false);
 
-  if (IS_MOBILE) {
-    return menuActive ? (
-      <Menu menuActive={menuActive} setMenuActive={setMenuActive} />
-    ) : (
-      <HeaderContainer>
-        <WebContainerMobile>
-          <Link to="/">
-            <LogoMobile
-              src={logo}
-              title="Algorithmic Market"
-              alt="Algorithmic Market Logo"
-            />
-          </Link>
+  return menuActive ? (
+    <Menu menuActive={menuActive} setMenuActive={setMenuActive} />
+  ) : (
+    <Container>
+      <Content>
+        <Link to="/">
+          <Logo
+            src={favicon}
+            title="Algorithmic Market"
+            alt="Algorithmic Market Logo"
+          />
+        </Link>
 
-          <MenuSVG menuActive={menuActive} setMenuActive={setMenuActive} />
-        </WebContainerMobile>
-      </HeaderContainer>
-    );
-  } else {
-    return (
-      <HeaderContainer>
-        <WebContainer>
-          <Link to="/">
-            <Logo
-              src={logo}
-              title="Algorithmic Market"
-              alt="Algorithmic Market Logo"
-            />
-          </Link>
+        {window.location.pathname === "/" && <NavHeader />}
 
-          {window.location.pathname === "/" ? (
-            <NavContainer>
-              <NavLink href="#allcourses">Cursos</NavLink>
-              <NavLink href="#aboutus">Sobre&nbsp;Nosotros</NavLink>
-              <NavLink href="#contact">Contacto</NavLink>
-            </NavContainer>
+        <Icons>
+          {isAuthenticated ? (
+            <>
+              <Link to="/shoppingcart">
+                <CartSVG width="1.8em" height="1.8em" />
+              </Link>
+              <UserSVG />
+            </>
           ) : (
-            <NavContainer>
-              <NavLink>&nbsp;</NavLink>
-              <NavLink>&nbsp;</NavLink>
-              <NavLink>&nbsp;</NavLink>
-            </NavContainer>
+            <DivLogin>
+              <LoginBtn />
+            </DivLogin>
           )}
+        </Icons>
 
-          <CotainerPopLog>
-            {isAuthenticated ? (
-              <>
-                <IconCart />
-                <UserSVG />
-              </>
-            ) : (
-              <DivLoginCart>
-                <LoginBtn />
-              </DivLoginCart>
-            )}
-          </CotainerPopLog>
-        </WebContainer>
-      </HeaderContainer>
-    );
-  }
+        <MenuSVG menuActive={menuActive} setMenuActive={setMenuActive} />
+      </Content>
+    </Container>
+  );
 }
 
 export default Header;
 
-const WebContainerMobile = styled.div`
-    width: 90%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    row-gap: 0.5rem;
-    justify-content: space-between;
-  `,
-  LogoMobile = styled.img`
-    width: 60px;
-    height: 70px;
-    object-fit: cover;
-    object-position: center;
-  `;
-
-const HeaderContainer = styled.header`
+const Container = styled.header`
     background-color: #ffffff;
     width: 100vw;
     min-height: 12vh;
@@ -104,13 +60,17 @@ const HeaderContainer = styled.header`
     justify-content: center;
     border-bottom: 4px solid #ff6700;
   `,
-  WebContainer = styled.div`
+  Content = styled.div`
     width: 80%;
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 576px) {
+      width: 90%;
+      row-gap: 0.5em;
+    }
   `,
   Logo = styled.img`
     margin: 5px 0;
@@ -119,24 +79,27 @@ const HeaderContainer = styled.header`
     object-fit: cover;
     object-position: center;
   `,
-  NavContainer = styled.nav`
+  Nav = styled.nav`
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    column-gap: 1.3rem;
+    column-gap: 1.3em;
     min-width: 25vw;
     height: 80px;
-  `,
-  NavLink = styled.a`
-    color: #2e2e2e;
-    text-decoration: none;
-    font-family: "Poppins", monospace;
-    font-size: calc(10px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    text-transform: capitalize;
-    transition-duration: 0.1s;
-    &:hover {
-      color: #888888;
+    a {
+      color: #2e2e2e;
+      text-decoration: none;
+      font-family: "Poppins", monospace;
+      font-size: calc(10px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+      text-transform: capitalize;
+      transition-duration: 0.1s;
+      &:hover {
+        color: #888888;
+      }
+      @media (max-width: 576px) {
+        display: none;
+      }
     }
   `,
   Link = styled(Linkk)`
@@ -154,15 +117,18 @@ const HeaderContainer = styled.header`
       color: #888888;
     }
   `,
-  CotainerPopLog = styled.div`
-    height: "100%";
+  Icons = styled.span`
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     column-gap: 2em;
+    @media (max-width: 576px) {
+      display: none;
+    }
   `,
-  DivLoginCart = styled.div`
+  DivLogin = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: end;
