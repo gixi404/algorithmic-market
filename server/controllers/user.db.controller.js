@@ -1,14 +1,19 @@
 import User from "../../src/DB/user.model.js";
 
 export const createUser = async (req, res) => {
-  const { username, email, courses, waitingcourse } = req.body;
-  console.log(req.body)
+  const { nickname, email, courses } = req.body;
+  const user = await User.find({username:nickname})
+  const username = nickname
+  if(user.length <= 0){
     const newUser = new User({
-        username,
-        email,
-        courses,
-        waitingcourse,
-    })
-    const userSaved = await newUser.save()
-    res.json(userSaved)
+      username,
+      email,
+      courses,
+  })
+  const userSaved = await newUser.save()
+  return res.json(userSaved)
+  }
+  else{
+    return res.json(user)
+  }
 }

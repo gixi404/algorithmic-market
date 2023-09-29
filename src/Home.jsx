@@ -11,16 +11,22 @@ import LoginBtn from "./components/Log/LoginBtn.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import CoursePurchased from "./components/Courses/PurchasedCourse.jsx";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Home() {
-  const { isLoading, isAuthenticated, getAccessTokenSilently, loginWithPopup } = useAuth0(),
+  const [userInfo, setUserInfo] = useState({})
+  const { isLoading, isAuthenticated, getAccessTokenSilently, user} = useAuth0(),
     { IS_MOBILE } = useMyContext();
   useEffect(() => {
       const getToken = async()=>{
         try{
           const newToken = await getAccessTokenSilently()
-          localStorage.setItem('access_token',newToken)
+          const data = await fetch('http://localhost:3001/users',{method:'post',headers:{"Content-Type": 'application/json'},body:JSON.stringify(user)})
+          const json = await data.json()
+          console.log(json)
+          if(json[0].courses){
+            console.log('maracuya')
+          }
         }
         catch(e){
           console.log('error', e.message)
@@ -28,15 +34,8 @@ function Home() {
       }
       if(isAuthenticated){getToken()}
   },[isAuthenticated])
-
   useEffect(() => {
-    const tokenAccess = localStorage.getItem('access_token')
-    
-    if(!isAuthenticated && tokenAccess){
-      console.log(tokenAccess)
-    }
-  },[])
-//  useEffect(() => {if(!isAuthenticated){loginWithPopup()} },[isAuthenticated])
+  }, [userInfo])
   if (isLoading) {
     return (
       <LoadContainer>

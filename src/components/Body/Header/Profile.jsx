@@ -7,7 +7,6 @@ import { useEffect } from "react";
 
 function Profile() {
   const { user, logout } = useAuth0();
-  useEffect(()=>{},[])
   function logOut() {
     return logout();
   }

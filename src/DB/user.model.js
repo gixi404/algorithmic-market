@@ -14,9 +14,6 @@ const userSchema = mongoose.Schema({
   courses:{
     type: Object,
   },
-  waitingcourse: {
-    type: Object
-  }
 });
 
 export default mongoose.model("User", userSchema);
