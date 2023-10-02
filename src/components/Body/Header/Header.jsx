@@ -10,7 +10,11 @@ import styled from "styled-components";
 
 function Header() {
   const { isAuthenticated } = useAuth0(),
-    [menuActive, setMenuActive] = useState(false);
+    [menuActive, setMenuActive] = useState(false),
+    verifyNav =
+      window.location.pathname === "/" ||
+      window.location.pathname === "/coursepurchased" ||
+      window.location.pathname === "/details/:coursedetails";
 
   return menuActive ? (
     <Menu menuActive={menuActive} setMenuActive={setMenuActive} />
@@ -25,14 +29,12 @@ function Header() {
           />
         </Link>
 
-        {window.location.pathname === "/" && <NavHeader />}
+        {verifyNav && <NavHeader />}
 
         <Icons>
           {isAuthenticated ? (
             <>
-              <Link to="/shoppingcart">
-                <CartSVG width="1.8em" height="1.8em" />
-              </Link>
+              <CartSVG />
               <UserSVG />
             </>
           ) : (

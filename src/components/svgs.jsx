@@ -89,7 +89,7 @@ function ArrowSVG(props) {
 
 function UserSVG() {
   return (
-    <User to="/profile">
+    <User title="Perfíl" to="/profile">
       <svg
         width="16"
         height="16"
@@ -112,10 +112,10 @@ function UserSVG() {
 
 function CartSVG() {
   return (
-    <IconContainer>
+    <CartContainer title="Carrito" to="/shoppingcart">
       <svg
-        width="33px"
-        height="33px"
+        width="1.8em"
+        height="1.8em"
         viewBox="0 0 43 43"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +161,7 @@ function CartSVG() {
           </g>
         </g>
       </svg>
-    </IconContainer>
+    </CartContainer>
   );
 }
 
@@ -261,13 +261,18 @@ const User = styled(Link)`
       scale: 1;
     }
   `,
-  IconContainer = styled.div`
+  CartContainer = styled(Link)`
+    cursor: pointer;
+
     height: 80px;
     line-height: 100px;
     width: max-content;
     transition: all ease 0.3s;
     &:hover {
       scale: 1.1;
+    }
+    &:active {
+      scale: 1;
     }
   `,
   ContainerMenu = styled.svg`

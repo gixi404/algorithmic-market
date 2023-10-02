@@ -12,22 +12,22 @@ function AboutUs() {
             <span style={{ fontStyle: "italic", color: "#ff6700" }}>
               Algorithmic Market
             </span>
-            , no somos solo una empresa, somos personas dispuestas y dedicados a
-            transformar las aspiraciones financieras en realidad de nuestros
-            alumnos. Establecido con la visión de brindar a las personas el
-            conocimiento y las herramientas para conquistar la excelencia en los
-            graficos y el mercado. Algorithmic Market esta exclusivamente al
-            servicio de sus estudiantes para que alcancen todas sus metas.
+            , somos personas dispuestas y dedicadas a transformar las
+            aspiraciones financieras en realidad de nuestros alumnos.
+            Establecido con la visión de brindar a las personas el conocimiento
+            y las herramientas para conquistar la excelencia en los graficos y
+            el mercado. Algorithmic Market esta exclusivamente al servicio de
+            sus estudiantes para que alcancen sus metas.
             <br /> <br />
-            Nuestra misión es simple: brindar educación de primer nivel,
-            recursos de unicos y ayuda incomparable a nuestros traders de todos
-            los niveles. Desde principiantes que dan sus primeros pasos hasta
-            profesionales experimentados.
+            Nuestra misión es brindar educación de primer nivel, recursos unicos
+            y ayuda incomparable a nuestros traders de todos los niveles. Desde
+            principiantes que dan sus primeros pasos hasta profesionales
+            experimentados.
           </p>
         </Text>
 
         <ImgContainer>
-          <Img src={aboutUsImg} alt="Imágen de trabajo en equipo" />
+          <Img src={aboutUsImg} alt="imágen de trabajo en equipo" />
         </ImgContainer>
       </Content>
     </Container>

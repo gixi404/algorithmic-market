@@ -3,16 +3,14 @@ import styled from "styled-components";
 
 function CoursePurchased() {
   return (
-    <Container to="Home">
+    <Container to="/">
       <Letter>
         <Title>
           <span>Compra realizada correctamente</span>
           En la sección Cursos verás que ahora hay un botón "Ver", en él podrás
           acceder al contenido del curso.
         </Title>
-        <Link to="/" style={{ textDecoration: "none", color: "#ff6700" }}>
-          <OkeyBtn>Okey</OkeyBtn>
-        </Link>
+        <OkeyBtn>Okey</OkeyBtn>
       </Letter>
     </Container>
   );

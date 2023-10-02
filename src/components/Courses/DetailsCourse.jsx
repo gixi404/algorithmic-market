@@ -4,7 +4,7 @@ import AddButton from "../Courses/AddButton.jsx";
 import { CloseCartSVG } from "../svgs.jsx";
 import styled from "styled-components";
 
-function detailCourses() {
+function DetailsCourse() {
   const { courseSelected, myCourses } = useMyContext(),
     { coursedetails } = useParams(),
     { name, description } = courseSelected(coursedetails);
@@ -36,7 +36,7 @@ function detailCourses() {
   );
 }
 
-export default detailCourses;
+export default DetailsCourse;
 
 const Container = styled.main`
     width: 100vw;

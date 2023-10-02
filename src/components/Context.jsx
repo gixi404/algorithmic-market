@@ -22,7 +22,7 @@ function Context({ children }) {
       },
       {
         id: 1,
-        isBought: true,
+        isBought: false,
         name: "Curso Medio",
         cash: 700,
         description:
@@ -30,7 +30,7 @@ function Context({ children }) {
       },
       {
         id: 2,
-        isBought: true,
+        isBought: false,
         name: "Curso Avanzado",
         cash: 1000,
         description:
@@ -46,7 +46,6 @@ function Context({ children }) {
           {
             name: "1 - Introducción a Mercados",
             id: 0,
-            // URL: "https://www.youtube.com/embed/YemMlCgUo64",
             URL: "https://iframe.mediadelivery.net/embed/158989/619b4b43-12fe-4b2e-8789-0b3cd493f0b3?autoplay=false&loop=false&muted=false&preload=false",
           },
           {
@@ -195,7 +194,8 @@ function Context({ children }) {
           },
         ],
       },
-    ]);
+    ]),
+    [protectedRoute, setProtectedRoute] = useState(false);
 
   function removeCart(product) {
     return setCoursesCart(prevState =>
@@ -223,6 +223,8 @@ function Context({ children }) {
     setMyCourses,
     removeCart,
     courseSelected,
+    protectedRoute,
+    setProtectedRoute,
   };
 
   return (

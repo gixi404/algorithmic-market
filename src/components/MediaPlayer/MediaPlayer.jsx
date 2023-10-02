@@ -32,6 +32,8 @@ function MediaPlayer() {
     [progressValue, setProgressValue] = useState(initialProgressValue),
     lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
 
+    //! hablar lo de mi abuela y milei
+
   useEffect(() => {
     function selectCourse() {
       setClassData({
@@ -50,6 +52,22 @@ function MediaPlayer() {
     );
     return () => setItem;
   }, [progressValue]);
+
+  useEffect(() => {
+    const lastClassVisited =
+        Math.floor(progressValue[courseid_params].toString().charAt(1)) - 1 ===
+        -1
+          ? 9
+          : Math.floor(progressValue[courseid_params].toString().charAt(0)) - 1,
+      updatedClass = {
+        classId: direction(courseid_params, lastClassVisited).id,
+        className: direction(courseid_params, lastClassVisited).name,
+        classURL: direction(courseid_params, lastClassVisited).URL,
+      };
+
+    setNumberClass(lastClassVisited);
+    setClassData(updatedClass);
+  }, [courseid_params, progressValue]);
 
   function direction(numberCourse, numberClass = 0) {
     return myCourses[numberCourse]?.classes[numberClass];

@@ -1,10 +1,13 @@
+import { useMyContext } from "../Context";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function ViewCourse(props) {
-  const { url } = props;
+  const { url } = props,
+    { setProtectedRoute } = useMyContext();
 
   function handleClick() {
+    setProtectedRoute(true);
     window.scrollTo({
       top: 0,
       left: 0,
@@ -12,6 +15,8 @@ function ViewCourse(props) {
     });
   }
 
+  //!cantidad de libros leídos
+  
   return (
     <Button onClick={handleClick}>
       <Link to={url}>Ver</Link>
