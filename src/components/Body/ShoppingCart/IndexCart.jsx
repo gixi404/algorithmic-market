@@ -43,7 +43,7 @@ function IndexCart() {
               <ItemCart key={course.id} data={course} />
             ))
           ) : (
-            <P>Sin cursos</P>
+            <P style={{ marginTop: "3em" }}>Carrito Vacío</P>
           )}
         </ItemContainer>
 

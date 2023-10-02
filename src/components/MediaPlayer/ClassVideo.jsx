@@ -24,7 +24,7 @@ function ClassVideo(props) {
     if (classURL) {
       setLoadContent(true);
       fetch(classURL)
-        .then(response => response.url)
+        .then(res => res.url)
         .then(url => setVideoData(url))
         .catch(() => setErrorVideo(true))
         .finally(() => setLoadContent(false));
@@ -34,7 +34,6 @@ function ClassVideo(props) {
   return (
     <>
       {loadContent && <SkeletonContainer />}
-
       {!errorVideo ? (
         <Video
           src={videoData}
@@ -57,23 +56,20 @@ const Video = styled.iframe`
     background-color: rgb(24, 24, 84);
     width: 80vw;
     height: calc((9 / 16) * 80vw);
-    border: none;
-    outline: none;
+    outline: 0;
     border: 0;
-
     @media (max-width: 992px) {
       width: 90vw;
       height: calc((9 / 16) * 90vw);
     }
-
     @media (max-width: 576px) {
       width: 100vw;
       height: calc((9 / 16) * 100vw);
     }
   `,
   SkeletonContainer = styled.div`
-    border: none;
-    outline: none;
+    border: 0;
+    outline: 0;
     border-radius: 0;
     background-color: #444;
     width: 80vw;
