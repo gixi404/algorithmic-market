@@ -14,8 +14,6 @@ function ViewCourse(props) {
       behavior: "instant",
     });
   }
-
-  //!cantidad de libros leídos
   
   return (
     <Button onClick={handleClick}>

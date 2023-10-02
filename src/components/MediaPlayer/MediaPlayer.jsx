@@ -11,6 +11,7 @@ import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
 import ItemClass from "./ItemClass";
 import { ArrowBack } from "../svgs";
+import ContinueCourse from "./ContinueCourse";
 import styled from "styled-components";
 
 function MediaPlayer() {
@@ -30,9 +31,8 @@ function MediaPlayer() {
     [numberClass, setNumberClass] = useState(0),
     [courseInProgress, setCourseInProgress] = useState(true),
     [progressValue, setProgressValue] = useState(initialProgressValue),
+    [continueCourse, setContinueCourse] = useState(true),
     lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
-
-    //! hablar lo de mi abuela y milei
 
   useEffect(() => {
     function selectCourse() {
@@ -159,11 +159,15 @@ function MediaPlayer() {
         </HeaderMedia>
 
         {courseInProgress ? (
-          <ClassVideo
-            classURL={classData.classURL}
-            loadContent={loadContent}
-            setLoadContent={setLoadContent}
-          />
+          continueCourse ? (
+            <ContinueCourse setContinueCourse={setContinueCourse} />
+          ) : (
+            <ClassVideo
+              classURL={classData.classURL}
+              loadContent={loadContent}
+              setLoadContent={setLoadContent}
+            />
+          )
         ) : (
           <FinishCourse setLoadContent={setLoadContent} />
         )}
