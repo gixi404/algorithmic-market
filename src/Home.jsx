@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Header from "./components/Body/Header/Header.jsx";
 import Banner from "./components/Body/Banner.jsx";
@@ -7,17 +7,17 @@ import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
 import Courses from "./components/Courses/Courses.jsx";
-import Details from "./components/Courses/DetailsCourse.jsx";
+import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import LoginBtn from "./components/Log/LoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
 
 function Home() {
-  const [userInfo, setUserInfo] = useState({});
   const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
       useAuth0(),
-    { IS_MOBILE } = useMyContext();
+    { IS_MOBILE, allCourses } = useMyContext(),
+    verifyIsBought = allCourses.some(course => course.isBought);
 
   useEffect(() => {
     const getToken = async () => {
@@ -29,7 +29,7 @@ function Home() {
           body: JSON.stringify(user),
         });
         const json = await data.json();
-        console.log(json);
+        // console.log(json);
         if (json[0].courses) {
           console.log("maracuya");
         }
@@ -41,7 +41,7 @@ function Home() {
       getToken();
     }
   }, [isAuthenticated]);
-  useEffect(() => {}, [userInfo]);
+
   if (isLoading) {
     return (
       <LoadContainer>
@@ -53,9 +53,11 @@ function Home() {
   return (
     <HomeContainer>
       <Routes>
-        <Route path="/details/:coursedetails" element={<Details />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/coursepurchased" element={<CoursePurchased />} />
+        <Route path="/details/:coursedetails" element={<DetailsCourse />} />
+        <Route
+          path="/coursepurchased"
+          element={verifyIsBought ? <CoursePurchased /> : <Navigate to="/" />}
+        />
       </Routes>
       <Header />
       {IS_MOBILE && !isAuthenticated && <LoginBtn />}
