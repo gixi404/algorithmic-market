@@ -1,4 +1,5 @@
-    import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Header from "./components/Body/Header/Header.jsx";
 import Banner from "./components/Body/Banner.jsx";
@@ -11,34 +12,37 @@ import LoginBtn from "./components/Log/LoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
 
 function Home() {
-  const [userInfo, setUserInfo] = useState({})
-  const { isLoading, isAuthenticated, getAccessTokenSilently, user} = useAuth0(),
+  const [userInfo, setUserInfo] = useState({});
+  const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
+      useAuth0(),
     { IS_MOBILE } = useMyContext();
-
+  console.log(user)
   useEffect(() => {
-      const getToken = async()=>{
-        try{
-          const newToken = await getAccessTokenSilently()
-          const data = await fetch('http://localhost:3001/users',{method:'post',headers:{"Content-Type": 'application/json'},body:JSON.stringify(user)})
-          const json = await data.json()
-          console.log(json)
-          if(json[0].courses){
-            setUserInfo(json[0].courses)
-            console.log(userInfo)
-          }
+    const getToken = async () => {
+      try {
+        const newToken = await getAccessTokenSilently();
+        const data = await fetch("http://localhost:3001/users", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(user),
+        });
+        const json = await data.json();
+        console.log(json);
+        if (json[0].courses) {
+          setUserInfo(json[0].courses)
+          console.log(userInfo)
         }
-        catch(e){
-          console.log('error', e.message)
-        }
+      } catch (e) {
+        console.log("error", e.message);
       }
-      if(isAuthenticated){getToken()}
-  },[isAuthenticated])
-  useEffect(() => {
-    console.log(userInfo)
-  }, [userInfo])
+    };
+    if (isAuthenticated) {
+      getToken();
+    }
+  }, [isAuthenticated]);
+  useEffect(() => {}, [userInfo]);
   if (isLoading) {
     return (
       <LoadContainer>

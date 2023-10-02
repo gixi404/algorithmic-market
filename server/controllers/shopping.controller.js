@@ -1,6 +1,6 @@
 import shopping from "../../src/DB/shopping.model.js";
 import course from "../../src/DB/course.model.js";
-import user from "../../src/DB/user.model.js";
+import User from "../../src/DB/user.model.js";
 
 //CRUD con mongoDB
 export async function createShoppingCart(req, res) {
@@ -61,16 +61,17 @@ export async function deleteShoppingCart(req, res) {
 
 //validacion de compras con base de datos
 export async function confirmShopping(req, res) {
-  const { idcourse1, idcourse2, idcourse3 } = req.params;
+  const { user, idcourse1, idcourse2, idcourse3 } = req.params;
   try {
     const data = await fetch("http://localhost:3001/buy", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        coursecomprado: {
-          1: idcourse1,
-          2: idcourse2,
-          3: idcourse3,
+        infoCompra: {
+          user: user,
+          c1: idcourse1,
+          c2: idcourse2,
+          c3: idcourse3,
         },
       }),
     });
@@ -84,10 +85,48 @@ export async function confirmShopping(req, res) {
 }
 
 export async function redirectShopping(req, res) {
-  const { coursecomprado } = req.body;
-  console.log(coursecomprado);
-  const coincidencia = await course.findOne({ id: "2" });
-  console.log(coincidencia);
+  const { infoCompra } = req.body;
+  const c1 = infoCompra.c1,
+  c2 = infoCompra.c2,
+  c3 = infoCompra.c3,
+  user = infoCompra.user
+  if(c1){
+    try{
+      const c1bought = await course.find({id:c1})
+      const coincidencia = await User.find({email:user})
+      console.log(coincidencia)
+      if(!coincidencia){
+        return res.json({
+          url: "http://localhost:3000/coursepurchased",
+        })
+      }
+      else{
+        const userAct = await User.updateOne({email: user},{$set: {courses:{
+          course1:c1bought[0]
+        }}})
+      }
+    }
+    catch(e){
+      throw new Error('no se halló curso')
+    }
+  }
+  if(c2){
+    try{
+      const c2bought = await course.find({id:c2})
+      
+    }
+    catch(e){
+      throw new Error('no se halló curso')
+    }
+  }
+  if(c3){
+    try{
+      const c3bought = await course.find({id:c3})
+    }
+    catch(e){
+      throw new Error('no se halló curso')
+    }
+}
   res.json({
     url: "http://localhost:3000/coursepurchased",
   });

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 function Footer() {
   const urlWhatsApp =
-    "https://wa.me/2615731250?text=Hola, me gustaría adquirir sus servicios";
+    "https://wa.me/2615731250?text=Hola Staff Lym, los contacto por...";
 
   return (
     <Container>

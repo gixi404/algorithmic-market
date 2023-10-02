@@ -15,7 +15,7 @@ import styled from "styled-components";
 
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
-    initialProgressValue = [11.11, 11.11, 11.11];
+    initialProgressValue = Array(3).fill(11.11);
 
   (function getStoredProgress() {
     const storedProgress = localStorage.getItem(`progress:${courseid_params}`);
@@ -40,16 +40,15 @@ function MediaPlayer() {
         classURL: direction(courseid_params, numberClass).URL,
       });
     }
-
     return () => selectCourse();
   }, [courseid_params]);
 
   useEffect(() => {
-    return () =>
-      localStorage.setItem(
-        `progress:${courseid_params}`,
-        progressValue[courseid_params]
-      );
+    const setItem = localStorage.setItem(
+      `progress:${courseid_params}`,
+      progressValue[courseid_params]
+    );
+    return () => setItem;
   }, [progressValue]);
 
   function direction(numberCourse, numberClass = 0) {
@@ -58,43 +57,38 @@ function MediaPlayer() {
 
   function previousClass() {
     if (numberClass > 0) {
-      const newNumberClass = numberClass - 1,
+      const updatedProgressValue = [...progressValue],
+        newNumberClass = numberClass - 1,
         previousClassData = {
           classId: direction(courseid_params, newNumberClass).id,
           className: direction(courseid_params, newNumberClass).name,
           classURL: direction(courseid_params, newNumberClass).URL,
         };
 
+      updatedProgressValue[courseid_params] -= 11.11;
       setErrorVideo(false);
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
       setClassData(previousClassData);
-      // updateItemProgress(false);
-      const updatedProgressValue = [...progressValue];
-
-      updatedProgressValue[courseid_params] -= 11.11;
       setProgressValue(updatedProgressValue);
     }
   }
 
   function nextClass() {
     if (numberClass < lastClass) {
-      const newNumberClass = numberClass + 1,
+      const updatedProgressValue = [...progressValue],
+        newNumberClass = numberClass + 1,
         nextClassData = {
           classId: direction(courseid_params, newNumberClass).id,
           className: direction(courseid_params, newNumberClass).name,
           classURL: direction(courseid_params, newNumberClass).URL,
         };
 
+      updatedProgressValue[courseid_params] += 11.11;
       setErrorVideo(false);
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
       setClassData(nextClassData);
-      // updateItemProgress(false);
-      // updateItemProgress(true);
-      const updatedProgressValue = [...progressValue];
-
-      updatedProgressValue[courseid_params] += 11.11;
       setProgressValue(updatedProgressValue);
     }
   }
@@ -119,10 +113,9 @@ function MediaPlayer() {
 
     function updateProgressBar() {
       classId++;
+      const updatedProgressValue = [...progressValue];
       let newProgress = Math.ceil(11.11 * classId);
       newProgress = newProgress === 101 ? newProgress-- : newProgress;
-
-      const updatedProgressValue = [...progressValue];
       updatedProgressValue[courseid_params] = newProgress;
       setProgressValue(updatedProgressValue);
     }

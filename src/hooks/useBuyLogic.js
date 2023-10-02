@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react";
-
+import { useAuth0 } from "@auth0/auth0-react";
+const {user} = useAuth0()
 export function useBuyPetition ({ courses }) {
   const [buyUrl, setBuyUrl] = useState('')
-
   const mappedList = courses.map(course=>
     ({
       price_data: {
@@ -17,7 +17,9 @@ export function useBuyPetition ({ courses }) {
   
   const mappedId = courses.map(course => ({id : course.id}))
   
-  const infoBuy = {list: mappedList, id: mappedId}
+  const User = user.email
+
+  const infoBuy = {list: mappedList, id: mappedId, user:User}
   
   async function handleBuy() {
         const dataToFetch = {
@@ -45,19 +47,6 @@ export function useBuyPetition ({ courses }) {
             console.log('La solicitud de compra falló.')
           }
   }
-  async function createlist (){
-    try{
-      if(mappedId){
-        const data = await fetch('http://localhost:3001/buylist',{method:'post',headers:{"Content-Type": "application/json"},body: JSON.stringify(infoBuy)})
-        const res = await data.json()
-        console.log(mappedId)
-      }
-    }
-    catch(e){
-      throw new Error('Lista vacia...')
-    }
-  }
   useEffect(() => {handleBuy()},[courses])
-  useEffect(() => {createlist()},[courses])
   return { buyUrl };
 }

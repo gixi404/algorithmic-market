@@ -50,7 +50,7 @@ const CourseContainer = styled.article`
     border-bottom: 3px solid #ff6700;
     position: relative;
     @media (max-width: 576px) {
-      height: 350px;
+      height: 390px;
     }
   `,
   ContainerTexts = styled.aside`

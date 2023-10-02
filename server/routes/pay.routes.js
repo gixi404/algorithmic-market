@@ -29,7 +29,7 @@ router.post("/guardartoken", async (req, res) => {
 
 router.get("/cleanlist", deleteShoppingCart);
 
-router.get("/buy/:idcourse1/:idcourse2/:idcourse3", confirmShopping);
+router.get("/buy/:user/:idcourse1/:idcourse2/:idcourse3", confirmShopping);
 
 router.post("/form", async (req, res) => {
   const { name_form, mail_form, query_form } = req.body;
