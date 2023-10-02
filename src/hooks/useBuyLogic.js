@@ -50,7 +50,7 @@ export function useBuyPetition ({ courses }) {
       if(mappedId){
         const data = await fetch('http://localhost:3001/buylist',{method:'post',headers:{"Content-Type": "application/json"},body: JSON.stringify(infoBuy)})
         const res = await data.json()
-        console.log(res)
+        console.log(mappedId)
       }
     }
     catch(e){

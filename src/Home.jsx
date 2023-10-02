@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+    import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Header from "./components/Body/Header/Header.jsx";
 import Banner from "./components/Body/Banner.jsx";
@@ -27,7 +26,8 @@ function Home() {
           const json = await data.json()
           console.log(json)
           if(json[0].courses){
-            console.log('maracuya')
+            setUserInfo(json[0].courses)
+            console.log(userInfo)
           }
         }
         catch(e){
@@ -37,6 +37,7 @@ function Home() {
       if(isAuthenticated){getToken()}
   },[isAuthenticated])
   useEffect(() => {
+    console.log(userInfo)
   }, [userInfo])
   if (isLoading) {
     return (
