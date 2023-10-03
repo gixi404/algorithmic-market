@@ -7,7 +7,7 @@ const PRIV_KEY =
   stripe = new Stripe(PRIV_KEY);
 
 export async function createSession(req, res) {
-  const { id, list } = req.body;
+  const { id, list, User } = req.body;
   const Id = id[0]?.id;
   const Id1 = id[1]?.id;
   const Id2 = id[2]?.id;
@@ -15,7 +15,7 @@ export async function createSession(req, res) {
     const session = await stripe.checkout.sessions.create({
       line_items: list,
       mode: "payment",
-      success_url: `http://localhost:3001/buy/${Id}/${Id1}/${Id2}`,
+      success_url: `http://localhost:3001/buy/${User}/${Id}/${Id1}/${Id2}`,
       cancel_url: "http://localhost:3001/cleanlist",
     });
     return res.json({
