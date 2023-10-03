@@ -14,7 +14,7 @@ function ViewCourse(props) {
       behavior: "instant",
     });
   }
-  
+
   return (
     <Button onClick={handleClick}>
       <Link to={url}>Ver</Link>
