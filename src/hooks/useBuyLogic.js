@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-const {user} = useAuth0()
 export function useBuyPetition ({ courses }) {
+  const {user} = useAuth0()
   const [buyUrl, setBuyUrl] = useState('')
   const mappedList = courses.map(course=>
     ({

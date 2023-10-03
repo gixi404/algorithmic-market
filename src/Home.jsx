@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Header from "./components/Body/Header/Header.jsx";
@@ -14,6 +14,7 @@ import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
 
 function Home() {
+  const [userInfo, setUserInfo] = useState('')
   const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
       useAuth0(),
     { IS_MOBILE, allCourses } = useMyContext(),

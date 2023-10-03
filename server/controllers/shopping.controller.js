@@ -104,6 +104,7 @@ export async function redirectShopping(req, res) {
         const userAct = await User.updateOne({email: user},{$set: {courses:{
           course1:c1bought[0]
         }}})
+        console.log(userAct) 
       }
     }
     catch(e){
