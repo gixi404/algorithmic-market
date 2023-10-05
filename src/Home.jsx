@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { BACK_PATH } from "./utils/consts.js";
 import Header from "./components/Body/Header/Header.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
@@ -8,7 +9,7 @@ import Contact from "./components/Body/Contact.jsx";
 import Footer from "./components/Body/Footer.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
-import LoginBtn from "./components/Log/LoginBtn.jsx";
+import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
@@ -16,14 +17,14 @@ import styled from "styled-components";
 function Home() {
   const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
       useAuth0(),
-    { IS_MOBILE, allCourses } = useMyContext(),
+    { allCourses } = useMyContext(),
     verifyIsBought = allCourses.some(course => course.isBought);
 
   useEffect(() => {
     const getToken = async () => {
       try {
         const newToken = await getAccessTokenSilently();
-        const data = await fetch("http://localhost:3001/users", {
+        const data = await fetch(`${BACK_PATH}/users`, {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(user),
@@ -31,8 +32,8 @@ function Home() {
         const json = await data.json();
         // console.log(json);
         if (json[0].courses) {
-          setUserInfo(json[0].courses)
-          console.log(userInfo)
+          setUserInfo(json[0].courses);
+          console.log(userInfo);
         }
       } catch (e) {
         console.log("error", e.message);
@@ -52,7 +53,7 @@ function Home() {
   }
 
   return (
-    <HomeContainer>
+    <PageContainer>
       <Routes>
         <Route path="/details/:coursedetails" element={<DetailsCourse />} />
         <Route
@@ -61,13 +62,13 @@ function Home() {
         />
       </Routes>
       <Header />
-      {IS_MOBILE && !isAuthenticated && <LoginBtn />}
+      {!isAuthenticated && <MobileLoginBtn />}
       <Banner />
       <Courses />
       <AboutUs />
       <Contact />
       <Footer />
-    </HomeContainer>
+    </PageContainer>
   );
 }
 
@@ -107,7 +108,7 @@ const LoadContainer = styled.div`
       }
     }
   `,
-  HomeContainer = styled.main`
+  PageContainer = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;

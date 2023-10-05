@@ -11,10 +11,13 @@ import styled from "styled-components";
 function Header() {
   const { isAuthenticated } = useAuth0(),
     [menuActive, setMenuActive] = useState(false),
+    path = window.location.pathname,
+    verifyCart = path !== "/shoppingcart",
+    verifyProfile = path !== "/profile",
     verifyNav =
-      window.location.pathname === "/" ||
-      window.location.pathname === "/coursepurchased" ||
-      window.location.pathname === "/details/:coursedetails";
+      path === "/" ||
+      path === "/coursepurchased" ||
+      path === "/details/:coursedetails";
 
   return menuActive ? (
     <Menu menuActive={menuActive} setMenuActive={setMenuActive} />
@@ -34,8 +37,8 @@ function Header() {
         <Icons>
           {isAuthenticated ? (
             <>
-              <CartSVG />
-              <UserSVG />
+              {verifyCart && <CartSVG />}
+              {verifyProfile && <UserSVG />}
             </>
           ) : (
             <DivLogin>

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import styled from "styled-components";
 
-function FinishCourse(props) {
-  const { setLoadContent } = props;
+function FinishCourse() {
+  // const { setLoadContent } = props;
 
-  useEffect(() => setLoadContent(false), []);
+  // useEffect(() => setLoadContent(false), []);
 
   return (
     <FinishLetter>

@@ -24,10 +24,10 @@ function Course(props) {
 
       <ButtonContainer>
         {isBought ? (
-          <BuyBtn title="Más Información" url={`/details/${id}`} />
-        ) :(
           <ViewCourse url={`/mycourses/${id}`} />
-        ) }
+        ) : (
+          <BuyBtn title="Más Información" url={`/details/${id}`} />
+        )}
       </ButtonContainer>
     </CourseContainer>
   );

@@ -1,15 +1,11 @@
 import { useState, createContext, useContext } from "react";
 
-export const ContextProps = createContext(),
-  IS_MOBILE =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    ),
-  useMyContext = () => useContext(ContextProps);
+const ContextProps = createContext();
+export const useMyContext = () => useContext(ContextProps);
 
 function Context({ children }) {
   const [coursesCart, setCoursesCart] = useState([]),
-    [loadContent, setLoadContent] = useState(false),
+    // [loadContent, setLoadContent] = useState(false),
     [errorVideo, setErrorVideo] = useState(false),
     [allCourses, setAllCourses] = useState([
       {
@@ -210,11 +206,10 @@ function Context({ children }) {
   }
 
   const contextValues = {
-    IS_MOBILE,
     coursesCart,
     setCoursesCart,
-    loadContent,
-    setLoadContent,
+    // loadContent,
+    // setLoadContent,
     errorVideo,
     setErrorVideo,
     allCourses,

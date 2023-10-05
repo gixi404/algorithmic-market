@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { BACK_PATH } from "../utils/consts.js";
 
 function useDataUser(isAuthenticated) {
   const { user, getAccessTokenSilently } = useAuth0(),
@@ -21,10 +22,7 @@ function useDataUser(isAuthenticated) {
       };
 
     try {
-      const res = await fetch(
-        "http://localhost:3001/guardartoken",
-        requestOptions
-      );
+      const res = await fetch(`${BACK_PATH}/guardartoken`, requestOptions);
 
       if (!res.ok) {
         throw new Error("La solicitud falló");

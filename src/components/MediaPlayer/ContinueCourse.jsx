@@ -34,7 +34,6 @@ const Letter = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     @media (max-width: 992px) {
       width: 90vw;
       height: calc((9 / 16) * 90vw);

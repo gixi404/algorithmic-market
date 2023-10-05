@@ -5,10 +5,10 @@ export function useMoveInfo() {
 
   useEffect(() => {
     const list = localStorage.getItem("list");
-
     if (list) {
       setSuccessData(list);
     }
   }, []);
+
   return { succesData };
 }
