@@ -10,7 +10,7 @@ function Context({ children }) {
     [allCourses, setAllCourses] = useState([
       {
         id: 0,
-        isBought: false,
+        isBought: true,
         name: "Curso Inicial",
         cash: 300,
         description:
