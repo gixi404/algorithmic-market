@@ -5,7 +5,7 @@ export const useMyContext = () => useContext(ContextProps);
 
 function Context({ children }) {
   const [coursesCart, setCoursesCart] = useState([]),
-    [loadContent, setLoadContent] = useState(false),
+    // [loadContent, setLoadContent] = useState(false),
     [errorVideo, setErrorVideo] = useState(false),
     [allCourses, setAllCourses] = useState([
       {
@@ -208,8 +208,8 @@ function Context({ children }) {
   const contextValues = {
     coursesCart,
     setCoursesCart,
-    loadContent,
-    setLoadContent,
+    // loadContent,
+    // setLoadContent,
     errorVideo,
     setErrorVideo,
     allCourses,

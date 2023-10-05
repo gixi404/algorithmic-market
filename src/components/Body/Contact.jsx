@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { BACK_PATH } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function Contact() {
@@ -20,9 +21,7 @@ function Contact() {
         case "Name":
           {
             setErrorForm(true);
-
             Name.current.style.borderBottom = "5px solid #f00";
-
             setTimeout(() => {
               Name.current.style.borderBottom = "2.3px solid #ff6700";
               setErrorForm(false);
@@ -33,9 +32,7 @@ function Contact() {
         case "Mail":
           {
             setErrorForm(true);
-
             Mail.current.style.borderBottom = "5px solid #f00";
-
             setTimeout(() => {
               Mail.current.style.borderBottom = "2.3px solid #ff6700";
               setErrorForm(false);
@@ -46,9 +43,7 @@ function Contact() {
         case "Query":
           {
             setErrorForm(true);
-
             Query.current.style.borderBottom = "5px solid #f00";
-
             setTimeout(() => {
               Query.current.style.borderBottom = "2.3px solid #ff6700";
               setErrorForm(false);
@@ -90,7 +85,7 @@ function Contact() {
         };
 
         try {
-          const res = await fetch("http://localhost:3001/form", {
+          const res = await fetch(`${BACK_PATH}/form`, {
             method: "post",
             headers: {
               "Content-Type": "application/json",
@@ -106,7 +101,6 @@ function Contact() {
         }
       }
       dataToFetch();
-      console.log("Datos enviados");
 
       setTimeout(() => {
         (Name.current.value = ""),
@@ -114,8 +108,6 @@ function Contact() {
           (Query.current.value = "");
         setSendForm(false);
       }, 2000);
-    } else {
-      console.error("Datos incompletos");
     }
   }
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { BACK_PATH } from "../utils/consts.js";
 
 export function useBuyPetition(props) {
   const { courses } = props,
@@ -36,7 +37,7 @@ export function useBuyPetition(props) {
 
     try {
       const res = await fetch(
-        "http://localhost:3001/create-checkout-session",
+        `${BACK_PATH}/create-checkout-session`,
         dataToFetch
       );
       const data = await res.json();

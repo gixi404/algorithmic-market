@@ -3,7 +3,7 @@ import styled from "styled-components";
 function ProgressBar(props) {
   const { progressValue } = props,
     progress = Math.ceil(progressValue),
-    formatProgress = progress === 101 ? 100 : progress;
+    formatProgress = progress === 99 ? 100 : progress;
 
   return (
     <ProgressContainer>

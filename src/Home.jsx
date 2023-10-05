@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { BACK_PATH } from "./utils/consts.js";
 import Header from "./components/Body/Header/Header.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
@@ -23,7 +24,7 @@ function Home() {
     const getToken = async () => {
       try {
         const newToken = await getAccessTokenSilently();
-        const data = await fetch("http://localhost:3001/users", {
+        const data = await fetch(`${BACK_PATH}/users`, {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(user),
@@ -31,8 +32,8 @@ function Home() {
         const json = await data.json();
         // console.log(json);
         if (json[0].courses) {
-          setUserInfo(json[0].courses)
-          console.log(userInfo)
+          setUserInfo(json[0].courses);
+          console.log(userInfo);
         }
       } catch (e) {
         console.log("error", e.message);

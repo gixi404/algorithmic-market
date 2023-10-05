@@ -10,8 +10,7 @@ import {
 } from "../controllers/shopping.controller.js";
 import formData from "../form/form.js";
 
-const FRONT_PORT = 3000,
-  router = Router();
+const router = Router();
 
 router.post("/create-checkout-session", createSession);
 
@@ -35,10 +34,5 @@ router.post("/form", async (req, res) => {
   const { name_form, mail_form, query_form } = req.body;
   formData(name_form, mail_form, query_form);
 });
-
-//? aquí controla la ruta
-// router.post("http://localhost:3000/mycourses/0", (req, res) => {
-//   console.log("ruta recibida");
-// });
 
 export default router;

@@ -17,7 +17,7 @@ function LoginBtn() {
 
   async function logUser() {
     try {
-      /* const data = await fetch('http://localhost:3001/users',infoFetch),
+      /* const data = await fetch(`${BACK_PATH}/users`,infoFetch),
       json = await data.json()
       console.log(json) */
       loginWithPopup();

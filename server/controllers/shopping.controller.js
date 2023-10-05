@@ -1,19 +1,17 @@
 import shopping from "../../src/DB/shopping.model.js";
 import course from "../../src/DB/course.model.js";
 import User from "../../src/DB/user.model.js";
+import { FRONT_PATH, BACK_PATH } from "../../src/utils/consts.js";
 
-//CRUD con mongoDB
+//* CRUD con mongoDB.
 export async function createShoppingCart(req, res) {
   try {
     const { id } = req.body;
     const shoppingData = id;
     if (!Array.isArray(shoppingData)) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Se esperaba un array de objetos en el cuerpo de la solicitud.",
-        });
+      return res.status(400).json({
+        error: "Se esperaba un array de objetos en el cuerpo de la solicitud.",
+      });
     }
 
     const shoppingRecords = await Promise.all(
@@ -52,7 +50,7 @@ export async function deleteShoppingCart(req, res) {
   try {
     const courseclean = await shopping.deleteMany({});
     if (courseclean.acknowledged) {
-      res.redirect("http://localhost:3000/");
+      res.redirect(`${FRONT_PATH}/`);
     }
   } catch (e) {
     throw new Error("no pudo borrar la lista");
@@ -63,7 +61,7 @@ export async function deleteShoppingCart(req, res) {
 export async function confirmShopping(req, res) {
   const { user, idcourse1, idcourse2, idcourse3 } = req.params;
   try {
-    const data = await fetch("http://localhost:3001/buy", {
+    const data = await fetch(`${BACK_PATH}/buy`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -87,47 +85,49 @@ export async function confirmShopping(req, res) {
 export async function redirectShopping(req, res) {
   const { infoCompra } = req.body;
   const c1 = infoCompra.c1,
-  c2 = infoCompra.c2,
-  c3 = infoCompra.c3,
-  user = infoCompra.user
-  if(c1){
-    try{
-      const c1bought = await course.find({id:c1})
-      const coincidencia = await User.find({email:user})
-      console.log(coincidencia)
-      if(!coincidencia){
+    c2 = infoCompra.c2,
+    c3 = infoCompra.c3,
+    user = infoCompra.user;
+  if (c1) {
+    try {
+      const c1bought = await course.find({ id: c1 });
+      const coincidencia = await User.find({ email: user });
+      console.log(coincidencia);
+      if (!coincidencia) {
         return res.json({
-          url: "http://localhost:3000/coursepurchased",
-        })
+          url: `${FRONT_PATH}/coursepurchased`,
+        });
+      } else {
+        const userAct = await User.updateOne(
+          { email: user },
+          {
+            $set: {
+              courses: {
+                course1: c1bought[0],
+              },
+            },
+          }
+        );
       }
-      else{
-        const userAct = await User.updateOne({email: user},{$set: {courses:{
-          course1:c1bought[0]
-        }}})
-      }
-    }
-    catch(e){
-      throw new Error('no se halló curso')
+    } catch (e) {
+      throw new Error("no se halló curso");
     }
   }
-  if(c2){
-    try{
-      const c2bought = await course.find({id:c2})
-      
-    }
-    catch(e){
-      throw new Error('no se halló curso')
+  if (c2) {
+    try {
+      const c2bought = await course.find({ id: c2 });
+    } catch (e) {
+      throw new Error("no se halló curso");
     }
   }
-  if(c3){
-    try{
-      const c3bought = await course.find({id:c3})
+  if (c3) {
+    try {
+      const c3bought = await course.find({ id: c3 });
+    } catch (e) {
+      throw new Error("no se halló curso");
     }
-    catch(e){
-      throw new Error('no se halló curso')
-    }
-}
+  }
   res.json({
-    url: "http://localhost:3000/coursepurchased",
+    url: `${FRONT_PATH}/coursepurchased`,
   });
 }
