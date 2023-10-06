@@ -30,7 +30,6 @@ function Home() {
           body: JSON.stringify(user),
         });
         const json = await data.json();
-        // console.log(json);
         if (json[0].courses) {
           setUserInfo(json[0].courses);
           console.log(userInfo);

@@ -57,10 +57,6 @@ function MediaPlayer() {
   useEffect(() => {
     const lastClassVisited =
         Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1,
-      // Math.ceil(progressValue[courseid_params].toString().charAt(1)) - 1 ===
-      // -1
-      //   ? 9
-      //   : Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1,
       updatedClass = {
         classId: direction(courseid_params, lastClassVisited).id,
         className: direction(courseid_params, lastClassVisited).name,
@@ -168,11 +164,7 @@ function MediaPlayer() {
           continueCourse ? (
             <ContinueCourse setContinueCourse={setContinueCourse} />
           ) : (
-            <ClassVideo
-              classURL={classData.classURL}
-              // loadContent={loadContent}
-              // setLoadContent={setLoadContent}
-            />
+            <ClassVideo classURL={classData.classURL} />
           )
         ) : (
           <FinishCourse />
