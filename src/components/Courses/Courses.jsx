@@ -16,7 +16,7 @@ function Courses() {
       body: JSON.stringify({usuario:user.email})
       })
       const json = await cursos.json()
-      setCourses(json)
+      json.length > 0 ? setCourses(json) : ''
     }
     isAuthenticated ? recuperarCursos() : undefined
   },[])
@@ -32,17 +32,17 @@ function Courses() {
       <ListCourses>
         {
         courses 
-        ? 
-        (
-          allCourses.map(course => (
-          <Course key={course.id} course={course} />
-        ))
-        )
-        :
+        ?
         (
           courses.map(course =>(
             <Course key={course._id} course={course} />
           ))
+        )
+        : 
+        (
+          allCourses.map(course => (
+          <Course key={course.id} course={course} />
+        ))
         )
         } 
       </ListCourses>
