@@ -58,6 +58,7 @@ export async function deleteShoppingCart(req, res) {
 }
 
 //validacion de compras con base de datos
+// usuario
 export async function confirmShopping(req, res) {
   const { user, idcourse1, idcourse2, idcourse3 } = req.params;
   try {
@@ -81,6 +82,7 @@ export async function confirmShopping(req, res) {
     res.status(500).json({ error: "Error en la solicitud POST" });
   }
 }
+
 export async function redirectShopping(req, res) {
   const { infoCompra } = req.body;
   console.log(infoCompra)
@@ -129,4 +131,10 @@ export async function getCoursesBought(req, res) {
     catch(e){
       return res.json({message:" no hay cursos"})
     }
+}
+
+// cursos
+export async function getCoursesDB(req, res) {
+  const cursos = await course.find({})
+  res.json(cursos)
 }

@@ -10,7 +10,7 @@ function Context({ children }) {
     [allCourses, setAllCourses] = useState([
       {
         id: 0,
-        isBought: true,
+        isBought: false,
         name: "Curso Inicial",
         cash: 300,
         description:
@@ -208,8 +208,6 @@ function Context({ children }) {
   const contextValues = {
     coursesCart,
     setCoursesCart,
-    // loadContent,
-    // setLoadContent,
     errorVideo,
     setErrorVideo,
     allCourses,

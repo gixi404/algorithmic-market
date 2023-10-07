@@ -6,8 +6,18 @@ import styled from "styled-components";
 
 function Courses() {
   const {user, isAuthenticated} = useAuth0()
-  const [courses, setCourses] = useState()
-  useEffect(()=>{
+  const [courses, setCourses] = useState([])
+  const [showCourses, setShowCourses] = useState([])
+  useEffect(() => {
+    const cursosDB = async() => {
+      const cursos = await fetch("http://localhost:3001/getcoursesdb",{method:"POST",headers:{"Content-Type": "application/json"}})
+      const json = await cursos.json()
+        for (let item of courses){
+        const cursosDB = json.filter(i => i.id !== item.id )
+        const cursosCompletos = cursosDB.concat(courses)
+        setCourses(cursosCompletos)
+        }
+    }
     const recuperarCursos = async () => {
       const cursos = await fetch("http://localhost:3001/getcourses",{method:"POST",
       headers: {
@@ -16,11 +26,14 @@ function Courses() {
       body: JSON.stringify({usuario:user.email})
       })
       const json = await cursos.json()
-      json.length > 0 ? setCourses(json) : ''
+      if(json.length > 0 ) {
+        setCourses(json)
+        cursosDB()
+      }
+      
     }
-    isAuthenticated ? recuperarCursos() : undefined
-  },[])
-  const { allCourses } = useMyContext();
+    recuperarCursos() 
+  },[isAuthenticated])
 
   return (
     <CoursesContainer id="allcourses">
@@ -31,19 +44,11 @@ function Courses() {
 
       <ListCourses>
         {
-        courses 
-        ?
-        (
-          courses.map(course =>(
+          showCourses 
+          ?(courses.map(course =>(
             <Course key={course._id} course={course} />
-          ))
-        )
-        : 
-        (
-          allCourses.map(course => (
-          <Course key={course.id} course={course} />
-        ))
-        )
+          )))
+          : (<h1>Loading..</h1>)
         } 
       </ListCourses>
     </CoursesContainer>
