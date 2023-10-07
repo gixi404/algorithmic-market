@@ -1,17 +1,10 @@
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { BACK_PATH } from "../utils/consts.js";
-
-export function useBuyPetition(props) {
-  const { courses } = props,
-    [buyUrl, setBuyUrl] = useState(""),
-    { user } = useAuth0();
-
-  useEffect(() => {
-    handleBuy();
-  }, [courses]);
-
-  const mappedList = courses.map(course => ({
+export function useBuyPetition ({ courses }) {
+  const {user} = useAuth0()
+  const [buyUrl, setBuyUrl] = useState('')
+  const mappedList = courses.map(course=>
+    ({
       price_data: {
         product_data: {
           name: course.name,

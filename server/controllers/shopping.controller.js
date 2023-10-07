@@ -86,16 +86,25 @@ export async function redirectShopping(req, res) {
   const { infoCompra } = req.body;
   console.log(infoCompra);
   const c1 = infoCompra.c1,
-    c2 = infoCompra.c2,
-    c3 = infoCompra.c3,
-    user = infoCompra.user;
-  const coincidencia = await User.find({ email: user });
-  const arrayDeCompras = [];
-
-  try {
-    const c1bought = await course.find({ id: c1 });
-    if (c1bought.length > 0) {
-      arrayDeCompras.push(c1bought[0]);
+  c2 = infoCompra.c2,
+  c3 = infoCompra.c3,
+  user = infoCompra.user
+  if(c1){
+    try{
+      const c1bought = await course.find({id:c1})
+      const coincidencia = await User.find({email:user})
+      console.log(coincidencia)
+      if(!coincidencia){
+        return res.json({
+          url: "http://localhost:3000/coursepurchased",
+        })
+      }
+      else{
+        const userAct = await User.updateOne({email: user},{$set: {courses:{
+          course1:c1bought[0]
+        }}})
+        console.log(userAct) 
+      }
     }
     const c2bought = await course.find({ id: c2 });
     if (c2bought.length > 0) {
