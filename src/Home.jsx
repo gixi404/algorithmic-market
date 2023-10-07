@@ -16,7 +16,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 function Home() {
-  const [userInfo, setUserInfo] = useState('')
+  const [userInfo, setUserInfo] = useState()
   const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
       useAuth0(),
     { allCourses } = useMyContext(),

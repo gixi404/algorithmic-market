@@ -5,14 +5,17 @@ export const getCourses = async (req, res) => {
   res.json(courses);
 };
 export const createCourse = async (req, res) => {
-  const { name, url, id, clases } = req.body,
-    newCourse = new Courses({
-      name,
-      url,
-      id,
-      clases,
-    }),
-    savedCourse = await newCourse.save();
+  const { name, cash, isBought, id, description, clases, } = req.body;
+
+  const newCourse = new Courses({
+    name,
+    cash,
+    isBought,
+    id,
+    description,
+    clases,
+  });
+  const savedCourse = await newCourse.save();
   res.json(savedCourse);
 };
 

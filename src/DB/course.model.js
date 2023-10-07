@@ -5,16 +5,23 @@ const CourseSchema = mongoose.Schema({
     type: String,
     unique: true,
   },
+  cash: {
+    type: String,
+    trim: true
+  },
+  isBought:{
+    type: Boolean
+  },
   id: {
     type: String,
     unique: true,
   },
-  url: {
+  description: {
     type: String,
     unique: true,
   },
   clases: {
-    type: String,
+    type: Array,
     required: true,
   },
 });
