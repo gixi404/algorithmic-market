@@ -20,7 +20,7 @@ router.get("/buy/:user/:idcourse1/:idcourse2/:idcourse3", confirmShopping);
 
 router.post("/buy", redirectShopping);
 
-router.post("/getcourses", getCoursesBought)
+router.post("/getcourses", getCoursesBought);
 
 router.post("/guardartoken", async (req, res) => {
   const { token, user } = await req.body;

@@ -81,52 +81,57 @@ export async function confirmShopping(req, res) {
     res.status(500).json({ error: "Error en la solicitud POST" });
   }
 }
+
 export async function redirectShopping(req, res) {
   const { infoCompra } = req.body;
-  console.log(infoCompra)
+  console.log(infoCompra);
   const c1 = infoCompra.c1,
     c2 = infoCompra.c2,
     c3 = infoCompra.c3,
     user = infoCompra.user;
-    const coincidencia = await User.find({ email: user });
-    const arrayDeCompras = []
-    
-    try {
-      const c1bought = await course.find({ id: c1 });
-      if(c1bought.length > 0) {arrayDeCompras.push(c1bought[0])}
-      const c2bought = await course.find({ id : c2 });
-      if(c2bought.length > 0) {arrayDeCompras.push(c2bought[0])}
-      const c3bought = await course.find({ id : c3})
-      if(c3bought.length > 0) {arrayDeCompras.push(c3bought[0])}
-      if( c1bought || c2bought || c3bought && coincidencia ){
-        const usuarioAct = await User.updateOne(
-          {email: user},
-          {
-            $set:{
-              courses: arrayDeCompras
-            }
-          }
-        )
-      }
+  const coincidencia = await User.find({ email: user });
+  const arrayDeCompras = [];
+
+  try {
+    const c1bought = await course.find({ id: c1 });
+    if (c1bought.length > 0) {
+      arrayDeCompras.push(c1bought[0]);
     }
-    catch(e){
-      throw new Error('Algo falló al comprar los cursos')
-    }  
+    const c2bought = await course.find({ id: c2 });
+    if (c2bought.length > 0) {
+      arrayDeCompras.push(c2bought[0]);
+    }
+    const c3bought = await course.find({ id: c3 });
+    if (c3bought.length > 0) {
+      arrayDeCompras.push(c3bought[0]);
+    }
+    if (c1bought || c2bought || (c3bought && coincidencia)) {
+      const usuarioAct = await User.updateOne(
+        { email: user },
+        {
+          $set: {
+            courses: arrayDeCompras,
+          },
+        }
+      );
+    }
+  } catch (e) {
+    throw new Error("Algo falló al comprar los cursos");
+  }
   res.json({
     url: `${FRONT_PATH}/coursepurchased`,
   });
 }
 
 export async function getCoursesBought(req, res) {
-  const {usuario} = req.body
-  try{
-    const cursosEncontrados = await User.find({ email:usuario })
-    if(cursosEncontrados)
-    {
-      const cursosActuales = cursosEncontrados[0].courses
-      return res.json(cursosActuales)
-    }}
-    catch(e){
-      return res.json({message:" no hay cursos"})
+  const { usuario } = req.body;
+  try {
+    const cursosEncontrados = await User.find({ email: usuario } );
+    if (cursosEncontrados) {
+      const cursosActuales = cursosEncontrados[0].courses;
+      return res.json(cursosActuales);
     }
+  } catch (e) {
+    return res.json({ message: " no hay cursos" });
+  }
 }
