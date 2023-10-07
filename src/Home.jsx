@@ -13,8 +13,10 @@ import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
+import { useState } from "react";
 
 function Home() {
+  const [userInfo, setUserInfo] = useState()
   const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
       useAuth0(),
     { allCourses } = useMyContext(),
@@ -30,10 +32,7 @@ function Home() {
           body: JSON.stringify(user),
         });
         const json = await data.json();
-        if (json[0].courses) {
-          setUserInfo(json[0].courses);
-          console.log(userInfo);
-        }
+        setUserInfo(json)
       } catch (e) {
         console.log("error", e.message);
       }

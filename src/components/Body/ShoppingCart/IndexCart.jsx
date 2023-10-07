@@ -12,11 +12,21 @@ import LoginBtn from "../../Log/LoginBtn";
 
 function IndexCart() {
   const { isAuthenticated } = useAuth0(),
-    { coursesCart } = useMyContext(),
-    [value, setValue] = useState(0);
-
-  useEffect(() => reducerCash(), [coursesCart]);
-
+  { coursesCart, setCoursesCart } = useMyContext(),
+  [value, setValue] = useState(0);
+  useEffect(() => {
+    const carritostr = window.localStorage.getItem("cursoscarrito")
+    const carrito = JSON.parse(carritostr)
+    if(carrito){
+    setCoursesCart(carrito)
+    }
+  },[] )
+  useEffect(() => {
+    if(coursesCart.length > 0 ) {window.localStorage.setItem("cursoscarrito",JSON.stringify(coursesCart))}
+    if(coursesCart.length === 0 ) {window.localStorage.removeItem("cursoscarrito")}
+  },[coursesCart])
+  useEffect(() => reducerCash(), [coursesCart] );
+  
   function reducerCash() {
     const price = coursesCart.reduce((ac, cv) => ac + cv.cash, 0);
     if (coursesCart.length < 0) {
