@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useMyContext } from "../Context";
+import { Suspense } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Course from "./Course.jsx";
 import styled from "styled-components";
@@ -7,17 +7,18 @@ import styled from "styled-components";
 function Courses() {
   const {user, isAuthenticated} = useAuth0()
   const [courses, setCourses] = useState([])
-  const [showCourses, setShowCourses] = useState([])
+  const [coursesDB, setCoursesDB] = useState([])
+
   useEffect(() => {
     const cursosDB = async() => {
       const cursos = await fetch("http://localhost:3001/getcoursesdb",{method:"POST",headers:{"Content-Type": "application/json"}})
       const json = await cursos.json()
-        for (let item of courses){
-        const cursosDB = json.filter(i => i.id !== item.id )
-        const cursosCompletos = cursosDB.concat(courses)
-        setCourses(cursosCompletos)
-        }
+      setCoursesDB(json)
     }
+    cursosDB()
+  }, [])
+
+  useEffect(() => {
     const recuperarCursos = async () => {
       const cursos = await fetch("http://localhost:3001/getcourses",{method:"POST",
       headers: {
@@ -27,14 +28,19 @@ function Courses() {
       })
       const json = await cursos.json()
       if(json.length > 0 ) {
-        
-        setCourses(json)
-        cursosDB()
-      }
-      
+          setCourses(json)
+        }
     }
-    recuperarCursos() 
+    if(isAuthenticated) recuperarCursos()
   },[isAuthenticated])
+
+  useEffect(() => {
+    const courserest = coursesDB.filter(item => item.id != courses[0]?.id)
+    const courseComplete = courses.concat(courserest)
+    if(courseComplete.length >=3){
+      setCoursesDB(courseComplete)
+    }
+  },[courses])
 
   return (
     <CoursesContainer id="allcourses">
@@ -45,12 +51,10 @@ function Courses() {
 
       <ListCourses>
         {
-          showCourses 
-          ?(courses.map(course =>(
+          (coursesDB.map(course =>(
             <Course key={course._id} course={course} />
           )))
-          : (<h1>Loading..</h1>)
-        } 
+        }
       </ListCourses>
     </CoursesContainer>
   );

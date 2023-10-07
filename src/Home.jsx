@@ -13,7 +13,6 @@ import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
-import { useState } from "react";
 
 function Home() {
   const [userInfo, setUserInfo] = useState()
