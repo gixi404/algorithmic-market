@@ -11,11 +11,14 @@ import ControlsVideo from "./ControlsVideo";
 import FinishCourse from "./FinishCourse";
 import ItemClass from "./ItemClass";
 import { ArrowBack } from "../svgs";
+import ContinueCourse from "./ContinueCourse";
+import { PROGRESS_VALUE } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
-    initialProgressValue = Array(3).fill(11.11);
+    //* esta const debe variar dependiendo los cursos disponibles.
+    initialProgressValue = Array(3).fill(PROGRESS_VALUE);
 
   (function getStoredProgress() {
     const storedProgress = localStorage.getItem(`progress:${courseid_params}`);
@@ -24,15 +27,13 @@ function MediaPlayer() {
     }
   })();
 
-  const { myCourses, loadContent, setLoadContent, setErrorVideo } =
-      useMyContext(),
+  const { myCourses, setErrorVideo } = useMyContext(),
     [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
     [courseInProgress, setCourseInProgress] = useState(true),
     [progressValue, setProgressValue] = useState(initialProgressValue),
+    [continueCourse, setContinueCourse] = useState(true),
     lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
-
-    //! hablar lo de mi abuela y milei
 
   useEffect(() => {
     function selectCourse() {
@@ -55,10 +56,11 @@ function MediaPlayer() {
 
   useEffect(() => {
     const lastClassVisited =
-        Math.floor(progressValue[courseid_params].toString().charAt(1)) - 1 ===
-        -1
-          ? 9
-          : Math.floor(progressValue[courseid_params].toString().charAt(0)) - 1,
+        Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1,
+      // Math.ceil(progressValue[courseid_params].toString().charAt(1)) - 1 ===
+      // -1
+      //   ? 9
+      //   : Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1,
       updatedClass = {
         classId: direction(courseid_params, lastClassVisited).id,
         className: direction(courseid_params, lastClassVisited).name,
@@ -83,7 +85,9 @@ function MediaPlayer() {
           classURL: direction(courseid_params, newNumberClass).URL,
         };
 
-      updatedProgressValue[courseid_params] -= 11.11;
+      updatedProgressValue[courseid_params] = Math.ceil(
+        updatedProgressValue[courseid_params] - PROGRESS_VALUE
+      );
       setErrorVideo(false);
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
@@ -102,7 +106,9 @@ function MediaPlayer() {
           classURL: direction(courseid_params, newNumberClass).URL,
         };
 
-      updatedProgressValue[courseid_params] += 11.11;
+      updatedProgressValue[courseid_params] = Math.ceil(
+        updatedProgressValue[courseid_params] + PROGRESS_VALUE
+      );
       setErrorVideo(false);
       setCourseInProgress(true);
       setNumberClass(newNumberClass);
@@ -132,7 +138,7 @@ function MediaPlayer() {
     function updateProgressBar() {
       classId++;
       const updatedProgressValue = [...progressValue];
-      let newProgress = Math.ceil(11.11 * classId);
+      let newProgress = Math.ceil(PROGRESS_VALUE * classId);
       newProgress = newProgress === 101 ? newProgress-- : newProgress;
       updatedProgressValue[courseid_params] = newProgress;
       setProgressValue(updatedProgressValue);
@@ -159,13 +165,17 @@ function MediaPlayer() {
         </HeaderMedia>
 
         {courseInProgress ? (
-          <ClassVideo
-            classURL={classData.classURL}
-            loadContent={loadContent}
-            setLoadContent={setLoadContent}
-          />
+          continueCourse ? (
+            <ContinueCourse setContinueCourse={setContinueCourse} />
+          ) : (
+            <ClassVideo
+              classURL={classData.classURL}
+              // loadContent={loadContent}
+              // setLoadContent={setLoadContent}
+            />
+          )
         ) : (
-          <FinishCourse setLoadContent={setLoadContent} />
+          <FinishCourse />
         )}
 
         <ControlsVideo

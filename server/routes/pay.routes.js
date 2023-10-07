@@ -2,26 +2,25 @@ import { Router } from "express";
 import { createCourse } from "../controllers/course.db.controllers.js";
 import { createUser } from "../controllers/user.db.controller.js";
 import { createSession } from "../controllers/pay.controllers.js";
+import { getCoursesBought } from "../controllers/shopping.controller.js";
 import {
-  createShoppingCart,
   deleteShoppingCart,
   confirmShopping,
   redirectShopping,
 } from "../controllers/shopping.controller.js";
 import formData from "../form/form.js";
 
-const FRONT_PORT = 3000,
-  router = Router();
+const router = Router();
 
 router.post("/create-checkout-session", createSession);
 
-router.post("/createcourse", createCourse);
-
 router.post("/users", createUser);
 
-router.post("/buylist", createShoppingCart);
+router.get("/buy/:user/:idcourse1/:idcourse2/:idcourse3", confirmShopping);
 
 router.post("/buy", redirectShopping);
+
+router.post("/getcourses", getCoursesBought)
 
 router.post("/guardartoken", async (req, res) => {
   const { token, user } = await req.body;
@@ -29,16 +28,11 @@ router.post("/guardartoken", async (req, res) => {
 
 router.get("/cleanlist", deleteShoppingCart);
 
-router.get("/buy/:user/:idcourse1/:idcourse2/:idcourse3", confirmShopping);
-
 router.post("/form", async (req, res) => {
   const { name_form, mail_form, query_form } = req.body;
   formData(name_form, mail_form, query_form);
 });
 
-//? aquí controla la ruta
-// router.post("http://localhost:3000/mycourses/0", (req, res) => {
-//   console.log("ruta recibida");
-// });
+router.post("/createcourse", createCourse);
 
 export default router;

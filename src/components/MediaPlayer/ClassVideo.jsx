@@ -5,39 +5,38 @@ import styled from "styled-components";
 
 function ClassVideo(props) {
   const { classURL } = props;
-  const { loadContent, setLoadContent, errorVideo, setErrorVideo } =
-      useMyContext(),
+  const { errorVideo, setErrorVideo } = useMyContext(),
     [videoData, setVideoData] = useState(null);
 
-  useEffect(() => {
-    let seconds = 0;
-    const interval = setInterval(() => {
-      if (seconds === 10 && loadContent) {
-        setLoadContent(false);
-        setErrorVideo(true);
-      } else seconds++;
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [loadContent]);
+  // useEffect(() => {
+  //   let seconds = 0;
+  //   const interval = setInterval(() => {
+  //     if (seconds === 10 && loadContent) {
+  //       setLoadContent(false);
+  //       setErrorVideo(true);
+  //     } else seconds++;
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, [loadContent]);
 
   useEffect(() => {
     if (classURL) {
-      setLoadContent(true);
+      // setLoadContent(true);
       fetch(classURL)
         .then(res => res.url)
         .then(url => setVideoData(url))
-        .catch(() => setErrorVideo(true))
-        .finally(() => setLoadContent(false));
+        .catch(() => setErrorVideo(true));
+      // .finally(() => setLoadContent(false));
     }
   }, [classURL]);
 
   return (
     <>
-      {loadContent && <SkeletonContainer />}
+      {/* {loadContent && <SkeletonContainer />} */}
       {!errorVideo ? (
         <Video
           src={videoData}
-          style={{ display: loadContent ? "none" : "block" }}
+          // style={{ display: loadContent ? "none" : "block" }}
           frameBorder="0"
           allowFullScreen={true}
           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"

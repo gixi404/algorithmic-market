@@ -15,8 +15,6 @@ function ViewCourse(props) {
     });
   }
 
-  //!cantidad de libros leídos
-  
   return (
     <Button onClick={handleClick}>
       <Link to={url}>Ver</Link>
