@@ -27,6 +27,7 @@ function Courses() {
       })
       const json = await cursos.json()
       if(json.length > 0 ) {
+        
         setCourses(json)
         cursosDB()
       }
