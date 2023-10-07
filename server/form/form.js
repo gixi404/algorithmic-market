@@ -20,13 +20,13 @@ async function formData(name_form, mail_form, query_form) {
          </h1>. 
          <br />
          <p>
-            Mi consulta es ${query_form} <br />
+            Consulta: ${query_form} <br />
             Mail: <b>${mail_form}</b>
          </p>
        </div>
       `,
-    };
-  const transporter = nodemailer.createTransport(config);
+    },
+    transporter = nodemailer.createTransport(config);
   await transporter.sendMail(message);
 }
 
