@@ -35,11 +35,17 @@ function Courses() {
   },[isAuthenticated])
 
   useEffect(() => {
-    const courserest = coursesDB.filter(item => item.id != courses[0]?.id)
-    const courseComplete = courses.concat(courserest)
-    if(courseComplete.length >=3){
-      setCoursesDB(courseComplete)
+    for(let i of courses){
+      setCoursesDB(prevState=> [...prevState, i])
+      const courserest = coursesDB.filter(item => item.id !== i.id) 
     }
+    console.log(coursesDB)
+    /* 
+    const courseComplete = courses.concat()
+    console.log(courseComplete)
+    if(courseComplete.length == 3){
+      setCoursesDB(courseComplete)
+    } */
   },[courses])
 
   return (
