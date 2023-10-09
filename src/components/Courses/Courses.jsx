@@ -5,42 +5,46 @@ import Course from "./Course.jsx";
 import styled from "styled-components";
 
 function Courses() {
-  const {user, isAuthenticated} = useAuth0()
-  const [courses, setCourses] = useState([])
-  const [coursesDB, setCoursesDB] = useState([])
+  const { user, isAuthenticated } = useAuth0();
+  const [courses, setCourses] = useState([]);
+  const [coursesDB, setCoursesDB] = useState([]);
 
   useEffect(() => {
-    const cursosDB = async() => {
-      const cursos = await fetch("http://localhost:3001/getcoursesdb",{method:"POST",headers:{"Content-Type": "application/json"}})
-      const json = await cursos.json()
-      setCoursesDB(json)
-    }
-    cursosDB()
-  }, [])
+    const cursosDB = async () => {
+      const cursos = await fetch("http://localhost:3001/getcoursesdb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+      const json = await cursos.json();
+      setCoursesDB(json);
+    };
+    cursosDB();
+  }, []);
 
   useEffect(() => {
     const recuperarCursos = async () => {
-      const cursos = await fetch("http://localhost:3001/getcourses",{method:"POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({usuario:user.email})
-      })
-      const json = await cursos.json()
-      if(json.length > 0 ) {
-          setCourses(json)
-        }
-    }
-    if(isAuthenticated) recuperarCursos()
-  },[isAuthenticated])
+      const cursos = await fetch("http://localhost:3001/getcourses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ usuario: user.email }),
+      });
+      const json = await cursos.json();
+      if (json.length > 0) {
+        setCourses(json);
+      }
+    };
+    if (isAuthenticated) recuperarCursos();
+  }, [isAuthenticated]);
 
   useEffect(() => {
-    const courserest = coursesDB.filter(item => item.id != courses[0]?.id)
-    const courseComplete = courses.concat(courserest)
-    if(courseComplete.length >=3){
-      setCoursesDB(courseComplete)
+    const courserest = coursesDB.filter(item => item.id != courses[0]?.id);
+    const courseComplete = courses.concat(courserest);
+    if (courseComplete.length >= 3) {
+      setCoursesDB(courseComplete);
     }
-  },[courses])
+  }, [courses]);
 
   return (
     <CoursesContainer id="allcourses">
@@ -50,11 +54,9 @@ function Courses() {
       </Title>
 
       <ListCourses>
-        {
-          (coursesDB.map(course =>(
-            <Course key={course._id} course={course} />
-          )))
-        }
+        {coursesDB.map(course => (
+          <Course key={course._id} course={course} />
+        ))}
       </ListCourses>
     </CoursesContainer>
   );
