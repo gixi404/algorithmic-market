@@ -18,12 +18,13 @@ export const createCourse = async (req, res) => {
   const savedCourse = await newCourse.save();
   res.json(savedCourse);
 };
+
 export const getCourse = async (req, res) => {
-  const course = await Courses.findById(req.params.id);
-  res.json(course);
-};
-export const deleteCourse = async (req, res) => {
-  const course = await Courses.findById(req.params.id);
-  if (!course) return res.status(404).json({ message: "course not found" });
-  res.json(course);
-};
+    const course = await Courses.findById(req.params.id);
+    res.json(course);
+  },
+  deleteCourse = async (req, res) => {
+    const course = await Courses.findById(req.params.id);
+    if (!course) return res.status(404).json({ message: "course not found" });
+    res.json(course);
+  };

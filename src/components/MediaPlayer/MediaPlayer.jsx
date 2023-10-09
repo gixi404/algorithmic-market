@@ -16,6 +16,8 @@ import { PROGRESS_VALUE } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function MediaPlayer() {
+  // const [isLoading, setIsLoading] = useState(true),
+
   const { courseid: courseid_params } = useParams(),
     //* esta const debe variar dependiendo los cursos disponibles.
     initialProgressValue = Array(3).fill(PROGRESS_VALUE);
@@ -27,23 +29,20 @@ function MediaPlayer() {
     }
   })();
 
-  const { myCourses, setErrorVideo } = useMyContext(),
+  const { setErrorVideo, myCourses } = useMyContext(),
     [classData, setClassData] = useState({}),
     [numberClass, setNumberClass] = useState(0),
     [courseInProgress, setCourseInProgress] = useState(true),
     [progressValue, setProgressValue] = useState(initialProgressValue),
     [continueCourse, setContinueCourse] = useState(true),
-    lastClass = Number(myCourses[courseid_params].classes.length) - 1 ?? 0;
+    lastClass = Number(myCourses[courseid_params]?.clases?.length) - 1 ?? 0;
 
   useEffect(() => {
-    function selectCourse() {
-      setClassData({
-        classId: direction(courseid_params, numberClass).id,
-        className: direction(courseid_params, numberClass).name,
-        classURL: direction(courseid_params, numberClass).URL,
-      });
-    }
-    return () => selectCourse();
+    setClassData({
+      classId: direction(courseid_params, numberClass).id,
+      className: direction(courseid_params, numberClass).name,
+      classURL: direction(courseid_params, numberClass).URL,
+    });
   }, [courseid_params]);
 
   useEffect(() => {
@@ -54,17 +53,14 @@ function MediaPlayer() {
     return () => setItem;
   }, [progressValue]);
 
+  //! no actualiza la clase al volver nombre.
   useEffect(() => {
     const lastClassVisited =
         Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1,
-      // Math.ceil(progressValue[courseid_params].toString().charAt(1)) - 1 ===
-      // -1
-      //   ? 9
-      //   : Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1,
       updatedClass = {
-        classId: direction(courseid_params, lastClassVisited).id,
-        className: direction(courseid_params, lastClassVisited).name,
-        classURL: direction(courseid_params, lastClassVisited).URL,
+        classId: direction(courseid_params, numberClass).id,
+        className: direction(courseid_params, numberClass).name,
+        classURL: direction(courseid_params, numberClass).URL,
       };
 
     setNumberClass(lastClassVisited);
@@ -72,7 +68,7 @@ function MediaPlayer() {
   }, [courseid_params, progressValue]);
 
   function direction(numberCourse, numberClass = 0) {
-    return myCourses[numberCourse]?.classes[numberClass];
+    return myCourses[numberCourse].clases[numberClass];
   }
 
   function previousClass() {
@@ -122,7 +118,7 @@ function MediaPlayer() {
 
     function updateClass() {
       if (numberClass !== classId) {
-        const classSelected = myCourses[courseid_params]?.classes.find(
+        const classSelected = myCourses[courseid_params]?.clases.find(
             _class => _class.id === classId
           ),
           { id: idClass } = classSelected;
@@ -168,11 +164,7 @@ function MediaPlayer() {
           continueCourse ? (
             <ContinueCourse setContinueCourse={setContinueCourse} />
           ) : (
-            <ClassVideo
-              classURL={classData.classURL}
-              // loadContent={loadContent}
-              // setLoadContent={setLoadContent}
-            />
+            <ClassVideo classURL={classData.classURL} />
           )
         ) : (
           <FinishCourse />
@@ -198,7 +190,7 @@ function MediaPlayer() {
         <NameCourse>{myCourses[courseid_params]?.name}</NameCourse>
 
         <ListFollowingClasses>
-          {myCourses[courseid_params]?.classes.map(item => (
+          {myCourses[courseid_params]?.clases?.map(item => (
             <ItemClass
               key={item.id}
               item={item}

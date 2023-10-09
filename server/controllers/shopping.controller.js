@@ -42,10 +42,6 @@ export async function getShoppingCart() {
   }
 }
 
-async function getShoppingId() {
-  const list = shopping.findById({});
-}
-
 export async function deleteShoppingCart(req, res) {
   try {
     const courseclean = await shopping.deleteMany({});
@@ -85,7 +81,7 @@ export async function confirmShopping(req, res) {
 
 export async function redirectShopping(req, res) {
   const { infoCompra } = req.body;
-  console.log(infoCompra)
+  console.log(infoCompra);
   const c1 = infoCompra.c1,
     c2 = infoCompra.c2,
     c3 = infoCompra.c3,
@@ -122,30 +118,29 @@ export async function redirectShopping(req, res) {
         )
       }
     }
-    catch(e){
-      throw new Error('Algo falló al comprar los cursos')
-    }  
+  } catch (e) {
+    throw new Error("Algo falló al comprar los cursos");
+  }
   res.json({
     url: `${FRONT_PATH}/coursepurchased`,
   });
 }
 
 export async function getCoursesBought(req, res) {
-  const {usuario} = req.body
-  try{
-    const cursosEncontrados = await User.find({ email:usuario })
-    if(cursosEncontrados)
-    {
-      const cursosActuales = cursosEncontrados[0].courses
-      return res.json(cursosActuales)
-    }}
-    catch(e){
-      return res.json({message:" no hay cursos"})
+  const { usuario } = req.body;
+  try {
+    const cursosEncontrados = await User.find({ email: usuario });
+    if (cursosEncontrados) {
+      const cursosActuales = cursosEncontrados[0].courses;
+      return res.json(cursosActuales);
     }
+  } catch (e) {
+    return res.json({ message: " no hay cursos" });
+  }
 }
 
 // cursos
 export async function getCoursesDB(req, res) {
-  const cursos = await course.find({})
-  res.json(cursos)
+  const cursos = await course.find({});
+  res.json(cursos);
 }

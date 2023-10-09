@@ -23,11 +23,10 @@ function Course(props) {
       </ContainerTexts>
 
       <ButtonContainer>
-        {isBought ? (
-          <ViewCourse url={`/mycourses/${id}`} />
-        ) : (
-          <BuyBtn title="Más Información" url={`/details/${id}`} />
-        )}
+        {/* {isBought ? ( */}
+        <ViewCourse url={`/mycourses/${id}`} />
+        {/* // ) : ( // <BuyBtn title="Más Información" url={`/details/${id}`} />
+        // )} */}
       </ButtonContainer>
     </CourseContainer>
   );
@@ -49,8 +48,8 @@ const CourseContainer = styled.article`
     border-right: 3px solid #ff6700;
     border-bottom: 3px solid #ff6700;
     position: relative;
-    @media (max-width: 576px) {
-      height: 390px;
+    @media (max-width: 480px) {
+      height: 360px;
     }
   `,
   ContainerTexts = styled.aside`
