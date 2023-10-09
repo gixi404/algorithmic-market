@@ -10,7 +10,7 @@ function LoginBtn() {
       courses: { name: "curso inicial", id: 1 },
     },
     infoFetch = {
-      method: "post",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bodyCore),
     };

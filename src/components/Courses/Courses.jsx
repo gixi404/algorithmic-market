@@ -45,7 +45,7 @@ function Courses() {
         }
       }
     }
-  },[courses])
+  }, [courses]);
 
   return (
     <CoursesContainer id="allcourses">

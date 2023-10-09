@@ -86,7 +86,7 @@ function Contact() {
 
         try {
           const res = await fetch(`${BACK_PATH}/form`, {
-            method: "post",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer yourAccessToken",
