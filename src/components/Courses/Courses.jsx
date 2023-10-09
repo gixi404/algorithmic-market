@@ -25,9 +25,7 @@ function Courses() {
     const recuperarCursos = async () => {
       const cursos = await fetch("http://localhost:3001/getcourses", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ usuario: user.email }),
       });
       const json = await cursos.json();
