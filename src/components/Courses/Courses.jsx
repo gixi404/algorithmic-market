@@ -1,47 +1,25 @@
 import { useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { BACK_PATH } from "../../utils/consts.js";
 import Course from "./Course.jsx";
 import styled from "styled-components";
 
 function Courses() {
-  const { user, isAuthenticated } = useAuth0();
-  const [courses, setCourses] = useState([]);
-
-  console.log(12);
-  console.log(12);
+  const [courses, setCourses] = useState(null);
 
   useEffect(() => {
-    const cursosDB = async () => {
-      const cursos = await fetch("http://localhost:3001/getcoursesdb", {
+    function getEveryCourses() {
+      const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-      });
-      const json = await cursos.json();
-      for (let item of courses) {
-        const cursosDB = json.filter(i => i.id !== item.id);
-        const cursosCompletos = cursosDB.concat(courses);
-        setCourses(cursosCompletos);
-      }
-    };
+      };
+      fetch(`${BACK_PATH}/getcoursesdb`, options)
+        .then(res => res.json())
+        .then(data => setCourses(data))
+        .catch(err => console.error(err));
+    }
 
-    const recuperarCursos = async () => {
-      const cursos = await fetch("http://localhost:3001/getcourses", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ usuario: user.email }),
-      });
-
-      const json = await cursos.json();
-      if (json.length > 0) {
-        setCourses(json);
-        cursosDB();
-      }
-    };
-
-    recuperarCursos();
-  }, [isAuthenticated]);
+    return () => getEveryCourses();
+  }, []);
 
   return (
     <CoursesContainer id="allcourses">
@@ -51,7 +29,7 @@ function Courses() {
       </Title>
 
       <ListCourses>
-        {courses ? (
+        {courses !== null ? (
           courses.map(course => <Course key={course._id} course={course} />)
         ) : (
           <p>Cargando...</p>

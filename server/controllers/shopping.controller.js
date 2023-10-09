@@ -59,7 +59,7 @@ export async function confirmShopping(req, res) {
   const { user, idcourse1, idcourse2, idcourse3 } = req.params;
   try {
     const data = await fetch(`${BACK_PATH}/buy`, {
-      method: "post",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         infoCompra: {

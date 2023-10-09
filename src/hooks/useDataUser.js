@@ -14,7 +14,7 @@ function useDataUser(isAuthenticated) {
         user: user,
       },
       requestOptions = {
-        method: "post",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },

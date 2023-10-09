@@ -23,10 +23,11 @@ function Course(props) {
       </ContainerTexts>
 
       <ButtonContainer>
-        {/* {isBought ? ( */}
-        <ViewCourse url={`/mycourses/${id}`} />
-        {/* // ) : ( // <BuyBtn title="Más Información" url={`/details/${id}`} />
-        // )} */}
+        {isBought ? (
+          <ViewCourse url={`/mycourses/${id}`} />
+        ) : (
+          <BuyBtn title="Más Información" url={`/details/${id}`} />
+        )}
       </ButtonContainer>
     </CourseContainer>
   );

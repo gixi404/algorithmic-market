@@ -28,7 +28,7 @@ export function useBuyPetition(props) {
 
   async function handleBuy() {
     const dataToFetch = {
-      method: "post",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
