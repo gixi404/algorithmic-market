@@ -12,6 +12,7 @@ function Courses() {
     const cursosDB = async() => {
       const cursos = await fetch("http://localhost:3001/getcoursesdb",{method:"POST",headers:{"Content-Type": "application/json"}})
       const json = await cursos.json()
+      console.log(json)
       setCoursesDB(json)
     }
     cursosDB()
@@ -34,12 +35,16 @@ function Courses() {
   },[isAuthenticated])
 
   useEffect(() => {
-    /* 
-    const courseComplete = courses.concat()
-    console.log(courseComplete)
-    if(courseComplete.length == 3){
-      setCoursesDB(courseComplete)
-    } */
+    if(courses.length !== 0){
+      for(let i of courses){
+        if(courses.length <= coursesDB.length){
+          setCoursesDB(prevState => {
+            const newarray = [...prevState, i]
+            return newarray
+          })
+        }
+      }
+    }
   },[courses])
 
   return (
@@ -54,6 +59,7 @@ function Courses() {
           (coursesDB.map(course =>(
             <Course key={course._id} course={course} />
           )))
+
         }
       </ListCourses>
     </CoursesContainer>

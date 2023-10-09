@@ -117,8 +117,8 @@ export async function redirectShopping(req, res) {
           }
         )
       }
-    }
-  } catch (e) {
+    } 
+  catch (e) {
     throw new Error("Algo falló al comprar los cursos");
   }
   res.json({

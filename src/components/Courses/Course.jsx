@@ -7,7 +7,7 @@ function Course(props) {
   const { course } = props,
     { name, description, isBought, id } = course,
     getIsCompleted = localStorage.getItem(`isCompleted:${name}`);
-
+  console.log(isBought)
   return (
     <CourseContainer>
       {getIsCompleted && (
@@ -23,10 +23,10 @@ function Course(props) {
       </ContainerTexts>
 
       <ButtonContainer>
-        {/* {isBought ? ( */}
+        {isBought ? ( 
         <ViewCourse url={`/mycourses/${id}`} />
-        {/* // ) : ( // <BuyBtn title="Más Información" url={`/details/${id}`} />
-        // )} */}
+        ) : ( <BuyBtn title="Más Información" url={`/details/${id}`} />
+        )} 
       </ButtonContainer>
     </CourseContainer>
   );
