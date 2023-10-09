@@ -4,8 +4,8 @@ import ErrorVideo from "./ErrorVideo";
 import styled from "styled-components";
 
 function ClassVideo(props) {
-  const { classURL } = props;
-  const { errorVideo, setErrorVideo } = useMyContext(),
+  const { classURL } = props,
+    { errorVideo, setErrorVideo } = useMyContext(),
     [videoData, setVideoData] = useState(null);
 
   useEffect(() => {

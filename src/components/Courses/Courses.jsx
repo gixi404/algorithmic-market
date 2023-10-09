@@ -1,40 +1,47 @@
 import { useEffect, useState } from "react";
-import { useMyContext } from "../Context";
 import { useAuth0 } from "@auth0/auth0-react";
 import Course from "./Course.jsx";
 import styled from "styled-components";
 
 function Courses() {
-  const {user, isAuthenticated} = useAuth0()
-  const [courses, setCourses] = useState([])
-  const [showCourses, setShowCourses] = useState([])
+  const { user, isAuthenticated } = useAuth0();
+  const [courses, setCourses] = useState([]);
+
+  console.log(12);
+  console.log(12);
+
   useEffect(() => {
-    const cursosDB = async() => {
-      const cursos = await fetch("http://localhost:3001/getcoursesdb",{method:"POST",headers:{"Content-Type": "application/json"}})
-      const json = await cursos.json()
-        for (let item of courses){
-        const cursosDB = json.filter(i => i.id !== item.id )
-        const cursosCompletos = cursosDB.concat(courses)
-        setCourses(cursosCompletos)
-        }
-    }
-    const recuperarCursos = async () => {
-      const cursos = await fetch("http://localhost:3001/getcourses",{method:"POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({usuario:user.email})
-      })
-      const json = await cursos.json()
-      if(json.length > 0 ) {
-        
-        setCourses(json)
-        cursosDB()
+    const cursosDB = async () => {
+      const cursos = await fetch("http://localhost:3001/getcoursesdb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+      const json = await cursos.json();
+      for (let item of courses) {
+        const cursosDB = json.filter(i => i.id !== item.id);
+        const cursosCompletos = cursosDB.concat(courses);
+        setCourses(cursosCompletos);
       }
-      
-    }
-    recuperarCursos() 
-  },[isAuthenticated])
+    };
+
+    const recuperarCursos = async () => {
+      const cursos = await fetch("http://localhost:3001/getcourses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ usuario: user.email }),
+      });
+
+      const json = await cursos.json();
+      if (json.length > 0) {
+        setCourses(json);
+        cursosDB();
+      }
+    };
+
+    recuperarCursos();
+  }, [isAuthenticated]);
 
   return (
     <CoursesContainer id="allcourses">
@@ -44,13 +51,11 @@ function Courses() {
       </Title>
 
       <ListCourses>
-        {
-          showCourses 
-          ?(courses.map(course =>(
-            <Course key={course._id} course={course} />
-          )))
-          : (<h1>Loading..</h1>)
-        } 
+        {courses ? (
+          courses.map(course => <Course key={course._id} course={course} />)
+        ) : (
+          <p>Cargando...</p>
+        )}
       </ListCourses>
     </CoursesContainer>
   );

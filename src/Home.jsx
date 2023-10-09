@@ -13,26 +13,37 @@ import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
-import { useState } from "react";
 
 function Home() {
-  const [userInfo, setUserInfo] = useState()
+  const [userInfo, setUserInfo] = useState();
   const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
       useAuth0(),
-    { allCourses } = useMyContext(),
+    { allCourses, setMyCourses } = useMyContext(),
     verifyIsBought = allCourses.some(course => course.isBought);
+
+  useEffect(() => {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    fetch(`${BACK_PATH}/getcoursesdb`, options)
+      .then(res => res.json())
+      .then(courses => setMyCourses(courses))
+      .catch(err => console.error(err.message));
+  }, []);
 
   useEffect(() => {
     const getToken = async () => {
       try {
         const newToken = await getAccessTokenSilently();
         const data = await fetch(`${BACK_PATH}/users`, {
-          method: "post",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(user),
         });
         const json = await data.json();
-        setUserInfo(json)
+        setUserInfo(json);
       } catch (e) {
         console.log("error", e.message);
       }

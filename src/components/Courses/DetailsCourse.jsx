@@ -5,9 +5,8 @@ import { CloseCartSVG } from "../svgs.jsx";
 import styled from "styled-components";
 
 function DetailsCourse() {
-  const { courseSelected, myCourses } = useMyContext(),
-    { coursedetails } = useParams(),
-    { name, description } = courseSelected(coursedetails);
+  const { courseSelected, allCourses } = useMyContext(),
+    { coursedetails } = useParams();
 
   return (
     <Container>
@@ -16,16 +15,17 @@ function DetailsCourse() {
           <CloseCartSVG />
         </Link>
 
-        <Title>{name}</Title>
+        <Title>{allCourses[coursedetails]?.name}</Title>
 
         <Article>
           <NameSection>Descripción</NameSection>
-          <Description>{description}</Description>
+          <Description>{allCourses[coursedetails]?.description}</Description>
         </Article>
 
         <List>
           <NameSection>Clases</NameSection>
-          {myCourses[coursedetails].classes.map(_class => (
+
+          {allCourses[coursedetails]?.classes.map(_class => (
             <li key={_class.id}>{_class.name}</li>
           ))}
         </List>
