@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Suspense } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Course from "./Course.jsx";
 import styled from "styled-components";
@@ -35,11 +34,6 @@ function Courses() {
   },[isAuthenticated])
 
   useEffect(() => {
-    for(let i of courses){
-      setCoursesDB(prevState=> [...prevState, i])
-      const courserest = coursesDB.filter(item => item.id !== i.id) 
-    }
-    console.log(coursesDB)
     /* 
     const courseComplete = courses.concat()
     console.log(courseComplete)
