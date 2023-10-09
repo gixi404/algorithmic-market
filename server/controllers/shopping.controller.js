@@ -86,31 +86,26 @@ export async function redirectShopping(req, res) {
     c2 = infoCompra.c2,
     c3 = infoCompra.c3,
     user = infoCompra.user;
-  const coincidencia = await User.find({ email: user });
-  const arrayDeCompras = [];
-
-  try {
-    const c1bought = await course.find({ id: c1 });
-    if (c1bought.length > 0) {
-      arrayDeCompras.push(c1bought[0]);
-    }
-    const c2bought = await course.find({ id: c2 });
-    if (c2bought.length > 0) {
-      arrayDeCompras.push(c2bought[0]);
-    }
-    const c3bought = await course.find({ id: c3 });
-    if (c3bought.length > 0) {
-      arrayDeCompras.push(c3bought[0]);
-    }
-    if (c1bought || c2bought || (c3bought && coincidencia)) {
-      const usuarioAct = await User.updateOne(
-        { email: user },
-        {
-          $set: {
-            courses: arrayDeCompras,
-          },
-        }
-      );
+    const coincidencia = await User.find({ email: user });
+    const arrayDeCompras = []
+    
+    try {
+      const c1bought = await course.find({ id: c1 });
+      if(c1bought.length > 0) {arrayDeCompras.push(c1bought[0])}
+      const c2bought = await course.find({ id : c2 });
+      if(c2bought.length > 0) {arrayDeCompras.push(c2bought[0])}
+      const c3bought = await course.find({ id : c3})
+      if(c3bought.length > 0) {arrayDeCompras.push(c3bought[0])}
+      if( c1bought || c2bought || c3bought && coincidencia ){
+        const usuarioAct = await User.updateOne(
+          {email: user},
+          {
+            $set:{
+              courses: arrayDeCompras
+            }
+          }
+        )
+      }
     }
   } catch (e) {
     throw new Error("Algo falló al comprar los cursos");

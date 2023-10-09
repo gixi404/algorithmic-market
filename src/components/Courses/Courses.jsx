@@ -1,25 +1,46 @@
 import { useEffect, useState } from "react";
-import { BACK_PATH } from "../../utils/consts.js";
+import { Suspense } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import Course from "./Course.jsx";
 import styled from "styled-components";
 
 function Courses() {
-  const [courses, setCourses] = useState(null);
+  const {user, isAuthenticated} = useAuth0()
+  const [courses, setCourses] = useState([])
+  const [coursesDB, setCoursesDB] = useState([])
 
   useEffect(() => {
-    function getEveryCourses() {
-      const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      };
-      fetch(`${BACK_PATH}/getcoursesdb`, options)
-        .then(res => res.json())
-        .then(data => setCourses(data))
-        .catch(err => console.error(err));
+    const cursosDB = async() => {
+      const cursos = await fetch("http://localhost:3001/getcoursesdb",{method:"POST",headers:{"Content-Type": "application/json"}})
+      const json = await cursos.json()
+      setCoursesDB(json)
     }
+    cursosDB()
+  }, [])
 
-    return () => getEveryCourses();
-  }, []);
+  useEffect(() => {
+    const recuperarCursos = async () => {
+      const cursos = await fetch("http://localhost:3001/getcourses",{method:"POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({usuario:user.email})
+      })
+      const json = await cursos.json()
+      if(json.length > 0 ) {
+          setCourses(json)
+        }
+    }
+    if(isAuthenticated) recuperarCursos()
+  },[isAuthenticated])
+
+  useEffect(() => {
+    const courserest = coursesDB.filter(item => item.id != courses[0]?.id)
+    const courseComplete = courses.concat(courserest)
+    if(courseComplete.length >=3){
+      setCoursesDB(courseComplete)
+    }
+  },[courses])
 
   return (
     <CoursesContainer id="allcourses">
@@ -29,11 +50,11 @@ function Courses() {
       </Title>
 
       <ListCourses>
-        {courses !== null ? (
-          courses.map(course => <Course key={course._id} course={course} />)
-        ) : (
-          <p>Cargando...</p>
-        )}
+        {
+          (coursesDB.map(course =>(
+            <Course key={course._id} course={course} />
+          )))
+        }
       </ListCourses>
     </CoursesContainer>
   );
