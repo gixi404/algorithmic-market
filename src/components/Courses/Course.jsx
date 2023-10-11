@@ -7,7 +7,6 @@ function Course(props) {
   const { course } = props,
     { name, description, isBought, id } = course,
     getIsCompleted = localStorage.getItem(`isCompleted:${name}`);
-  console.log(isBought)
   return (
     <CourseContainer>
       {getIsCompleted && (

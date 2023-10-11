@@ -42,6 +42,7 @@ function Courses() {
             const newarray = [...prevState, i]
             return newarray
           })
+          coursesDB.shift()
         }
       }
     }
@@ -56,7 +57,9 @@ function Courses() {
 
       <ListCourses>
         {
-          (coursesDB.map(course =>(
+          (coursesDB
+            .sort((a,b) => a.id.localeCompare(b.id, undefined, {numeric: true, sensitivity: 'base'}))
+            .map(course =>(
             <Course key={course._id} course={course} />
           )))
 
