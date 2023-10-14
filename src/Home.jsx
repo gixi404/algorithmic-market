@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "./utils/consts.js";
 import Header from "./components/Body/Header/Header.jsx";
@@ -18,8 +18,7 @@ function Home() {
   const [userInfo, setUserInfo] = useState();
   const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
       useAuth0(),
-    { allCourses, setMyCourses } = useMyContext(),
-    verifyIsBought = allCourses.some(course => course.isBought);
+    { setMyCourses } = useMyContext();
 
   useEffect(() => {
     const options = {
@@ -65,10 +64,7 @@ function Home() {
     <PageContainer>
       <Routes>
         <Route path="/details/:coursedetails" element={<DetailsCourse />} />
-        <Route
-          path="/coursepurchased"
-          element={verifyIsBought ? <CoursePurchased /> : <Navigate to="/" />}
-        />
+        <Route path="/coursepurchased" element={<CoursePurchased />} />
       </Routes>
       <Header />
       {!isAuthenticated && <MobileLoginBtn />}
