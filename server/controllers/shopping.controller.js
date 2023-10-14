@@ -121,6 +121,7 @@ export async function redirectShopping(req, res) {
   }
   res.json({
     url: `${FRONT_PATH}/coursepurchased`,
+
   });
 }
 
