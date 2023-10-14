@@ -34,19 +34,30 @@ function Courses() {
     if(isAuthenticated) recuperarCursos()
   },[isAuthenticated])
 
-  useEffect(() => {
-    if(courses.length !== 0){
-      for(let i of courses){
-        if(courses.length <= coursesDB.length){
-          setCoursesDB(prevState => {
-            const newarray = [...prevState, i]
-            return newarray
-          })
-          coursesDB.shift()
-        }
+  useEffect(() => {  
+    if (courses.length <= 3 && coursesDB.length <= 4) {
+      
+    const existingIds = new Set(coursesDB.map(course => course.id));
+
+    // Reemplazo los objetos repetidos en DB
+    const updatedCoursesDB = coursesDB.map(course => {
+      const replacementCourse = courses.find(c => c.id === course.id);
+      return replacementCourse ? replacementCourse : course;
+    });
+
+    // agrego los cursos sin repetir
+    for (let course of courses) {
+      if (!existingIds.has(course.id) && updatedCoursesDB.length < 3) {
+        updatedCoursesDB.push(course);
+        existingIds.add(course.id);
       }
     }
-  }, [courses]);
+
+    // Actualizar coursesDB con los objetos actualizados y sin duplicados
+    setCoursesDB(updatedCoursesDB);
+  }
+}, [courses]);
+
 
   return (
     <CoursesContainer id="allcourses">
