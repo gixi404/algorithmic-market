@@ -17,15 +17,19 @@ function ClassVideo(props) {
     }
   }, [classURL]);
 
+  //*16/9 aspectratio de yt
+
   return (
     <>
       {!errorVideo ? (
         <Video
           src={videoData}
           frameBorder="0"
-          allowFullScreen={true}
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+          allowFullScreen
+          allow="autoplay;encrypted-media;picture-in-picture;"
+          // testear los necesarios allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
           loading="lazy"
+          title={`Clase: ${classURL.name}`}
         />
       ) : (
         <ErrorVideo />

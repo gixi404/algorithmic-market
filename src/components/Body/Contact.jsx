@@ -138,31 +138,39 @@ function Contact() {
             </MessageValidation>
           ) : null}
 
-          <InputForm
-            type="text"
-            name="name_form"
-            id="name_form"
-            ref={Name}
-            placeholder="Nombre *"
-          />
+          <Label>
+            Nombre
+            <Input
+              type="text"
+              name="name_form"
+              // id="name_form"
+              ref={Name}
+              placeholder="Ingrese su nombre"
+            />
+          </Label>
 
-          <InputForm
-            type="text"
-            name="mail_form"
-            ref={Mail}
-            id="mail_form"
-            placeholder="Correo electrónico *"
-          />
+          <Label>
+            Mail
+            <Input
+              type="email"
+              name="mail_form"
+              ref={Mail}
+              // id="mail_form"
+              placeholder="ejemplomail@gmail.com"
+            />
+          </Label>
 
-          <Textarea
-            name="query_form"
-            id="query_form"
-            ref={Query}
-            cols="10"
-            rows="5"
-            placeholder="Consulta *"
-          ></Textarea>
-
+          <Label>
+            Consulta
+            <Textarea
+              name="query_form"
+              // id="query_form"
+              ref={Query}
+              cols="10"
+              rows="5"
+              placeholder="Mi consulta es..."
+            ></Textarea>
+          </Label>
           <SubmitContainer>
             <SubmitBtn type="submit" value="Enviar" />
           </SubmitContainer>
@@ -216,7 +224,13 @@ const Container = styled.section`
     row-gap: 3vh;
     column-gap: 1vw;
   `,
-  InputForm = styled.input`
+  Label = styled.label`
+    font-family: "Poppins", monospace;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    color: #ff7d27;
+    text-align: start;
+  `,
+  Input = styled.input`
     border: none;
     border-bottom: 2.3px solid #ff6700;
     border-radius: 8px;
@@ -233,7 +247,7 @@ const Container = styled.section`
     }
 
     &::placeholder {
-      color: #858585;
+      color: #585858;
     }
   `,
   Textarea = styled.textarea`
@@ -251,7 +265,7 @@ const Container = styled.section`
     resize: none;
 
     &::placeholder {
-      color: #858585;
+      color: #585858;
     }
 
     @media (max-width: 800px) {
@@ -261,7 +275,6 @@ const Container = styled.section`
   SubmitContainer = styled.article`
     width: 100vw;
     text-align: center;
-
     @media (min-width: 1224px) {
       width: 50vw;
       text-align: end;
@@ -294,12 +307,13 @@ const Container = styled.section`
   MessageValidation = styled.div`
     width: 100%;
     background-color: #fff;
-    height: 8vh;
+    height: 5vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     border-radius: 0.3em;
+    margin-top: 0.5em;
     @media (max-width: 480px) {
       height: 3vh;
     }
@@ -308,7 +322,7 @@ const Container = styled.section`
     font-family: "Poppins", monospace;
     font-weight: 400;
     color: red;
-    font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    font-size: calc(20px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 100%;
     text-align: center;
     text-transform: uppercase;
