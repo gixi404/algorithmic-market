@@ -62,6 +62,7 @@ const Container = styled.div`
     padding-top: 2em;
     width: 80vw;
     height: 80vh;
+    overflow-y: auto;
     max-width: 700px;
     border-radius: 8px;
     border-bottom: 5px solid #ff6700;
@@ -71,6 +72,9 @@ const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
     row-gap: 2em;
+    button{
+      margin: 2vh 0;
+    }
     @media (max-width: 576px) {
       padding-top: 5em;
       border-radius: 0;

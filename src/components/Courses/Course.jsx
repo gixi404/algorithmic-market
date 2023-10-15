@@ -36,7 +36,7 @@ export default Course;
 
 const CourseContainer = styled.article`
     width: 70vw;
-    height: 43vh;
+    height: max-content;
     max-width: 290px;
     background-color: #ebebeb;
     display: flex;
