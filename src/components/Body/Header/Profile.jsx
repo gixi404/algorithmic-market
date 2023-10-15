@@ -7,18 +7,18 @@ import styled from "styled-components";
 function Profile() {
   const { user, logout } = useAuth0();
 
-  function logOut() {
-    return logout();
-  }
-
   return (
     <Container>
       <Header />
       <UserContainer>
-        <Img src={user?.picture} alt={`Imágen de ${user?.name}`} />
+        <Img
+          src={user?.picture}
+          loading="lazy"
+          alt={`imágen de ${user?.name}`}
+        />
         <Name>{user?.name}</Name>
         <Name>{user?.email}</Name>
-        <BuyBtn title="Cerrar Sesión" logOut={logOut} />
+        <BuyBtn title="Cerrar Sesión" logOut={logout} />
       </UserContainer>
 
       <Footer />

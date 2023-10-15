@@ -12,8 +12,6 @@ function Header() {
   const { isAuthenticated } = useAuth0(),
     [menuActive, setMenuActive] = useState(false),
     path = window.location.pathname,
-    verifyCart = path !== "/shoppingcart",
-    verifyProfile = path !== "/profile",
     verifyNav =
       path === "/" ||
       path === "/coursepurchased" ||
@@ -37,8 +35,8 @@ function Header() {
         <Icons>
           {isAuthenticated ? (
             <>
-              {verifyCart && <CartSVG />}
-              {verifyProfile && <UserSVG />}
+              <CartSVG />
+              <UserSVG />
             </>
           ) : (
             <DivLogin>

@@ -15,7 +15,8 @@ function Course(props) {
           <p>Completado</p>
         </CourseCompleted>
       )}
-      <Img src={courseImg} alt="imágen del curso" />
+
+      <Img src={courseImg} loading="lazy" alt="imágen del curso" />
 
       <ContainerTexts>
         <NameCourse>{name}</NameCourse>

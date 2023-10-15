@@ -27,7 +27,11 @@ function AboutUs() {
         </Text>
 
         <ImgContainer>
-          <Img src={aboutUsImg} alt="imágen de trabajo en equipo" />
+          <Img
+            src={aboutUsImg}
+            loading="lazy"
+            alt="imágen de trabajo en equipo"
+          />
         </ImgContainer>
       </Content>
     </Container>

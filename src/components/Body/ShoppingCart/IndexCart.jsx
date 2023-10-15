@@ -12,21 +12,25 @@ import LoginBtn from "../../Log/LoginBtn";
 
 function IndexCart() {
   const { isAuthenticated } = useAuth0(),
-  { coursesCart, setCoursesCart } = useMyContext(),
-  [value, setValue] = useState(0);
+    { coursesCart, setCoursesCart } = useMyContext(),
+    [value, setValue] = useState(0);
   useEffect(() => {
-    const carritostr = window.localStorage.getItem("cursoscarrito")
-    const carrito = JSON.parse(carritostr)
-    if(carrito){
-    setCoursesCart(carrito)
+    const carritostr = window.localStorage.getItem("cursoscarrito");
+    const carrito = JSON.parse(carritostr);
+    if (carrito) {
+      setCoursesCart(carrito);
     }
-  },[] )
+  }, []);
   useEffect(() => {
-    if(coursesCart.length > 0 ) {window.localStorage.setItem("cursoscarrito",JSON.stringify(coursesCart))}
-    if(coursesCart.length === 0 ) {window.localStorage.removeItem("cursoscarrito")}
-  },[coursesCart])
-  useEffect(() => reducerCash(), [coursesCart] );
-  
+    if (coursesCart.length > 0) {
+      window.localStorage.setItem("cursoscarrito", JSON.stringify(coursesCart));
+    }
+    if (coursesCart.length === 0) {
+      window.localStorage.removeItem("cursoscarrito");
+    }
+  }, [coursesCart]);
+  useEffect(() => reducerCash(), [coursesCart]);
+
   function reducerCash() {
     const price = coursesCart.reduce((ac, cv) => ac + cv.cash, 0);
     if (coursesCart.length < 0) {
@@ -125,7 +129,7 @@ const Container = styled.div`
       color: #ff6700;
     }
   `,
-  ItemContainer = styled.main`
+  ItemContainer = styled.div`
     min-height: 40vh;
     height: auto;
     width: 90%;
