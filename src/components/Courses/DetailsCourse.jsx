@@ -38,7 +38,7 @@ function DetailsCourse() {
 
 export default DetailsCourse;
 
-const Container = styled.main`
+const Container = styled.div`
     width: 100vw;
     height: 100vh;
     position: fixed;

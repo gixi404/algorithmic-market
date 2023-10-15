@@ -208,7 +208,7 @@ function MediaPlayer() {
 
 export default withAuthenticationRequired(MediaPlayer);
 
-const Container = styled.main`
+const Container = styled.div`
     width: 100vw;
     min-height: 100vh;
     display: flex;

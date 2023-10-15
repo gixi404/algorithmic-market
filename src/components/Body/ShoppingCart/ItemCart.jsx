@@ -8,7 +8,7 @@ function ItemCart(props) {
 
   return (
     <Item>
-      <IMG src={courseImg} alt="imágen del curso" />
+      <Img src={courseImg} loading="lazy" alt="imágen del curso" />
       <Article>
         <div>
           <h3>{data.name}</h3>
@@ -38,7 +38,7 @@ const Item = styled.article`
     transition: all 0.5s ease;
     cursor: pointer;
   `,
-  IMG = styled.img`
+  Img = styled.img`
     height: 100%;
     width: 45%;
     border-top-left-radius: 8px;

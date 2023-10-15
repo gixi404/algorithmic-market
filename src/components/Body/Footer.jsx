@@ -8,7 +8,7 @@ function Footer() {
   return (
     <Container>
       <Content>
-        <a href={urlWhatsApp} rel="noopener noreferrer" target="_blank">
+        <a href={urlWhatsApp} rel="noreferrer" target="_blank">
           Creado por Staff Lym
         </a>
         <Link to="/privacy">Política de Privacidad</Link>
