@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { BACK_PATH } from "../../utils/consts.js";
 import Course from "./Course.jsx";
 import styled from "styled-components";
 
@@ -10,7 +11,7 @@ function Courses() {
 
   useEffect(() => {
     const cursosDB = async() => {
-      const cursos = await fetch("http://localhost:3001/getcoursesdb",{method:"POST",headers:{"Content-Type": "application/json"}})
+      const cursos = await fetch(`${BACK_PATH}/getcoursesdb`,{method:"POST",headers:{"Content-Type": "application/json"}})
       const json = await cursos.json()
       console.log(json)
       setCoursesDB(json)
