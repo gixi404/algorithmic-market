@@ -26,6 +26,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.0.0"
   },
+  "homepage": "https://algorithmic-market.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -39,7 +40,7 @@
       "not dead",
       "not op_mini all"
     ],
-    "proxy":"https://algorithmic-market.com/300/",
+    "proxy":"http://localhost:3001",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

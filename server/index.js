@@ -13,7 +13,12 @@ const app = express(),
   PORT = 3001;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: FRONT_PATH }));
+app.use(cors(
+  { origin: FRONT_PATH,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  }
+));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.resolve("src/components")));

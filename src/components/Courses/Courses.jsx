@@ -13,7 +13,6 @@ function Courses() {
     const cursosDB = async() => {
       const cursos = await fetch(`${BACK_PATH}/getcoursesdb`,{method:"POST",headers:{"Content-Type": "application/json"}})
       const json = await cursos.json()
-      console.log(json)
       setCoursesDB(json)
     }
     cursosDB()
