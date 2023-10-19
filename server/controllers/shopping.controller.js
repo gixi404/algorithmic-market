@@ -6,8 +6,9 @@ import { FRONT_PATH, BACK_PATH } from "../../src/utils/consts.js";
 //* CRUD con mongoDB.
 export async function createShoppingCart(req, res) {
   try {
-    const { id } = req.body;
-    const shoppingData = id;
+    const { id } = req.body,
+      shoppingData = id;
+
     if (!Array.isArray(shoppingData)) {
       return res.status(400).json({
         error: "Se esperaba un array de objetos en el cuerpo de la solicitud.",
@@ -16,14 +17,10 @@ export async function createShoppingCart(req, res) {
 
     const shoppingRecords = await Promise.all(
       shoppingData.map(async item => {
-        const { id, name } = item;
+        const { id, name } = item,
+          newShopping = new shopping({ id, name }),
+          shoppingSaved = await newShopping.save();
 
-        const newShopping = new shopping({
-          id,
-          name,
-        });
-
-        const shoppingSaved = await newShopping.save();
         return shoppingSaved;
       })
     );
@@ -70,8 +67,8 @@ export async function confirmShopping(req, res) {
         },
       }),
     });
-    const json = await data.json();
-    const ret = json.url;
+    const json = await data.json(),
+      ret = json.url;
     res.redirect(ret);
   } catch (error) {
     console.error("Error al realizar la solicitud POST:", error);
@@ -80,58 +77,49 @@ export async function confirmShopping(req, res) {
 }
 
 export async function redirectShopping(req, res) {
-  const { infoCompra } = req.body;
-  const c1 = infoCompra.c1,
+  const { infoCompra } = req.body,
+    c1 = infoCompra.c1,
     c2 = infoCompra.c2,
     c3 = infoCompra.c3,
-    user = infoCompra.user;
-    const coincidencia = await User.find({ email: user });
-    const coincidecoursesDB = coincidencia[0]?.courses
-    const arrayDeCompras = []
-    
-    try {
-      const c1bought = await course.find({ id: c1 });
-      if(c1bought.length > 0) {
-        c1bought[0].isBought = true
-        coincidecoursesDB.push(c1bought[0])
-      }
-      const c2bought = await course.find({ id : c2 });
-      if(c2bought.length > 0) {
-        c2bought[0].isBought = true
-        coincidecoursesDB.push(c2bought[0])
-      }
-      const c3bought = await course.find({ id : c3})
-      if(c3bought.length > 0) {
-        c3bought[0].isBought = true
-        coincidecoursesDB.push(c3bought[0])
-      }
-      if( c1bought || c2bought || c3bought && coincidencia ){
-        const usuarioAct = await User.updateOne(
-          {email: user},
-          {
-            $set:{
-              courses: coincidecoursesDB
-            }
-          }
-        )
-      }
-    } 
-  catch (e) {
+    user = infoCompra.user,
+    coincidencia = await User.find({ email: user }),
+    arrayDeCompras = [];
+  console.log(infoCompra);
+
+  try {
+    const c1bought = await course.find({ id: c1 });
+    if (c1bought.length > 0) {
+      arrayDeCompras.push(c1bought[0]);
+    }
+    const c2bought = await course.find({ id: c2 });
+    if (c2bought.length > 0) {
+      arrayDeCompras.push(c2bought[0]);
+    }
+    const c3bought = await course.find({ id: c3 });
+    if (c3bought.length > 0) {
+      arrayDeCompras.push(c3bought[0]);
+    }
+    if (c1bought || c2bought || (c3bought && coincidencia)) {
+      const usuarioAct = await User.updateOne(
+        { email: user },
+        { $set: { courses: arrayDeCompras } }
+      );
+    }
+  } catch (e) {
     throw new Error("Algo falló al comprar los cursos");
   }
   res.json({
     url: `${FRONT_PATH}/coursepurchased`,
-
   });
 }
 
 export async function getCoursesBought(req, res) {
   const { usuario } = req.body;
   try {
-    const cursosEncontrados = await User.find({ email: usuario });
-    if (cursosEncontrados) {
-      const cursosActuales = cursosEncontrados[0].courses;
-      return res.json(cursosActuales);
+    const findCourses = await User.find({ email: usuario });
+    if (findCourses) {
+      const recentylCourses = findCourses[0].courses;
+      return res.json(recentylCourses);
     }
   } catch (e) {
     return res.json({ message: " no hay cursos" });
@@ -140,6 +128,6 @@ export async function getCoursesBought(req, res) {
 
 // cursos
 export async function getCoursesDB(req, res) {
-  const cursos = await course.find({});
-  res.json(cursos);
+  const courses = await course.find({});
+  res.json(courses);
 }

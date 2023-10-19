@@ -8,46 +8,48 @@ function Privacy() {
       <Header />
 
       <PrivacyContainer>
+        <Title>Política de Privacidad</Title>
+        <br />
+        <br />
         <p>
-          Please read carefully Wix.com cares deeply about the privacy of its
-          visitors and users. Accordingly, in the present Privacy Policy
-          (“Privacy Policy”) describes what way Wix.com Ltd., together with its
-          affiliated companies around the world (“Wix”, “we”, “our” or “us”),
-          collects, uses and share your Personal Information; likewise, the
-          rights that in terms of data you may have about said Personal
-          Information.
-          <br />
-          <br />
-          This Privacy Policy applies to all Wix users, including visitors,
-          registered users and users premium (collectively “User(s)”, “you”, or
-          “your(s)”), as well as all Wix services, including our websites
-          (including www.wix.com and any of its subdomains, the “Website”), the
-          web applications (“Wix Applications”), mobile applications (“Mobile
-          Applications”) and related services (collectively, services").
-          <br />
-          <br />
-          This Privacy Policy is not intended supersede the terms of any
-          contract you have with us, or none of the rights you may have under
-          other laws applicable in terms of data protection. Before accessing
-          our services or use them, please read this policy and make sure you
-          fully understand our practices in regards to to your Personal
-          Information. If after having read and understood completely this
-          Privacy Policy, still does not agree in accordance with our practices,
-          you must leave the website immediately and totally discontinue the use
-          of any of our Services.
-          <br />
-          <br />
-          Yeah If you have any questions or concerns about this policy, please
-          contact us here. By accessing any of our services or use them, you
-          acknowledge that you have read this Privacy Policy Privacy. 2.
-          <br />
-          <br />
-          Privacy Policy applies to all Wix users, including visitors,
-          registered users and users premium (collectively “User(s)”, “you”, or
-          “your(s)”), as well as all Wix services, including our websites
-          (including www.wix.com and any of its subdomains, the “Website”), the
-          web applications (“Wix Applications”), mobile applications (“Mobile
-          Applications”) and related services (collectively, services").
+          El presente Política de Privacidad establece los términos en que
+          ALGORITHMIC MARKET usa y protege la información que es proporcionada
+          por sus usuarios al momento de utilizar su sitio web. Esta compañía
+          está comprometida con la seguridad de los datos de sus usuarios.
+          Cuando le pedimos llenar los campos de información personal con la
+          cual usted pueda ser identificado, lo hacemos asegurando que sólo se
+          empleará de acuerdo con los términos de este documento. Sin embargo
+          esta Política de Privacidad puede cambiar con el tiempo o ser
+          actualizada por lo que le recomendamos y enfatizamos revisar
+          continuamente esta página para asegurarse que está de acuerdo con
+          dichos cambios.
+        </p>
+        <br />
+        <p>
+          Información recogida: nuestro sitio web podrá recoger información como
+          su nombre y dirección de correo electrónico. Así mismo cuando sea
+          necesario podrá ser requerida información específica para procesar
+          algún pedido o realizar una entrega o facturación. Nuestro sitio web
+          emplea la información con el fin de mantener un registro de usuarios,
+          de pedidos en caso que aplique, y mejorar nuestros productos y
+          servicios.
+        </p>
+        <br />
+        <p>
+          Es posible que sean enviados correos electrónicos regularmente a
+          través de nuestro sitio web con ofertas especiales, nuevos productos y
+          otra información publicitaria que consideremos relevante para usted o
+          que pueda brindarle algún beneficio, estos correos electrónicos serán
+          enviados a la dirección que usted proporcione y podrán ser cancelados
+          en cualquier momento.
+        </p>
+        <br />
+        <p>
+          Esta compañía no venderá, cederá ni distribuirá la información
+          personal que es recopilada sin su consentimiento, salvo que sea
+          requerido por un juez con un orden judicial. ALGORITHMIC MARKET Se
+          reserva el derecho de cambiar los términos de la presente Política de
+          Privacidad en cualquier momento.
         </p>
       </PrivacyContainer>
 
@@ -81,4 +83,11 @@ const Container = styled.div`
     @media (max-width: 480px) {
       width: 90vw;
     }
+  `,
+  Title = styled.b`
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+    color: #000;
+    font-family: "Popppins", Arial, sans-serif;
   `;

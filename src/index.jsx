@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
@@ -22,7 +22,7 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
     const { protectedRoute } = useMyContext();
 
     return (
-      <React.StrictMode>
+      <StrictMode>
         <Auth0Provider
           domain={DOMAIN}
           clientId={CLIENT_ID}
@@ -41,7 +41,7 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
             </Routes>
           </BrowserRouter>
         </Auth0Provider>
-      </React.StrictMode>
+      </StrictMode>
     );
   };
 

@@ -5,7 +5,7 @@ async function connectDB() {
     await mongoose.connect(
       "mongodb+srv://AlgorithmicMarket:hRGx4SFBtYqbRgJ@cluster0.mvyno5f.mongodb.net/AlgorithmicMarket?retryWrites=true&w=majority"
     );
-    console.log("DB conectado");
+    console.log("DB conected");
   } catch (err) {
     throw new Error("Conexión con DB fallida: " + err.message);
   }
