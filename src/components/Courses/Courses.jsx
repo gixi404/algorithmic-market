@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { BACK_PATH } from "../../utils/consts.js";
 import Course from "./Course.jsx";
 import { BACK_PATH } from "../../utils/consts.js";
 import styled from "styled-components";
@@ -11,11 +12,11 @@ function Courses() {
 
   useEffect(() => {
     const cursosDB = async () => {
-      const cursos = await fetch(`${BACK_PATH}/getcoursesdb`, {
+      const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
-      const json = await cursos.json();
+      const json = await courses.json();
       setCoursesDB(json);
     };
     cursosDB();
@@ -52,14 +53,16 @@ function Courses() {
       </Title>
 
       <ListCourses>
-        {
-          (coursesDB
-            .sort((a,b) => a.id.localeCompare(b.id, undefined, {numeric: true, sensitivity: 'base'}))
-            .map(course =>(
+        {coursesDB
+          .sort((a, b) =>
+            a.id.localeCompare(b.id, undefined, {
+              numeric: true,
+              sensitivity: "base",
+            })
+          )
+          .map(course => (
             <Course key={course._id} course={course} />
-          )))
-
-        }
+          ))}
       </ListCourses>
     </CoursesContainer>
   );
