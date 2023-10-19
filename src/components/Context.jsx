@@ -4,9 +4,7 @@ const ContextProps = createContext();
 export const useMyContext = () => useContext(ContextProps);
 
 function Context({ children }) {
-  const [coursesCart, setCoursesCart] = useState([]),
-    [errorVideo, setErrorVideo] = useState(false),
-    [allCourses, setAllCourses] = useState([
+  const allCourses = [
       {
         id: 0,
         name: "Curso Inicial",
@@ -61,7 +59,10 @@ function Context({ children }) {
           { name: "9 - Higher Timeframes to Lower", id: 8 },
         ],
       },
-    ]),
+    ],
+    [coursesCart, setCoursesCart] = useState([]),
+    [errorVideo, setErrorVideo] = useState(false),
+    //* allCourses está solo para entregar los detalles del curso.
     [myCourses, setMyCourses] = useState(null),
     [protectedRoute, setProtectedRoute] = useState(false);
 
@@ -83,7 +84,6 @@ function Context({ children }) {
     errorVideo,
     setErrorVideo,
     allCourses,
-    setAllCourses,
     myCourses,
     setMyCourses,
     removeCart,

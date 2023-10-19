@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.c853fb01.css",
-    "main.js": "/static/js/main.0bec4a91.js",
-    "static/media/middleCourseImg.webp": "/static/media/middleCourseImg.462698c881d32191c245.webp",
-    "static/media/advancedCourseImg.webp": "/static/media/advancedCourseImg.bba74be0ea3d94cca489.webp",
-    "static/media/basicCourseImg.webp": "/static/media/basicCourseImg.3d9ef4b3db07361f6034.webp",
+    "main.css": "/static/css/main.99b00422.css",
+    "main.js": "/static/js/main.cf4ddd44.js",
+    "static/media/banner-img.webp": "/static/media/banner-img.82d521b29bf4904c7e19.webp",
+    "static/media/about-us-img.webp": "/static/media/about-us-img.e33e66a79a8bce7343b6.webp",
+    "static/media/course-img.webp": "/static/media/course-img.7488d561b6d0e0f2eeb2.webp",
+    "static/media/favicon.ico": "/static/media/favicon.d268ae8f97427dc941d0.ico",
     "index.html": "/index.html",
-    "main.c853fb01.css.map": "/static/css/main.c853fb01.css.map",
-    "main.0bec4a91.js.map": "/static/js/main.0bec4a91.js.map"
+    "main.99b00422.css.map": "/static/css/main.99b00422.css.map",
+    "main.cf4ddd44.js.map": "/static/js/main.cf4ddd44.js.map"
   },
   "entrypoints": [
-    "static/css/main.c853fb01.css",
-    "static/js/main.0bec4a91.js"
+    "static/css/main.99b00422.css",
+    "static/js/main.cf4ddd44.js"
   ]
 }

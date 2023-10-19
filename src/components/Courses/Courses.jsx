@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { Suspense } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Course from "./Course.jsx";
+import { BACK_PATH } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function Courses() {
-  const { user, isAuthenticated } = useAuth0();
-  const [courses, setCourses] = useState([]);
-  const [coursesDB, setCoursesDB] = useState([]);
+  const { user, isAuthenticated } = useAuth0(),
+    [courses, setCourses] = useState([]),
+    [coursesDB, setCoursesDB] = useState([]);
 
   useEffect(() => {
     const cursosDB = async () => {
-      const cursos = await fetch("http://localhost:3001/getcoursesdb", {
+      const cursos = await fetch(`${BACK_PATH}/getcoursesdb`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
@@ -23,22 +23,22 @@ function Courses() {
 
   useEffect(() => {
     const recuperarCursos = async () => {
-      const cursos = await fetch("http://localhost:3001/getcourses", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ usuario: user.email }),
-      });
-      const json = await cursos.json();
+      const cursos = await fetch(`${BACK_PATH}/getcourses`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ usuario: user.email }),
+        }),
+        json = await cursos.json();
       if (json.length > 0) {
         setCourses(json);
       }
     };
     if (isAuthenticated) recuperarCursos();
-  }, [isAuthenticated]);
+  }, []);
 
   useEffect(() => {
-    const courserest = coursesDB.filter(item => item.id != courses[0]?.id);
-    const courseComplete = courses.concat(courserest);
+    const courserest = coursesDB.filter(item => item.id != courses[0]?.id),
+      courseComplete = courses.concat(courserest);
     if (courseComplete.length >= 3) {
       setCoursesDB(courseComplete);
     }

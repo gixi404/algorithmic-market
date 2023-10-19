@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
     trim: true,
     unique: true,
   },
-  courses:{
+  courses: {
     type: Array,
   },
 });
