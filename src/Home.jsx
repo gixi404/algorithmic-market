@@ -15,9 +15,8 @@ import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
 
 function Home() {
-  const [userInfo, setUserInfo] = useState();
-  const { isLoading, isAuthenticated, getAccessTokenSilently, user } =
-      useAuth0(),
+  const [userInfo, setUserInfo] = useState(),
+    { isLoading, isAuthenticated, getAccessTokenSilently, user } = useAuth0(),
     { setMyCourses } = useMyContext();
 
   useEffect(() => {
@@ -35,12 +34,12 @@ function Home() {
   useEffect(() => {
     const getToken = async () => {
       try {
-        const newToken = await getAccessTokenSilently();
-        const data = await fetch(`${BACK_PATH}/users`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(user),
-        });
+        const newToken = await getAccessTokenSilently(),
+          data = await fetch(`${BACK_PATH}/users`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(user),
+          });
         const json = await data.json();
         setUserInfo(json);
       } catch (e) {

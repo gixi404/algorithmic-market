@@ -15,7 +15,9 @@ function DetailsCourse() {
           <CloseCartSVG />
         </Link>
 
-        <Title>{allCourses[coursedetails]?.name}</Title>
+        <Title onClick={() => console.log(pija)}>
+          {allCourses[coursedetails]?.name}
+        </Title>
 
         <Article>
           <NameSection>Descripción</NameSection>

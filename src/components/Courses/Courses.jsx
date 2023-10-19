@@ -2,62 +2,48 @@ import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "../../utils/consts.js";
 import Course from "./Course.jsx";
+import { BACK_PATH } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function Courses() {
-  const {user, isAuthenticated} = useAuth0()
-  const [courses, setCourses] = useState([])
-  const [coursesDB, setCoursesDB] = useState([])
+  const { user, isAuthenticated } = useAuth0(),
+    [courses, setCourses] = useState([]),
+    [coursesDB, setCoursesDB] = useState([]);
 
   useEffect(() => {
-    const cursosDB = async() => {
-      const cursos = await fetch(`${BACK_PATH}/getcoursesdb`,{method:"POST",headers:{"Content-Type": "application/json"}})
-      const json = await cursos.json()
-      setCoursesDB(json)
-    }
-    cursosDB()
-  }, [])
+    const cursosDB = async () => {
+      const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+      const json = await courses.json();
+      setCoursesDB(json);
+    };
+    cursosDB();
+  }, []);
 
   useEffect(() => {
     const recuperarCursos = async () => {
-      const cursos = await fetch("http://localhost:3001/getcourses",{method:"POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({usuario:user.email})
-      })
-      const json = await cursos.json()
-      if(json.length > 0 ) {
-          setCourses(json)
-        }
-    }
-    if(isAuthenticated) recuperarCursos()
-  },[isAuthenticated])
-
-  useEffect(() => {  
-    if (courses.length <= 3 && coursesDB.length <= 4) {
-      
-    const existingIds = new Set(coursesDB.map(course => course.id));
-
-    // Reemplazo los objetos repetidos en DB
-    const updatedCoursesDB = coursesDB.map(course => {
-      const replacementCourse = courses.find(c => c.id === course.id);
-      return replacementCourse ? replacementCourse : course;
-    });
-
-    // agrego los cursos sin repetir
-    for (let course of courses) {
-      if (!existingIds.has(course.id) && updatedCoursesDB.length < 3) {
-        updatedCoursesDB.push(course);
-        existingIds.add(course.id);
+      const cursos = await fetch(`${BACK_PATH}/getcourses`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ usuario: user.email }),
+        }),
+        json = await cursos.json();
+      if (json.length > 0) {
+        setCourses(json);
       }
+    };
+    if (isAuthenticated) recuperarCursos();
+  }, []);
+
+  useEffect(() => {
+    const courserest = coursesDB.filter(item => item.id != courses[0]?.id),
+      courseComplete = courses.concat(courserest);
+    if (courseComplete.length >= 3) {
+      setCoursesDB(courseComplete);
     }
-
-    // Actualizar coursesDB con los objetos actualizados y sin duplicados
-    setCoursesDB(updatedCoursesDB);
-  }
-}, [courses]);
-
+  }, [courses]);
 
   return (
     <CoursesContainer id="allcourses">
@@ -67,14 +53,16 @@ function Courses() {
       </Title>
 
       <ListCourses>
-        {
-          (coursesDB
-            .sort((a,b) => a.id.localeCompare(b.id, undefined, {numeric: true, sensitivity: 'base'}))
-            .map(course =>(
+        {coursesDB
+          .sort((a, b) =>
+            a.id.localeCompare(b.id, undefined, {
+              numeric: true,
+              sensitivity: "base",
+            })
+          )
+          .map(course => (
             <Course key={course._id} course={course} />
-          )))
-
-        }
+          ))}
       </ListCourses>
     </CoursesContainer>
   );
