@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "../../utils/consts.js";
 import Course from "./Course.jsx";
-import { BACK_PATH } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function Courses() {
