@@ -63,7 +63,7 @@ function Home() {
     <PageContainer>
       <Routes>
         <Route path="/details/:coursedetails" element={<DetailsCourse />} />
-        <Route path="/coursepurchased" element={<CoursePurchased />} />
+        <Route path="/coursepuchased" element={<CoursePurchased />} />
       </Routes>
       <Header />
       {!isAuthenticated && <MobileLoginBtn />}
