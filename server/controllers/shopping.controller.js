@@ -84,7 +84,6 @@ export async function redirectShopping(req, res) {
     user = infoCompra.user,
     coincidencia = await User.find({ email: user }),
     arrayDeCompras = [];
-  console.log(infoCompra);
 
   try {
     const c1bought = await course.find({ id: c1 });
@@ -109,7 +108,7 @@ export async function redirectShopping(req, res) {
     throw new Error("Algo falló al comprar los cursos");
   }
   res.json({
-    url: `${FRONT_PATH}/coursepurchased`,
+    url: `${FRONT_PATH}/coursepuchased`,
   });
 }
 
