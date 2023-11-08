@@ -20,18 +20,6 @@ function Home() {
     { setMyCourses } = useMyContext();
 
   useEffect(() => {
-    function redirectToHome() {
-      const actualRoute = window.location.pathname;
-
-      if (actualRoute === "/privacy") {
-        window.location.href = "/";
-      }
-    }
-
-    return () => redirectToHome();
-  }, [window.location.reload]);
-
-  useEffect(() => {
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
