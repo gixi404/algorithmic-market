@@ -28,7 +28,7 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
           clientId={CLIENT_ID}
           authorizationParams={{ redirect_uri: window.location.origin }}
         >
-          <BrowserRouter>
+          <BrowserRouter basename="/">
             <Routes>
               <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
               <Route path="/privacy" element={<Privacy />} />
