@@ -29,7 +29,7 @@ function Course(props) {
         ) : (
           <BuyBtn
             title={id == 0 ? "Más Información" : "Próximamente"}
-            url={id == 0 && `/details/${id}`}
+            url={id == 0 ? `/details/${id}` : "#"}
           />
         )}
       </ButtonContainer>
