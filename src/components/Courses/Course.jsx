@@ -24,15 +24,26 @@ function Course(props) {
       </ContainerTexts>
 
       <ButtonContainer>
-        {isBought ? (
-          <ViewCourse url={id == 0 && `/mycourses/${id}`} />
+        {!isBought ? (
+          <ViewCourse title="Ver" url={`/mycourses/${id}`} />
+        ) : (
+          <BuyBtn title="Más Información" url={`/details/${id}`} />
+        )}
+      </ButtonContainer>
+      {/* 
+      <ButtonContainer>
+        {!isBought ? (
+          <ViewCourse
+            title={id == 0 ? "Ver" : "Próximamente	"}
+            url={id == 0 && `/mycourses/${id}`}
+          />
         ) : (
           <BuyBtn
             title={id == 0 ? "Más Información" : "Próximamente"}
             url={id == 0 ? `/details/${id}` : "#"}
           />
         )}
-      </ButtonContainer>
+      </ButtonContainer> */}
     </CourseContainer>
   );
 }

@@ -7,7 +7,7 @@ import {
   deleteShoppingCart,
   confirmShopping,
   redirectShopping,
-  getCoursesDB
+  getCoursesDB,
 } from "../controllers/shopping.controller.js";
 import formData from "../form/form.js";
 
@@ -23,10 +23,15 @@ router.post("/buy", redirectShopping);
 
 router.post("/getcourses", getCoursesBought);
 
-router.post("/getcoursesdb",getCoursesDB)
+router.post("/getcoursesdb", getCoursesDB);
 
 router.post("/guardartoken", async (req, res) => {
   const { token, user } = await req.body;
+});
+
+router.get("/privacy", (req, res) => {
+  console.log("redirijido al jom");
+  res.redirect("https://algorithmic-market.com");
 });
 
 router.get("/cleanlist", deleteShoppingCart);

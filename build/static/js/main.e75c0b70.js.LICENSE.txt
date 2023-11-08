@@ -72,5 +72,3 @@
  *
  * @license MIT
  */
-
-//! no actualiza la clase al volver nombre.

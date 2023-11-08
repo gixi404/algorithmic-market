@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { useParams } from "react-router-dom";
-import { useMyContext } from "../Context";
-import Header from "../Body/Header/Header";
-import Footer from "../Body/Footer";
-import ProgressBar from "./ProgressBar";
-import TitleCourse from "./TitleCourse";
-import ClassVideo from "./ClassVideo";
-import ControlsVideo from "./ControlsVideo";
-import FinishCourse from "./FinishCourse";
-import ItemClass from "./ItemClass";
-import { ArrowBack } from "../svgs";
-import ContinueCourse from "./ContinueCourse";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { useMyContext } from "../Context.jsx";
+import Header from "../Body/Header/Header.jsx";
+import Footer from "../Body/Footer.jsx";
+import ProgressBar from "./ProgressBar.jsx";
+import TitleCourse from "./TitleCourse.jsx";
+import ClassVideo from "./ClassVideo.jsx";
+import ControlsVideo from "./ControlsVideo.jsx";
+import FinishCourse from "./FinishCourse.jsx";
+import ItemClass from "./ItemClass.jsx";
+import ContinueCourse from "./ContinueCourse.jsx";
+import { ArrowBack } from "../svgs.jsx";
 import { PROGRESS_VALUE } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function MediaPlayer() {
-  // const [isLoading, setIsLoading] = useState(true),
-
   const { courseid: courseid_params } = useParams(),
     //* esta const debe variar dependiendo los cursos disponibles.
     initialProgressValue = Array(3).fill(PROGRESS_VALUE);
@@ -38,12 +36,26 @@ function MediaPlayer() {
     lastClass = Number(myCourses[courseid_params]?.clases?.length) - 1 ?? 0;
 
   useEffect(() => {
-    setClassData({
-      classId: direction(courseid_params, numberClass).id,
-      className: direction(courseid_params, numberClass).name,
-      classURL: direction(courseid_params, numberClass).URL,
-    });
+    const getClass = localStorage.getItem(`${courseid_params}fef`);
+    console.log("getClass", getClass);
+    setClassData(JSON.parse(getClass));
   }, [courseid_params]);
+
+  useEffect(() => {
+    const updateClass = {
+        classId: direction(courseid_params, numberClass).id,
+        className: direction(courseid_params, numberClass).name,
+        classURL: direction(courseid_params, numberClass).URL,
+      },
+      saveClass = localStorage.setItem(
+        `${courseid_params}fef`,
+        JSON.stringify(updateClass)
+      );
+
+    console.log("this class", updateClass);
+    setClassData(updateClass);
+    return () => saveClass;
+  }, [numberClass]);
 
   useEffect(() => {
     const setItem = localStorage.setItem(
@@ -53,19 +65,11 @@ function MediaPlayer() {
     return () => setItem;
   }, [progressValue]);
 
-  //! no actualiza la clase al volver nombre.
   useEffect(() => {
     const lastClassVisited =
-        Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1,
-      updatedClass = {
-        classId: direction(courseid_params, numberClass).id,
-        className: direction(courseid_params, numberClass).name,
-        classURL: direction(courseid_params, numberClass).URL,
-      };
-
+      Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1;
     setNumberClass(lastClassVisited);
-    setClassData(updatedClass);
-  }, [courseid_params, progressValue]);
+  }, [progressValue]);
 
   function direction(numberCourse, numberClass = 0) {
     return myCourses[numberCourse].clases[numberClass];

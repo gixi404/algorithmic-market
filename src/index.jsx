@@ -33,7 +33,9 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
               <Route path="*" element={<Home />} />
               <Route
                 path="/mycourses/:courseid"
-                element={protectedRoute ? <MediaPlayer /> : <Navigate to="/" />}
+                element={<MediaPlayer />}
+
+                // element={protectedRoute ? <MediaPlayer /> : <Navigate to="/" />}
               />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/shoppingcart" element={<IndexCart />} />

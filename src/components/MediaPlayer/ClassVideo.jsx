@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useMyContext } from "../Context";
-import ErrorVideo from "./ErrorVideo";
+import { useMyContext } from "../Context.jsx";
+import ErrorVideo from "./ErrorVideo.jsx";
 import styled from "styled-components";
 
 function ClassVideo(props) {
@@ -17,7 +17,7 @@ function ClassVideo(props) {
     }
   }, [classURL]);
 
-  //*16/9 aspectratio de yt
+
 
   return (
     <>
@@ -27,7 +27,6 @@ function ClassVideo(props) {
           frameBorder="0"
           allowFullScreen
           allow="autoplay;encrypted-media;picture-in-picture;"
-          // testear los necesarios allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
           loading="lazy"
           title={`Clase: ${classURL.name}`}
         />
