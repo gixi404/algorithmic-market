@@ -20,6 +20,26 @@ function Home() {
     { setMyCourses } = useMyContext();
 
   useEffect(() => {
+    function redirectToHome() {
+      const actualRoute = window.location.pathname;
+
+      if (!actualRoute) {
+        window.location.href = "/";
+      }
+
+      if (actualRoute === "/") {
+        return;
+      }
+
+      if (window.location.reload) {
+        window.location.href = "/";
+      }
+    }
+
+    return () => redirectToHome();
+  }, [window.location.reload]);
+
+  useEffect(() => {
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

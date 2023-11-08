@@ -29,11 +29,6 @@ router.post("/guardartoken", async (req, res) => {
   const { token, user } = await req.body;
 });
 
-router.get("/privacy", (req, res) => {
-  console.log("redirijido al jom");
-  res.redirect("https://algorithmic-market.com");
-});
-
 router.get("/cleanlist", deleteShoppingCart);
 
 router.post("/form", async (req, res) => {
