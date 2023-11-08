@@ -10,8 +10,8 @@ import Footer from "./components/Body/Footer.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
-import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import { useMyContext } from "./components/Context.jsx";
+import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import styled from "styled-components";
 
 function Home() {
@@ -62,8 +62,8 @@ function Home() {
   return (
     <PageContainer>
       <Routes>
+        <Route path="/coursepuchased" element={<CoursePurchased />} />
         <Route path="/details/:coursedetails" element={<DetailsCourse />} />
-        <Route path="/coursepurchased" element={<CoursePurchased />} />
       </Routes>
       <Header />
       {!isAuthenticated && <MobileLoginBtn />}
