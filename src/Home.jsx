@@ -23,15 +23,7 @@ function Home() {
     function redirectToHome() {
       const actualRoute = window.location.pathname;
 
-      if (!actualRoute) {
-        window.location.href = "/";
-      }
-
-      if (actualRoute === "/") {
-        return;
-      }
-
-      if (window.location.reload) {
+      if (actualRoute === "/privacy") {
         window.location.href = "/";
       }
     }
