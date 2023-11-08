@@ -38,4 +38,8 @@ router.post("/form", async (req, res) => {
 
 router.post("/createcourse", createCourse);
 
+router.get("/privacy", (req, res) => {
+  res.sendFile("../../public/redirect.html");
+});
+
 export default router;
