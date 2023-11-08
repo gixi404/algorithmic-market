@@ -10,19 +10,20 @@ function Courses() {
     [coursesDB, setCoursesDB] = useState([]);
 
   useEffect(() => {
-    const cursosDB = async () => {
+    async function cursosDB() {
       const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
-      const json = await courses.json();
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }),
+        json = await courses.json();
       setCoursesDB(json);
-    };
-    cursosDB();
+    }
+
+    return () => cursosDB();
   }, []);
 
   useEffect(() => {
-    const recuperarCursos = async () => {
+    async function recoveryCourses() {
       const cursos = await fetch(`${BACK_PATH}/getcourses`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -32,8 +33,11 @@ function Courses() {
       if (json.length > 0) {
         setCourses(json);
       }
-    };
-    if (isAuthenticated) recuperarCursos();
+    }
+
+    if (isAuthenticated) {
+      recoveryCourses();
+    }
   }, []);
 
   useEffect(() => {
