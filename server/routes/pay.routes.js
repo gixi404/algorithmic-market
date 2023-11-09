@@ -7,7 +7,7 @@ import {
   deleteShoppingCart,
   confirmShopping,
   redirectShopping,
-  getCoursesDB
+  getCoursesDB,
 } from "../controllers/shopping.controller.js";
 import formData from "../form/form.js";
 
@@ -23,7 +23,7 @@ router.post("/buy", redirectShopping);
 
 router.post("/getcourses", getCoursesBought);
 
-router.post("/getcoursesdb",getCoursesDB)
+router.post("/getcoursesdb", getCoursesDB);
 
 router.post("/guardartoken", async (req, res) => {
   const { token, user } = await req.body;
@@ -37,5 +37,9 @@ router.post("/form", async (req, res) => {
 });
 
 router.post("/createcourse", createCourse);
+
+// router.get("/privacy", (req, res) => {
+//   res.sendFile("../../public/redirect.html");
+// });
 
 export default router;

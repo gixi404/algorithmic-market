@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function ViewCourse(props) {
-  const { url } = props,
+  const { url, title } = props,
     { setProtectedRoute } = useMyContext();
 
   function handleClick() {
@@ -17,7 +17,7 @@ function ViewCourse(props) {
 
   return (
     <Button onClick={handleClick}>
-      <Link to={url}>Ver</Link>
+      <Link to={url}>{title}</Link>
     </Button>
   );
 }

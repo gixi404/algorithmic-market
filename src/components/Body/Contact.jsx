@@ -315,7 +315,8 @@ const Container = styled.section`
     border-radius: 0.3em;
     margin-top: 0.5em;
     @media (max-width: 480px) {
-      height: 3vh;
+      margin-top: 2em;
+      padding: 0.8em;
     }
   `,
   TextValidation = styled.p`

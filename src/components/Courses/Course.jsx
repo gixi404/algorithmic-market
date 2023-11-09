@@ -1,5 +1,5 @@
-import ViewCourse from "../Log/ViewCourse";
-import BuyBtn from "./Button";
+import ViewCourse from "../Log/ViewCourse.jsx";
+import BuyBtn from "./Button.jsx";
 import courseImg from "../../img/course-img.webp";
 import styled from "styled-components";
 
@@ -7,6 +7,7 @@ function Course(props) {
   const { course } = props,
     { name, description, isBought, id } = course,
     getIsCompleted = localStorage.getItem(`isCompleted:${name}`);
+
   return (
     <CourseContainer>
       {getIsCompleted && (
@@ -15,7 +16,7 @@ function Course(props) {
         </CourseCompleted>
       )}
 
-      <Img src={courseImg} loading="lazy" alt="imágen del curso" />
+      <Img src={courseImg} loading="lazy" alt={`imágen de curso ${name}`} />
 
       <ContainerTexts>
         <NameCourse>{name}</NameCourse>
@@ -23,11 +24,26 @@ function Course(props) {
       </ContainerTexts>
 
       <ButtonContainer>
-        {isBought ? ( 
-        <ViewCourse url={`/mycourses/${id}`} />
-        ) : ( <BuyBtn title="Más Información" url={`/details/${id}`} />
-        )} 
+        {!isBought ? (
+          <ViewCourse title="Ver" url={`/mycourses/${id}`} />
+        ) : (
+          <BuyBtn title="Más Información" url={`/details/${id}`} />
+        )}
       </ButtonContainer>
+      {/* 
+      <ButtonContainer>
+        {!isBought ? (
+          <ViewCourse
+            title={id == 0 ? "Ver" : "Próximamente	"}
+            url={id == 0 && `/mycourses/${id}`}
+          />
+        ) : (
+          <BuyBtn
+            title={id == 0 ? "Más Información" : "Próximamente"}
+            url={id == 0 ? `/details/${id}` : "#"}
+          />
+        )}
+      </ButtonContainer> */}
     </CourseContainer>
   );
 }

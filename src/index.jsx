@@ -19,7 +19,7 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
     </Context>
   ),
   App = () => {
-    const { protectedRoute } = useMyContext();
+    // const { protectedRoute } = useMyContext();
 
     return (
       <StrictMode>
@@ -30,14 +30,11 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
         >
           <BrowserRouter basename="/">
             <Routes>
-              <Route path="*" element={<Home />} />
-              <Route
-                path="/mycourses/:courseid"
-                element={protectedRoute ? <MediaPlayer /> : <Navigate to="/" />}
-              />
+              <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/shoppingcart" element={<IndexCart />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </BrowserRouter>
         </Auth0Provider>
@@ -46,3 +43,5 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
   };
 
 root.render(<MyContext />);
+
+// element={protectedRoute ? <MediaPlayer /> : <Navigate to="/" />}
