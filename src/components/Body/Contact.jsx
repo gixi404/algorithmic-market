@@ -164,7 +164,6 @@ function Contact() {
             Consulta
             <Textarea
               name="query_form"
-              // id="query_form"
               ref={Query}
               cols="10"
               rows="5"

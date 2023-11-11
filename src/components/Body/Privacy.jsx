@@ -12,14 +12,14 @@ function Privacy() {
         <br />
         <br />
         <p>
-          El presente Política de Privacidad establece los términos en que
+          La presente política de privacidad establece los términos en que
           ALGORITHMIC MARKET usa y protege la información que es proporcionada
           por sus usuarios al momento de utilizar su sitio web. Esta compañía
           está comprometida con la seguridad de los datos de sus usuarios.
           Cuando le pedimos llenar los campos de información personal con la
           cual usted pueda ser identificado, lo hacemos asegurando que sólo se
           empleará de acuerdo con los términos de este documento. Sin embargo
-          esta Política de Privacidad puede cambiar con el tiempo o ser
+          esta política de privacidad puede cambiar con el tiempo o ser
           actualizada por lo que le recomendamos y enfatizamos revisar
           continuamente esta página para asegurarse que está de acuerdo con
           dichos cambios.
@@ -48,8 +48,8 @@ function Privacy() {
           Esta compañía no venderá, cederá ni distribuirá la información
           personal que es recopilada sin su consentimiento, salvo que sea
           requerido por un juez con un orden judicial. ALGORITHMIC MARKET Se
-          reserva el derecho de cambiar los términos de la presente Política de
-          Privacidad en cualquier momento.
+          reserva el derecho de cambiar los términos de la presente política de
+          privacidad en cualquier momento.
         </p>
       </PrivacyContainer>
 
