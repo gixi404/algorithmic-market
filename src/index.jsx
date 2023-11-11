@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Home from "./Home.jsx";
 import Context, { useMyContext } from "./components/Context.jsx";
@@ -19,8 +19,7 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
     </Context>
   ),
   App = () => {
-    // const { protectedRoute } = useMyContext();
-
+    const { protectedRoute } = useMyContext();
     return (
       <StrictMode>
         <Auth0Provider
@@ -28,20 +27,21 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
           clientId={CLIENT_ID}
           authorizationParams={{ redirect_uri: window.location.origin }}
         >
-          <BrowserRouter basename="/">
+          <HashRouter basename="/">
             <Routes>
-              <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
+              <Route
+                path="/mycourses/:courseid"
+                element={protectedRoute ? <MediaPlayer /> : <Navigate to="/" />}
+              />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/shoppingcart" element={<IndexCart />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<Home />} />
             </Routes>
-          </BrowserRouter>
+          </HashRouter>
         </Auth0Provider>
       </StrictMode>
     );
   };
 
 root.render(<MyContext />);
-
-// element={protectedRoute ? <MediaPlayer /> : <Navigate to="/" />}

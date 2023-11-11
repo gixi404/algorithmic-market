@@ -23,19 +23,19 @@ function Course(props) {
         <DescriptionCard>{description}</DescriptionCard>
       </ContainerTexts>
 
-      <ButtonContainer>
-        {!isBought ? (
+      {/* <ButtonContainer>
+        {isBought ? (
           <ViewCourse title="Ver" url={`/mycourses/${id}`} />
         ) : (
           <BuyBtn title="Más Información" url={`/details/${id}`} />
         )}
-      </ButtonContainer>
-      {/* 
+      </ButtonContainer> */}
+
       <ButtonContainer>
-        {!isBought ? (
+        {isBought ? (
           <ViewCourse
             title={id == 0 ? "Ver" : "Próximamente	"}
-            url={id == 0 && `/mycourses/${id}`}
+            url={id == 0 ? `/mycourses/${id}` : "#"}
           />
         ) : (
           <BuyBtn
@@ -43,7 +43,7 @@ function Course(props) {
             url={id == 0 ? `/details/${id}` : "#"}
           />
         )}
-      </ButtonContainer> */}
+      </ButtonContainer>
     </CourseContainer>
   );
 }
