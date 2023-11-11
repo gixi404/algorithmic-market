@@ -19,8 +19,7 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
     </Context>
   ),
   App = () => {
-    // const { protectedRoute } = useMyContext();
-
+    const { protectedRoute } = useMyContext();
     return (
       <StrictMode>
         <Auth0Provider
@@ -30,8 +29,10 @@ const DOMAIN = "algorithmicmarket.us.auth0.com",
         >
           <HashRouter basename="/">
             <Routes>
-              <Route path="/mycourses/:courseid" element={<MediaPlayer />} />
-              {/* element={protectedRoute ? <MediaPlayer /> : <Navigate to="/" />} */}
+              <Route
+                path="/mycourses/:courseid"
+                element={protectedRoute ? <MediaPlayer /> : <Navigate to="/" />}
+              />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/shoppingcart" element={<IndexCart />} />
               <Route path="/profile" element={<Profile />} />
