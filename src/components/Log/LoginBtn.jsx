@@ -17,9 +17,6 @@ function LoginBtn() {
 
   async function logUser() {
     try {
-      /* const data = await fetch(`${BACK_PATH}/users`,infoFetch),
-      json = await data.json()
-      console.log(json) */
       loginWithPopup();
     } catch (error) {
       console.log(error.message);

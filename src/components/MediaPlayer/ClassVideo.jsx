@@ -17,8 +17,6 @@ function ClassVideo(props) {
     }
   }, [classURL]);
 
-
-
   return (
     <>
       {!errorVideo ? (

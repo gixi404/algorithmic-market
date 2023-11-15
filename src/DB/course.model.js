@@ -7,10 +7,10 @@ const CourseSchema = mongoose.Schema({
   },
   cash: {
     type: String,
-    trim: true
+    trim: true,
   },
-  isBought:{
-    type: Boolean
+  isBought: {
+    type: Boolean,
   },
   id: {
     type: String,

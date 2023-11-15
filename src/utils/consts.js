@@ -4,6 +4,3 @@ const BACK_PATH = "https://server.algorithmic-market.com";
 const PROGRESS_VALUE = 11;
 
 export { FRONT_PATH, BACK_PATH, PROGRESS_VALUE };
-
-// const FRONT_PATH = "https://algorithmic-market.com";
-// const BACK_PATH = "https://3001.algorithmic-market-subdomain.com";

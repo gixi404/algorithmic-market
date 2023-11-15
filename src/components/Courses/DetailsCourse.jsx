@@ -74,7 +74,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
     row-gap: 2em;
-    button{
+    button {
       margin: 2vh 0;
     }
     @media (max-width: 576px) {

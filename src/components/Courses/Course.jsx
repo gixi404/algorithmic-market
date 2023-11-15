@@ -23,14 +23,6 @@ function Course(props) {
         <DescriptionCard>{description}</DescriptionCard>
       </ContainerTexts>
 
-      {/* <ButtonContainer>
-        {isBought ? (
-          <ViewCourse title="Ver" url={`/mycourses/${id}`} />
-        ) : (
-          <BuyBtn title="Más Información" url={`/details/${id}`} />
-        )}
-      </ButtonContainer> */}
-
       <ButtonContainer>
         {isBought ? (
           <ViewCourse

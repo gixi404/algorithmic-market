@@ -3,20 +3,25 @@ import styled from "styled-components";
 function NavHeader(props) {
   const { isMobile } = props;
 
+  function scrollToSection(id) {
+    const element = document.getElementById(id);
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+
   if (isMobile) {
     return (
       <ContainerMobile>
-        <a href="#allcourses">Cursos</a>
-        <a href="#aboutus">Sobre&nbsp;Nosotros</a>
-        <a href="#contact">Contacto</a>
+        <a onClick={() => scrollToSection("allcourses")}>Cursos</a>
+        <a onClick={() => scrollToSection("aboutus")}>Sobre&nbsp;Nosotros</a>
+        <a onClick={() => scrollToSection("contact")}>Contacto</a>
       </ContainerMobile>
     );
   } else {
     return (
       <Container>
-        <a href="#allcourses">Cursos</a>
-        <a href="#aboutus">Sobre&nbsp;Nosotros</a>
-        <a href="#contact">Contacto</a>
+        <a onClick={() => scrollToSection("allcourses")}>Cursos</a>
+        <a onClick={() => scrollToSection("aboutus")}>Sobre&nbsp;Nosotros</a>
+        <a onClick={() => scrollToSection("contact")}>Contacto</a>
       </Container>
     );
   }
