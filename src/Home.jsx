@@ -10,26 +10,12 @@ import Footer from "./components/Body/Footer.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
-import { useMyContext } from "./components/Context.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import styled from "styled-components";
 
 function Home() {
   const [userInfo, setUserInfo] = useState(),
-    { isLoading, isAuthenticated, getAccessTokenSilently, user } = useAuth0(),
-    { setMyCourses } = useMyContext();
-
-  useEffect(() => {
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    };
-
-    fetch(`${BACK_PATH}/getcoursesdb`, options)
-      .then(res => res.json())
-      .then(courses => setMyCourses(courses))
-      .catch(err => console.error(err.message));
-  }, []);
+    { isLoading, isAuthenticated, getAccessTokenSilently, user } = useAuth0()
 
   useEffect(() => {
     const getToken = async () => {
