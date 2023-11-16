@@ -35,7 +35,6 @@ function Home() {
     if (isAuthenticated) {
       getToken();
     }
-
   }, [isAuthenticated]);
 
   if (isLoading) {

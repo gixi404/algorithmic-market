@@ -52,7 +52,7 @@ function Courses() {
     <CoursesContainer id="allcourses">
       <Title>
         Cursos
-        <span>Eleva tus habilidades de un nivel inicial a avanzado.</span>
+        <span> Eleva tus habilidades de un nivel inicial a avanzado.</span>
       </Title>
 
       <ListCourses>

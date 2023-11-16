@@ -14,7 +14,7 @@ function Footer() {
         <Link to="/privacy">Política de Privacidad</Link>
         <p>&copy; Todos los derechos reservados</p>
       </Content>
-    </Container> 
+    </Container>
   );
 }
 
