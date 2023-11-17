@@ -60,6 +60,7 @@ const ContainerMobile = styled.nav`
       font-family: "Poppins", monospace;
       font-size: calc(12px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
       text-transform: capitalize;
+      cursor: pointer;
       &:hover {
         color: #888888;
       }

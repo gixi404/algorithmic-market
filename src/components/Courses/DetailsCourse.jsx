@@ -11,6 +11,7 @@ function DetailsCourse() {
   return (
     <Container>
       <Details>
+        <HeaderDetail>
         <Link to="/">
           <CloseCartSVG />
         </Link>
@@ -18,7 +19,8 @@ function DetailsCourse() {
         <Title onClick={() => console.log(pija)}>
           {allCourses[coursedetails]?.name}
         </Title>
-
+        </HeaderDetail>
+        
         <Article>
           <NameSection>Descripción</NameSection>
           <Description>{allCourses[coursedetails]?.description}</Description>
@@ -61,10 +63,10 @@ const Container = styled.div`
   Details = styled.section`
     background-color: #ebebeb;
     position: fixed;
-    padding-top: 2em;
+    padding-top: 1.5em;
     width: 80vw;
     height: 80vh;
-    overflow-y: visible;
+    overflow-y: auto;
     max-width: 700px;
     border-radius: 8px;
     border-bottom: 5px solid #ff6700;
@@ -85,6 +87,12 @@ const Container = styled.div`
       width: 90%;
       min-height: 100vh;
     }
+  `,
+  HeaderDetail = styled.article`
+  width: 90%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: row-reverse;
   `,
   Title = styled.h3`
     width: 100%;
