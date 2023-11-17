@@ -104,7 +104,6 @@ const Container = styled.div`
     border-radius: 8px;
     background-color: #fff;
     margin: 3em 0;
-
     height: auto;
     h1 {
       text-align: center;
