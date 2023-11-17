@@ -73,10 +73,10 @@ function IndexCart() {
             <Btn courses={coursesCart} />
           </SubmitContainer>
         ) : !isAuthenticated && coursesCart.length > 0 ? (
-          <>
+          <ContLogin>
             <P>Inicia Sesión para realizar una compra</P>
             <LoginBtn />
-          </>
+          </ContLogin>
         ) : null}
       </Content>
 
@@ -169,4 +169,12 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  `,
+  ContLogin = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1.5em;
+    margin-bottom: 1em;
   `;
