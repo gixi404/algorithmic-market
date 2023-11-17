@@ -18,8 +18,7 @@ function Courses() {
         json = await courses.json();
       setCoursesDB(json);
     }
-
-    return () => cursosDB();
+      cursosDB();
   }, []);
 
   useEffect(() => {

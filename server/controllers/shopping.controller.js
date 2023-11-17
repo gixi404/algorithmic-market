@@ -111,7 +111,7 @@ export async function redirectShopping(req, res) {
     throw new Error("Algo falló al comprar los cursos");
   }
   res.json({
-    url: `${FRONT_PATH}/coursepuchased`,
+    url: `${FRONT_PATH}/`,
   });
 }
 

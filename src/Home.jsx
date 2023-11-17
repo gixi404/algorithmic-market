@@ -16,7 +16,6 @@ import styled from "styled-components";
 function Home() {
   const [userInfo, setUserInfo] = useState(),
     { isLoading, isAuthenticated, getAccessTokenSilently, user } = useAuth0()
-
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -35,6 +34,7 @@ function Home() {
     if (isAuthenticated) {
       getToken();
     }
+
   }, [isAuthenticated]);
 
   if (isLoading) {
