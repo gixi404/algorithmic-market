@@ -64,7 +64,7 @@ const Container = styled.div`
     padding-top: 2em;
     width: 80vw;
     height: 80vh;
-    overflow-y: auto;
+    overflow-y: visible;
     max-width: 700px;
     border-radius: 8px;
     border-bottom: 5px solid #ff6700;
@@ -84,8 +84,6 @@ const Container = styled.div`
       background-color: transparent;
       width: 90%;
       min-height: 100vh;
-      /* font-family: "Poppins", monospace;
-      font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320))); */
     }
   `,
   Title = styled.h3`
