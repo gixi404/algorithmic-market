@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-async function formData(name_form, mail_form, query_form) {
+async function formData(name, mail, query) {
   const config = {
       host: "smtp.gmail.com",
       port: 587,
@@ -16,12 +16,12 @@ async function formData(name_form, mail_form, query_form) {
       html: `
        <div style="text-align: center">
          <h1>
-            Hola, soy ${name_form}
+            Hola, soy ${name}
          </h1>. 
          <br />
          <p>
-            Consulta: ${query_form} <br />
-            Mail: <b>${mail_form}</b>
+            Consulta: ${query} <br />
+            Mail: <b>${mail}</b>
          </p>
        </div>
       `,

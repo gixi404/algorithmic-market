@@ -189,7 +189,7 @@ function MediaPlayer() {
       <ContentContainer>
         <TitleContent>
           Contenido
-          <span>Aquí se mostrará el proceso de este curso.</span>
+          <span>Visualiza el proceso de este curso.</span>
         </TitleContent>
 
         <NameCourse>{myCourses[courseid_params]?.name}</NameCourse>

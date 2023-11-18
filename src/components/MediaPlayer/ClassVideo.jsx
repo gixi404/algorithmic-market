@@ -24,7 +24,6 @@ function ClassVideo(props) {
           src={videoData}
           frameBorder="0"
           allowFullScreen
-          allow="autoplay;encrypted-media;picture-in-picture;"
           loading="lazy"
           title={`Clase: ${className}`}
         />
