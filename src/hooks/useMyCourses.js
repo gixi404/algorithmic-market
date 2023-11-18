@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import { BACK_PATH } from "../utils/consts.js";
 
 export function useFetch(url) {
   const [dataFetch, setDataFetch] = useState(null),

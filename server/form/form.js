@@ -11,7 +11,7 @@ async function formData(name_form, mail_form, query_form) {
     },
     message = {
       from: "gixipixel@gmail.com",
-      to: "gioliotta.io@gmail.com",
+      to: "gioliotta.io@gmail.com  ",
       subject: "Soporte Algorithmic Market",
       html: `
        <div style="text-align: center">

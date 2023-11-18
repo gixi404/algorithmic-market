@@ -4,17 +4,6 @@ import styled from "styled-components";
 function LoginBtn() {
   const { loginWithPopup } = useAuth0();
 
-  const bodyCore = {
-      username: "bakflip",
-      email: "backflip@gmail.com",
-      courses: { name: "curso inicial", id: 1 },
-    },
-    infoFetch = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bodyCore),
-    };
-
   async function logUser() {
     try {
       loginWithPopup();

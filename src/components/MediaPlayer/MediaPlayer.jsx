@@ -17,7 +17,7 @@ import styled from "styled-components";
 
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
-    //* esta const debe variar dependiendo los cursos disponibles.
+    //* esta const debe ser igual a la cantidad de cursos disponibles.
     initialProgressValue = Array(3).fill(PROGRESS_VALUE);
 
   (function getStoredProgress() {
@@ -37,7 +37,6 @@ function MediaPlayer() {
 
   useEffect(() => {
     const getClass = localStorage.getItem(`${courseid_params}fef`);
-    console.log("getClass", getClass);
     setClassData(JSON.parse(getClass));
   }, [courseid_params]);
 
@@ -52,7 +51,6 @@ function MediaPlayer() {
         JSON.stringify(updateClass)
       );
 
-    console.log("this class", updateClass);
     setClassData(updateClass);
     return () => saveClass;
   }, [numberClass]);
@@ -168,7 +166,10 @@ function MediaPlayer() {
           continueCourse ? (
             <ContinueCourse setContinueCourse={setContinueCourse} />
           ) : (
-            <ClassVideo classURL={classData.classURL} />
+            <ClassVideo
+              classURL={classData.classURL}
+              className={classData.className}
+            />
           )
         ) : (
           <FinishCourse />

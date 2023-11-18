@@ -4,7 +4,7 @@ import ErrorVideo from "./ErrorVideo.jsx";
 import styled from "styled-components";
 
 function ClassVideo(props) {
-  const { classURL } = props,
+  const { classURL, className } = props,
     { errorVideo, setErrorVideo } = useMyContext(),
     [videoData, setVideoData] = useState(null);
 
@@ -26,7 +26,7 @@ function ClassVideo(props) {
           allowFullScreen
           allow="autoplay;encrypted-media;picture-in-picture;"
           loading="lazy"
-          title={`Clase: ${classURL.name}`}
+          title={`Clase: ${className}`}
         />
       ) : (
         <ErrorVideo />

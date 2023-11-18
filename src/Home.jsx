@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "./utils/consts.js";
@@ -15,8 +15,7 @@ import { useMyContext } from "./components/Context.jsx";
 import styled from "styled-components";
 
 function Home() {
-  const [userInfo, setUserInfo] = useState(),
-    { isLoading, isAuthenticated, getAccessTokenSilently, user } = useAuth0(),
+  const { isLoading, isAuthenticated } = useAuth0(),
     { setMyCourses } = useMyContext();
 
   useEffect(() => {
@@ -31,6 +30,7 @@ function Home() {
       .catch(err => console.error(err.message));
   }, []);
 
+  /* for the future
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -50,6 +50,7 @@ function Home() {
       getToken();
     }
   }, [isAuthenticated]);
+  */
 
   if (isLoading) {
     return (

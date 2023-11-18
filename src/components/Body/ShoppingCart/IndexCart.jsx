@@ -14,6 +14,7 @@ function IndexCart() {
   const { isAuthenticated } = useAuth0(),
     { coursesCart, setCoursesCart } = useMyContext(),
     [value, setValue] = useState(0);
+
   useEffect(() => {
     const carritostr = window.localStorage.getItem("cursoscarrito");
     const carrito = JSON.parse(carritostr);
@@ -21,6 +22,7 @@ function IndexCart() {
       setCoursesCart(carrito);
     }
   }, []);
+
   useEffect(() => {
     if (coursesCart.length > 0) {
       window.localStorage.setItem("cursoscarrito", JSON.stringify(coursesCart));
@@ -29,6 +31,7 @@ function IndexCart() {
       window.localStorage.removeItem("cursoscarrito");
     }
   }, [coursesCart]);
+
   useEffect(() => reducerCash(), [coursesCart]);
 
   function reducerCash() {

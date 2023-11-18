@@ -25,10 +25,6 @@ router.post("/getcourses", getCoursesBought);
 
 router.post("/getcoursesdb", getCoursesDB);
 
-router.post("/guardartoken", async (req, res) => {
-  const { token, user } = await req.body;
-});
-
 router.get("/cleanlist", deleteShoppingCart);
 
 router.post("/form", async (req, res) => {

@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Home from "./Home.jsx";
@@ -12,7 +12,7 @@ import "./index.css";
 
 const DOMAIN = "algorithmicmarket.us.auth0.com",
   CLIENT_ID = "CgBwpjVSJetDXDlBGJZD37NdKzmc8IWT",
-  root = ReactDOM.createRoot(document.getElementById("root")),
+  root = createRoot(document.getElementById("root")),
   MyContext = () => (
     <Context>
       <App />

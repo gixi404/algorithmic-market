@@ -1,22 +1,30 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import ViewCourse from "../Log/ViewCourse.jsx";
 import BuyBtn from "./Button.jsx";
 import courseImg from "../../img/course-img.webp";
+import courseTwo from "../../img/course-two.webp";
+import courseThree from "../../img/course-three.webp";
 import styled from "styled-components";
 
 function Course(props) {
   const { course } = props,
+    { isAuthenticated } = useAuth0(),
     { name, description, isBought, id } = course,
     getIsCompleted = localStorage.getItem(`isCompleted:${name}`);
 
   return (
     <CourseContainer>
-      {getIsCompleted && (
+      {isAuthenticated && getIsCompleted && (
         <CourseCompleted>
           <p>Completado</p>
         </CourseCompleted>
       )}
 
-      <Img src={courseImg} loading="lazy" alt={`imágen de curso ${name}`} />
+      <Img
+        src={id == 0 ? courseImg : id == 1 ? courseTwo : courseThree}
+        loading="lazy"
+        alt={`imágen de curso ${name}`}
+      />
 
       <ContainerTexts>
         <NameCourse>{name}</NameCourse>

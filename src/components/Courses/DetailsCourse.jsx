@@ -12,15 +12,15 @@ function DetailsCourse() {
     <Container>
       <Details>
         <HeaderDetail>
-        <Link to="/">
-          <CloseCartSVG />
-        </Link>
+          <Link to="/">
+            <CloseCartSVG />
+          </Link>
 
-        <Title onClick={() => console.log(pija)}>
-          {allCourses[coursedetails]?.name}
-        </Title>
+          <Title onClick={() => console.log(pija)}>
+            {allCourses[coursedetails]?.name}
+          </Title>
         </HeaderDetail>
-        
+
         <Article>
           <NameSection>Descripción</NameSection>
           <Description>{allCourses[coursedetails]?.description}</Description>
@@ -89,10 +89,10 @@ const Container = styled.div`
     }
   `,
   HeaderDetail = styled.article`
-  width: 90%;
-  margin-left: 10%;
-  display: flex;
-  flex-direction: row-reverse;
+    width: 90%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row-reverse;
   `,
   Title = styled.h3`
     width: 100%;
