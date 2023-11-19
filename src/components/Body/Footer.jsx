@@ -12,7 +12,7 @@ function Footer() {
           Creado por Staff Lym
         </a>
         <Link to="/privacy">Política de Privacidad</Link>
-        <p>&copy; Todos los derechos reservados</p>
+        <p>&copy; Derechos reservados</p>
       </Content>
     </Container>
   );
