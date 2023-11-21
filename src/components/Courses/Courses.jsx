@@ -11,7 +11,6 @@ function Courses() {
     [coursesDB, setCoursesDB] = useState([]),
     { setMyCourses } = useMyContext();
 
-
   useEffect(() => {
     async function cursosDB() {
       const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
@@ -20,6 +19,7 @@ function Courses() {
         }),
         json = await courses.json();
       setCoursesDB(json);
+
       setMyCourses(json);
     }
     cursosDB();
@@ -35,6 +35,7 @@ function Courses() {
         json = await cursos.json();
       if (json.length > 0) {
         setCourses(json);
+        localStorage.removeItem("cart-courses");
       }
     }
 

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useMyContext } from "../../Context";
+import { useMyContext } from "../../Context.jsx";
 import ItemCart from "./ItemCart.jsx";
-import Header from "../Header/Header";
-import Footer from "../Footer";
+import Header from "../Header/Header.jsx";
+import Footer from "../Footer.jsx";
 import Btn from "./ButtonCart.jsx";
-import { CloseCartSVG } from "../../svgs";
+import { CloseCartSVG } from "../../svgs.jsx";
+import LoginBtn from "../../Log/LoginBtn.jsx";
 import styled from "styled-components";
-import LoginBtn from "../../Log/LoginBtn";
 
 function IndexCart() {
   const { isAuthenticated } = useAuth0(),
@@ -16,19 +16,19 @@ function IndexCart() {
     [value, setValue] = useState(0);
 
   useEffect(() => {
-    const carritostr = window.localStorage.getItem("cursoscarrito");
-    const carrito = JSON.parse(carritostr);
-    if (carrito) {
-      setCoursesCart(carrito);
+    const cartTR = localStorage.getItem("cart-courses"),
+      cart = JSON.parse(cartTR);
+    if (cart) {
+      setCoursesCart(cart);
     }
   }, []);
 
   useEffect(() => {
     if (coursesCart.length > 0) {
-      window.localStorage.setItem("cursoscarrito", JSON.stringify(coursesCart));
+      localStorage.setItem("cart-courses", JSON.stringify(coursesCart));
     }
     if (coursesCart.length === 0) {
-      window.localStorage.removeItem("cursoscarrito");
+      localStorage.removeItem("cart-courses");
     }
   }, [coursesCart]);
 

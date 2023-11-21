@@ -12,13 +12,11 @@ function DetailsCourse() {
     <Container>
       <Details>
         <HeaderDetail>
-          <Link to="/">
+          <Link to="/" style={{ marginRight: "2em" }}>
             <CloseCartSVG />
           </Link>
 
-          <Title onClick={() => console.log(pija)}>
-            {allCourses[coursedetails]?.name}
-          </Title>
+          <Title>{allCourses[coursedetails]?.name}</Title>
         </HeaderDetail>
 
         <Article>

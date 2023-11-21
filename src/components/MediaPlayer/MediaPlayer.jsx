@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import { useMyContext } from "../Context.jsx";
 import Header from "../Body/Header/Header.jsx";
 import Footer from "../Body/Footer.jsx";
@@ -15,13 +15,20 @@ import { ArrowBack } from "../svgs.jsx";
 import { PROGRESS_VALUE } from "../../utils/consts.js";
 import styled from "styled-components";
 
+//?reparar ls
+//? juntar useefect
+//? quitar del carrito una vez comprado
+
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
+    { user } = useAuth0(),
     //* esta const debe ser igual a la cantidad de cursos disponibles.
     initialProgressValue = Array(3).fill(PROGRESS_VALUE);
 
   (function getStoredProgress() {
-    const storedProgress = localStorage.getItem(`progress:${courseid_params}`);
+    const storedProgress = localStorage.getItem(
+      `${user.email}-progress:${courseid_params}`
+    );
     if (storedProgress !== null) {
       initialProgressValue[courseid_params] = Number(storedProgress);
     }
@@ -36,7 +43,9 @@ function MediaPlayer() {
     lastClass = Number(myCourses[courseid_params]?.clases?.length) - 1 ?? 0;
 
   useEffect(() => {
-    const getClass = localStorage.getItem(`${courseid_params}fef`);
+    const getClass = localStorage.getItem(
+      `${user.email}-class:${courseid_params}`
+    );
     setClassData(JSON.parse(getClass));
   }, [courseid_params]);
 
@@ -47,26 +56,25 @@ function MediaPlayer() {
         classURL: direction(courseid_params, numberClass).URL,
       },
       saveClass = localStorage.setItem(
-        `${courseid_params}fef`,
+        `${user.email}-class:${courseid_params}`,
         JSON.stringify(updateClass)
       );
-
     setClassData(updateClass);
     return () => saveClass;
   }, [numberClass]);
 
   useEffect(() => {
     const setItem = localStorage.setItem(
-      `progress:${courseid_params}`,
+      `${user.email}-progress:${courseid_params}`,
       progressValue[courseid_params]
     );
-    return () => setItem;
-  }, [progressValue]);
-
-  useEffect(() => {
     const lastClassVisited =
       Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1;
-    setNumberClass(lastClassVisited);
+
+    return () => {
+      setItem;
+      setNumberClass(lastClassVisited);
+    };
   }, [progressValue]);
 
   function direction(numberCourse, numberClass = 0) {

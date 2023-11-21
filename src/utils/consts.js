@@ -5,7 +5,8 @@ const FRONT_PATH = [
 ];
 const BACK_PATH = "https://server.algorithmic-market.com";
 const PROGRESS_VALUE = 11;
-const PRIV_KEY = "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";
+const PRIV_KEY =
+  "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";
 
 // const FRONT_PATH = "http://localhost:3000";
 // const BACK_PATH = "http://localhost:3001";
