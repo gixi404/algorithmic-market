@@ -30,28 +30,6 @@ function Home() {
       .catch(err => console.error(err.message));
   }, []);
 
-  /* for the future
-  useEffect(() => {
-    const getToken = async () => {
-      try {
-        const newToken = await getAccessTokenSilently(),
-          data = await fetch(`${BACK_PATH}/users`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(user),
-          });
-        const json = await data.json();
-        setUserInfo(json);
-      } catch (e) {
-        console.log("error", e.message);
-      }
-    };
-    if (isAuthenticated) {
-      getToken();
-    }
-  }, [isAuthenticated]);
-  */
-
   if (isLoading) {
     return (
       <LoadContainer>
@@ -124,3 +102,25 @@ const LoadContainer = styled.div`
     overflow: hidden;
     scrollbar-gutter: stable;
   `;
+
+/* for the future
+  useEffect(() => {
+    const getToken = async () => {
+      try {
+        const newToken = await getAccessTokenSilently(),
+          data = await fetch(`${BACK_PATH}/users`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(user),
+          });
+        const json = await data.json();
+        setUserInfo(json);
+      } catch (e) {
+        console.log("error", e.message);
+      }
+    };
+    if (isAuthenticated) {
+      getToken();
+    }
+  }, [isAuthenticated]);
+  */
