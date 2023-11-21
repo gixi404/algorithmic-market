@@ -4,7 +4,7 @@ import { BACK_PATH } from "../../src/utils/consts.js";
 
 config();
 const PRIV_KEY =
-    "sk_test_51NdfNbCPshfmc7ctMo1Y4L8E9Hkl6KMeF8KzjSqdPgRxHdQRfREoONTs37h7wvbrJk2jixgjSLvT7EbRRJctHKpO00wQnsY8yV",
+    "pk_live_51Mj6GtGESTQHDNmdfzRXGM2hWNeTUvDgU6ARcq5NWjkRMaWhmCBfbMwTeVGhmAtyiWSvPkZYnVciUxROZKNwI3Ha00RRabAYpN",
   stripe = new Stripe(PRIV_KEY);
 
 export async function createSession(req, res) {
@@ -28,5 +28,3 @@ export async function createSession(req, res) {
 }
 
 //* Staff Lym - Test key - "sk_test_51NdfNbCPshfmc7ctMo1Y4L8E9Hkl6KMeF8KzjSqdPgRxHdQRfREoONTs37h7wvbrJk2jixgjSLvT7EbRRJctHKpO00wQnsY8yV"
-
-//* Deivid - Test key - "pk_live_51Mj6GtGESTQHDNmdfzRXGM2hWNeTUvDgU6ARcq5NWjkRMaWhmCBfbMwTeVGhmAtyiWSvPkZYnVciUxROZKNwI3Ha00RRabAYpN"
