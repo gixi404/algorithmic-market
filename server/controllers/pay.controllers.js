@@ -1,11 +1,9 @@
 import Stripe from "stripe";
 import { config } from "dotenv";
-import { BACK_PATH } from "../../src/utils/consts.js";
+import { BACK_PATH, PRIV_KEY } from "../../src/utils/consts.js";
 
 config();
-const PRIV_KEY =
-    "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",
-  stripe = new Stripe(PRIV_KEY);
+const stripe = new Stripe(PRIV_KEY);
 
 export async function createSession(req, res) {
   const { id, list, user } = req.body,
