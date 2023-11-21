@@ -1,14 +1,20 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import { useBuyPetition } from "../../../hooks/useBuyLogic.js";
 import styled from "styled-components";
 
 function ButtonCart(props) {
   const { courses } = props,
-    { buyUrl } = useBuyPetition({ courses });
+    { buyUrl } = useBuyPetition({ courses }),
+    { user } = useAuth0();
 
   return (
     <Container>
-      <Btn to={buyUrl}>Comprar</Btn>
+      {user.email_verified ? (
+        <Btn to={buyUrl}>Comprar</Btn>
+      ) : (
+        <p>Verifica tu mail para realizar la compra</p>
+      )}
     </Container>
   );
 }
