@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "../../utils/consts.js";
+import { useMyContext } from "../Context.jsx";
 import Course from "./Course.jsx";
 import styled from "styled-components";
 
 function Courses() {
   const { user, isAuthenticated } = useAuth0(),
     [courses, setCourses] = useState([]),
-    [coursesDB, setCoursesDB] = useState([]);
+    [coursesDB, setCoursesDB] = useState([]),
+    { setMyCourses } = useMyContext();
+
 
   useEffect(() => {
     async function cursosDB() {
@@ -17,6 +20,7 @@ function Courses() {
         }),
         json = await courses.json();
       setCoursesDB(json);
+      setMyCourses(json);
     }
     cursosDB();
   }, []);

@@ -10,26 +10,28 @@ import Footer from "./components/Body/Footer.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
-import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
-import { useMyContext } from "./components/Context.jsx";
+import CoursePurchased from "./components/Courses/CoursePurchased.jsx"
 import styled from "styled-components";
 
 function Home() {
-  const { isLoading, isAuthenticated } = useAuth0(),
-    { setMyCourses } = useMyContext();
-
+  const { isLoading, isAuthenticated, user} = useAuth0()
   useEffect(() => {
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const createUser = async () => {
+      try {
+        const data = await fetch(`${BACK_PATH}/users`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(user),
+          });
+        const json = await data.json();
+      } catch (e) {
+        console.log({"error":e.message});
+      }
     };
-
-    fetch(`${BACK_PATH}/getcoursesdb`, options)
-      .then(res => res.json())
-      .then(courses => setMyCourses(courses))
-      .catch(err => console.error(err.message));
-  }, []);
-
+    if (isAuthenticated) {
+      createUser()
+    }
+  }, [isAuthenticated]);
   if (isLoading) {
     return (
       <LoadContainer>
