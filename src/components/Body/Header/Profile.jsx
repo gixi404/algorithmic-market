@@ -16,7 +16,7 @@ function Profile() {
           loading="lazy"
           alt={`imágen de ${user?.name}`}
         />
-        <Name>{user?.name}</Name>
+        <Name>{user.name !== user.email && user?.name}</Name>
         <Name>{user?.email}</Name>
         <BuyBtn title="Cerrar Sesión" logOut={logout} />
       </UserContainer>
