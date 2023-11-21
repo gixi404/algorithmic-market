@@ -4,7 +4,7 @@ import { BACK_PATH } from "../../src/utils/consts.js";
 
 config();
 const PRIV_KEY =
-    "pk_live_51Mj6GtGESTQHDNmdfzRXGM2hWNeTUvDgU6ARcq5NWjkRMaWhmCBfbMwTeVGhmAtyiWSvPkZYnVciUxROZKNwI3Ha00RRabAYpN",
+    "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",
   stripe = new Stripe(PRIV_KEY);
 
 export async function createSession(req, res) {
