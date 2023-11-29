@@ -10,26 +10,26 @@ import Footer from "./components/Body/Footer.jsx";
 import Courses from "./components/Courses/Courses.jsx";
 import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
-import CoursePurchased from "./components/Courses/CoursePurchased.jsx"
+import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import styled from "styled-components";
 
 function Home() {
-  const { isLoading, isAuthenticated, user} = useAuth0()
+  const { isLoading, isAuthenticated, user } = useAuth0();
   useEffect(() => {
     const createUser = async () => {
       try {
         const data = await fetch(`${BACK_PATH}/users`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(user),
-          });
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(user),
+        });
         const json = await data.json();
       } catch (e) {
-        console.log({"error":e.message});
+        console.log({ error: e.message });
       }
     };
     if (isAuthenticated) {
-      createUser()
+      createUser();
     }
   }, [isAuthenticated]);
   if (isLoading) {
