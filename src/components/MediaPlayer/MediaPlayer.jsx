@@ -66,8 +66,6 @@ function MediaPlayer() {
     );
     const lastClassVisited =
       Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1;
-
-      setItem;
       setNumberClass(lastClassVisited);
   }, [progressValue]);
 
