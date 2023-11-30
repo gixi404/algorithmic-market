@@ -88,20 +88,16 @@ const Title = styled.h3`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 33vw;
+    width: 40%;
     height: 340px;
     background-color: #ffffff;
     color: #000000;
     border-radius: 0.5em;
     padding: 2em;
     row-gap: 0.3em;
-    border-bottom: 5px solid #ff6700;
+    border-bottom: 3px solid #ff6700;
+    border-right: 3px solid #ff6700;
     font-family: "Poppins", monospace;
-    @media (max-width: 1024px) {
-      width: 80%;
-      height: auto;
-      max-width: 550px;
-    }
     @media (max-width: 1024px) {
       width: 80%;
       height: auto;

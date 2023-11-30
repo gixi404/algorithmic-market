@@ -54,8 +54,8 @@ function Home() {
       <Banner />
       <Courses />
       <AboutUs />
-      <Contact />
       <References />
+      <Contact />
       <Footer />
     </PageContainer>
   );
