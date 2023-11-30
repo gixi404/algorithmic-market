@@ -13,9 +13,23 @@ import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import styled from "styled-components";
 import References from "./components/Body/References.jsx";
+import { useMyContext } from "./components/Context.jsx";
 
 function Home() {
-  const { isLoading, isAuthenticated, user } = useAuth0();
+  const { isLoading, isAuthenticated, user } = useAuth0(),
+  { setMyCourses } = useMyContext();
+
+  useEffect(() => {
+    async function cursosDB() {
+      const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }),
+        json = await courses.json();
+      setMyCourses(json);
+    }
+    cursosDB();
+  }, []);
 
   useEffect(() => {
     const createUser = async () => {
