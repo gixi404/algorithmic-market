@@ -59,6 +59,7 @@ function References() {
 export default References;
 
 const Title = styled.h3`
+    padding-top: 2rem;
     font-family: "Poppins", monospace;
     font-size: calc(26px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 80vw;

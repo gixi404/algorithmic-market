@@ -183,13 +183,17 @@ export default Contact;
 
 const Container = styled.section`
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
     margin: 3em auto 0 auto;
+    background-color: #ebebeb;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     display: flex;
+    border-bottom: solid 4px #ff6700;
+    border-top: solid 4px #ff6700;
     justify-content: center;
     align-items: center;
     @media (min-width: 1226px) {
-      height: 95vh;
+      height: 100vh;
     }
   `,
   Content = styled.div`
@@ -201,10 +205,10 @@ const Container = styled.section`
     justify-content: space-between;
   `,
   Text = styled.article`
-    color: #ffffff;
     height: 10vh;
   `,
   Title = styled.p`
+    padding-top: 2rem;
     font-size: calc(30px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     display: flex;
     flex-direction: column;
@@ -241,7 +245,6 @@ const Container = styled.section`
     font-size: calc(11px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 48vw;
     height: 8vh;
-    background-color: #ebebeb;
     outline: none;
 
     @media (max-width: 800px) {
@@ -263,7 +266,6 @@ const Container = styled.section`
     font-size: calc(11px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 48vw;
     height: 17vh;
-    background-color: #ebebeb;
     resize: none;
 
     &::placeholder {
