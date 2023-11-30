@@ -16,21 +16,8 @@ import References from "./components/Body/References.jsx";
 import { useMyContext } from "./components/Context.jsx";
 
 function Home() {
-  const { isLoading, isAuthenticated, user } = useAuth0(),
-  { setMyCourses } = useMyContext();
-
-  useEffect(() => {
-    async function cursosDB() {
-      const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-        }),
-        json = await courses.json();
-      setMyCourses(json);
-    }
-    cursosDB();
-  }, []);
-
+  const { isLoading, isAuthenticated, user } = useAuth0();
+  
   useEffect(() => {
     const createUser = async () => {
       try {
