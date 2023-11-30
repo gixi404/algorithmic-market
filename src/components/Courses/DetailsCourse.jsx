@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useMyContext } from "../Context";
 import AddButton from "../Courses/AddButton.jsx";
-import { CloseCartSVG } from "../svgs.jsx";
 import styled from "styled-components";
 
 function DetailsCourse() {
@@ -9,21 +8,12 @@ function DetailsCourse() {
     { coursedetails } = useParams();
 
   return (
-    <Container>
+    <Container to="/">
       <Details>
-        <HeaderDetail>
-          <Link to="/" style={{ marginRight: "2em" }}>
-            <CloseCartSVG />
-          </Link>
-
-          <Title>{allCourses[coursedetails]?.name}</Title>
-        </HeaderDetail>
-
         <Article>
-          <NameSection>Descripción</NameSection>
+          <NameSection>{allCourses[coursedetails]?.name}</NameSection>
           <Description>{allCourses[coursedetails]?.description}</Description>
         </Article>
-
         <List>
           <NameSection>Clases</NameSection>
 
@@ -31,7 +21,6 @@ function DetailsCourse() {
             <li key={_class.id}>{_class.name}</li>
           ))}
         </List>
-
         <AddButton courseSelected={courseSelected(coursedetails)} />
       </Details>
     </Container>
@@ -40,11 +29,11 @@ function DetailsCourse() {
 
 export default DetailsCourse;
 
-const Container = styled.div`
+const Container = styled(Link)`
     width: 100vw;
     height: 100vh;
     position: fixed;
-    z-index: 999;
+    z-index: 9;
     background-color: transparent;
     display: flex;
     align-items: center;
@@ -65,7 +54,7 @@ const Container = styled.div`
     width: 80vw;
     height: 80vh;
     overflow-y: auto;
-    max-width: 700px;
+    max-width: 800px;
     border-radius: 8px;
     border-bottom: 5px solid #ff6700;
     border-right: 5px solid #ff6700;
@@ -85,19 +74,10 @@ const Container = styled.div`
       width: 90%;
       min-height: 100vh;
     }
-  `,
-  HeaderDetail = styled.article`
-    width: 90%;
-    margin-left: 10%;
-    display: flex;
-    flex-direction: row-reverse;
-  `,
-  Title = styled.h3`
-    width: 100%;
-    text-align: center;
-    color: #ff6700;
-    text-transform: uppercase;
-    font-size: calc(28px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    @media (min-width: 1226px) {
+      width: 100vw;
+      height: 90vh;
+    }
   `,
   Article = styled.article`
     display: flex;

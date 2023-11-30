@@ -184,10 +184,13 @@ export default Contact;
 const Container = styled.section`
     width: 100vw;
     height: 80vh;
-    margin: 3rem auto 0 auto;
+    margin: 3em auto 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (min-width: 1226px) {
+      height: 95vh;
+    }
   `,
   Content = styled.div`
     width: 80vw;
