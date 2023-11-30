@@ -41,7 +41,7 @@ function References() {
   ];
   return (
     <>
-      <Title>Referencias</Title>
+      <Title>Testimonios</Title>
       <List>
         {references.map(reference => (
           <Div key={reference.id}>
@@ -101,6 +101,14 @@ const Title = styled.h3`
       width: 80%;
       height: auto;
       max-width: 550px;
+    }
+    @media (max-width: 1024px) {
+      width: 80%;
+      height: auto;
+      max-width: 550px;
+    }
+    @media (max-width: 576px) {
+      border-radius: 0;
     }
   `,
   Img = styled.img`

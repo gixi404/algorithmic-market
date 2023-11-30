@@ -69,7 +69,7 @@ const LoadContainer = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   `,

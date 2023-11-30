@@ -1,12 +1,8 @@
+import { scrollToSection } from "../../../utils/commonFn.js";
 import styled from "styled-components";
 
 function NavHeader(props) {
   const { isMobile } = props;
-
-  function scrollToSection(id) {
-    const element = document.getElementById(id);
-    element.scrollIntoView({ behavior: "smooth" });
-  }
 
   if (isMobile) {
     return (
