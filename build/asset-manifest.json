@@ -1,19 +1,21 @@
 {
   "files": {
     "main.css": "/static/css/main.0d3bfdcb.css",
-    "main.js": "/static/js/main.787a14da.js",
+    "main.js": "/static/js/main.276e56f9.js",
     "static/media/about-us-img.webp": "/static/media/about-us-img.e33e66a79a8bce7343b6.webp",
     "static/media/course-two.webp": "/static/media/course-two.bb56779324ca0ab470ad.webp",
+    "static/media/urki.png": "/static/media/urki.e6b056b269118200a33f.png",
     "static/media/course-img.webp": "/static/media/course-img.7488d561b6d0e0f2eeb2.webp",
     "static/media/favicon.ico": "/static/media/favicon.d268ae8f97427dc941d0.ico",
     "static/media/banner-img.webp": "/static/media/banner-img.4cb9a5afba5a45f5f122.webp",
+    "static/media/stripe.png": "/static/media/stripe.50f49cff5285ab1df4b7.png",
     "static/media/course-three.webp": "/static/media/course-three.94cd840164176468c8db.webp",
     "index.html": "/index.html",
     "main.0d3bfdcb.css.map": "/static/css/main.0d3bfdcb.css.map",
-    "main.787a14da.js.map": "/static/js/main.787a14da.js.map"
+    "main.276e56f9.js.map": "/static/js/main.276e56f9.js.map"
   },
   "entrypoints": [
     "static/css/main.0d3bfdcb.css",
-    "static/js/main.787a14da.js"
+    "static/js/main.276e56f9.js"
   ]
 }

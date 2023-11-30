@@ -7,7 +7,7 @@ function Context({ children }) {
   const
     [coursesCart, setCoursesCart] = useState([]),
     [errorVideo, setErrorVideo] = useState(false),
-    //* allCourses está solo para entregar los detalles del curso.
+    //* allCourses está solo para entregar los detalles del curso de manera local.
     [myCourses, setMyCourses] = useState(null),
     [protectedRoute, setProtectedRoute] = useState(false);
 

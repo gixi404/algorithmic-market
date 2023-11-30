@@ -48,6 +48,7 @@ const Container = styled.section`
     align-items: center;
     justify-content: center;
     row-gap: 1em;
+    margin: 5em 0;
   `,
   Name = styled.p`
     font-size: calc(14px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));

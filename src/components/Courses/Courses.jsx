@@ -21,7 +21,7 @@ function Courses() {
       setCoursesDB(json);
       setMyCourses(json);
     }
-    cursosDB();
+    return () => cursosDB();
   }, []);
 
   useEffect(() => {
