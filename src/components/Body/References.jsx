@@ -42,7 +42,7 @@ function References() {
   return (
     <>
       <Title>Testimonios</Title>
-      <List>
+      <List id="refs">
         {references.map(reference => (
           <Div key={reference.id}>
             <Img src={reference.img} alt={reference.name} />
