@@ -15,10 +15,6 @@ import { ArrowBack } from "../svgs.jsx";
 import { PROGRESS_VALUE } from "../../utils/consts.js";
 import styled from "styled-components";
 
-//?reparar ls
-//? juntar useefect
-//? quitar del carrito una vez comprado
-
 function MediaPlayer() {
   const { courseid: courseid_params } = useParams(),
     { user } = useAuth0(),
@@ -71,10 +67,8 @@ function MediaPlayer() {
     const lastClassVisited =
       Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1;
 
-    return () => {
       setItem;
       setNumberClass(lastClassVisited);
-    };
   }, [progressValue]);
 
   function direction(numberCourse, numberClass = 0) {
