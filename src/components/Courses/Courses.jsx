@@ -4,6 +4,7 @@ import { BACK_PATH } from "../../utils/consts.js";
 import { useMyContext } from "../Context.jsx";
 import Course from "./Course.jsx";
 import styled from "styled-components";
+import LoadComponent from "../Body/LoadComponent.jsx";
 
 function Courses() {
   const { user, isAuthenticated } = useAuth0(),
@@ -59,16 +60,18 @@ function Courses() {
       </Title>
 
       <ListCourses>
-        {coursesDB
-          .sort((a, b) =>
-            a.id.localeCompare(b.id, undefined, {
-              numeric: true,
-              sensitivity: "base",
-            })
-          )
-          .map(course => (
-            <Course key={course._id} course={course} />
-          ))}
+        {coursesDB.length > 0 ? (
+          coursesDB
+            .sort((a, b) =>
+              a.id.localeCompare(b.id, undefined, {
+                numeric: true,
+                sensitivity: "base",
+              })
+            )
+            .map(course => <Course key={course._id} course={course} />)
+        ) : (
+          <LoadComponent isCourses />
+        )}
       </ListCourses>
     </CoursesContainer>
   );
