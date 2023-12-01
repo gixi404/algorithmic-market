@@ -11,8 +11,8 @@ import Courses from "./components/Courses/Courses.jsx";
 import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
-import styled from "styled-components";
 import References from "./components/Body/References.jsx";
+import styled from "styled-components";
 
 function Home() {
   const { isLoading, isAuthenticated, user } = useAuth0();
