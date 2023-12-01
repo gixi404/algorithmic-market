@@ -4,6 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "./utils/consts.js";
 import Header from "./components/Body/Header/Header.jsx";
 import AlertCookie from "./components/Body/AlertCookie.jsx";
+import Cookies from "universal-cookie";
+import { useMyContext } from "./components/Context.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
@@ -71,6 +73,7 @@ function Home() {
           <Route path="/details/:coursedetails" element={<DetailsCourse />} />
         </Routes>
         <Header />
+        {!cookInfo && <AlertCookie /> }
         {!isAuthenticated && <MobileLoginBtn />}
         <Banner />
         <Courses />
