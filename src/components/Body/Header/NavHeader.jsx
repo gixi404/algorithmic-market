@@ -9,7 +9,7 @@ function NavHeader(props) {
       <ContainerMobile>
         <a onClick={() => scrollToSection("allcourses")}>Cursos</a>
         <a onClick={() => scrollToSection("aboutus")}>Sobre&nbsp;Nosotros</a>
-        <a onClick={() => scrollToSection("refs")}>Referencias</a>
+        {/* <a onClick={() => scrollToSection("refs")}>Referencias</a> */}
         <a onClick={() => scrollToSection("contact")}>Contacto</a>
       </ContainerMobile>
     );
@@ -18,7 +18,7 @@ function NavHeader(props) {
       <Container>
         <a onClick={() => scrollToSection("allcourses")}>Cursos</a>
         <a onClick={() => scrollToSection("aboutus")}>Sobre&nbsp;Nosotros</a>
-        <a onClick={() => scrollToSection("refs")}>Referencias</a>
+        {/* <a onClick={() => scrollToSection("refs")}>Referencias</a> */}
         <a onClick={() => scrollToSection("contact")}>Contacto</a>
       </Container>
     );

@@ -12,6 +12,7 @@ import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import References from "./components/Body/References.jsx";
+import LoadComponent from "./components/Body/LoadComponent.jsx";
 import styled from "styled-components";
 
 function Home() {
@@ -36,78 +37,40 @@ function Home() {
   }, [isAuthenticated]);
 
   if (isLoading) {
+    return <LoadComponent />;
+  } else {
     return (
-      <LoadContainer>
-        <Load />
-      </LoadContainer>
+      <PageContainer>
+        <Routes>
+          <Route path="/coursepurchased" element={<CoursePurchased />} />
+          <Route path="/details/:coursedetails" element={<DetailsCourse />} />
+        </Routes>
+        <Header />
+        {!isAuthenticated && <MobileLoginBtn />}
+        <Banner />
+        <Courses />
+        <AboutUs />
+        <References />
+        <Contact />
+        <Footer />
+      </PageContainer>
     );
   }
-
-  return (
-    <PageContainer>
-      <Routes>
-        <Route path="/coursepuchased" element={<CoursePurchased />} />
-        <Route path="/details/:coursedetails" element={<DetailsCourse />} />
-      </Routes>
-      <Header />
-      {!isAuthenticated && <MobileLoginBtn />}
-      <Banner />
-      <Courses />
-      <AboutUs />
-      <References />
-      <Contact />
-      <Footer />
-    </PageContainer>
-  );
 }
 
 export default Home;
 
-const LoadContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  `,
-  Load = styled.span`
-    width: 30vw;
-    max-width: 250px;
-    aspect-ratio: 4;
-    --_g: no-repeat
-      radial-gradient(circle closest-side, #ff6700 90%, transparent);
-    background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
-    background-size: calc(100% / 3) 100%;
-    animation: l7 1s infinite linear;
-    @keyframes l7 {
-      33% {
-        background-size: calc(100% / 3) 0%, calc(100% / 3) 100%,
-          calc(100% / 3) 100%;
-      }
-      50% {
-        background-size: calc(100% / 3) 100%, calc(100% / 3) 0%,
-          calc(100% / 3) 100%;
-      }
-      66% {
-        background-size: calc(100% / 3) 100%, calc(100% / 3) 100%,
-          calc(100% / 3) 0%;
-      }
-    }
-  `,
-  PageContainer = styled.main`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    width: 100vw;
-    height: max-content;
-    padding: 0;
-    overflow: hidden;
-    scrollbar-gutter: stable;
-  `;
+const PageContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100vw;
+  height: max-content;
+  padding: 0;
+  overflow: hidden;
+  scrollbar-gutter: stable;
+`;
 
 /* for the future
   useEffect(() => {
