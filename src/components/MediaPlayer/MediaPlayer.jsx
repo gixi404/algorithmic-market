@@ -60,13 +60,15 @@ function MediaPlayer() {
   }, [numberClass]);
 
   useEffect(() => {
-    const setItem = localStorage.setItem(
+    const saveProgress = localStorage.setItem(
       `${user.email}-progress:${courseid_params}`,
       progressValue[courseid_params]
     );
     const lastClassVisited =
       Math.ceil(progressValue[courseid_params].toString().charAt(0)) - 1;
-      setNumberClass(lastClassVisited);
+
+    setNumberClass(lastClassVisited);
+    return () => saveProgress;
   }, [progressValue]);
 
   function direction(numberCourse, numberClass = 0) {

@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useMyContext } from "../Context";
 import AddButton from "../Courses/AddButton.jsx";
 import styled from "styled-components";
+import { CloseCartSVG } from "../svgs.jsx";
 
 function DetailsCourse() {
   const { courseSelected, myCourses } = useMyContext(),
@@ -10,6 +11,7 @@ function DetailsCourse() {
   return (
     <Container to="/">
       <Details>
+        <CloseCartSVG />
         <Article>
           <NameSection>{myCourses[coursedetails]?.name}</NameSection>
           <Description>{myCourses[coursedetails]?.description}</Description>

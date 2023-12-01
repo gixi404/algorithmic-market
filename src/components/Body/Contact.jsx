@@ -188,7 +188,6 @@ const Container = styled.section`
     background-color: #ebebeb;
     font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     display: flex;
-    border-bottom: solid 4px #ff6700;
     border-top: solid 4px #ff6700;
     justify-content: center;
     align-items: center;

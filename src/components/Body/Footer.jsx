@@ -30,12 +30,7 @@ function Footer() {
           >
             Sobre Nosotros
           </li>
-          <li
-            style={{ cursor: "pointer" }}
-            onClick={() => scrollToSection("refs")}
-          >
-            Testimonios
-          </li>
+
           <li
             style={{ cursor: "pointer" }}
             onClick={() => scrollToSection("contact")}
