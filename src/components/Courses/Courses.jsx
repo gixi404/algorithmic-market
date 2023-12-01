@@ -19,7 +19,6 @@ function Courses() {
         }),
         json = await courses.json();
       setCoursesDB(json);
-
       setMyCourses(json);
     }
     cursosDB();

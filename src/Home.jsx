@@ -12,11 +12,11 @@ import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import References from "./components/Body/References.jsx";
-import styled from "styled-components";
+import { useMyContext } from "./components/Context.jsx";
 
 function Home() {
   const { isLoading, isAuthenticated, user } = useAuth0();
-
+  
   useEffect(() => {
     const createUser = async () => {
       try {
@@ -54,8 +54,8 @@ function Home() {
       <Banner />
       <Courses />
       <AboutUs />
-      <Contact />
       <References />
+      <Contact />
       <Footer />
     </PageContainer>
   );

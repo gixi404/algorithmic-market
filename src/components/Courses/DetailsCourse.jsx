@@ -4,20 +4,20 @@ import AddButton from "../Courses/AddButton.jsx";
 import styled from "styled-components";
 
 function DetailsCourse() {
-  const { courseSelected, allCourses } = useMyContext(),
+  const { courseSelected, myCourses } = useMyContext(),
     { coursedetails } = useParams();
 
   return (
     <Container to="/">
       <Details>
         <Article>
-          <NameSection>{allCourses[coursedetails]?.name}</NameSection>
-          <Description>{allCourses[coursedetails]?.description}</Description>
+          <NameSection>{myCourses[coursedetails]?.name}</NameSection>
+          <Description>{myCourses[coursedetails]?.description}</Description>
         </Article>
         <List>
           <NameSection>Clases</NameSection>
 
-          {allCourses[coursedetails]?.classes.map(_class => (
+          {myCourses[coursedetails]?.clases.map(_class => (
             <li key={_class.id}>{_class.name}</li>
           ))}
         </List>
