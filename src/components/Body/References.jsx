@@ -64,6 +64,7 @@ const Title = styled.h3`
     width: 80vw;
     text-align: start;
     color: #fff;
+    margin-top: 2em;
     margin-bottom: 1.5em;
     font-weight: normal;
   `,

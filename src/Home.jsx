@@ -12,13 +12,13 @@ import DetailsCourse from "./components/Courses/DetailsCourse.jsx";
 import MobileLoginBtn from "./components/Log/MobileLoginBtn.jsx";
 import CoursePurchased from "./components/Courses/CoursePurchased.jsx";
 import References from "./components/Body/References.jsx";
-import { useMyContext } from "./components/Context.jsx";
+import styled from "styled-components";
 
 function Home() {
   const { isLoading, isAuthenticated, user } = useAuth0();
-  
+
   useEffect(() => {
-    const createUser = async () => {
+    async function createUser() {
       try {
         const data = await fetch(`${BACK_PATH}/users`, {
           method: "POST",
@@ -29,7 +29,7 @@ function Home() {
       } catch (e) {
         console.log({ error: e.message });
       }
-    };
+    }
     if (isAuthenticated) {
       createUser();
     }
