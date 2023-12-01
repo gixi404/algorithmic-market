@@ -9,6 +9,7 @@ function Context({ children }) {
     [errorVideo, setErrorVideo] = useState(false),
     //* allCourses está solo para entregar los detalles del curso de manera local.
     [myCourses, setMyCourses] = useState(null),
+    [cookInfo, setCookInfo] = useState(null),
     [protectedRoute, setProtectedRoute] = useState(false);
 
   function removeCart(product) {
@@ -34,6 +35,8 @@ function Context({ children }) {
     courseSelected,
     protectedRoute,
     setProtectedRoute,
+    cookInfo,
+    setCookInfo
   };
 
   return (
