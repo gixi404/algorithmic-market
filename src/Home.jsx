@@ -26,8 +26,8 @@ function Home() {
           body: JSON.stringify(user),
         });
         const json = await data.json();
-      } catch (e) {
-        console.log({ error: e.message });
+      } catch (err) {
+        console.log({ error: err.message });
       }
     }
     if (isAuthenticated) {
