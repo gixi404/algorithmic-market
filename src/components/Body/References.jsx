@@ -12,7 +12,7 @@ function References() {
       name: "Dibu Martinez",
       profession: "Doctor de Nueva York",
       testimony:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea aliquam libero maiores, sequi, beatae natus necessitatibus xime nobis earum magni aliquid dignissimos.",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
     },
     {
       id: 2,
@@ -20,15 +20,15 @@ function References() {
       name: "Sergio Ramos",
       profession: "Futbolista en Amsterdam",
       testimony:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea aliquam libero maiores, sequi, beatae natus necessitatibus illo iusto maxime nobis.",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
     },
     {
       id: 3,
       img: papa,
       name: "Papa Fransico",
-      profession: "Director de pedofilia",
+      profession: "Director de SpaceX",
       testimony:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea aliquam libero maiores, sequi, beatae natus necessitatibus illo iusto maxime nobis.",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
     },
     {
       id: 4,
@@ -36,7 +36,7 @@ function References() {
       name: "Baltasar Pascual",
       profession: "Graduado en Oxford",
       testimony:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea aliquam libero maiores, sequi, beatae natus necessitatibus illo iusto maxime nobis.",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
     },
   ];
   return (
@@ -91,7 +91,7 @@ const Title = styled.h3`
     align-items: flex-start;
     justify-content: flex-start;
     width: 40%;
-    height: 340px;
+    height: 300px;
     background-color: #ffffff;
     color: #000000;
     border-radius: 0.5em;
