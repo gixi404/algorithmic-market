@@ -55,7 +55,8 @@ export async function deleteShoppingCart(req, res) {
 export async function confirmShopping(req, res) {
   const { user, idcourse1, idcourse2, idcourse3 } = req.params;
   try {
-    const data = await fetch(`${BACK_PATH}/buy`, {
+    // const data =
+    await fetch(`${BACK_PATH}/buy`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -67,9 +68,10 @@ export async function confirmShopping(req, res) {
         },
       }),
     });
-    const json = await data.json(),
-      ret = json.url;
-    res.redirect(ret);
+    // const json = await data.json(),
+    //   ret = json.url;,
+    // res.redirect(ret);
+    res.redirect(`${FRONT_PATH}/#/coursepurchased`);
   } catch (error) {
     console.error("Error al realizar la solicitud POST:", error);
     res.status(500).json({ error: "Error en la solicitud POST" });

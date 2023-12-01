@@ -46,7 +46,7 @@ function Home() {
   return (
     <PageContainer>
       <Routes>
-        <Route path="/coursepuchased" element={<CoursePurchased />} />
+        <Route path="/coursepurchased" element={<CoursePurchased />} />
         <Route path="/details/:coursedetails" element={<DetailsCourse />} />
       </Routes>
       <Header />
