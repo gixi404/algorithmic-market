@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "./utils/consts.js";
 import Header from "./components/Body/Header/Header.jsx";
+import AlertCookie from "./components/Body/AlertCookie.jsx";
+import Cookies from "universal-cookie";
+import { useMyContext } from "./components/Context.jsx";
 import Banner from "./components/Body/Banner.jsx";
 import AboutUs from "./components/Body/AboutUs.jsx";
 import Contact from "./components/Body/Contact.jsx";
@@ -16,7 +19,31 @@ import LoadComponent from "./components/Body/LoadComponent.jsx";
 import styled from "styled-components";
 
 function Home() {
-  const { isLoading, isAuthenticated, user } = useAuth0();
+  const { isLoading, isAuthenticated, user } = useAuth0(),
+  {cookInfo, setCookInfo} = useMyContext()
+  // Creo una cookieie y la borro para verificar
+  useEffect(() => {
+    const cookies = new Cookies();
+
+    const checkCookies = () => {
+      try {
+        cookies.set('testcookie', 'test', { path: '/' });
+
+        const cookieEnabled = cookies.get('testcookie') === 'test';
+        cookies.remove('testcookie', { path: '/' });
+
+        if (cookieEnabled) {
+          setCookInfo(true)
+        } else {
+          setCookInfo(false)
+        }
+      } catch (error) {
+        console.log('Error al trabajar con cookies:', error);
+      }
+    };
+
+    checkCookies();
+  }, []);
 
   useEffect(() => {
     async function createUser() {
@@ -46,6 +73,7 @@ function Home() {
           <Route path="/details/:coursedetails" element={<DetailsCourse />} />
         </Routes>
         <Header />
+        {!cookInfo && <AlertCookie /> }
         {!isAuthenticated && <MobileLoginBtn />}
         <Banner />
         <Courses />

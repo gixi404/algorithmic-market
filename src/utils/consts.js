@@ -8,7 +8,7 @@ const PROGRESS_VALUE = 11;
 const PRIV_KEY =
   "sk_test_51NdfNbCPshfmc7ctMo1Y4L8E9Hkl6KMeF8KzjSqdPgRxHdQRfREoONTs37h7wvbrJk2jixgjSLvT7EbRRJctHKpO00wQnsY8yV";
 
-// const FRONT_PATH = "http://localhost:3000";
+//  const FRONT_PATH = "http://localhost:3000";
 // const BACK_PATH = "http://localhost:3001";
 
 //* Key Nuestra: "sk_test_51NdfNbCPshfmc7ctMo1Y4L8E9Hkl6KMeF8KzjSqdPgRxHdQRfREoONTs37h7wvbrJk2jixgjSLvT7EbRRJctHKpO00wQnsY8yV"

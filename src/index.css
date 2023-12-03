@@ -1,14 +1,13 @@
 * {
   margin: 0%;
   padding: 0%;
-  scrollbar-gutter: none;
   scroll-behavior: smooth;
 }
 
 body {
   font-family: "Poppins", Helvetica, sans-serif;
-  overflow-x: hidden;
   background-color: #181854;
+  overflow-x: hidden;
 }
 
 #banner {
@@ -16,4 +15,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.no-scroll{
+  overflow: hidden;
 }

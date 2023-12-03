@@ -23,8 +23,9 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.0.0",
     "nodemon": "^3.0.1",
-    "@babel/plugin-proposal-private-property-in-object": "^7.0.0"
+    "universal-cookie": "^6.1.1"
   },
   "homepage": "https://algorithmic-market.com/",
   "scripts": {
@@ -40,7 +41,7 @@
       "not dead",
       "not op_mini all"
     ],
-    "proxy":"http://localhost:3001",
+    "proxy": "http://localhost:3001",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
