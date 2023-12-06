@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import userExample from "../../img/user-example.jpg";
-function References() {
+function References() { 
   const references = [
     {
       id: 1,
