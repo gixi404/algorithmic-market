@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import ViewCourse from "../Log/ViewCourse.jsx";
 import BuyBtn from "./Button.jsx";
-import courseImg from "../../img/course-img.webp";
+import courseOne from "../../img/course-img.webp";
 import courseTwo from "../../img/course-two.webp";
 import courseThree from "../../img/course-three.webp";
 import styled from "styled-components";
@@ -21,7 +21,7 @@ function Course(props) {
       )}
 
       <Img
-        src={id == 0 ? courseImg : id == 1 ? courseTwo : courseThree}
+        src={id == 0 ? courseOne : id == 1 ? courseTwo : courseThree}
         loading="lazy"
         alt={`imágen de curso ${name}`}
       />
@@ -33,15 +33,9 @@ function Course(props) {
 
       <ButtonContainer>
         {isBought ? (
-          <ViewCourse
-            title={id == 0 ? "Ver" : "Próximamente	"}
-            url={id == 0 ? `/mycourses/${id}` : "#"}
-          />
+          <ViewCourse title="Ver" url={`/mycourses/${id}`} />
         ) : (
-          <BuyBtn
-            title={id == 0 ? "Más Información" : "Próximamente"}
-            url={id == 0 ? `/details/${id}` : "#"}
-          />
+          <BuyBtn title="Más Información" url={`/details/${id}`} />
         )}
       </ButtonContainer>
     </CourseContainer>
