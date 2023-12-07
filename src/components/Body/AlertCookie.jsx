@@ -5,7 +5,7 @@ import styled from "styled-components"
 function AlertCoockie (){
     const {cookInfo, setCookInfo} = useMyContext()
     useEffect(() =>{
-        cookInfo ? document.body.classList.add('no-scroll') : document.body.classList.remove('no-scroll') 
+        !cookInfo ? document.body.classList.add('no-scroll') : document.body.classList.remove('no-scroll') 
     },[cookInfo]);
 
     const handleAlert = () => {
