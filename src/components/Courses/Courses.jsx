@@ -12,11 +12,6 @@ function Courses() {
     [coursesDB, setCoursesDB] = useState([]),
     { setMyCourses } = useMyContext();
 
-  console.log(23423);
-  console.log(23423);
-  console.log(23423);
-  console.log(23423);
-
   useEffect(() => {
     async function getCoursesDB() {
       const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
