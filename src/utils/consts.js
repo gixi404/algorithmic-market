@@ -1,9 +1,10 @@
 //? Adios a las magic strings.
-// const FRONT_PATH = [
-//   "https://algorithmic-market.com",
-//   "https://www.algorithmic-market.com",
-// ];
+/*  const FRONT_PATH = [
+  "https://algorithmic-market.com",
+  "https://www.algorithmic-market.com",
+];*/
 // const BACK_PATH = "https://server.algorithmic-market.com";
+
 const PROGRESS_VALUE = 11;
 const PRIV_KEY =
   "sk_test_51NdfNbCPshfmc7ctMo1Y4L8E9Hkl6KMeF8KzjSqdPgRxHdQRfREoONTs37h7wvbrJk2jixgjSLvT7EbRRJctHKpO00wQnsY8yV";

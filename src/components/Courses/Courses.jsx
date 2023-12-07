@@ -12,8 +12,13 @@ function Courses() {
     [coursesDB, setCoursesDB] = useState([]),
     { setMyCourses } = useMyContext();
 
+  console.log(23423);
+  console.log(23423);
+  console.log(23423);
+  console.log(23423);
+
   useEffect(() => {
-    async function cursosDB() {
+    async function getCoursesDB() {
       const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -22,7 +27,7 @@ function Courses() {
       setCoursesDB(json);
       setMyCourses(json);
     }
-    cursosDB();
+    getCoursesDB();
   }, []);
 
   useEffect(() => {
@@ -62,6 +67,7 @@ function Courses() {
       <ListCourses>
         {coursesDB.length > 0 ? (
           coursesDB
+            .slice(0, 3)
             .sort((a, b) =>
               a.id.localeCompare(b.id, undefined, {
                 numeric: true,
