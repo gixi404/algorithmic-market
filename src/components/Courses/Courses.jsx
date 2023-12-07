@@ -44,7 +44,7 @@ function Courses() {
   }, []);
 
   useEffect(() => {
-    if(courses.length >= 1) {
+    if (courses.length >= 1) {
       const courserest = coursesDB.filter(item => item.isBought != false),
         courseComplete = courses.concat(courserest);
       if (courseComplete.length >= 3) {
@@ -63,7 +63,6 @@ function Courses() {
       <ListCourses>
         {coursesDB.length > 0 ? (
           coursesDB
-            .slice(0, 3)
             .sort((a, b) =>
               a.id.localeCompare(b.id, undefined, {
                 numeric: true,
