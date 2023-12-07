@@ -38,17 +38,18 @@ function Courses() {
         localStorage.removeItem("cart-courses");
       }
     }
-
     if (isAuthenticated) {
       recoveryCourses();
     }
   }, []);
 
   useEffect(() => {
-    const courserest = coursesDB.filter(item => item.id != courses[0]?.id),
-      courseComplete = courses.concat(courserest);
-    if (courseComplete.length >= 3) {
-      setCoursesDB(courseComplete);
+    if(courses.length >= 1) {
+      const courserest = coursesDB.filter(item => item.isBought != false),
+        courseComplete = courses.concat(courserest);
+      if (courseComplete.length >= 3) {
+        setCoursesDB(courseComplete);
+      }
     }
   }, [courses]);
 

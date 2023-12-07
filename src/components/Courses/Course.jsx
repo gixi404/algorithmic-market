@@ -11,7 +11,6 @@ function Course(props) {
     { isAuthenticated } = useAuth0(),
     { name, description, isBought, id } = course,
     getIsCompleted = localStorage.getItem(`isCompleted:${name}`);
-
   return (
     <CourseContainer>
       {isAuthenticated && getIsCompleted && (
@@ -33,9 +32,15 @@ function Course(props) {
 
       <ButtonContainer>
         {isBought ? (
-          <ViewCourse title="Ver" url={`/mycourses/${id}`} />
+          <ViewCourse
+            title={id >= 0 ? "Ver" : "Próximamente"}
+            url={id >= 0 ? `/mycourses/${id}` : "#"}
+          />
         ) : (
-          <BuyBtn title="Más Información" url={`/details/${id}`} />
+          <BuyBtn
+            title="Más Información"
+            url={`/details/${id}`}
+          />
         )}
       </ButtonContainer>
     </CourseContainer>
