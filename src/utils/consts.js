@@ -1,5 +1,5 @@
 //? Adios a las magic strings.
-/*  const FRONT_PATH = [
+  const FRONT_PATH = [
   "https://algorithmic-market.com",
   "https://www.algorithmic-market.com",
 ];
