@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useMyContext } from "../Context";
 
 function ContinueCourse(props) {
-  const { setContinueCourse } = props,
+  const { setContinueCourse, numberClass } = props,
     { setErrorVideo } = useMyContext();
 
   function handleClick() {
@@ -15,7 +15,9 @@ function ContinueCourse(props) {
       <Title>
         <span>Continúa donde te quedaste</span>
       </Title>
-      <Btn onClick={handleClick}>Seguir</Btn>
+      <Btn onClick={handleClick}>
+        {numberClass === 0 ? "Empezar" : "Continuar"}
+      </Btn>
     </Letter>
   );
 }

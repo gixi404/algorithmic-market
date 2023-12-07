@@ -166,7 +166,10 @@ function MediaPlayer() {
 
         {courseInProgress ? (
           continueCourse ? (
-            <ContinueCourse setContinueCourse={setContinueCourse} />
+            <ContinueCourse
+              numberClass={numberClass}
+              setContinueCourse={setContinueCourse}
+            />
           ) : (
             <ClassVideo
               classURL={classData.classURL}
