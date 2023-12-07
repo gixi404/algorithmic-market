@@ -12,15 +12,15 @@ function ControlsVideo(props) {
       courseInProgress,
       setCourseInProgress,
     } = props,
-    { allCourses } = useMyContext(),
+    { myCourses } = useMyContext(),
     isFirstClass = Number(numberClass) === 0,
     isLastClass = Number(numberClass) === Number(lastClass);
 
   function handleFinishCourse() {
-    allCourses[courseid_params].isCompleted = true;
+    myCourses[courseid_params].isCompleted = true;
     setCourseInProgress(false);
     localStorage.setItem(
-      `isCompleted:${allCourses[courseid_params].name}`,
+      `isCompleted:${myCourses[courseid_params].name}`,
       true
     );
   }
