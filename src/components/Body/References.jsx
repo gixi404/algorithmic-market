@@ -1,40 +1,36 @@
 import styled from "styled-components";
-import heroe from "../../img/heroe.jpg";
-import urki from "../../img/urki.png";
-import papa from "../../img/papa.jpg";
-import ramos from "../../img/ramos.jpg";
-
-function References() {
+import userExample from "../../img/user-example.jpg";
+function References() { 
   const references = [
     {
       id: 1,
-      img: heroe,
-      name: "Dibu Martinez",
-      profession: "Doctor de Nueva York",
+      img: userExample,
+      name: "Usuario Testimonio",
+      profession: "Profesión de usuario",
       testimony:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
     },
     {
       id: 2,
-      img: ramos,
-      name: "Sergio Ramos",
-      profession: "Futbolista en Amsterdam",
+      img: userExample,
+      name: "Usuario Testimonio",
+      profession: "Profesión de usuario",
       testimony:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
     },
     {
       id: 3,
-      img: papa,
-      name: "Papa Fransico",
-      profession: "Director de SpaceX",
+      img: userExample,
+      name: "Usuario Testimonio",
+      profession: "Profesión de usuario",
       testimony:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
     },
     {
       id: 4,
-      img: urki,
-      name: "Baltasar Pascual",
-      profession: "Graduado en Oxford",
+      img: userExample,
+      name: "Usuario Testimonio",
+      profession: "Profesión de usuario",
       testimony:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
     },
