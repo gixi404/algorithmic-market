@@ -4,8 +4,17 @@ import styled from "styled-components";
 function BuyBtn(props) {
   const { url, title, logOut } = props;
 
+  function onClick(event) {
+    if (title === "Cerrar Sesión") {
+      logOut();
+    } else {
+      //* Sirve para que el botón "Más Información" se renderize y no se cierre solo por un addEventListener que hace que se cierre "DetailsCourse" clickando en cualquier lado.
+      event.stopPropagation();
+    }
+  }
+
   return (
-    <Button onClick={title === "Cerrar Sesión" ? logOut : null}>
+    <Button onClick={onClick}>
       <Link to={url}>{title}</Link>
     </Button>
   );

@@ -8,9 +8,9 @@ import styled from "styled-components";
 
 function Course(props) {
   const { course } = props,
-    { isAuthenticated } = useAuth0(),
+    { isAuthenticated, user } = useAuth0(),
     { name, description, isBought, id } = course,
-    getIsCompleted = localStorage.getItem(`isCompleted:${name}`);
+    getIsCompleted = localStorage.getItem(`${user?.email}-isCompleted:${name}`);
 
   return (
     <CourseContainer>
