@@ -8,9 +8,10 @@ import styled from "styled-components";
 
 function Course(props) {
   const { course } = props,
-    { isAuthenticated } = useAuth0(),
+    { isAuthenticated, user } = useAuth0(),
     { name, description, isBought, id } = course,
-    getIsCompleted = localStorage.getItem(`isCompleted:${name}`);
+    getIsCompleted = localStorage.getItem(`${user?.email}-isCompleted:${name}`);
+
   return (
     <CourseContainer>
       {isAuthenticated && getIsCompleted && (
@@ -32,15 +33,9 @@ function Course(props) {
 
       <ButtonContainer>
         {isBought ? (
-          <ViewCourse
-            title={id >= 0 ? "Ver" : "Próximamente"}
-            url={id >= 0 ? `/mycourses/${id}` : "#"}
-          />
+          <ViewCourse title="Ver" url={`/mycourses/${id}`} />
         ) : (
-          <BuyBtn
-            title="Más Información"
-            url={`/details/${id}`}
-          />
+          <BuyBtn title="Más Información" url={`/details/${id}`} />
         )}
       </ButtonContainer>
     </CourseContainer>
@@ -117,7 +112,7 @@ const CourseContainer = styled.article`
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 20;
+    z-index: 3;
     height: 2.2vh;
     width: max-content;
     background-color: #23b523;

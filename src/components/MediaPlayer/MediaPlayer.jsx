@@ -36,7 +36,7 @@ function MediaPlayer() {
     [courseInProgress, setCourseInProgress] = useState(true),
     [progressValue, setProgressValue] = useState(initialProgressValue),
     [continueCourse, setContinueCourse] = useState(true),
-    lastClass = Number(myCourses[courseid_params]?.clases?.length) - 1 ?? 0;
+    lastClass = Number(myCourses[courseid_params]?.clases?.length) - 1 ?? 9;
 
   useEffect(() => {
     const getClass = localStorage.getItem(
@@ -166,7 +166,10 @@ function MediaPlayer() {
 
         {courseInProgress ? (
           continueCourse ? (
-            <ContinueCourse setContinueCourse={setContinueCourse} />
+            <ContinueCourse
+              numberClass={numberClass}
+              setContinueCourse={setContinueCourse}
+            />
           ) : (
             <ClassVideo
               classURL={classData.classURL}

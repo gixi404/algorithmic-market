@@ -1,15 +1,15 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMyContext } from "../Context";
 import AddButton from "../Courses/AddButton.jsx";
-import styled from "styled-components";
 import { CloseCartSVG } from "../svgs.jsx";
+import styled from "styled-components";
 
 function DetailsCourse() {
   const { courseSelected, myCourses } = useMyContext(),
     { coursedetails } = useParams();
 
   return (
-    <Container to="/">
+    <Container id="details-course-modal">
       <Details>
         <CloseCartSVG />
         <Article>
@@ -31,7 +31,7 @@ function DetailsCourse() {
 
 export default DetailsCourse;
 
-const Container = styled(Link)`
+const Container = styled.div`
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -78,7 +78,7 @@ const Container = styled(Link)`
     }
     @media (min-width: 1226px) {
       width: 100vw;
-      height: 90vh;
+      height: 100vh;
     }
   `,
   Article = styled.article`

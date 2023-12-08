@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import { useMyContext } from "../Context";
 import styled from "styled-components";
@@ -12,15 +13,16 @@ function ControlsVideo(props) {
       courseInProgress,
       setCourseInProgress,
     } = props,
-    { allCourses } = useMyContext(),
+    { user } = useAuth0(),
+    { myCourses } = useMyContext(),
     isFirstClass = Number(numberClass) === 0,
     isLastClass = Number(numberClass) === Number(lastClass);
 
   function handleFinishCourse() {
-    allCourses[courseid_params].isCompleted = true;
+    myCourses[courseid_params].isCompleted = true;
     setCourseInProgress(false);
     localStorage.setItem(
-      `isCompleted:${allCourses[courseid_params].name}`,
+      `${user?.email}-isCompleted:${myCourses[courseid_params].name}`,
       true
     );
   }

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import userExample from "../../img/user-example.jpg";
-function References() { 
+import baltasarImg from "../../img/urki.webp";
+
+function References() {
   const references = [
     {
       id: 1,
@@ -20,11 +22,11 @@ function References() {
     },
     {
       id: 3,
-      img: userExample,
-      name: "Usuario Testimonio",
-      profession: "Profesión de usuario",
+      img: baltasarImg,
+      name: "Baltasar Pascual",
+      profession: "Ingeniero en sistemas",
       testimony:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
+        "Es una gran plataforma que me permitió incursionar en el mundo del trading, lo recomiendo ampliamente.",
     },
     {
       id: 4,
