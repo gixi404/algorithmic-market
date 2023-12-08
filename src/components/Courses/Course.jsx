@@ -32,7 +32,7 @@ function Course(props) {
       </ContainerTexts>
 
       <ButtonContainer>
-        {!isBought ? (
+        {isBought ? (
           <ViewCourse title="Ver" url={`/mycourses/${id}`} />
         ) : (
           <BuyBtn title="Más Información" url={`/details/${id}`} />
