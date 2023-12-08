@@ -36,7 +36,13 @@ function MediaPlayer() {
     [courseInProgress, setCourseInProgress] = useState(true),
     [progressValue, setProgressValue] = useState(initialProgressValue),
     [continueCourse, setContinueCourse] = useState(true),
-    lastClass = Number(myCourses[courseid_params]?.clases?.length) - 1 ?? 0;
+    lastClass = Number(myCourses[courseid_params]?.clases?.length) - 1 ?? 9;
+
+  //?
+  useEffect(() => {
+    console.log("cambio classdata");
+  }, [classData]);
+  //?
 
   useEffect(() => {
     const getClass = localStorage.getItem(
