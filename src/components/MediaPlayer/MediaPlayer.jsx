@@ -38,12 +38,6 @@ function MediaPlayer() {
     [continueCourse, setContinueCourse] = useState(true),
     lastClass = Number(myCourses[courseid_params]?.clases?.length) - 1 ?? 9;
 
-  //?
-  useEffect(() => {
-    console.log("cambio classdata");
-  }, [classData]);
-  //?
-
   useEffect(() => {
     const getClass = localStorage.getItem(
       `${user.email}-class:${courseid_params}`
