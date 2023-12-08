@@ -35,8 +35,8 @@ function IndexCart() {
   useEffect(() => reducerCash(), [coursesCart]);
 
   function reducerCash() {
-    const price = coursesCart.reduce((ac, cv) => ac + cv.cash, 0);
-    if (coursesCart.length < 0) {
+    const price = coursesCart.reduce((ac, cv) => ac + parseInt(cv.cash), 0);
+    if (coursesCart.length <= 0) {
       return "0";
     }
     setValue(price);

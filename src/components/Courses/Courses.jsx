@@ -44,13 +44,14 @@ function Courses() {
   }, []);
 
   useEffect(() => {
-    if(courses.length >= 1) {
-      const courserest = coursesDB.filter(item => item.isBought != false),
-        courseComplete = courses.concat(courserest);
-      if (courseComplete.length >= 3) {
-        setCoursesDB(courseComplete);
-      }
+  if (courses.length > 0) {
+    const courseIds = courses.map(course => course.id);
+    const filteredCoursesDB = coursesDB.filter(item => !courseIds.includes(item.id));
+    const courseComplete = [...courses, ...filteredCoursesDB]
+    if (filteredCoursesDB.length <= 3) {
+      setCoursesDB(courseComplete);
     }
+  }
   }, [courses]);
 
   return (
@@ -63,7 +64,6 @@ function Courses() {
       <ListCourses>
         {coursesDB.length > 0 ? (
           coursesDB
-            .slice(0, 3)
             .sort((a, b) =>
               a.id.localeCompare(b.id, undefined, {
                 numeric: true,
