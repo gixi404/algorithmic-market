@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-async function formData(name, mail, query) {
+async function buyMail(name, email) {
   const config = {
       host: "smtp.gmail.com",
       port: 587,
@@ -11,28 +11,24 @@ async function formData(name, mail, query) {
     },
     message = {
       from: "gixipixel@gmail.com",
-      to: "gioliotta.io@gmail.com",
-      subject: "Soporte Algorithmic Market",
+      to: email.toString(),
+      subject: "Algorithmic Market",
       html: `
        <div style="text-align: center">
          <h1>
-            Hola, soy ${name}
+            Hola, ${name.toString()}
          </h1>. 
          <br />
-         <p>
-            Consulta: ${query} <br />
-            Mail: <b>${mail}</b>
-         </p>
+         <p> Gracias por adquirir un nuevo curso re fachero </p>
        </div>
       `,
     };
-
   try {
     const transporter = nodemailer.createTransport(config);
     await transporter.sendMail(message);
   } catch (err) {
-    console.error("Error al enviar mail de soporte: " + err.message);
+    console.error("Error al enviar mail de compra: " + err.message);
   }
 }
 
-export default formData;
+export default buyMail;

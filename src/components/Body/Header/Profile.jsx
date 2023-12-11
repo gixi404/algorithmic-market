@@ -1,7 +1,7 @@
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import BuyBtn from "../../Courses/Button";
-import Header from "./Header";
-import Footer from "../Footer";
+import BuyBtn from "../../Courses/Button.jsx";
+import Header from "./Header.jsx";
+import Footer from "../Footer.jsx";
 import styled from "styled-components";
 
 function Profile() {
@@ -10,6 +10,7 @@ function Profile() {
   return (
     <Container>
       <Header />
+
       <UserContainer>
         <Img
           src={user?.picture}

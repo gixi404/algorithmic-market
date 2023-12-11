@@ -10,6 +10,7 @@ import {
   getCoursesDB,
 } from "../controllers/shopping.controller.js";
 import formData from "../form/form.js";
+import buyMail from "../form/buys.js";
 
 const router = Router();
 
@@ -30,6 +31,11 @@ router.get("/cleanlist", deleteShoppingCart);
 router.post("/form", async (req, res) => {
   const { name_form, mail_form, query_form } = req.body;
   formData(name_form, mail_form, query_form);
+});
+
+router.post("/coursepurchased", async (req, res) => {
+  const { name, email } = req.body;
+  buyMail(name, email);
 });
 
 router.post("/createcourse", createCourse);

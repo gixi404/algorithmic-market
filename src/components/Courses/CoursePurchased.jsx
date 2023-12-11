@@ -1,9 +1,27 @@
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { BACK_PATH } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function CoursePurchased() {
+  const { user } = useAuth0();
+
+  async function sendMail() {
+    await fetch(`${BACK_PATH}/coursepurchased`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer yourAccessToken",
+      },
+      body: JSON.stringify({
+        name: user?.nickname,
+        email: user?.email,
+      }),
+    });
+  }
+
   return (
-    <Container to="/">
+    <Container to="/" onClick={sendMail}>
       <Letter>
         <Title>
           <span>Compra realizada correctamente</span>
