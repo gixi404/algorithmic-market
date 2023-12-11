@@ -13,11 +13,15 @@ import styled from "styled-components";
 function IndexCart() {
   const { isAuthenticated } = useAuth0(),
     { coursesCart, setCoursesCart } = useMyContext(),
-    [value, setValue] = useState(0);
+    [value, setValue] = useState(0),
+    shownCartCourses = coursesCart.map(course => (
+      <ItemCart key={course.id} data={course} />
+    ));
 
   useEffect(() => {
     const cartTR = localStorage.getItem("cart-courses"),
       cart = JSON.parse(cartTR);
+
     if (cart) {
       setCoursesCart(cart);
     }
@@ -26,13 +30,14 @@ function IndexCart() {
   useEffect(() => {
     if (coursesCart.length > 0) {
       localStorage.setItem("cart-courses", JSON.stringify(coursesCart));
+      reducerCash();
     }
+
     if (coursesCart.length === 0) {
       localStorage.removeItem("cart-courses");
+      reducerCash();
     }
   }, [coursesCart]);
-
-  useEffect(() => reducerCash(), [coursesCart]);
 
   function reducerCash() {
     const price = coursesCart.reduce((ac, cv) => ac + parseInt(cv.cash), 0);
@@ -49,16 +54,14 @@ function IndexCart() {
       <Content>
         <HeaderCart>
           <h3 style={{ color: "black" }}>Carrito</h3>
-          <Link to="/">
-            <CloseCartSVG />
-          </Link>
+          {/* <Link to="/"> */}
+          <CloseCartSVG />
+          {/* </Link> */}
         </HeaderCart>
 
         <ItemContainer>
           {coursesCart.length > 0 ? (
-            coursesCart.map(course => (
-              <ItemCart key={course.id} data={course} />
-            ))
+            shownCartCourses
           ) : (
             <P style={{ marginTop: "3em" }}>Carrito Vacío</P>
           )}

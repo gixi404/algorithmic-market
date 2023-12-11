@@ -1,14 +1,26 @@
 import { useMyContext } from "../../Context";
-import courseImg from "../../../img/course-img.webp";
+import courseOne from "../../../img/course-img.webp";
+import courseTwo from "../../../img/course-two.webp";
+import courseThree from "../../../img/course-three.webp";
 import styled from "styled-components";
 
 function ItemCart(props) {
   const { data } = props,
-    { removeCart } = useMyContext();
+    { removeCart } = useMyContext(),
+    imagesCourses =
+      data.name === "Curso Inicial"
+        ? courseOne
+        : data.name === "Curso Medio"
+        ? courseTwo
+        : courseThree;
 
   return (
     <Item>
-      <Img src={courseImg} loading="lazy" alt="imágen del curso" />
+      <Img
+        src={imagesCourses}
+        loading="lazy"
+        alt={`imágen del curso ${data.name}`}
+      />
       <Article>
         <div>
           <h3>{data.name}</h3>
