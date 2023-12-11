@@ -11,12 +11,12 @@ async function buyMail(name, email) {
     },
     message = {
       from: "gixipixel@gmail.com",
-      to: email.toString(),
+      to: email?.toString(),
       subject: "Algorithmic Market",
       html: `
        <div style="text-align: center">
          <h1>
-            Hola, ${name.toString()}
+            Hola, ${name?.toString()}
          </h1>. 
          <br />
          <p> Gracias por adquirir un nuevo curso re fachero </p>
