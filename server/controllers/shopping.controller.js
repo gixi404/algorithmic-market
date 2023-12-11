@@ -83,7 +83,8 @@ export async function redirectShopping(req, res) {
     c3 = infoCompra.c3,
     user = infoCompra.user,
     coincidencia = await User.find({ email: user }),
-    arrayDeCompras = [];
+    coursesUser = coincidencia[0].courses,
+    arrayDeCompras = [...coursesUser];
 
   try {
     const c1bought = await course.find({ id: c1 });
