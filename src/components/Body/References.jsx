@@ -1,40 +1,43 @@
 import styled from "styled-components";
 import userExample from "../../img/user-example.jpg";
 import baltasarImg from "../../img/urki.webp";
+import feliImg from '../../img/feliImg.jpeg'
+import davidImg from '../../img/davidImg.jpeg'
+import camiImg from '../../img/camiImg.jpeg'
 
 function References() {
   const references = [
     {
       id: 1,
-      img: userExample,
-      name: "Usuario Testimonio",
-      profession: "Profesión de usuario",
+      img: camiImg,
+      name: "Camila Benavidez",
+      profession: "Diseñadora Grafica",
       testimony:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
+        "Lo recomiendo abruptamente para el que necesite ingresos extra.",
     },
     {
       id: 2,
-      img: userExample,
-      name: "Usuario Testimonio",
-      profession: "Profesión de usuario",
+      img: davidImg,
+      name: "David Zarate",
+      profession: "Desarrollador Freelancer",
       testimony:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
+        "Buenos cursos y excelente explicacion. Perfecto para aprender algo nuevo",
     },
     {
       id: 3,
       img: baltasarImg,
       name: "Baltasar Pascual",
-      profession: "Ingeniero en sistemas",
+      profession: "Ingeniero en Sistemas.",
       testimony:
-        "Es una gran plataforma que me permitió incursionar en el mundo del trading, lo recomiendo ampliamente.",
+        '"Es una gran plataforma que me permitió incursionar en el mundo del trading, lo recomiendo ampliamente."',
     },
     {
       id: 4,
-      img: userExample,
-      name: "Usuario Testimonio",
-      profession: "Profesión de usuario",
+      img: feliImg,
+      name: "Felipe Correa",
+      profession: "Estudiante de Abogacia.",
       testimony:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic voluptatibus expedita quae voluptatem culpa tenetur temporibus ea.",
+      '"Con ayuda de estos cursos me pude pagar la universidad, lo recomiendo bastante para los que estan empezando."',
     },
   ];
   return (

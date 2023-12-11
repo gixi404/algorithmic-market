@@ -13,19 +13,6 @@ function Courses() {
     { setMyCourses } = useMyContext();
 
   useEffect(() => {
-    async function getCoursesDB() {
-      const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-        }),
-        json = await courses.json();
-      setCoursesDB(json);
-      setMyCourses(json);
-    }
-    getCoursesDB();
-  }, []);
-
-  useEffect(() => {
     async function recoveryCourses() {
       const cursos = await fetch(`${BACK_PATH}/getcourses`, {
           method: "POST",
@@ -44,15 +31,28 @@ function Courses() {
   }, []);
 
   useEffect(() => {
+    async function getCoursesDB() {
+      const courses = await fetch(`${BACK_PATH}/getcoursesdb`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }),
+        json = await courses.json();
+      setCoursesDB(json);
+      setMyCourses(json);
+    }
+    getCoursesDB();
+  }, [courses]);
+
+  useEffect(() => {
   if (courses.length > 0) {
     const courseIds = courses.map(course => course.id);
     const filteredCoursesDB = coursesDB.filter(item => !courseIds.includes(item.id));
     const courseComplete = [...courses, ...filteredCoursesDB]
     if (filteredCoursesDB.length <= 3) {
-      setCoursesDB(courseComplete);
+      setCourses(courseComplete);
     }
   }
-  }, [courses]);
+  }, [coursesDB]);
 
   return (
     <CoursesContainer id="allcourses">
@@ -63,7 +63,7 @@ function Courses() {
 
       <ListCourses>
         {coursesDB.length > 0 ? (
-          coursesDB
+          courses
             .sort((a, b) =>
               a.id.localeCompare(b.id, undefined, {
                 numeric: true,
