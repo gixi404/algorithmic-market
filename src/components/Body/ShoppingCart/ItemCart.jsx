@@ -16,7 +16,11 @@ function ItemCart(props) {
 
   return (
     <Item>
-      <Img src={imagesCourses} loading="lazy" alt="imágen del curso" />
+      <Img
+        src={imagesCourses}
+        loading="lazy"
+        alt={`imágen del curso ${data.name}`}
+      />
       <Article>
         <div>
           <h3>{data.name}</h3>
