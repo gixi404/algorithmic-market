@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function Contact() {
   const [errorForm, setErrorForm] = useState(false),
     [sendForm, setSendForm] = useState(false),
+    { isAuthenticated } = useAuth0(),
     Name = useRef(null),
     Mail = useRef(null),
     Query = useRef(null);
@@ -13,8 +15,18 @@ function Contact() {
 
   function handleSubmitForm(event) {
     event.preventDefault();
+
     const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-      regexQuery = /^(.{1,800})$/;
+      regexQuery = /^(.{1,800})$/,
+      checkField = {
+        name: Name.current.value.trimStart() === "",
+        mail:
+          !regexMail.test(Mail.current.value.trimStart()) ||
+          Mail.current.value.trimStart() === "",
+        query:
+          !regexQuery.test(Query.current.value.trim()) ||
+          Query.current.value === "",
+      };
 
     function changeInputColor(input) {
       switch (input) {
@@ -60,17 +72,17 @@ function Contact() {
       }
     }
 
-    if (Name.current.value === "") {
+    if (checkField.name) {
       changeInputColor("Name");
       hasError = true;
     }
 
-    if (!regexMail.test(Mail.current.value) || Mail.current.value === "") {
+    if (checkField.mail) {
       changeInputColor("Mail");
       hasError = true;
     }
 
-    if (!regexQuery.test(Query.current.value) || Query.current.value === "") {
+    if (checkField.query) {
       changeInputColor("Query");
       hasError = true;
     }
@@ -143,7 +155,6 @@ function Contact() {
             <Input
               type="text"
               name="name_form"
-              // id="name_form"
               ref={Name}
               placeholder="Ingrese su nombre"
             />
@@ -155,7 +166,6 @@ function Contact() {
               type="email"
               name="mail_form"
               ref={Mail}
-              // id="mail_form"
               placeholder="ejemplomail@gmail.com"
             />
           </Label>
@@ -171,7 +181,11 @@ function Contact() {
             ></Textarea>
           </Label>
           <SubmitContainer>
-            <SubmitBtn type="submit" value="Enviar" />
+            {isAuthenticated ? (
+              <SubmitBtn type="submit" value="Enviar" />
+            ) : (
+              "Inicia sesión para enviar"
+            )}
           </SubmitContainer>
         </Form>
       </Content>
