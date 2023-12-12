@@ -23,9 +23,7 @@ function Contact() {
         mail:
           !regexMail.test(Mail.current.value.trimStart()) ||
           Mail.current.value.trimStart() === "",
-        query:
-          !regexQuery.test(Query.current.value.trim()) ||
-          Query.current.value === "",
+        query: Query.current.value === "",
       };
 
     function changeInputColor(input) {
