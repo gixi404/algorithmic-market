@@ -5,25 +5,29 @@ async function formData(name, mail, query) {
       host: "smtp.gmail.com",
       port: 587,
       auth: {
-        user: "gixipixel@gmail.com",
-        pass: "dxemxhhcypdpbkht",
+        user: "algorithmicmarket@gmail.com",
+        pass: "akfi ffpk tugt znup",
       },
     },
     message = {
-      from: "gixipixel@gmail.com",
+      from: "algorithmicmarket@gmail.com",
       to: "gioliotta.io@gmail.com",
       subject: "Soporte Algorithmic Market",
       html: `
-       <div style="text-align: center">
-         <h1>
-            Hola, soy ${name}
-         </h1>. 
-         <br />
-         <p>
-            Consulta: ${query} <br />
-            Mail: <b>${mail}</b>
-         </p>
-       </div>
+      <main style="text-align:start;font-family:Arial">
+        <h1>Hola, soy ${name}</h1>
+        <div style="style="display:flex; flex-direction:column; justify-center:center;align-items:start;width:80%;      min-height:400px">
+          <p style="text-align:start">
+            <b>Consulta:</b>
+            <br/><br/>
+            ${query}
+          </p>
+          <p style="text-align:start">
+           <b>Mail de usuario: </b>
+           ${mail}
+          </p>
+        </div>
+      </main>
       `,
     };
 
