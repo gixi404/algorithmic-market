@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import userExample from "../../img/user-example.jpg";
 import baltasarImg from "../../img/urki.webp";
-import feliImg from '../../img/feliImg.jpeg'
-import davidImg from '../../img/davidImg.jpeg'
-import camiImg from '../../img/camiImg.jpeg'
+import feliImg from "../../img/feliImg.jpeg";
+import davidImg from "../../img/davidImg.jpeg";
+import camiImg from "../../img/camiImg.jpeg";
 
 function References() {
   const references = [
@@ -11,9 +11,9 @@ function References() {
       id: 1,
       img: camiImg,
       name: "Camila Benavidez",
-      profession: "Diseñadora Grafica",
+      profession: "Diseñadora Gráfica",
       testimony:
-        "Lo recomiendo abruptamente para el que necesite ingresos extra.",
+        '"Lo recomiendo para el que disponga de tiempo y ganas para conseguir ingresos extra."',
     },
     {
       id: 2,
@@ -21,13 +21,13 @@ function References() {
       name: "David Zarate",
       profession: "Desarrollador Freelancer",
       testimony:
-        "Buenos cursos y excelente explicacion. Perfecto para aprender algo nuevo",
+        '"Buenos cursos y excelentes explicaciones. Perfecto para aprender algo nuevo."',
     },
     {
       id: 3,
       img: baltasarImg,
       name: "Baltasar Pascual",
-      profession: "Ingeniero en Sistemas.",
+      profession: "Ingeniero en Sistemas",
       testimony:
         '"Es una gran plataforma que me permitió incursionar en el mundo del trading, lo recomiendo ampliamente."',
     },
@@ -35,9 +35,9 @@ function References() {
       id: 4,
       img: feliImg,
       name: "Felipe Correa",
-      profession: "Estudiante de Abogacia.",
+      profession: "Estudiante de Abogacía",
       testimony:
-      '"Con ayuda de estos cursos me pude pagar la universidad, lo recomiendo bastante para los que estan empezando."',
+        '"Con ayuda de estos cursos me pude pagar la universidad, lo recomiendo bastante para los que están empezando o incluso para los que tiene conocimientos previos."',
     },
   ];
   return (
