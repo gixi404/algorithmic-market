@@ -1,27 +1,24 @@
 {
   "files": {
     "main.css": "/static/css/main.3b516c07.css",
-    "main.js": "/static/js/main.e358914e.js",
+    "main.js": "/static/js/main.b505119e.js",
     "static/media/about-us-img.webp": "/static/media/about-us-img.e33e66a79a8bce7343b6.webp",
     "static/media/course-two.webp": "/static/media/course-two.bb56779324ca0ab470ad.webp",
     "static/media/course-img.webp": "/static/media/course-img.7488d561b6d0e0f2eeb2.webp",
     "static/media/favicon.ico": "/static/media/favicon.d268ae8f97427dc941d0.ico",
     "static/media/feliImg.jpeg": "/static/media/feliImg.58244e2e7a32db3e4882.jpeg",
     "static/media/camiImg.jpeg": "/static/media/camiImg.4aad39c60b1854c4cf15.jpeg",
-    "static/media/feliImg.jpeg": "/static/media/feliImg.58244e2e7a32db3e4882.jpeg",
-    "static/media/camiImg.jpeg": "/static/media/camiImg.4aad39c60b1854c4cf15.jpeg",
     "static/media/banner-img.webp": "/static/media/banner-img.4cb9a5afba5a45f5f122.webp",
-    "static/media/davidImg.jpeg": "/static/media/davidImg.b76e7bfba190f035dabe.jpeg",
     "static/media/davidImg.jpeg": "/static/media/davidImg.b76e7bfba190f035dabe.jpeg",
     "static/media/stripe.png": "/static/media/stripe.50f49cff5285ab1df4b7.png",
     "static/media/course-three.webp": "/static/media/course-three.94cd840164176468c8db.webp",
     "static/media/urki.webp": "/static/media/urki.4470cff1b99004e921a9.webp",
     "index.html": "/index.html",
     "main.3b516c07.css.map": "/static/css/main.3b516c07.css.map",
-    "main.e358914e.js.map": "/static/js/main.e358914e.js.map"
+    "main.b505119e.js.map": "/static/js/main.b505119e.js.map"
   },
   "entrypoints": [
     "static/css/main.3b516c07.css",
-    "static/js/main.e358914e.js"
+    "static/js/main.b505119e.js"
   ]
 }
