@@ -17,21 +17,21 @@ function Privacy() {
           por sus usuarios al momento de utilizar su sitio web. Esta compañía
           está comprometida con la seguridad de los datos de sus usuarios.
           Cuando le pedimos llenar los campos de información personal con la
-          cual usted pueda ser identificado, lo hacemos asegurando que sólo se
-          empleará de acuerdo con los términos de este documento. Sin embargo
+          cual usted pueda ser identificado, lo hacemos asegurando que solo se
+          empleará de acuerdo con los términos de este documento. Sin embargo,
           esta política de privacidad puede cambiar con el tiempo o ser
-          actualizada por lo que le recomendamos y enfatizamos revisar
+          actualizada, por lo que le recomendamos y enfatizamos revisar
           continuamente esta página para asegurarse que está de acuerdo con
           dichos cambios.
         </p>
         <br />
         <p>
           Información recogida: nuestro sitio web podrá recoger información como
-          su nombre y dirección de correo electrónico. Así mismo cuando sea
+          su nombre y dirección de correo electrónico. Así mismo, cuando sea
           necesario podrá ser requerida información específica para procesar
           algún pedido o realizar una entrega o facturación. Nuestro sitio web
           emplea la información con el fin de mantener un registro de usuarios,
-          de pedidos en caso que aplique, y mejorar nuestros productos y
+          de pedidos en caso de que aplique, y mejorar nuestros productos y
           servicios.
         </p>
         <br />
@@ -49,7 +49,7 @@ function Privacy() {
           personal que es recopilada sin su consentimiento, salvo que sea
           requerido por un juez con un orden judicial. ALGORITHMIC MARKET Se
           reserva el derecho de cambiar los términos de la presente política de
-          privacidad en cualquier momento.
+          privacidad cuando lo considere necesario.
         </p>
       </PrivacyContainer>
 

@@ -15,11 +15,11 @@ function AboutUs() {
             , somos personas dispuestas y dedicadas a transformar las
             aspiraciones financieras en realidad de nuestros alumnos.
             Establecido con la visión de brindar a las personas el conocimiento
-            y las herramientas para conquistar la excelencia en los graficos y
-            el mercado. Algorithmic Market esta exclusivamente al servicio de
+            y las herramientas para conquistar la excelencia en los gráficos y
+            el mercado. Algorithmic Market está exclusivamente al servicio de
             sus estudiantes para que alcancen sus metas.
             <br /> <br />
-            Nuestra misión es brindar educación de primer nivel, recursos unicos
+            Nuestra misión es brindar educación de primer nivel, recursos únicos
             y ayuda incomparable a nuestros traders de todos los niveles. Desde
             principiantes que dan sus primeros pasos hasta profesionales
             experimentados.
