@@ -3,7 +3,7 @@ import userExample from "../../img/user-example.jpg";
 import baltasarImg from "../../img/urki.webp";
 import feliImg from "../../img/feliImg.jpeg";
 import davidImg from "../../img/davidImg.jpeg";
-import camiImg from "../../img/camiImg.jpeg";
+import camiImg from '../../img/camiImg.jpeg'
 
 function References() {
   const references = [
