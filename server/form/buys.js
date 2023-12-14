@@ -5,21 +5,22 @@ async function buyMail(name, email) {
       host: "smtp.gmail.com",
       port: 587,
       auth: {
-        user: "gixipixel@gmail.com",
-        pass: "dxemxhhcypdpbkht",
+        user: "algorithmicmarket@gmail.com",
+        pass: "akfi ffpk tugt znup",
       },
     },
     message = {
-      from: "gixipixel@gmail.com",
+      from: "algorithmicmarket@gmail.com",
       to: email?.toString(),
       subject: "Algorithmic Market",
       html: `
        <div style="text-align: center">
-         <h1>
-            Hola, ${name?.toString()}
-         </h1>. 
+         <h1>Estimad@ ${name?.toString()}</h1>. 
          <br />
-         <p> Gracias por adquirir un nuevo curso re fachero </p>
+         <b> 
+         Estamos muy contentos de que hayas elegido nuestro curso para aprender sobre [tema del curso]
+         Atentamente, <br /><b>Algorithmic Market</b>
+          </p>
        </div>
       `,
     };
