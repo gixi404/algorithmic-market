@@ -1,9 +1,8 @@
-import styled from "styled-components";
-import userExample from "../../img/user-example.jpg";
 import baltasarImg from "../../img/urki.webp";
-import feliImg from "../../img/feliImg.jpeg";
-import davidImg from "../../img/davidImg.jpeg";
-import camiImg from "../../img/camiImg.jpeg";
+import feliImg from "../../img/feliImg.webp";
+import davidImg from "../../img/davidImg.webp";
+import camiImg from "../../img/camiImg.webp";
+import styled from "styled-components";
 
 function References() {
   const references = [
@@ -40,6 +39,7 @@ function References() {
         '"Con ayuda de estos cursos me pude pagar la universidad, lo recomiendo bastante para los que están empezando o incluso para los que tiene conocimientos previos."',
     },
   ];
+
   return (
     <>
       <Title>Testimonios</Title>

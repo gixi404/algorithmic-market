@@ -1,6 +1,6 @@
 import { Link as Linkk } from "react-router-dom";
 import { scrollToSection } from "../../utils/commonFn.js";
-import stripeImg from "../../img/stripe.png";
+import stripeImg from "../../img/stripe.webp";
 import styled from "styled-components";
 
 function Footer() {
