@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useMyContext } from "../Context.jsx";
 import styled from "styled-components";
 
-function AlertCoockie() {
+function AlertCookie() {
   const { cookInfo, setCookInfo } = useMyContext();
 
   useEffect(() => {
@@ -22,46 +22,49 @@ function AlertCoockie() {
     <Alert>
       <Title>Algorithmic Market</Title>
       <Text>
-        Para una mejor experiencia le sugerimos habilitar el uso de cookies.
+        Le sugerimos habilitar el uso de cookies para el correcto funcionamiento
+        del sitio web, gracias.
       </Text>
       <Button onClick={handleAlert}>Entendido</Button>
     </Alert>
   );
 }
-export default AlertCoockie;
+export default AlertCookie;
 
 const Alert = styled.div`
-    position: fixed;
+    margin: 2em 0;
+    background-color: #ebebeb;
     display: flex;
     flex-direction: column;
     align-items: end;
-    height: 30vh;
-    width: 80%;
-    top: 14vh;
-    border-radius: 0.8rem;
-    justify-content: space-between;
-    background-color: #ebebeb;
+    border-radius: 0.8em;
     border-right: 3px solid #ff6700;
     border-bottom: 3px solid #ff6700;
+    @media (max-width: 1224px) {
+      width: 90vw;
+    }
   `,
   Title = styled.h2`
     color: #ff6700;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    align-items: center;
-    margin: 1rem 0;
+    width: 95%;
+    text-align: start;
+    margin: 1em 0;
   `,
   Text = styled.p`
     width: 95%;
-    align-items: start;
+    text-align: start;
   `,
   Button = styled.button`
     height: max-content;
     width: 10vw;
-    margin: 1rem;
+    min-width: 100px;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-right: 1.5em;
+    padding: 0.5em 1em;
     font-family: "Poppins", monospace;
-    padding: 8px 15px;
     text-align: center;
     font-size: calc(12px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     color: #ff6700;
