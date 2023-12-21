@@ -1,1 +1,24 @@
-
+{
+  "files": {
+    "main.css": "/static/css/main.3b516c07.css",
+    "main.js": "/static/js/main.646ce030.js",
+    "static/media/about-us-img.webp": "/static/media/about-us-img.e33e66a79a8bce7343b6.webp",
+    "static/media/course-two.webp": "/static/media/course-two.bb56779324ca0ab470ad.webp",
+    "static/media/course-img.webp": "/static/media/course-img.7488d561b6d0e0f2eeb2.webp",
+    "static/media/favicon.ico": "/static/media/favicon.d268ae8f97427dc941d0.ico",
+    "static/media/feliImg.webp": "/static/media/feliImg.9b5b1f1d093848948611.webp",
+    "static/media/banner-img.webp": "/static/media/banner-img.4cb9a5afba5a45f5f122.webp",
+    "static/media/camiImg.webp": "/static/media/camiImg.4c22d195d6c4a103831b.webp",
+    "static/media/course-three.webp": "/static/media/course-three.94cd840164176468c8db.webp",
+    "static/media/davidImg.webp": "/static/media/davidImg.bd9a0a7971f79c75bf1a.webp",
+    "static/media/urki.webp": "/static/media/urki.4470cff1b99004e921a9.webp",
+    "static/media/stripe.webp": "/static/media/stripe.c5eb26ccf30b11717ab4.webp",
+    "index.html": "/index.html",
+    "main.3b516c07.css.map": "/static/css/main.3b516c07.css.map",
+    "main.646ce030.js.map": "/static/js/main.646ce030.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3b516c07.css",
+    "static/js/main.646ce030.js"
+  ]
+}
