@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "./utils/consts.js";
@@ -20,29 +20,29 @@ import styled from "styled-components";
 
 function Home() {
   const { isLoading, isAuthenticated, user } = useAuth0(),
-  {cookInfo, setCookInfo} = useMyContext()
-  // Creo una cookieie y la borro para verificar
+    { cookInfo, setCookInfo } = useMyContext();
+
   useEffect(() => {
+    //* Crea una cookie y luego la elimina para verificar.
+
     const cookies = new Cookies();
 
-    const checkCookies = () => {
+    function checkCookies() {
       try {
-        cookies.set('testcookie', 'test', { path: '/' });
-
-        const cookieEnabled = cookies.get('testcookie') === 'test';
-        cookies.remove('testcookie', { path: '/' });
-
+        cookies.set("testcookie", "test", { path: "/" });
+        const cookieEnabled = cookies.get("testcookie") === "test";
+        cookies.remove("testcookie", { path: "/" });
         if (cookieEnabled) {
-          setCookInfo(true)
+          setCookInfo(true);
         } else {
-          setCookInfo(false)
+          setCookInfo(false);
         }
-      } catch (error) {
-        console.log('Error al trabajar con cookies:', error);
+      } catch (err) {
+        console.log("Error cookies: " + err.message);
       }
-    };
+    }
 
-    checkCookies();
+    return () => checkCookies();
   }, []);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ function Home() {
           <Route path="/details/:coursedetails" element={<DetailsCourse />} />
         </Routes>
         <Header />
-        {!cookInfo && <AlertCookie /> }
+        {!cookInfo && <AlertCookie />}
         {!isAuthenticated && <MobileLoginBtn />}
         <Banner />
         <Courses />
