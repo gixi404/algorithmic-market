@@ -6,12 +6,8 @@
 // ];
 // const BACK_PATH = "https://server.algorithmic-market.com";
 
-const h = "h",
-  t = "t",
-  p = "p";
-
-const FRONT_PATH = h + t + t + p + "://localhost:3000";
-const BACK_PATH = h + t + t + p + "://localhost:3001";
+const FRONT_PATH = "http://localhost:3000";
+const BACK_PATH = "http://localhost:3001";
 
 const PROGRESS_VALUE = 11;
 const PRIV_KEY =
