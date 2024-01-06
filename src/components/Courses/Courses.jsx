@@ -52,6 +52,9 @@ function Courses() {
       setCourses(courseComplete);
     }
   }
+    if(!isAuthenticated || courses.length <= 0 ){
+      setCourses(coursesDB)
+    }
   }, [coursesDB]);
 
   return (
@@ -62,7 +65,7 @@ function Courses() {
       </Title>
 
       <ListCourses>
-        {coursesDB.length > 0 ? (
+        {courses.length > 0 ? (
           courses
             .sort((a, b) =>
               a.id.localeCompare(b.id, undefined, {

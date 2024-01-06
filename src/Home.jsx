@@ -42,7 +42,7 @@ function Home() {
       }
     }
 
-    return () => checkCookies();
+    checkCookies();
   }, []);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ function Home() {
           <Route path="/details/:coursedetails" element={<DetailsCourse />} />
         </Routes>
         <Header />
-        {!cookInfo && <AlertCookie />}
+        {cookInfo && <AlertCookie />}
         {!isAuthenticated && <MobileLoginBtn />}
         <Banner />
         <Courses />
