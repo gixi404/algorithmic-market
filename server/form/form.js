@@ -1,7 +1,8 @@
 import nodemailer from "nodemailer";
 
-async function formData(name, mail, query) {
-  const config = {
+async function formData(props) {
+  const { name, mail, message } = props,
+    config = {
       host: "smtp.gmail.com",
       port: 587,
       auth: {
@@ -9,7 +10,7 @@ async function formData(name, mail, query) {
         pass: "akfi ffpk tugt znup",
       },
     },
-    message = {
+    mailHTML = {
       from: "algorithmicmarket@gmail.com",
       to: "gioliotta.io@gmail.com",
       subject: "Soporte Algorithmic Market",
@@ -20,7 +21,7 @@ async function formData(name, mail, query) {
           <p style="text-align:start">
             <b>Consulta:</b>
             <br/><br/>
-            ${query}
+            ${message}
           </p>
           <p style="text-align:start">
            <b>Mail de usuario: </b>
@@ -33,9 +34,9 @@ async function formData(name, mail, query) {
 
   try {
     const transporter = nodemailer.createTransport(config);
-    await transporter.sendMail(message);
+    await transporter.sendMail(mailHTML);
   } catch (err) {
-    console.error("Error al enviar mail de soporte: " + err.message);
+    throw new Error(err.message);
   }
 }
 

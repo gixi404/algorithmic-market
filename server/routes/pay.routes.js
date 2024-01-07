@@ -29,8 +29,8 @@ router.post("/getcoursesdb", getCoursesDB);
 router.get("/cleanlist", deleteShoppingCart);
 
 router.post("/form", async (req, res) => {
-  const { name_form, mail_form, query_form } = req.body;
-  formData(name_form, mail_form, query_form);
+  const { name, mail, message } = req.body;
+  formData({ name, mail, message });
 });
 
 router.post("/coursepurchased", async (req, res) => {

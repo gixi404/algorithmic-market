@@ -9,7 +9,7 @@ function ButtonCart(props) {
     { user } = useAuth0();
 
   return (
-    <Container>
+    <Container> 
       {user.email_verified ? (
         <Btn to={buyUrl}>Comprar</Btn>
       ) : (

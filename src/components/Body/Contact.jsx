@@ -1,130 +1,76 @@
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BACK_PATH } from "../../utils/consts.js";
 import styled from "styled-components";
 
 function Contact() {
-  const [errorForm, setErrorForm] = useState(false),
-    [sendForm, setSendForm] = useState(false),
-    { isAuthenticated } = useAuth0(),
-    Name = useRef(null),
-    Mail = useRef(null),
-    Query = useRef(null);
+  const { isAuthenticated } = useAuth0(),
+    [errorForm, setErrorForm] = useState(false),
+    [sendForm, setSendForm] = useState(false);
 
-  let hasError = false;
+  useEffect(() => {
+    if (sendForm) {
+      const timeout = setTimeout(() => {
+        setSendForm(false);
+        window.location.reload();
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [sendForm]);
 
   function handleSubmitForm(event) {
     event.preventDefault();
 
-    const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-      regexQuery = /^(.{1,800})$/,
-      checkField = {
-        name: Name.current.value.trimStart() === "",
-        mail:
-          !regexMail.test(Mail.current.value.trimStart()) ||
-          Mail.current.value.trimStart() === "",
-        query: Query.current.value === "",
-      };
+    const { dataForm, invalidFields } = extractFormData(event);
 
-    function changeInputColor(input) {
-      switch (input) {
-        case "Name":
-          {
-            setErrorForm(true);
-            Name.current.style.borderBottom = "5px solid #f00";
-            setTimeout(() => {
-              Name.current.style.borderBottom = "2.3px solid #ff6700";
-              setErrorForm(false);
-            }, 2000);
-          }
-          break;
-
-        case "Mail":
-          {
-            setErrorForm(true);
-            Mail.current.style.borderBottom = "5px solid #f00";
-            setTimeout(() => {
-              Mail.current.style.borderBottom = "2.3px solid #ff6700";
-              setErrorForm(false);
-            }, 2000);
-          }
-          break;
-
-        case "Query":
-          {
-            setErrorForm(true);
-            Query.current.style.borderBottom = "5px solid #f00";
-            setTimeout(() => {
-              Query.current.style.borderBottom = "2.3px solid #ff6700";
-              setErrorForm(false);
-            }, 2000);
-          }
-          break;
-
-        default:
-          {
-            Name.current.style.borderBottom = "2.3px solid #ff6700";
-            setErrorForm(false);
-          }
-          break;
-      }
+    if (invalidFields) {
+      setErrorForm(true);
+      const timeout = setTimeout(() => setErrorForm(false), 2000);
+      return () => clearTimeout(timeout);
     }
 
-    if (checkField.name) {
-      changeInputColor("Name");
-      hasError = true;
-    }
+    return sendMail(dataForm);
+  }
 
-    if (checkField.mail) {
-      changeInputColor("Mail");
-      hasError = true;
-    }
+  function extractFormData(event) {
+    const name = event.target.name_form.value.trimStart(),
+      mail = event.target.mail_form.value.trimStart(),
+      message = event.target.query_form.value.trimStart(),
+      dataForm = {
+        name,
+        mail,
+        message,
+      },
+      mailRegExp = new RegExp(
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+      ),
+      invalidFields =
+        name === "" || mail === "" || message === "" || !mailRegExp.test(mail);
 
-    if (checkField.query) {
-      changeInputColor("Query");
-      hasError = true;
-    }
+    return { dataForm, invalidFields };
+  }
 
-    if (!hasError) {
+  async function sendMail(dataForm) {
+    try {
       setSendForm(true);
-      async function dataToFetch() {
-        const dataForm = {
-          name_form: Name.current.value,
-          mail_form: Mail.current.value,
-          query_form: Query.current.value,
-        };
-
-        try {
-          const res = await fetch(`${BACK_PATH}/form`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer yourAccessToken",
-            },
-            body: JSON.stringify(dataForm),
-          });
-          const resp = await res.json();
-          console.log(resp);
-        } catch (error) {
-          console.error(error);
-          setSendForm(false);
-        }
-      }
-      dataToFetch();
-
-      setTimeout(() => {
-        (Name.current.value = ""),
-          (Mail.current.value = ""),
-          (Query.current.value = "");
-        setSendForm(false);
-      }, 2000);
+      await fetch(`${BACK_PATH}/form`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer yourAccessToken",
+        },
+        body: JSON.stringify(dataForm),
+      });
+    } catch (err) {
+      console.error(err.message);
     }
   }
 
   return (
     <Container id="contact">
       <Content>
-        <Text>
+        <Text style={{ marginBottom: errorForm || sendForm ? "5em" : 0 }}>
           <Title>
             Contacto
             <span>
@@ -133,27 +79,22 @@ function Contact() {
           </Title>
         </Text>
 
-        <Form onSubmit={handleSubmitForm}>
-          {sendForm || errorForm ? (
-            <MessageValidation>
-              {sendForm ? (
-                <TextValidation style={{ color: "green" }}>
-                  Información enviada
-                </TextValidation>
-              ) : (
-                <TextValidation style={{ color: "red" }}>
-                  Revisa la información
-                </TextValidation>
-              )}
-            </MessageValidation>
-          ) : null}
+        {sendForm || errorForm ? (
+          <MessageValidation
+            style={{ backgroundColor: sendForm ? "#9aff86" : "#ff9191" }}
+          >
+            <TextValidation>
+              {sendForm ? "Información enviada" : "Revisa la información"}
+            </TextValidation>
+          </MessageValidation>
+        ) : null}
 
+        <Form onSubmit={handleSubmitForm}>
           <Label>
             Nombre
             <Input
               type="text"
               name="name_form"
-              ref={Name}
               placeholder="Ingrese su nombre"
             />
           </Label>
@@ -163,7 +104,6 @@ function Contact() {
             <Input
               type="email"
               name="mail_form"
-              ref={Mail}
               placeholder="ejemplomail@gmail.com"
             />
           </Label>
@@ -172,12 +112,12 @@ function Contact() {
             Consulta
             <Textarea
               name="query_form"
-              ref={Query}
               cols="10"
               rows="5"
               placeholder="Mi consulta es..."
             ></Textarea>
           </Label>
+
           <SubmitContainer>
             {isAuthenticated ? (
               <SubmitBtn type="submit" value="Enviar" />
@@ -320,14 +260,17 @@ const Container = styled.section`
     }
   `,
   MessageValidation = styled.div`
-    width: 100%;
-    background-color: #fff;
+    align-self: center;
+    width: max-content;
+    padding: 0.3em 4em;
+    background-color: #ff9191;
     height: 5vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     border-radius: 0.3em;
+    border: 2px solid #000;
     margin-top: 0.5em;
     @media (max-width: 480px) {
       margin-top: 2em;
@@ -337,7 +280,7 @@ const Container = styled.section`
   TextValidation = styled.p`
     font-family: "Poppins", monospace;
     font-weight: 400;
-    color: red;
+    color: #000000;
     font-size: calc(20px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
     width: 100%;
     text-align: center;
